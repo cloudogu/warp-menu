@@ -8,7 +8,7 @@
     text: 'Jenkins'
   },{
     href: '/nexus',
-    text: 'Nexus'
+    text: 'Sonatype Nexus'
   },{
     href: '/sonar',
     text: 'SonarQube'
@@ -96,6 +96,7 @@
       var a = document.createElement('a');
       a.href = link.href;
       a.innerHTML = link.text;
+      addClass(a, 'scmmu-menu-link');
       nav.appendChild(a);
     }
 
