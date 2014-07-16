@@ -1,0 +1,119 @@
+/* General styles for all menus */
+
+.scmmu-menu-button {
+  position: fixed;
+  z-index: 9999;
+  top: 45%;
+  right: -1px;
+  width:30px;
+  height:44px;
+  background-image: url(/inject/arrow.png);
+  cursor: pointer;
+}
+
+.scmmu-menu-logo {
+  width: 172px;
+  height: 37px;
+}
+
+.scmmu-menu-button:hover {
+  background-image: url(/inject/arrow_invert.png);
+}
+
+.scmmu-menu-button-open {
+  right: 239px;
+  background-image: url(/inject/arrow_back.png);
+}
+
+.scmmu-menu-button-open:hover {
+  right: 239px;
+  background-image: url(/inject/arrow_back_invert.png);
+}
+
+.scmmu-menu-button a {
+  width:30px;
+  height:44px;
+  display: block;
+}
+
+.cbp-spmenu {
+    background: #2F333F;
+    /*border-left: 1px solid #00A5E2;*/
+    position: fixed;
+    font-size: 12px;
+}
+
+.cbp-spmenu h3 {
+    font-size: 14px;
+    color: #afdefa;
+    padding: 20px;
+    margin: 0;
+    font-weight: 300;
+    background: #2F333F;
+    text-decoration: none;
+    text-align: center;
+    font-family: Exo !important;
+}
+
+.cbp-spmenu a {
+    display: block;
+    color: #fff;
+    font-weight: 300;
+    text-decoration: none;
+    text-align: left;
+    font-family: Exo !important;
+}
+
+.cbp-spmenu a:hover {
+    background: #00A5E2;
+}
+
+.cbp-spmenu a:active {
+    background: #afdefa;
+    color: #47a3da;
+}
+
+/* Orientation-dependent styles for the content of the menu */
+
+.cbp-spmenu-vertical {
+    width: 240px;
+    height: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.cbp-spmenu-vertical a {
+    border-bottom: 1px solid #00A5E2;
+    padding: 1em;
+}
+
+/* Vertical menu that slides from the left or right */
+
+.cbp-spmenu-right {
+    right: -240px;
+}
+
+.cbp-spmenu-right.cbp-spmenu-open {
+    right: 0px;
+}
+
+/* Push classes applied to the body */
+
+.cbp-spmenu-push {
+    overflow-x: hidden;
+    position: relative;
+    left: 0;
+}
+
+.cbp-spmenu-push-toleft {
+    left: -240px;
+}
+
+/* Transitions */
+.cbp-spmenu,
+.cbp-spmenu-push,
+.scmmu-menu-button {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
