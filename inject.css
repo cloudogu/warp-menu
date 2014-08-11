@@ -2,7 +2,7 @@
 
 .scmmu-menu-button {
   position: fixed;
-  z-index: 9999;
+  z-index: 9998;
   top: 45%;
   right: -1px;
   width:30px;
@@ -79,7 +79,7 @@
     width: 240px;
     height: 100%;
     top: 0;
-    z-index: 1000;
+    z-index: 9999;
 }
 
 .cbp-spmenu-vertical a {
