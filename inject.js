@@ -1,23 +1,44 @@
 (function(){
   // links
-  var links = [{
-    href: '/scm',
-    text: 'SCM-Manager'
-  }, {
-    href: '/jenkins',
-    text: 'Jenkins'
+  var categories = [{
+    name: 'Development Apps',
+    links: [{
+      href: '/scm',
+      text: 'SCM-Manager'
+    }, {
+      href: '/jenkins',
+      text: 'Jenkins'
+    },{
+      href: '/nexus',
+      text: 'Sonatype Nexus'
+    },{
+      href: '/sonar',
+      text: 'SonarQube'
+    },{
+      href: '/bugzilla',
+      text: 'Bugzilla'
+    }]
   },{
-    href: '/nexus',
-    text: 'Sonatype Nexus'
+    name: 'Administration Apps',
+    links: [{
+      href: '/universeadm',
+      text: 'Universe Administration'
+    },{
+      href: '/phpmyadmin',
+      text: 'phpMyAdmin'
+    },{
+      href: '/manager',
+      text: 'Tomcat Manager'
+    },{
+      href: '/cas/service',
+      text: 'CAS'
+    }]
   },{
-    href: '/sonar',
-    text: 'SonarQube'
-  },{
-    href: '/bugzilla',
-    text: 'Bugzilla'
-  },{
-    href: '/wp-admin',
-    text: 'Wordpress'
+    name: 'About',
+    links: [{
+      href: 'https://www.scm-manager.com/contact/',
+      text: 'Contact'
+    }]
   }];
 
   var head = document.getElementsByTagName('head')[0];
@@ -68,58 +89,70 @@
     head.appendChild(link);
   }
 
-  if (!hasClass(body, 'cbp-spmenu-push') && window === window.top){
+  if (!hasClass(body, 'warpmenu-push') && window === window.top){
     // load css
     addStylesheet('/inject/inject.css');
     addStylesheet('/wp-content/themes/Gravity/resources/css/exo/exo.css');
-    addClass(body, 'cbp-spmenu-push');
+    addClass(body, 'warpmenu-push');
 
     // create html
     var nav = document.createElement('nav');
-    nav.className = "cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right";
-    nav.id = "cbp-spmenu-s1";
+    nav.className = "warpmenu warpmenu-vertical warpmenu-right";
+    nav.id = "warpmenu-s1";
     body.appendChild(nav);
 
-    var home = document.createElement('h3');
+    var home = document.createElement('h2');
     var homeLink = document.createElement('a');
     homeLink.href = '/';
     var logo = document.createElement('img');
     logo.src = '/wp-content/uploads/2014/07/UniverseLogo-300x65.png';
     logo.alt = 'SCM-Manager Universe';
-    addClass(logo, 'scmmu-menu-logo');
+    addClass(logo, 'warpmenu-logo');
     homeLink.appendChild(logo);
     home.appendChild(homeLink);
     nav.appendChild(home);
 
-    for (var i=0; i<links.length; i++){
-      var link = links[i];
-      var a = document.createElement('a');
-      a.href = link.href;
-      a.innerHTML = link.text;
-      addClass(a, 'scmmu-menu-link');
-      nav.appendChild(a);
+    for (var c=0; c<categories.length; c++){
+      var category = categories[c];
+      var h3 = document.createElement('h3');
+      h3.innerHTML = category.name;
+      nav.appendChild(h3);
+      var ul = document.createElement('ul');
+      for (var i=0; i<category.links.length; i++){
+        var link = category.links[i];
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = link.href;
+        a.innerHTML = link.text;
+        addClass(li, 'warpmenu-link');
+        if (i === 0){
+          addClass(li, 'warpmenu-link-top');
+        }
+        li.appendChild(a);
+        ul.appendChild(li);
+      }
+      nav.appendChild(ul);
     }
 
     var div = document.createElement('div');
-    addClass(div, 'scmmu-menu-button');
+    addClass(div, 'warpbtn');
     var a = document.createElement('a');
-    //a.innerHTML = "SCMMU";
-    addClass(a, 'scmm-menu-link');
+    addClass(a, 'warpbtn-link');
     div.onclick = function(e){
       toggleNav();
     }
     div.appendChild(a);
 
     function toggleNav(){
-      toggleClass(div, 'scmmu-menu-button-open');
-      toggleClass(nav, 'cbp-spmenu-open');
-      toggleClass(body,'cbp-spmenu-push-toleft');
+      toggleClass(div, 'warpbtn-open');
+      toggleClass(nav, 'warpmenu-open');
+      toggleClass(body,'warpmenu-push-toleft');
     }
 
     // hide menu
     document.onclick = function(e){
       var target = e.target;
-      if (hasClass(nav, 'cbp-spmenu-open') && ! hasClass(target, 'scmm-menu-link')){
+      if (hasClass(nav, 'warpmenu-open') && ! hasClass(target, 'warpbtn-link')){
         toggleNav();
       }
     }

@@ -1,6 +1,6 @@
-/* General styles for all menus */
+/** button start **/
 
-.scmmu-menu-button {
+.warpbtn {
   position: fixed;
   z-index: 9998;
   top: 45%;
@@ -11,108 +11,137 @@
   cursor: pointer;
 }
 
-.scmmu-menu-logo {
-  width: 172px;
-  height: 37px;
-}
-
-.scmmu-menu-button:hover {
+.warpbtn:hover {
   background-image: url(/inject/arrow_invert.png);
 }
 
-.scmmu-menu-button-open {
+.warpbtn-open {
   right: 239px;
   background-image: url(/inject/arrow_back.png);
 }
 
-.scmmu-menu-button-open:hover {
+.warpbtn-open:hover {
   right: 239px;
   background-image: url(/inject/arrow_back_invert.png);
 }
 
-.scmmu-menu-button a {
+.warpbtn a {
   width:30px;
   height:44px;
   display: block;
 }
 
-.cbp-spmenu {
+/** button end **/
+
+.warpmenu-logo {
+  width: 172px;
+  height: 37px;
+}
+
+.warpmenu {
     background: #2F333F;
     /*border-left: 1px solid #00A5E2;*/
     position: fixed;
     font-size: 12px;
+    line-height: 21px;
 }
 
-.cbp-spmenu h3 {
-    font-size: 14px;
-    color: #afdefa;
-    padding: 20px;
-    margin: 0;
-    font-weight: 300;
-    background: #2F333F;
+.warpmenu h2 {
+    padding: 0;
+    margin: 20px 0 0 0;
+    display: block;
     text-decoration: none;
     text-align: center;
     font-family: Exo !important;
 }
 
-.cbp-spmenu a {
-    display: block;
-    color: #fff;
-    font-weight: 300;
-    text-decoration: none;
-    text-align: left;
-    font-family: Exo !important;
+.warpmenu h2 a {
+    text-align: center;
+    border: 0;
+    padding: 0;
 }
 
-.scmmu-menu-link:hover {
+.warpmenu h3 {
+    font-size: 14px;
+    color: #fff;
+    padding-left: 5px;
+    margin: 20px 0 5px 0;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: Exo !important;
+    text-rendering: optimizeLegibility;
+    text-transform: uppercase;
+}
+
+.warpmenu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.warpmenu li {
+    display: block;
+    border-bottom: 1px solid #00A5E2;
+}
+
+.warpmenu li a {
+  padding: 10px;
+  display: block;
+  color: #fff;
+  font-weight: 300;
+  text-decoration: none;
+  text-align: left;
+  font-family: Exo !important;
+}
+
+.warpmenu-link:hover {
     background: #00A5E2;
 }
 
-.cbp-spmenu a:active {
+.warpmenu li:active {
     background: #afdefa;
     color: #47a3da;
 }
 
 /* Orientation-dependent styles for the content of the menu */
 
-.cbp-spmenu-vertical {
+.warpmenu-vertical {
     width: 240px;
     height: 100%;
     top: 0;
     z-index: 9999;
 }
 
-.cbp-spmenu-vertical a {
-    border-bottom: 1px solid #00A5E2;
-    padding: 1em;
+li.warpmenu-link-top {
+    border-top: 1px solid #00A5E2;
 }
 
 /* Vertical menu that slides from the left or right */
 
-.cbp-spmenu-right {
+.warpmenu-right {
     right: -240px;
 }
 
-.cbp-spmenu-right.cbp-spmenu-open {
+.warpmenu-right.warpmenu-open {
     right: 0px;
 }
 
 /* Push classes applied to the body */
 
-.cbp-spmenu-push {
+.warpmenu-push {
     overflow-x: hidden;
     position: relative;
     left: 0;
 }
 
-.cbp-spmenu-push-toleft {
+.warpmenu-push-toleft {
     left: -240px;
 }
 
 /* Transitions */
-.cbp-spmenu,
-.cbp-spmenu-push,
-.scmmu-menu-button {
+.warpmenu,
+.warpmenu-push,
+.warpbtn {
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     transition: all 0.3s ease;
