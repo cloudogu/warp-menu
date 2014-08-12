@@ -34,6 +34,7 @@
 /** button end **/
 
 .warpmenu-logo {
+  margin-top: 15px;
   width: 172px;
   height: 37px;
 }
@@ -44,10 +45,11 @@
     position: fixed;
     font-size: 12px;
     line-height: 21px;
+    border-top: 5px solid #00A5E2;
 }
 
 .warpmenu h2 {
-    padding: 0;
+    padding: 0 0 1px 0;
     margin: 20px 0 0 0;
     display: block;
     text-decoration: none;
@@ -71,6 +73,7 @@
     font-family: Exo !important;
     text-rendering: optimizeLegibility;
     text-transform: uppercase;
+    text-align: left;
 }
 
 .warpmenu ul {
