@@ -55,6 +55,7 @@
     text-decoration: none;
     text-align: center;
     font-family: Exo !important;
+    background-color: inherit;
 }
 
 .warpmenu h2 a {
@@ -74,6 +75,7 @@
     text-rendering: optimizeLegibility;
     text-transform: uppercase;
     text-align: left;
+    background-color: inherit;
 }
 
 .warpmenu ul {
