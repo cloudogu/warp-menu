@@ -103,6 +103,7 @@
 
     var home = document.createElement('h2');
     var homeLink = document.createElement('a');
+    homeLink.target = '_top';
     homeLink.href = '/';
     var logo = document.createElement('img');
     logo.src = '/wp-content/uploads/2014/07/UniverseLogo-300x65.png';
@@ -122,6 +123,7 @@
         var link = category.links[i];
         var li = document.createElement('li');
         var a = document.createElement('a');
+        a.target = '_top';
         a.href = link.href;
         a.innerHTML = link.text;
         addClass(li, 'warpmenu-link');
