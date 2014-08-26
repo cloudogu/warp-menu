@@ -89,7 +89,7 @@
     head.appendChild(link);
   }
 
-  if (!hasClass(body, 'warpmenu-push') && (window === window.top || window.pmaversion)){
+  if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)){
     // load css
     addStylesheet('/warp/warp.css');
     addStylesheet('/wp-content/themes/Gravity/resources/css/exo/exo.css');
