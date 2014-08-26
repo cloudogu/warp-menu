@@ -80,13 +80,14 @@
         break;
       }
     }
-
-    var link  = document.createElement('link');
-    link.rel  = 'stylesheet';
-    link.type = 'text/css';
-    link.href = href;
-    link.media = 'screen';
-    head.appendChild(link);
+    if (!alreadExists){
+      var link  = document.createElement('link');
+      link.rel  = 'stylesheet';
+      link.type = 'text/css';
+      link.href = href;
+      link.media = 'screen';
+      head.appendChild(link);
+    }
   }
 
   if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)){
