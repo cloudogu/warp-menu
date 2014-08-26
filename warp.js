@@ -92,8 +92,8 @@
 
   if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)){
     // load css
-    addStylesheet('/warp/warp.css');
     addStylesheet('/wp-content/themes/Gravity/resources/css/exo/exo.css');
+    addStylesheet('/warp/warp.css');
     addClass(body, 'warpmenu-push');
 
     // create html
