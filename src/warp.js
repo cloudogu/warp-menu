@@ -91,8 +91,16 @@
   }
 
   if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)){
+
+    WebFont.load({
+      custom: {
+        families: ['Exo::latin'],
+        urls: [ '/wp-content/themes/Gravity/resources/css/exo/exo.css' ]
+      }
+    });
+
     // load css
-    addStylesheet('/wp-content/themes/Gravity/resources/css/exo/exo.css');
+    // addStylesheet('/wp-content/themes/Gravity/resources/css/exo/exo.css');
     addStylesheet('/warp/warp.css');
     addClass(body, 'warpmenu-push');
 

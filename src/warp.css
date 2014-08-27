@@ -40,12 +40,20 @@
 }
 
 .warpmenu {
-    background: #2F333F;
-    /*border-left: 1px solid #00A5E2;*/
-    position: fixed;
-    font-size: 12px;
-    line-height: 21px;
-    border-top: 5px solid #00A5E2;
+  background: #2F333F;
+  /*border-left: 1px solid #00A5E2;*/
+  position: fixed;
+  font-size: 12px;
+  line-height: 21px;
+  border-top: 5px solid #00A5E2;
+}
+
+.wf-loading .warpmenu {
+  font-family: "Times New Roman", Georgia, Serif;
+}
+
+.wf-active .warpmenu {
+  font-family: Exo, Verdana, "Helvetica Neue", Helvetica, Arial !important;
 }
 
 .warpmenu h2 {
@@ -54,7 +62,6 @@
     display: block;
     text-decoration: none;
     text-align: center;
-    font-family: Exo, Verdana, "Helvetica Neue", Helvetica, Arial !important;
     background-color: inherit;
 }
 
@@ -71,7 +78,6 @@
     margin: 20px 0 5px 0;
     font-weight: bold;
     text-decoration: none;
-    font-family: Exo, Verdana, "Helvetica Neue", Helvetica, Arial !important;
     text-rendering: optimizeLegibility;
     text-transform: uppercase;
     text-align: left;
@@ -96,7 +102,6 @@
   font-weight: 300;
   text-decoration: none;
   text-align: left;
-  font-family: Exo, Verdana, "Helvetica Neue", Helvetica, Arial !important;
 }
 
 .warpmenu-link:hover {
