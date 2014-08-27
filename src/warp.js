@@ -53,17 +53,17 @@
 
   function hasClass(elem, c) {
     return classReg(c).test(elem.className);
-  };
+  }
 
   function addClass( elem, c ) {
     if ( !hasClass(elem, c) ) {
       elem.className = elem.className + ' ' + c;
     }
-  };
+  }
 
   function removeClass(elem, c) {
     elem.className = elem.className.replace(classReg( c ), ' ');
-  };
+  }
 
   function toggleClass(elem, c) {
     var fn = hasClass(elem, c) ? removeClass : addClass;
@@ -139,12 +139,12 @@
 
     var div = document.createElement('div');
     addClass(div, 'warpbtn');
-    var a = document.createElement('a');
-    addClass(a, 'warpbtn-link');
+    var btn = document.createElement('a');
+    addClass(btn, 'warpbtn-link');
     div.onclick = function(e){
       toggleNav();
-    }
-    div.appendChild(a);
+    };
+    div.appendChild(btn);
 
     function toggleNav(){
       toggleClass(div, 'warpbtn-open');
@@ -160,7 +160,7 @@
           toggleNav();
         }
       }
-    }
+    };
 
     body.appendChild(div);
   }
