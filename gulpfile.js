@@ -30,7 +30,7 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var rimraf = require('rimraf');
-var target = "dist";
+var target = "target";
 
 gulp.task('clean', function(cb){
   rimraf(target, cb);
