@@ -29,6 +29,12 @@
 // load gulp
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var rimraf = require('rimraf');
+var target = "dist";
+
+gulp.task('clean', function(cb){
+  rimraf(target, cb);
+});
 
 gulp.task('jshint', function(){
   gulp.src('src/*.js')
@@ -36,25 +42,24 @@ gulp.task('jshint', function(){
       .pipe($.jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('images', function(cb){
+gulp.task('images', function(){
   gulp.src('src/images/*.png')
       .pipe($.imagemin())
-      .pipe(gulp.dest('dist'))
-      .on('end', cb).on('error', cb);
+      .pipe(gulp.dest(target));
 });
 
 gulp.task('scripts', function(){
   gulp.src(['lib/*.js', 'src/*.js'])
       .pipe($.concat('warp.js'))
       .pipe($.uglify())
-      .pipe(gulp.dest('dist'));
+      .pipe(gulp.dest(target));
 });
 
 gulp.task('stylesheets', function(){
   gulp.src(['lib/*.css', 'src/*.css'])
       .pipe($.concat('warp.css'))
       .pipe($.minifyCss())
-      .pipe(gulp.dest('dist'));
+      .pipe(gulp.dest(target));
 });
 
 gulp.task('default', ['scripts', 'stylesheets', 'images']);
