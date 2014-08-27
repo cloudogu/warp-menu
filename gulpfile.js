@@ -36,9 +36,11 @@ gulp.task('jshint', function(){
       .pipe($.jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('images', function(){
+gulp.task('images', function(cb){
   gulp.src('src/images/*.png')
-      .pipe(gulp.dest('dist'));
+      .pipe($.imagemin())
+      .pipe(gulp.dest('dist'))
+      .on('end', cb).on('error', cb);
 });
 
 gulp.task('scripts', function(){
