@@ -154,9 +154,11 @@
 
     // hide menu
     document.onclick = function(e){
-      var target = e.target;
-      if (hasClass(nav, 'warpmenu-open') && ! hasClass(target, 'warpbtn-link')){
-        toggleNav();
+      if (e && e.target){
+        var target = e.target;
+        if (hasClass(nav, 'warpmenu-open') && ! hasClass(target, 'warpbtn-link')){
+          toggleNav();
+        }
       }
     }
 
