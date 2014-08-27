@@ -49,7 +49,7 @@
 }
 
 .wf-loading .warpmenu {
-  font-family: "Times New Roman", Georgia, Serif;
+  font-family: Verdana, "Helvetica Neue", Helvetica, Arial !important;
 }
 
 .wf-active .warpmenu {
