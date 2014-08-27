@@ -36,11 +36,26 @@ gulp.task('jshint', function(){
       .pipe($.jshint.reporter('jshint-stylish'));
 });
 
-
-gulp.task('default', function(){
-
-
+gulp.task('images', function(){
+  gulp.src('src/images/*.png')
+      .pipe(gulp.dest('dist'));
 });
+
+gulp.task('scripts', function(){
+  gulp.src(['lib/*.js', 'src/*.js'])
+      .pipe($.concat('warp.js'))
+      .pipe($.uglify())
+      .pipe(gulp.dest('dist'));
+});
+
+gulp.task('stylesheets', function(){
+  gulp.src(['lib/*.css', 'src/*.css'])
+      .pipe($.concat('warp.css'))
+      .pipe($.minifyCss())
+      .pipe(gulp.dest('dist'));
+});
+
+gulp.task('default', ['scripts', 'stylesheets', 'images']);
 
 gulp.on('err', function (err) {
   throw err;
