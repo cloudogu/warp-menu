@@ -54,7 +54,7 @@
     display: block;
     text-decoration: none;
     text-align: center;
-    font-family: Exo !important;
+    font-family: Exo, Verdana, "Helvetica Neue", Helvetica, Arial !important;
     background-color: inherit;
 }
 
@@ -71,7 +71,7 @@
     margin: 20px 0 5px 0;
     font-weight: bold;
     text-decoration: none;
-    font-family: Exo !important;
+    font-family: Exo, Verdana, "Helvetica Neue", Helvetica, Arial !important;
     text-rendering: optimizeLegibility;
     text-transform: uppercase;
     text-align: left;
@@ -96,7 +96,7 @@
   font-weight: 300;
   text-decoration: none;
   text-align: left;
-  font-family: Exo !important;
+  font-family: Exo, Verdana, "Helvetica Neue", Helvetica, Arial !important;
 }
 
 .warpmenu-link:hover {
