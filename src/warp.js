@@ -37,7 +37,8 @@
     name: 'About',
     links: [{
       href: 'https://www.scm-manager.com/contact/',
-      text: 'Contact'
+      text: 'Contact',
+      target: '_blank'
     }]
   }];
 
@@ -132,7 +133,11 @@
         var link = category.links[i];
         var li = document.createElement('li');
         var a = document.createElement('a');
-        a.target = '_top';
+        if (link.target){
+          a.target = link.target;
+        } else {
+          a.target = '_top';
+        }
         a.href = link.href;
         a.innerHTML = link.text;
         addClass(li, 'warpmenu-link');
