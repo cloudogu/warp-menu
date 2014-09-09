@@ -1,5 +1,9 @@
 {
   "name": "warpbutton",
+  "repository": {
+    "type": "git",
+    "url": "http://universe.triology.de/scm/git/SCM-Manager/warpbutton"
+  },
   "devDependencies": {
     "gulp": "^3.8.7",
     "gulp-concat": "^2.3.4",
