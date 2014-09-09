@@ -1,9 +1,9 @@
 {
   "name": "warpbutton",
-  "dependencies": {},
   "devDependencies": {
     "gulp": "^3.8.7",
     "gulp-concat": "^2.3.4",
+    "gulp-connect": "~2.0.6",
     "gulp-filesize": "^0.0.6",
     "gulp-if": "^1.2.4",
     "gulp-jshint": "^1.8.4",

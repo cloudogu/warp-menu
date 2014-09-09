@@ -28,6 +28,7 @@
 
 // load gulp
 var gulp = require('gulp');
+var connect = require('gulp-connect');
 var $ = require('gulp-load-plugins')();
 var rimraf = require('rimraf');
 var target = "target";
@@ -61,6 +62,32 @@ gulp.task('stylesheets', function(){
       .pipe($.minifyCss())
       .pipe(gulp.dest(target));
 });
+
+gulp.task('webserver', function(){
+  connect.server({
+    root: 'sample',
+    livereload: true,
+    port: 8000
+  });
+});
+
+gulp.task('sample', function(){
+  gulp.src(['lib/*', 'src/*.js', 'src/*.css'])
+      .pipe(gulp.dest('sample/warp'));
+  gulp.src('src/images/*')
+    .pipe(gulp.dest('sample/warp'));
+});
+
+gulp.task('reload', function(){
+  gulp.src('sample/index.html')
+      .pipe(connect.reload());
+});
+
+gulp.task('watch', function(){
+  gulp.watch('src/**', ['sample', 'reload']);
+});
+
+gulp.task('serve', ['sample', 'webserver', 'watch'])
 
 gulp.task('default', ['scripts', 'stylesheets', 'images']);
 
