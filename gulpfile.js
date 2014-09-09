@@ -37,12 +37,6 @@ gulp.task('clean', function(cb){
   rimraf(target, cb);
 });
 
-gulp.task('jshint', function(){
-  gulp.src('src/*.js')
-      .pipe($.jshint())
-      .pipe($.jshint.reporter('jshint-stylish'));
-});
-
 gulp.task('images', function(){
   gulp.src('src/images/*.png')
       .pipe($.imagemin())
@@ -62,6 +56,18 @@ gulp.task('stylesheets', function(){
       .pipe($.minifyCss())
       .pipe(gulp.dest(target));
 });
+
+gulp.task('default', ['scripts', 'stylesheets', 'images']);
+
+// code quality
+
+gulp.task('jshint', function(){
+  gulp.src('src/*.js')
+      .pipe($.jshint())
+      .pipe($.jshint.reporter('jshint-stylish'));
+});
+
+// development tasks
 
 gulp.task('webserver', function(){
   connect.server({
@@ -89,7 +95,7 @@ gulp.task('watch', function(){
 
 gulp.task('serve', ['sample', 'webserver', 'watch'])
 
-gulp.task('default', ['scripts', 'stylesheets', 'images']);
+// error handling
 
 gulp.on('err', function (err) {
   throw err;
