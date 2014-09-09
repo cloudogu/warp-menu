@@ -152,7 +152,7 @@ li.warpmenu-link-top {
 .warpmenu,
 .warpmenu-push,
 .warpbtn {
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    -webkit-transition: right 0.3s ease;
+    -moz-transition: right 0.3s ease;
+    transition: right 0.3s ease;
 }
