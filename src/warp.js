@@ -71,38 +71,45 @@
     fn(elem, c);
   }
 
-  function addStylesheet(href){
-    var alreadExists = false;
-    var links = document.getElementsByTagName('link');
-    for (var i=0; i<links.length; i++){
-      var l = links[i];
-      if ( href == l.href ){
-        alreadExists = true;
-        break;
-      }
+  function addStylesheet(href, callback, scope){
+    // http://thudjs.tumblr.com/post/637855087/stylesheet-onload-or-lack-thereof
+    var link = document.createElement('link');
+    link.setAttribute('href', href);
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('type', 'text/css');
+
+    var sheet;
+    var cssRules;
+    if ( 'sheet' in link ){
+      sheet = 'sheet';
+      cssRules = 'cssRules';
+    } else {
+      sheet = 'styleSheet';
+      cssRules = 'rules';
     }
-    if (!alreadExists){
-      var link  = document.createElement('link');
-      link.rel  = 'stylesheet';
-      link.type = 'text/css';
-      link.href = href;
-      link.media = 'screen';
-      head.appendChild(link);
-    }
+
+    var interval_id = setInterval(function(){
+      try {
+        if (link[sheet] && link[sheet][cssRules].length){
+          clearInterval(interval_id);
+          clearTimeout(timeout_id);
+          callback.call(scope || window, true, link);
+        }
+      } catch( e ){}
+    }, 10 );
+    var timeout_id = setTimeout(function(){
+      clearInterval(interval_id);
+      clearTimeout( timeout_id );
+      head.removeChild(link);
+      callback.call(scope || window, false, link);
+    }, 15000);
+
+    head.appendChild( link );
+
+    return link;
   }
 
-  if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)){
-
-    WebFont.load({
-      custom: {
-        families: ['Exo::latin'],
-        urls: [ '/wp-content/themes/Gravity/resources/css/exo/exo.css' ]
-      }
-    });
-
-    // load css
-    // addStylesheet('/wp-content/themes/Gravity/resources/css/exo/exo.css');
-    addStylesheet('/warp/warp.css');
+  function initWarpMenu(){
     addClass(body, 'warpmenu-push');
 
     // create html
@@ -176,5 +183,22 @@
     };
 
     body.appendChild(div);
+  }
+
+  if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)){
+
+    WebFont.load({
+      custom: {
+        families: ['Exo::latin'],
+        urls: [ '/wp-content/themes/Gravity/resources/css/exo/exo.css' ]
+      }
+    });
+
+    // load css
+    addStylesheet('/warp/warp.css', function(success){
+      if (success){
+        initWarpMenu();
+      }
+    });
   }
 })();
