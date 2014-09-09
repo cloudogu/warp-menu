@@ -90,7 +90,7 @@ gulp.task('reload', function(){
 });
 
 gulp.task('watch', function(){
-  gulp.watch('src/**', ['sample', 'reload']);
+  gulp.watch(['src/**', 'sample/index.html'], ['sample', 'reload']);
 });
 
 gulp.task('serve', ['sample', 'webserver', 'watch'])
