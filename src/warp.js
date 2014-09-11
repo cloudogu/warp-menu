@@ -132,10 +132,9 @@
 
     for (var c=0; c<categories.length; c++){
       var category = categories[c];
-      var h3 = document.createElement('h3');
-      h3.innerHTML = category.name;
-      nav.appendChild(h3);
+      var id = 'warp_c_' + c;
       var ul = document.createElement('ul');
+      ul.id = id;
       for (var i=0; i<category.links.length; i++){
         var link = category.links[i];
         var li = document.createElement('li');
@@ -154,6 +153,25 @@
         li.appendChild(a);
         ul.appendChild(li);
       }
+
+      var h3 = document.createElement('h3');
+      var categoryLink = document.createElement('a');
+      addClass(categoryLink, 'warpbtn-link');
+      categoryLink.rel = id;
+      categoryLink.onclick = function(e){
+        var target = e.target;
+        if (target && target.rel){
+          var el = document.getElementById(target.rel);
+          if (el){
+            console.log(el);
+            toggleClass(el, 'warpmenu-hidden');
+          }
+        }
+      };
+      categoryLink.innerHTML = category.name;
+      h3.appendChild(categoryLink);
+      nav.appendChild(h3);
+
       nav.appendChild(ul);
     }
 
