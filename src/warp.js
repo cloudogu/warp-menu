@@ -118,7 +118,8 @@
     nav.id = "warpmenu-s1";
     body.appendChild(nav);
 
-    var home = document.createElement('h2');
+    var home = document.createElement('div');
+	addClass(home, 'warpmenu-home');
     var homeLink = document.createElement('a');
     homeLink.target = '_top';
     homeLink.href = '/';
@@ -155,20 +156,19 @@
       }
 
       var h3 = document.createElement('h3');
-      var categoryLink = document.createElement('a');
-      addClass(categoryLink, 'warpbtn-link');
-      categoryLink.rel = id;
-      categoryLink.onclick = function(e){
+	  h3.rel = id;
+      addClass(h3, 'warpbtn-link');
+      h3.onclick = function(e){
         var target = e.target;
         if (target && target.rel){
+		  toggleClass(target, 'warpmenu-category-open');
           var el = document.getElementById(target.rel);
           if (el){
             toggleClass(el, 'warpmenu-collapsed');
           }
         }
       };
-      categoryLink.innerHTML = category.name;
-      h3.appendChild(categoryLink);
+      h3.innerHTML = category.name;
       nav.appendChild(h3);
 
       nav.appendChild(ul);
@@ -193,7 +193,8 @@
     document.onclick = function(e){
       if (e && e.target){
         var target = e.target;
-        if (hasClass(nav, 'warpmenu-open') && ! hasClass(target, 'warpbtn-link')){
+		// TODO define marker class to stop menu from collapsing
+        if (hasClass(nav, 'warpmenu-open') && ! hasClass(target, 'warpbtn-link') && ! hasClass(target, 'warpmenu') && ! hasClass(target, 'warpmenu-home')){
           toggleNav();
         }
       }
@@ -218,4 +219,5 @@
       }
     });
   }
+  
 })();
