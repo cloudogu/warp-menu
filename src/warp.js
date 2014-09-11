@@ -163,8 +163,7 @@
         if (target && target.rel){
           var el = document.getElementById(target.rel);
           if (el){
-            console.log(el);
-            toggleClass(el, 'warpmenu-hidden');
+            toggleClass(el, 'warpmenu-collapsed');
           }
         }
       };
