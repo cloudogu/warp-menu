@@ -22,7 +22,7 @@
     name: 'Administration Apps',
     links: [{
       href: '/universeadm',
-      text: 'Universe Administration'
+      text: 'User Management'
     },{
       href: '/phpmyadmin',
       text: 'phpMyAdmin'
@@ -219,5 +219,5 @@
       }
     });
   }
-  
+
 })();
