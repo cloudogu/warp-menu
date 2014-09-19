@@ -119,7 +119,7 @@
     body.appendChild(nav);
 
     var home = document.createElement('div');
-	addClass(home, 'warpmenu-home');
+	  addClass(home, 'warpmenu-home');
     var homeLink = document.createElement('a');
     homeLink.target = '_top';
     homeLink.href = '/';
@@ -156,12 +156,12 @@
       }
 
       var h3 = document.createElement('h3');
-	  h3.rel = id;
+	    h3.rel = id;
       addClass(h3, 'warpbtn-link');
       h3.onclick = function(e){
         var target = e.target;
         if (target && target.rel){
-		  toggleClass(target, 'warpmenu-category-open');
+          toggleClass(target, 'warpmenu-category-open');
           var el = document.getElementById(target.rel);
           if (el){
             toggleClass(el, 'warpmenu-collapsed');
@@ -193,7 +193,7 @@
     document.onclick = function(e){
       if (e && e.target){
         var target = e.target;
-		// TODO define marker class to stop menu from collapsing
+		    // TODO define marker class to stop menu from collapsing
         if (hasClass(nav, 'warpmenu-open') && ! hasClass(target, 'warpbtn-link') && ! hasClass(target, 'warpmenu') && ! hasClass(target, 'warpmenu-home')){
           toggleNav();
         }
