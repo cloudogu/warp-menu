@@ -67,6 +67,14 @@ gulp.task('jshint', function(){
       .pipe($.jshint.reporter('jshint-stylish'));
 });
 
+gulp.task('csslint', function(){
+  gulp.src('src/*.css')
+      .pipe($.csslint())
+      .pipe($.csslint.reporter());
+})
+
+gulp.task('lint', ['jshint', 'csslint']);
+
 // development tasks
 
 gulp.task('webserver', function(){

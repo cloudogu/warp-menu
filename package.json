@@ -17,6 +17,7 @@
     "gulp-imagemin": "^1.0.1",
     "gulp-rimraf": "^0.1.0",
     "jshint-stylish": "^0.4.0",
-    "rimraf": "~2.2.8"
+    "rimraf": "~2.2.8",
+    "gulp-csslint": "~0.1.5"
   }
 }
