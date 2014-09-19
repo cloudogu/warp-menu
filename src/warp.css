@@ -75,7 +75,7 @@
     font-size: 14px;
     color: #fff;
     padding: 20px 0 5px 5px;
-	margin:0px;
+    margin:0;
     font-weight: bold;
     text-decoration: none;
     text-rendering: optimizeLegibility;
@@ -157,7 +157,7 @@ li.warpmenu-link-top {
 }
 
 .warpmenu-right.warpmenu-open {
-    right: 0px;
+    right: 0;
 }
 
 /* Push classes applied to the body */
