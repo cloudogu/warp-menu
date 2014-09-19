@@ -30,7 +30,7 @@
       href: '/manager',
       text: 'Tomcat Manager'
     },{
-      href: '/cas/service',
+      href: '/cas/services/manage.html',
       text: 'CAS'
     }]
   },{
