@@ -45,6 +45,8 @@
   var head = document.getElementsByTagName('head')[0];
   var body = document.getElementsByTagName('body')[0];
 
+  var lss = isLocalStorageSupported();
+
   // classie
   // https://github.com/desandro/classie
 
@@ -109,6 +111,44 @@
     return link;
   }
 
+  // http://stackoverflow.com/questions/11214404/how-to-detect-if-browser-supports-html5-local-storage
+  function isLocalStorageSupported(){
+    var mod = '__warp';
+    try {
+      localStorage.setItem(mod, mod);
+      localStorage.removeItem(mod);
+      return true;
+    } catch(e){
+      console.log(e);
+      return false;
+    }
+  }
+
+  function getCategoryKey(category){
+    return "warpc." + category.name.toLowerCase().replace(/\s+/g, "_");
+  }
+
+  function toggleCategory(e){
+    var target = e.target;
+    if (target && target.rel){
+      toggleClass(target, 'warpmenu-category-open');
+      var el = document.getElementById(target.rel);
+      if (el){
+        if (hasClass(el, 'warpmenu-collapsed')){
+          if (lss){
+            localStorage.removeItem(target.rel + '.collapsed');
+          }
+          removeClass(el, 'warpmenu-collapsed');
+        } else {
+          if (lss){
+            localStorage.setItem(target.rel + '.collapsed', true);
+          }
+          addClass(el, 'warpmenu-collapsed');
+        }
+      }
+    }
+  }
+
   function initWarpMenu(){
     addClass(body, 'warpmenu-push');
 
@@ -133,9 +173,16 @@
 
     for (var c=0; c<categories.length; c++){
       var category = categories[c];
-      var id = 'warp_c_' + c;
+      var id = getCategoryKey(category);
       var ul = document.createElement('ul');
       ul.id = id;
+      var collapsed = false;
+      if (lss){
+        collapsed = localStorage.getItem(id + '.collapsed');
+      }
+      if (collapsed){
+        addClass(ul, 'warpmenu-collapsed');
+      }
       for (var i=0; i<category.links.length; i++){
         var link = category.links[i];
         var li = document.createElement('li');
@@ -156,18 +203,12 @@
       }
 
       var h3 = document.createElement('h3');
-	    h3.rel = id;
+      h3.rel = id;
       addClass(h3, 'warpbtn-link');
-      h3.onclick = function(e){
-        var target = e.target;
-        if (target && target.rel){
-          toggleClass(target, 'warpmenu-category-open');
-          var el = document.getElementById(target.rel);
-          if (el){
-            toggleClass(el, 'warpmenu-collapsed');
-          }
-        }
-      };
+      if (collapsed){
+        addClass(h3, 'warpmenu-category-open');
+      }
+      h3.onclick = toggleCategory;
       h3.innerHTML = category.name;
       nav.appendChild(h3);
 
@@ -178,16 +219,15 @@
     addClass(div, 'warpbtn');
     var btn = document.createElement('a');
     addClass(btn, 'warpbtn-link');
-    div.onclick = function(e){
-      toggleNav();
-    };
-    div.appendChild(btn);
 
     function toggleNav(){
       toggleClass(div, 'warpbtn-open');
       toggleClass(nav, 'warpmenu-open');
       toggleClass(body,'warpmenu-push-toleft');
     }
+
+    div.onclick = toggleNav;
+    div.appendChild(btn);
 
     // hide menu
     document.onclick = function(e){
