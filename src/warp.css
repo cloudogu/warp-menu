@@ -26,8 +26,8 @@
 }
 
 .warpbtn a {
-  width:30px;
-  height:44px;
+  width: 30px;
+  height: 44px;
   display: block;
 }
 
@@ -162,7 +162,7 @@ li.warpmenu-link-top {
 /* Push classes applied to the body */
 
 .warpmenu-push {
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
     position: relative;
     left: 0;
 }
