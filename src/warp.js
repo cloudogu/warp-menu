@@ -29,9 +29,6 @@
     },{
       href: '/manager',
       text: 'Tomcat Manager'
-    },{
-      href: '/cas/services/manage.html',
-      text: 'CAS'
     }]
   },{
     name: 'About',
