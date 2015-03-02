@@ -29,6 +29,7 @@
   width: 30px;
   height: 44px;
   display: block;
+  border-bottom: none;
 }
 
 /** button end **/
@@ -125,6 +126,7 @@ ul.warpmenu-collapsed {
   font-weight: 300;
   text-decoration: none;
   text-align: left;
+  border-bottom: none;
 }
 
 .warpmenu-link:hover {
