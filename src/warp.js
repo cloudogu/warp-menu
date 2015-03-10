@@ -1,48 +1,68 @@
 (function(){
-  // links
-  var categories = [{
-    name: 'Development Apps',
-    links: [{
-      href: '/scm',
-      text: 'SCM-Manager'
-    }, {
-      href: '/jenkins',
-      text: 'Jenkins'
+
+  // model
+  var model = {
+    baseUrl: '',
+    home: {
+      href: '/',
+      logo: {
+        src: '/wp-content/uploads/2014/07/UniverseLogo-300x65.png',
+        alt: 'SCM-Manager Universe'
+      }
+    },
+    categories: [{
+      name: 'Development Apps',
+      links: [{
+        href: '/scm',
+        text: 'SCM-Manager'
+      }, {
+        href: '/jenkins',
+        text: 'Jenkins'
+      },{
+        href: '/nexus',
+        text: 'Sonatype Nexus'
+      },{
+        href: '/sonar',
+        text: 'SonarQube'
+      },{
+        href: '/bugzilla',
+        text: 'Bugzilla'
+      }]
     },{
-      href: '/nexus',
-      text: 'Sonatype Nexus'
+      name: 'Administration Apps',
+      links: [{
+        href: '/universeadm',
+        text: 'User Management'
+      },{
+        href: '/phpmyadmin',
+        text: 'phpMyAdmin'
+      },{
+        href: '/manager',
+        text: 'Tomcat Manager'
+      }]
     },{
-      href: '/sonar',
-      text: 'SonarQube'
-    },{
-      href: '/bugzilla',
-      text: 'Bugzilla'
+      name: 'About',
+      links: [{
+        href: 'https://www.scm-manager.com/contact/',
+        text: 'Contact',
+        target: '_blank'
+      }]
     }]
-  },{
-    name: 'Administration Apps',
-    links: [{
-      href: '/universeadm',
-      text: 'User Management'
-    },{
-      href: '/phpmyadmin',
-      text: 'phpMyAdmin'
-    },{
-      href: '/manager',
-      text: 'Tomcat Manager'
-    }]
-  },{
-    name: 'About',
-    links: [{
-      href: 'https://www.scm-manager.com/contact/',
-      text: 'Contact',
-      target: '_blank'
-    }]
-  }];
+  };
 
   var head = document.getElementsByTagName('head')[0];
   var body = document.getElementsByTagName('body')[0];
 
   var lss = isLocalStorageSupported();
+
+  // create link
+  function createLink(href){
+    if (href.indexOf('http') === 0){
+      return href;
+    } else {
+      return model.baseUrl + href;
+    }
+  }
 
   // classie
   // https://github.com/desandro/classie
@@ -158,17 +178,17 @@
 	  addClass(home, 'warpmenu-home');
     var homeLink = document.createElement('a');
     homeLink.target = '_top';
-    homeLink.href = '/';
+    homeLink.href = createLink(model.home.href);
     var logo = document.createElement('img');
-    logo.src = '/wp-content/uploads/2014/07/UniverseLogo-300x65.png';
-    logo.alt = 'SCM-Manager Universe';
+    logo.src = createLink(model.home.logo.src);
+    logo.alt = model.home.logo.alt;
     addClass(logo, 'warpmenu-logo');
     homeLink.appendChild(logo);
     home.appendChild(homeLink);
     nav.appendChild(home);
 
-    for (var c=0; c<categories.length; c++){
-      var category = categories[c];
+    for (var c=0; c<model.categories.length; c++){
+      var category = model.categories[c];
       var id = getCategoryKey(category);
       var ul = document.createElement('ul');
       ul.id = id;
@@ -188,7 +208,7 @@
         } else {
           a.target = '_top';
         }
-        a.href = link.href;
+        a.href = createLink(link.href);
         a.innerHTML = link.text;
         addClass(li, 'warpmenu-link');
         if (i === 0){
@@ -244,7 +264,7 @@
     WebFont.load({
       custom: {
         families: ['Exo::latin'],
-        urls: [ '/wp-content/themes/Gravity/resources/css/exo/exo.css' ]
+        urls: [createLink('/wp-content/themes/Gravity/resources/css/exo/exo.css')]
       }
     });
 
