@@ -32,6 +32,7 @@ var connect = require('gulp-connect');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
 var target = "target/warp";
+var info = require('./package.json');
 
 var config = {
   base64: {
@@ -75,7 +76,7 @@ gulp.task('default', ['scripts', 'stylesheets', 'images']);
 
 gulp.task('release', ['scripts', 'stylesheets', 'images'], function(){
   gulp.src('target/**')
-      .pipe($.zip('warp.zip'))
+      .pipe($.zip('warp-v' + info.version + '.zip'))
       .pipe(gulp.dest('target/'));
 });
 
