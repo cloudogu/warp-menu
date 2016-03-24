@@ -259,13 +259,6 @@
 
   if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)){
 
-    WebFont.load({
-      custom: {
-        families: ['Exo::latin'],
-        urls: [createLink('/wp-content/themes/Gravity/resources/css/exo/exo.css')]
-      }
-    });
-
     // load css
     addStylesheet('/warp/warp.css', function(success){
       if (success){

@@ -54,7 +54,7 @@ gulp.task('images', function(){
 });
 
 gulp.task('scripts', function(){
-  gulp.src(['lib/*.js', 'src/*.js'])
+  gulp.src(['src/*.js'])
       .pipe($.concat('warp.js'))
       .pipe($.uglify())
       .pipe(gulp.dest(target));
@@ -114,7 +114,7 @@ gulp.task('sample-styles', ['sample-images'], function(){
 });
 
 gulp.task('sample', ['sample-styles'], function(){
-  gulp.src(['lib/*', 'src/*.js'])
+  gulp.src('src/*.js')
       .pipe(gulp.dest('.tmp/warp'));
 });
 
