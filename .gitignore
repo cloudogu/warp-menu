@@ -15,4 +15,4 @@ Desktop DF
 *.conflict
 # web components
 node_modules/
-sample/warp/
+.tmp

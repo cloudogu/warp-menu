@@ -7,22 +7,22 @@
   right: -1px;
   width:30px;
   height:44px;
-  background-image: url(/warp/arrow.png);
+  background-image: url(images/arrow.png);
   cursor: pointer;
 }
 
 .warpbtn:hover {
-  background-image: url(/warp/arrow_invert.png);
+  background-image: url(images/arrow_invert.png);
 }
 
 .warpbtn-open {
   right: 239px;
-  background-image: url(/warp/arrow_back.png);
+  background-image: url(images/arrow_back.png);
 }
 
 .warpbtn-open:hover {
   right: 239px;
-  background-image: url(/warp/arrow_back_invert.png);
+  background-image: url(images/arrow_back_invert.png);
 }
 
 .warpbtn a {
