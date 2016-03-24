@@ -47,20 +47,13 @@
 }
 
 .warpmenu {
+  font-family: $font-family-sans-serif !important;
   background: $brand-primary-darker;
   /*border-left: 1px solid #00A5E2;*/
   position: fixed;
   font-size: 12px;
   line-height: 21px;
   border-top: 5px solid $brand-primary;
-}
-
-.wf-loading .warpmenu {
-  font-family: $font-family-sans-serif !important;
-}
-
-.wf-active .warpmenu {
-  font-family: $font-family-sans-serif !important;
 }
 
 .warpmenu-home {
