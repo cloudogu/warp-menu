@@ -54,24 +54,30 @@ gulp.task('images', function(){
 });
 
 gulp.task('scripts', function(){
-  gulp.src(['src/*.js'])
-      .pipe($.concat('warp.js'))
-      .pipe($.iife())
-      .pipe($.uglify())
-      .pipe(gulp.dest(target));
+  return gulp.src(['src/*.js'])
+             .pipe($.concat('warp.js'))
+             .pipe($.iife())
+             .pipe($.uglify())
+             .pipe(gulp.dest(target));
 });
 
 gulp.task('stylesheets', ['images'], function(){
-  gulp.src(['src/*.scss'])
-      .pipe($.sass())
-      .pipe($.autoprefixer(config.autoprefixer))
-      .pipe($.concat('warp.css'))
-      .pipe($.base64(config.base64))
-      .pipe($.minifyCss())
-      .pipe(gulp.dest(target));
+  return gulp.src(['src/*.scss'])
+             .pipe($.sass())
+             .pipe($.autoprefixer(config.autoprefixer))
+             .pipe($.concat('warp.css'))
+             .pipe($.base64(config.base64))
+             .pipe($.minifyCss())
+             .pipe(gulp.dest(target));
 });
 
 gulp.task('default', ['scripts', 'stylesheets', 'images']);
+
+gulp.task('release', ['scripts', 'stylesheets', 'images'], function(){
+  gulp.src('target/**')
+      .pipe($.zip('warp.zip'))
+      .pipe(gulp.dest('target/'));
+});
 
 // code quality
 
