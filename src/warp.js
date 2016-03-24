@@ -1,48 +1,4 @@
-// model
-var model = {
-  baseUrl: '',
-  home: {
-    href: '/'
-  },
-  categories: [{
-    name: 'Development Apps',
-    links: [{
-      href: '/scm',
-      text: 'SCM-Manager'
-    }, {
-      href: '/jenkins',
-      text: 'Jenkins'
-    },{
-      href: '/nexus',
-      text: 'Sonatype Nexus'
-    },{
-      href: '/sonar',
-      text: 'SonarQube'
-    },{
-      href: '/bugzilla',
-      text: 'Bugzilla'
-    }]
-  },{
-    name: 'Administration Apps',
-    links: [{
-      href: '/universeadm',
-      text: 'User Management'
-    },{
-      href: '/phpmyadmin',
-      text: 'phpMyAdmin'
-    },{
-      href: '/manager',
-      text: 'Tomcat Manager'
-    }]
-  },{
-    name: 'About',
-    links: [{
-      href: 'https://www.scm-manager.com/contact/',
-      text: 'Contact',
-      target: '_blank'
-    }]
-  }]
-};
+var baseUrl = '';
 
 var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
@@ -54,7 +10,7 @@ function createLink(href){
   if (href.indexOf('http') === 0){
     return href;
   } else {
-    return model.baseUrl + href;
+    return baseUrl + href;
   }
 }
 
@@ -71,7 +27,7 @@ function isLocalStorageSupported(){
 }
 
 function getCategoryKey(category){
-  return "warpc." + category.name.toLowerCase().replace(/\s+/g, "_");
+  return "warpc." + category.Title.toLowerCase().replace(/\s+/g, "_");
 }
 
 function toggleCategory(e){
@@ -95,7 +51,7 @@ function toggleCategory(e){
   }
 }
 
-function initWarpMenu(){
+function initWarpMenu(categories){
   addClass(body, 'warpmenu-push');
 
   // create html
@@ -108,15 +64,15 @@ function initWarpMenu(){
   addClass(home, 'warpmenu-home');
   var homeLink = document.createElement('a');
   homeLink.target = '_top';
-  homeLink.href = createLink(model.home.href);
+  homeLink.href = createLink('/');
   var logo = document.createElement('div');
   addClass(logo, 'warpmenu-logo');
   homeLink.appendChild(logo);
   home.appendChild(homeLink);
   nav.appendChild(home);
 
-  for (var c=0; c<model.categories.length; c++){
-    var category = model.categories[c];
+  for (var c=0; c<categories.length; c++){
+    var category = categories[c];
     var id = getCategoryKey(category);
     var ul = document.createElement('ul');
     ul.id = id;
@@ -127,8 +83,8 @@ function initWarpMenu(){
     if (collapsed){
       addClass(ul, 'warpmenu-collapsed');
     }
-    for (var i=0; i<category.links.length; i++){
-      var link = category.links[i];
+    for (var i=0; i<category.Entries.length; i++){
+      var link = category.Entries[i];
       var li = document.createElement('li');
       var a = document.createElement('a');
       if (link.target){
@@ -136,8 +92,8 @@ function initWarpMenu(){
       } else {
         a.target = '_top';
       }
-      a.href = createLink(link.href);
-      a.innerHTML = link.text;
+      a.href = createLink(link.Href);
+      a.innerHTML = link.DisplayName;
       addClass(li, 'warpmenu-link');
       if (i === 0){
         addClass(li, 'warpmenu-link-top');
@@ -153,7 +109,7 @@ function initWarpMenu(){
       addClass(h3, 'warpmenu-category-open');
     }
     h3.onclick = toggleCategory;
-    h3.innerHTML = category.name;
+    h3.innerHTML = category.Title;
     nav.appendChild(h3);
 
     nav.appendChild(ul);
@@ -187,12 +143,30 @@ function initWarpMenu(){
   body.appendChild(div);
 }
 
+var asyncCounter=0;
+var model;
+
+function loaded(menu){
+  if (menu){
+    model = menu;
+  }
+  --asyncCounter;
+  if (asyncCounter === 0){
+    initWarpMenu(model);
+  }
+}
+
 if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)){
 
   // load css
+  asyncCounter++;
   addStylesheet('/warp/warp.css', function(success){
     if (success){
-      initWarpMenu();
+      loaded();
     }
   });
+
+  // load model
+  asyncCounter++;
+  ajax('/warp/menu.json', loaded);
 }

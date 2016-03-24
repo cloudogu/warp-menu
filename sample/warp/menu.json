@@ -1,0 +1,102 @@
+[
+   {
+      "Title":"Administration",
+      "Entries":[
+         {
+            "DisplayName":"UniverseADM",
+            "Href":"/universeadm",
+            "Title":"User and Group Management."
+         }
+      ]
+   },
+   {
+      "Title":"Base",
+      "Entries":[
+         {
+            "DisplayName":"Central Authentication Service",
+            "Href":"/cas",
+            "Title":"The Central Authentication Service (CAS) is a single sign-on protocol for the web."
+         },
+         {
+            "DisplayName":"MySQL/MariaDB",
+            "Href":"/mysql",
+            "Title":"MySQL/MariaDB Database."
+         },
+         {
+            "DisplayName":"Nginx",
+            "Href":"/nginx",
+            "Title":"Nginx WebServer."
+         },
+         {
+            "DisplayName":"OpenLDAP",
+            "Href":"/ldap",
+            "Title":"OpenLDAP server for user and group management."
+         },
+         {
+            "DisplayName":"Postfix",
+            "Href":"/postfix",
+            "Title":"Postfix - Mail Transfer Agent"
+         },
+         {
+            "DisplayName":"Registrator",
+            "Href":"/registrator",
+            "Title":"Service registry bridge for Docker with pluggable adapters"
+         }
+      ]
+   },
+   {
+      "Title":"Build",
+      "Entries":[
+         {
+            "DisplayName":"Jenkins CI",
+            "Href":"/jenkins",
+            "Title":"Jenkins Continious Integration Server"
+         },
+         {
+            "DisplayName":"Sonatype Nexus",
+            "Href":"/nexus",
+            "Title":"The Nexus Repository is like the local warehouse where all of the parts and finished goods used in your software supply chain are stored and distributed."
+         }
+      ]
+   },
+   {
+      "Title":"Development",
+      "Entries":[
+         {
+            "DisplayName":"SCM-Manager",
+            "Href":"/scm",
+            "Title":"The easiest way to share and manage your Git, Mercurial and Subversion repositories over http."
+         }
+      ]
+   },
+   {
+      "Title":"Documentation",
+      "Entries":[
+         {
+            "DisplayName":"Javadoc",
+            "Href":"/javadocs",
+            "Title":"Javadoc for Java 8"
+         }
+      ]
+   },
+   {
+      "Title":"Project Management",
+      "Entries":[
+         {
+            "DisplayName":"Redmine",
+            "Href":"/redmine",
+            "Title":"Redmine is a flexible project management web application"
+         }
+      ]
+   },
+   {
+      "Title":"Quality",
+      "Entries":[
+         {
+            "DisplayName":"SonarQube",
+            "Href":"/sonar",
+            "Title":"SonarQube is an open source quality management platform, dedicated to continuously analyze and measure source code quality"
+         }
+      ]
+   }
+]
