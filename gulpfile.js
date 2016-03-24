@@ -56,6 +56,7 @@ gulp.task('images', function(){
 gulp.task('scripts', function(){
   gulp.src(['src/*.js'])
       .pipe($.concat('warp.js'))
+      .pipe($.iife())
       .pipe($.uglify())
       .pipe(gulp.dest(target));
 });
@@ -115,6 +116,8 @@ gulp.task('sample-styles', ['sample-images'], function(){
 
 gulp.task('sample', ['sample-styles'], function(){
   gulp.src('src/*.js')
+      .pipe($.concat('warp.js'))
+      .pipe($.iife())
       .pipe(gulp.dest('.tmp/warp'));
 });
 
