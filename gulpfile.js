@@ -33,8 +33,13 @@ var $ = require('gulp-load-plugins')();
 var rimraf = require('rimraf');
 var target = "target/warp";
 
-var base64Cfg = {
-  baseDir: '.tmp'
+var config = {
+  base64: {
+    baseDir: '.tmp'
+  },
+  autoprefixer: {
+    browsers: '> 0%'
+  }
 };
 
 gulp.task('clean', function(cb){
@@ -57,8 +62,9 @@ gulp.task('scripts', function(){
 gulp.task('stylesheets', ['images'], function(){
   gulp.src(['src/*.scss'])
       .pipe($.sass())
+      .pipe($.autoprefixer(config.autoprefixer))
       .pipe($.concat('warp.css'))
-      .pipe($.base64(base64Cfg))
+      .pipe($.base64(config.base64))
       .pipe($.minifyCss())
       .pipe(gulp.dest(target));
 });
@@ -100,8 +106,9 @@ gulp.task('sample-images', function(){
 gulp.task('sample-styles', ['sample-images'], function(){
   gulp.src(['src/*.scss'])
       .pipe($.sass())
+      .pipe($.autoprefixer(config.autoprefixer))
       .pipe($.concat('warp.css'))
-      .pipe($.base64(base64Cfg))
+      .pipe($.base64(config.base64))
       .pipe(gulp.dest('.tmp/warp'));
 });
 
