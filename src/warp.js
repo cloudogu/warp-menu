@@ -179,9 +179,7 @@
     var homeLink = document.createElement('a');
     homeLink.target = '_top';
     homeLink.href = createLink(model.home.href);
-    var logo = document.createElement('img');
-    logo.src = createLink(model.home.logo.src);
-    logo.alt = model.home.logo.alt;
+    var logo = document.createElement('div');
     addClass(logo, 'warpmenu-logo');
     homeLink.appendChild(logo);
     home.appendChild(homeLink);

@@ -1,5 +1,7 @@
 /** button start **/
 
+@import "../node_modules/ces-theme/src/scss/variables";
+
 .warpbtn {
   position: fixed;
   z-index: 9998;
@@ -36,25 +38,29 @@
 
 .warpmenu-logo {
   margin-top: 15px;
-  width: 172px;
-  height: 37px;
+  width: 170px;
+  height: 52px;
+  background-image: url(images/blib-white-160px.png);
+  background-size: 80px;
+  background-repeat: no-repeat;
+  background-position: 74px;
 }
 
 .warpmenu {
-  background: #2F333F;
+  background: $brand-primary-darker;
   /*border-left: 1px solid #00A5E2;*/
   position: fixed;
   font-size: 12px;
   line-height: 21px;
-  border-top: 5px solid #00A5E2;
+  border-top: 5px solid $brand-primary;
 }
 
 .wf-loading .warpmenu {
-  font-family: Verdana, "Helvetica Neue", Helvetica, Arial !important;
+  font-family: $font-family-sans-serif !important;
 }
 
 .wf-active .warpmenu {
-  font-family: Exo, Verdana, "Helvetica Neue", Helvetica, Arial !important;
+  font-family: $font-family-sans-serif !important;
 }
 
 .warpmenu-home {
@@ -74,7 +80,7 @@
 
 .warpmenu h3 {
     font-size: 14px;
-    color: #fff;
+    color: $white;
     padding: 20px 0 5px 5px;
     margin:0;
     font-weight: bold;
@@ -116,13 +122,13 @@ ul.warpmenu-collapsed {
 
 .warpmenu li {
     display: block;
-    border-bottom: 1px solid #00A5E2;
+    border-bottom: 1px solid $brand-primary;
 }
 
 .warpmenu li a {
   padding: 10px;
   display: block;
-  color: #fff;
+  color: $white;
   font-weight: 300;
   text-decoration: none;
   text-align: left;
@@ -130,12 +136,12 @@ ul.warpmenu-collapsed {
 }
 
 .warpmenu-link:hover {
-    background: #00A5E2;
+    background: $brand-primary;
 }
 
 .warpmenu li:active {
-    background: #afdefa;
-    color: #47a3da;
+    background: $brand-primary;
+    color: $white;
 }
 
 /* Orientation-dependent styles for the content of the menu */
@@ -148,7 +154,7 @@ ul.warpmenu-collapsed {
 }
 
 li.warpmenu-link-top {
-    border-top: 1px solid #00A5E2;
+    border-top: 1px solid $brand-primary;
 }
 
 /* Vertical menu that slides from the left or right */

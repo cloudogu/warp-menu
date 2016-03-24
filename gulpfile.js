@@ -39,7 +39,8 @@ var config = {
   },
   autoprefixer: {
     browsers: '> 0%'
-  }
+  },
+  logo: 'node_modules/ces-theme/dist/images/logo/blib-white-160px.png'
 };
 
 gulp.task('clean', function(cb){
@@ -47,7 +48,7 @@ gulp.task('clean', function(cb){
 });
 
 gulp.task('images', function(){
-  return gulp.src('src/images/*.png')
+  return gulp.src(['src/images/*.png', config.logo])
              .pipe($.imagemin())
              .pipe(gulp.dest('.tmp/images'));
 });
@@ -98,7 +99,7 @@ gulp.task('webserver', function(){
 });
 
 gulp.task('sample-images', function(){
-  return gulp.src('src/images/*.png')
+  return gulp.src(['src/images/*.png', config.logo])
              .pipe($.imagemin())
              .pipe(gulp.dest('.tmp/images'));
 });
