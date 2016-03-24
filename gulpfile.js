@@ -30,7 +30,7 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect');
 var $ = require('gulp-load-plugins')();
-var rimraf = require('rimraf');
+var del = require('del');
 var target = "target/warp";
 
 var config = {
@@ -44,7 +44,7 @@ var config = {
 };
 
 gulp.task('clean', function(cb){
-  rimraf(target, cb);
+  del(['target', '.tmp'], cb);
 });
 
 gulp.task('images', function(){
