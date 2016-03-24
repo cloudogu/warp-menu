@@ -2,11 +2,7 @@
 var model = {
   baseUrl: '',
   home: {
-    href: '/',
-    logo: {
-      src: '/wp-content/uploads/2014/07/UniverseLogo-300x65.png',
-      alt: 'SCM-Manager Universe'
-    }
+    href: '/'
   },
   categories: [{
     name: 'Development Apps',
