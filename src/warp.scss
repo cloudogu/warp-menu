@@ -53,7 +53,7 @@
   position: fixed;
   font-size: 12px;
   line-height: 21px;
-  border-top: 5px solid $brand-primary;
+  border-top: 5px solid $brand-info;
 }
 
 .warpmenu-home {
@@ -115,7 +115,7 @@ ul.warpmenu-collapsed {
 
 .warpmenu li {
     display: block;
-    border-bottom: 1px solid $brand-primary;
+    border-bottom: 1px solid $brand-info;
 }
 
 .warpmenu li a {
@@ -129,11 +129,11 @@ ul.warpmenu-collapsed {
 }
 
 .warpmenu-link:hover {
-    background: $brand-primary;
+    background: $brand-info;
 }
 
 .warpmenu li:active {
-    background: $brand-primary;
+    background: $brand-info;
     color: $white;
 }
 
@@ -147,7 +147,7 @@ ul.warpmenu-collapsed {
 }
 
 li.warpmenu-link-top {
-    border-top: 1px solid $brand-primary;
+    border-top: 1px solid $brand-info;
 }
 
 /* Vertical menu that slides from the left or right */
