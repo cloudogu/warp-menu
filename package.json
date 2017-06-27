@@ -1,9 +1,9 @@
 {
-  "name": "warpbutton",
+  "name": "warp-menu",
   "version": "0.1.1",
   "repository": {
     "type": "git",
-    "url": "http://universe.triology.de/scm/git/SCM-Manager/warpbutton"
+    "url": "https://github.com/cloudogu/warp-menu"
   },
   "devDependencies": {
     "ces-theme": "git+ssh://git@github.com/cloudogu/ces-theme.git",
