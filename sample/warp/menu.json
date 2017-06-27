@@ -98,5 +98,16 @@
             "Title":"SonarQube is an open source quality management platform, dedicated to continuously analyze and measure source code quality"
          }
       ]
+   },
+   {
+      "Title":"External",
+      "Entries":[
+         {
+            "DisplayName":"scm-manager.org",
+            "Href":"https://scm-manager.org",
+            "Title":"Home of SCM-Manager",
+            "Target": "external"
+         }
+      ]
    }
 ]
