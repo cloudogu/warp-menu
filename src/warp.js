@@ -116,8 +116,7 @@ function initWarpMenu(categories){
     nav.appendChild(ul);
   }
 
-
-//entry about page
+// fixed about page - entry
     var ul = document.createElement('ul');
     var id = "warpc.test";
     ul.id = id;
@@ -148,11 +147,6 @@ function initWarpMenu(categories){
     nav.appendChild(h3);
 
     nav.appendChild(ul);
-
-
-
-
-
 
     var div = document.createElement('div');
   addClass(div, 'warpbtn');
