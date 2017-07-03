@@ -87,8 +87,8 @@ function initWarpMenu(categories){
       var link = category.Entries[i];
       var li = document.createElement('li');
       var a = document.createElement('a');
-      if (link.target){
-        a.target = link.target;
+      if (link.Target && link.Target == 'external'){
+        a.target = '_blank'
       } else {
         a.target = '_top';
       }
