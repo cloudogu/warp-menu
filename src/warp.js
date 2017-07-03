@@ -117,7 +117,7 @@ function initWarpMenu(categories){
   }
 
 
-//fester Eintrag About-Seite
+//entry about page
     var ul = document.createElement('ul');
     var id = "warpc.test";
     ul.id = id;
@@ -131,7 +131,7 @@ function initWarpMenu(categories){
     var li = document.createElement('li');
     var a = document.createElement('a');
     a.target = '_top';
-    a.href = createLink("https://192.168.115.204/info/index.html");
+    a.href = createLink("/info/index.html");
     a.innerHTML = "About Cloudogu";
     addClass(li, 'warpmenu-link');
     addClass(li, 'warpmenu-link-top');
