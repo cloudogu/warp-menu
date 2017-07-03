@@ -102,6 +102,7 @@ function initWarpMenu(categories){
       ul.appendChild(li);
     }
 
+
     var h3 = document.createElement('h3');
     h3.rel = id;
     addClass(h3, 'warpbtn-link');
@@ -115,7 +116,45 @@ function initWarpMenu(categories){
     nav.appendChild(ul);
   }
 
-  var div = document.createElement('div');
+
+//fester Eintrag About-Seite
+    var ul = document.createElement('ul');
+    var id = "warpc.test";
+    ul.id = id;
+    var collapsed = false;
+    if (lss){
+        collapsed = localStorage.getItem(id + '.collapsed');
+    }
+    if (collapsed){
+        addClass(ul, 'warpmenu-collapsed');
+    }
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.target = '_top';
+    a.href = createLink("https://192.168.115.204/info/index.html");
+    a.innerHTML = "About Cloudogu";
+    addClass(li, 'warpmenu-link');
+    addClass(li, 'warpmenu-link-top');
+    li.appendChild(a);
+    ul.appendChild(li);
+    var h3 = document.createElement('h3');
+    h3.rel = id;
+    addClass(h3, 'warpbtn-link');
+    if (collapsed){
+        addClass(h3, 'warpmenu-category-open');
+    }
+    h3.onclick = toggleCategory;
+    h3.innerHTML = "Information";
+    nav.appendChild(h3);
+
+    nav.appendChild(ul);
+
+
+
+
+
+
+    var div = document.createElement('div');
   addClass(div, 'warpbtn');
   var btn = document.createElement('a');
   addClass(btn, 'warpbtn-link');
