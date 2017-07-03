@@ -17,3 +17,5 @@ node_modules/
 .tmp
 # idea files
 .idea
+# target
+/target
