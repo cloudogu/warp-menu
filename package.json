@@ -1,12 +1,12 @@
 {
   "name": "warp-menu",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/cloudogu/warp-menu"
   },
   "devDependencies": {
-    "ces-theme": "git+ssh://git@github.com/cloudogu/ces-theme.git",
+    "ces-theme": "https://github.com/cloudogu/ces-theme.git",
     "del": "^2.2.0",
     "gulp": "^3.8.7",
     "gulp-autoprefixer": "^3.1.0",
