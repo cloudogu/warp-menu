@@ -2,6 +2,9 @@ var baseUrl = '';
 
 var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
+var languageKeyValueMap = new Map([["Development Apps", "Entwicklung"], ["Documentation", "Dokumentation"], ["Administration Apps", "Administration"]]);
+
+
 
 var lss = isLocalStorageSupported();
 
@@ -26,7 +29,25 @@ function isLocalStorageSupported(){
   }
 }
 
+function getLanguage() {
+    var language = navigator.languages
+        ? navigator.languages[0]
+        : (navigator.language || navigator.userLanguage);
+
+    return language;
+}
+
+
 function getCategoryKey(category){
+  var language = getLanguage();
+
+  //if language = German, change category.title to German language
+    if(language.indexOf("de") > -1){
+      if(languageKeyValueMap.has(category.Title)){
+        category.Title = languageKeyValueMap.get(category.Title);
+      }
+    }
+
   return "warpc." + category.Title.toLowerCase().replace(/\s+/g, "_");
 }
 
@@ -52,6 +73,7 @@ function toggleCategory(e){
 }
 
 function initWarpMenu(categories){
+    getLanguage();
   addClass(body, 'warpmenu-push');
 
   // create html
@@ -118,7 +140,7 @@ function initWarpMenu(categories){
 
   // fixed about page - entry
   var ul = document.createElement('ul');
-  var id = "warpc.test";
+  var id = "warpc.info";
   ul.id = id;
   var collapsed = false;
   if (lss){

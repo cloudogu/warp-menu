@@ -1,6 +1,6 @@
 [
    {
-      "Title":"Administration",
+      "Title":"Administration Apps",
       "Entries":[
          {
             "DisplayName":"UniverseADM",
@@ -60,7 +60,7 @@
       ]
    },
    {
-      "Title":"Development",
+      "Title":"Development Apps",
       "Entries":[
          {
             "DisplayName":"SCM-Manager",
