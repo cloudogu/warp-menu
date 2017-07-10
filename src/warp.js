@@ -73,7 +73,6 @@ function toggleCategory(e){
 }
 
 function initWarpMenu(categories){
-    getLanguage();
   addClass(body, 'warpmenu-push');
 
   // create html
