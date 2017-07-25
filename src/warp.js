@@ -2,6 +2,9 @@ var baseUrl = '';
 
 var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
+var germanObject = {"Development Apps":"Entwicklung", "Administration Apps": "Administration", "Documentation": "Dokumentation"};
+var languageArray = {"de": germanObject};
+
 
 var lss = isLocalStorageSupported();
 
@@ -26,7 +29,24 @@ function isLocalStorageSupported(){
   }
 }
 
+function getLanguage() {
+    var language = navigator.languages
+        ? navigator.languages[0]
+        : (navigator.language || navigator.userLanguage || navigator.browserLanguage);
+
+    return language;
+}
+
+
 function getCategoryKey(category){
+  var language = getLanguage();
+
+  //if language = German, change category.title to German language
+    if(language.indexOf("de") > -1){
+        if(languageArray["de"][category.Title]!== undefined)
+            category.Title=languageArray["de"][category.Title];
+    }
+
   return "warpc." + category.Title.toLowerCase().replace(/\s+/g, "_");
 }
 
@@ -102,6 +122,7 @@ function initWarpMenu(categories){
       ul.appendChild(li);
     }
 
+
     var h3 = document.createElement('h3');
     h3.rel = id;
     addClass(h3, 'warpbtn-link');
@@ -114,6 +135,38 @@ function initWarpMenu(categories){
 
     nav.appendChild(ul);
   }
+
+  // fixed about page - entry
+  var ul = document.createElement('ul');
+  var id = "warpc.info";
+  ul.id = id;
+  var collapsed = false;
+  if (lss){
+      collapsed = localStorage.getItem(id + '.collapsed');
+  }
+  if (collapsed){
+      addClass(ul, 'warpmenu-collapsed');
+  }
+  var li = document.createElement('li');
+  var a = document.createElement('a');
+  a.target = '_top';
+  a.href = createLink("/info/index.html");
+  a.innerHTML = "About Cloudogu";
+  addClass(li, 'warpmenu-link');
+  addClass(li, 'warpmenu-link-top');
+  li.appendChild(a);
+  ul.appendChild(li);
+  var h3 = document.createElement('h3');
+  h3.rel = id;
+  addClass(h3, 'warpbtn-link');
+  if (collapsed){
+      addClass(h3, 'warpmenu-category-open');
+  }
+  h3.onclick = toggleCategory;
+  h3.innerHTML = "Information";
+  nav.appendChild(h3);
+
+  nav.appendChild(ul);
 
   var div = document.createElement('div');
   addClass(div, 'warpbtn');

@@ -1,5 +1,4 @@
 # netbeans temp & private files
-target/
 # MacOS X Files
 .DS_Store
 ._.DS_Store
@@ -16,3 +15,7 @@ Desktop DF
 # web components
 node_modules/
 .tmp
+# idea files
+.idea
+# target
+/target
