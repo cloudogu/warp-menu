@@ -7,10 +7,14 @@ var categories = {
     "Administration Apps": "Administration",
     "Documentation": "Dokumentation"
 };
-var languageArray = {"de": categories};
+var languageArray = {
+    "de": categories
+};
 
 //Custom Translation Tokens
 var ABOUT_CLOUDOGU_TOKEN = "About Cloudogu";
+
+var informationEntries = new Array();
 
 var lss = isLocalStorageSupported();
 
@@ -36,9 +40,9 @@ function isLocalStorageSupported() {
 }
 
 function getLanguage() {
-    var language = navigator.languages
-        ? navigator.languages[0]
-        : (navigator.language || navigator.userLanguage || navigator.browserLanguage);
+    var language = navigator.languages ?
+        navigator.languages[0] :
+        (navigator.language || navigator.userLanguage || navigator.browserLanguage);
 
     return language;
 }
@@ -106,50 +110,63 @@ function initWarpMenu(categories) {
 
     for (var c = 0; c < categories.length; c++) {
         var category = categories[c];
-        var id = getCategoryKey(category);
-        var ul = document.createElement('ul');
-        ul.id = id;
-        var collapsed = false;
-        if (lss) {
-            collapsed = localStorage.getItem(id + '.collapsed');
-        }
-        if (collapsed) {
-            addClass(ul, 'warpmenu-collapsed');
-        }
-        for (var i = 0; i < category.Entries.length; i++) {
-            var link = category.Entries[i];
-            var li = document.createElement('li');
-            var a = document.createElement('a');
-            if (link.Target && link.Target == 'external') {
-                a.target = '_blank'
-            } else {
-                a.target = '_top';
+
+        if (category.Title.toUpperCase() === "INFORMATION") {
+            informationEntries = category.Entries;
+        } else {
+            var id = getCategoryKey(category);
+            var ul = document.createElement('ul');
+
+            ul.id = id;
+            var collapsed = false;
+            if (lss) {
+                collapsed = localStorage.getItem(id + '.collapsed');
             }
-            a.href = createLink(link.Href);
-            a.innerHTML = link.DisplayName;
-            addClass(li, 'warpmenu-link');
-            if (i === 0) {
-                addClass(li, 'warpmenu-link-top');
+            if (collapsed) {
+                addClass(ul, 'warpmenu-collapsed');
             }
-            li.appendChild(a);
-            ul.appendChild(li);
+            for (var i = 0; i < category.Entries.length; i++) {
+                var link = category.Entries[i];
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                if (link.Target && link.Target == 'external') {
+                    a.target = '_blank'
+                } else {
+                    a.target = '_top';
+                }
+                a.href = createLink(link.Href);
+                a.innerHTML = link.DisplayName;
+                addClass(li, 'warpmenu-link');
+                if (i === 0) {
+                    addClass(li, 'warpmenu-link-top');
+                }
+                li.appendChild(a);
+                ul.appendChild(li);
+            }
+
+
+            var h3 = document.createElement('h3');
+            h3.rel = id;
+            addClass(h3, 'warpbtn-link');
+            if (collapsed) {
+                addClass(h3, 'warpmenu-category-open');
+            }
+            h3.onclick = toggleCategory;
+            h3.innerHTML = category.Title;
+            nav.appendChild(h3);
+
+            nav.appendChild(ul);
         }
-
-
-        var h3 = document.createElement('h3');
-        h3.rel = id;
-        addClass(h3, 'warpbtn-link');
-        if (collapsed) {
-            addClass(h3, 'warpmenu-category-open');
-        }
-        h3.onclick = toggleCategory;
-        h3.innerHTML = category.Title;
-        nav.appendChild(h3);
-
-        nav.appendChild(ul);
     }
 
     // fixed about page - entry
+    
+    informationEntries.push({
+        Target: "external",
+        DisplayName: ABOUT_CLOUDOGU_TOKEN,
+        Href: createLink("/info/index.html")
+    });
+
     var ul = document.createElement('ul');
     var id = "warpc.info";
     ul.id = id;
@@ -160,15 +177,24 @@ function initWarpMenu(categories) {
     if (collapsed) {
         addClass(ul, 'warpmenu-collapsed');
     }
-    var li = document.createElement('li');
-    var a = document.createElement('a');
-    a.target = '_top';
-    a.href = createLink("/info/index.html");
-    a.innerHTML = ABOUT_CLOUDOGU_TOKEN;
-    addClass(li, 'warpmenu-link');
-    addClass(li, 'warpmenu-link-top');
-    li.appendChild(a);
-    ul.appendChild(li);
+    for (var i = 0; i < informationEntries.length; i++) {
+        var link = informationEntries[i];
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        if (link.Target && link.Target == 'external') {
+            a.target = '_blank'
+        } else {
+            a.target = '_top';
+        }
+        a.href = createLink(link.Href);
+        a.innerHTML = link.DisplayName;
+        addClass(li, 'warpmenu-link');
+        if (i === 0) {
+            addClass(li, 'warpmenu-link-top');
+        }
+        li.appendChild(a);
+        ul.appendChild(li);
+    }
     var h3 = document.createElement('h3');
     h3.rel = id;
     addClass(h3, 'warpbtn-link');
@@ -180,6 +206,8 @@ function initWarpMenu(categories) {
     nav.appendChild(h3);
 
     nav.appendChild(ul);
+
+
 
     var div = document.createElement('div');
     addClass(div, 'warpbtn');
