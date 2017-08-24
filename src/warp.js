@@ -65,8 +65,6 @@ function getCategoryKey(category) {
     return "warpc." + category.Title.toLowerCase().replace(/\s+/g, "_");
 }
 
-
-
 function toggleCategory(e) {
     var target = e.target;
     if (target && target.rel) {
@@ -88,11 +86,8 @@ function toggleCategory(e) {
     }
 }
 
-
-function createMenuEntry(id, entries, title, nav){
-    
+function createMenuEntry(id, entries, title, nav) {
     var ul = document.createElement('ul');
-
     ul.id = id;
     var collapsed = false;
     if (lss) {
@@ -119,7 +114,6 @@ function createMenuEntry(id, entries, title, nav){
         li.appendChild(a);
         ul.appendChild(li);
     }
-
 
     var h3 = document.createElement('h3');
     h3.rel = id;
@@ -166,7 +160,6 @@ function initWarpMenu(categories) {
     }
 
     // fixed about page - entry
-    
     informationEntries.push({
         Target: "external",
         DisplayName: ABOUT_CLOUDOGU_TOKEN,
@@ -174,7 +167,6 @@ function initWarpMenu(categories) {
     });
 
     createMenuEntry("warpc.info", informationEntries, "Information", nav);
-
 
     var div = document.createElement('div');
     addClass(div, 'warpbtn');
