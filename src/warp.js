@@ -161,7 +161,6 @@ function initWarpMenu(categories) {
 
     // fixed about page - entry
     informationEntries.push({
-        Target: "external",
         DisplayName: ABOUT_CLOUDOGU_TOKEN,
         Href: createLink("/info/index.html")
     });
