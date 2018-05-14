@@ -2,6 +2,15 @@
 
 @import "../node_modules/ces-theme/src/scss/variables";
 
+/* adjustment for Nexus3 in order that warp menu is shown there as it should*/
+li.warpmenu-link a:not([class*="x-"]):visited, 
+li.warpmenu-link a:not([class*="x-"]):hover{
+  color: $white;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+/* warp menu */
 .warpbtn {
   position: fixed;
   z-index: 9998;
