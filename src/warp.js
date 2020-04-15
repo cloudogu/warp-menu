@@ -167,9 +167,31 @@ function initWarpMenu(categories) {
 
     createMenuEntry("warpc.info", informationEntries, "Information", nav);
 
-    var div = document.createElement('div');
+    let onboarding = document.createElement('div');
+    addClass(onboarding, 'warp-onboarding');
+
+    let label = document.createElement('label');
+    onboarding.appendChild(label);
+
+    let msg = document.createElement('p');
+    addClass(msg, 'warp-onboarding-msg');
+    label.innerHTML = "Klicken Sie auf \"Menü\", um ihre Tools zu sehen. Das Menü verbindet ihre Toolchain und ist von jedem Tool aus zugänglich.";
+
+    label.appendChild(msg);
+
+    let hint = document.createElement('p');
+    addClass(hint, 'warp-onboarding-hint');
+    hint.innerHTML = "Diesen Hinweis nicht mehr anzeigen"
+    let checkbox = document.createElement('input')
+    checkbox.type = "checkbox";
+    hint.appendChild(checkbox);
+    label.appendChild(hint);
+
+    body.appendChild(onboarding);
+
+    let div = document.createElement('div');
     addClass(div, 'warpbtn');
-    var btn = document.createElement('a');
+    let btn = document.createElement('a');
     addClass(btn, 'warpbtn-link');
 
     function toggleNav() {

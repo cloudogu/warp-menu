@@ -3,24 +3,14 @@
 @import "../node_modules/ces-theme/src/scss/variables";
 
 /* adjustment for Nexus3 in order that warp menu is shown there as it should*/
-li.warpmenu-link a:not([class*="x-"]):visited, 
-li.warpmenu-link a:not([class*="x-"]):hover{
+li.warpmenu-link a:not([class*="x-"]):visited,
+li.warpmenu-link a:not([class*="x-"]):hover {
   color: $white;
   text-decoration: none;
   border-bottom: none;
 }
-
-/* warp menu */
-
-.warpbtn-open {
-  right: 239px;
-}
-
-.warpbtn-open:hover {
-  right: 239px;
-}
-
 /** button end **/
+
 
 .warpmenu-logo {
   //margin-top: 15px;
@@ -41,38 +31,38 @@ li.warpmenu-link a:not([class*="x-"]):hover{
 }
 
 .warpmenu-home {
-    padding: 0 0 1px 0;
-    //margin: 20px 0 0 0;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    background-color: inherit;
+  padding: 0 0 1px 0;
+  //margin: 20px 0 0 0;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  background-color: inherit;
 }
 
 .warpmenu-home a {
-    text-align: center;
-    border: 0;
-    padding: 0;
+  text-align: center;
+  border: 0;
+  padding: 0;
 }
 
 .warpmenu h3 {
-    font-size: 14px;
-    color: $white;
-    padding: 20px 0 5px 5px;
-    margin:0;
-    font-weight: bold;
-    text-decoration: none;
-    text-transform: uppercase;
-    text-align: left;
-    background-color: inherit;
+  font-size: 14px;
+  color: $white;
+  padding: 20px 0 5px 5px;
+  margin: 0;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: left;
+  background-color: inherit;
 }
 
-.warpmenu h3::before{
-	content: "\25BC  ";
+.warpmenu h3::before {
+  content: "\25BC  ";
 }
 
-.warpmenu h3.warpmenu-category-open::before{
-	content: "\25B6  ";
+.warpmenu h3.warpmenu-category-open::before {
+  content: "\25B6  ";
 }
 
 /* .warpmenu h3::after{
@@ -83,23 +73,23 @@ li.warpmenu-link a:not([class*="x-"]):hover{
 	content: " \25C0";
 } */
 
-.warpmenu h3:hover{
-	cursor: pointer;
+.warpmenu h3:hover {
+  cursor: pointer;
 }
 
 ul.warpmenu-collapsed {
-    display: none;
+  display: none;
 }
 
 .warpmenu ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .warpmenu li {
-    display: block;
-    border-bottom: 1px solid $brand-primary;
+  display: block;
+  border-bottom: 1px solid $brand-primary;
 }
 
 .warpmenu li a {
@@ -113,86 +103,149 @@ ul.warpmenu-collapsed {
 }
 
 .warpmenu-link:hover {
-    background: $brand-primary;
+  background: $brand-primary;
 }
 
 .warpmenu li:active {
-    background: $brand-primary;
-    color: $white;
+  background: $brand-primary;
+  color: $white;
 }
 
 /* Orientation-dependent styles for the content of the menu */
 
 .warpmenu-vertical {
-    width: 240px;
-    height: 100%;
-    top: 0;
-    z-index: 9999;
+  width: 240px;
+  height: 100%;
+  top: 0;
+  z-index: 9999;
 }
 
 li.warpmenu-link-top {
-    border-top: 1px solid $brand-primary;
+  border-top: 1px solid $brand-primary;
 }
 
 /* Vertical menu that slides from the left or right */
 
 .warpmenu-right {
-    right: -240px;
+  right: -240px;
 }
 
 .warpmenu-right.warpmenu-open {
-    right: 0;
+  right: 0;
 }
 
 /* Push classes applied to the body */
 
 .warpmenu-push {
-    /*overflow-x: hidden;*/
-    position: relative;
-    left: 0;
+  /*overflow-x: hidden;*/
+  position: relative;
+  left: 0;
 }
 
 .warpmenu-push-toleft {
-    left: -240px;
+  left: -240px;
 }
 
 /* Transitions */
 .warpmenu,
-.warpmenu-push,
-.warpbtn {
-    transition: left 0.3s ease, right 0.3s ease;
+.warpmenu-push {
+  transition: left 0.3s ease, right 0.3s ease;
 }
 
-/** NEW CSS **/
+/*******************************************************************************************/
+/***************************************New CSS*********************************************/
+/*******************************************************************************************/
 
-/* Toggle button */
+/*******************************************************************************************/
+/********************************Onboarding message box*************************************/
+/*******************************************************************************************/
+
+.warp-onboarding.warp-hide {
+  display: none;
+}
+
+.warp-onboarding {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  right: 2.9rem;
+  height: 100vh;
+  font-size: 1.125rem;
+  display: flex;
+  display: -ms-flexbox;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  justify-content: center;
+  -ms-flex-pack: center;
+
+  label {
+    display: inline-block;
+    border-radius: 10px;
+    padding: 2rem;
+    background-color: $brand-primary-darker;
+    color: white;
+    max-width: 16rem;
+    font-size: 1rem;
+    flex-basis: auto;
+    cursor: pointer;
+
+    .warp-onboarding-msg {
+      margin: 0 0 0.5rem;
+    }
+
+    .warp-onboarding-hint {
+      margin: 0;
+      font-size: 0.8em;
+      text-align: right;
+    }
+  }
+
+  label::after {
+    content: " ";
+    display: inline-block;
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    background-color: $brand-primary-darker;
+    right: -1rem;
+    top: calc(50% - 1rem);
+    transform: rotate(45deg);
+  }
+
+}
+
+/*******************************************************************************************/
+/********************************Warp menu toggle button************************************/
+/*******************************************************************************************/
+
 .warpbtn {
   position: fixed;
   z-index: 9998;
-  top: 45%;
-  right: -1px;
-  height: 44px;
-  cursor: pointer;
-  font-size: 1.125rem;
+  top: 0;
+  right: 0;
+
+  a {
+    position: fixed;
+    top: calc(50vh - 2rem);
+    right: 0;
+    height: 4em;
+    display: inline-block;
+    background-color: $brand-primary-darker;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    writing-mode: vertical-rl;
+    text-align: center;
+    color: white;
+    transform: rotate(180deg);
+    padding: 0.25em 0.125em;
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+  }
 }
 
 .warpbtn-open {
   right: 239px;
-}
-
-.warpbtn-open:hover {
-  right: 239px;
-}
-
-.warpbtn a {
-  height: 4em;
-  display: block;
-  background-color: $brand-primary-darker;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  writing-mode: vertical-rl;
-  text-align: center;
-  color: white;
-  transform: rotate(180deg);
-  padding: 0.25em 0.125em;
 }
