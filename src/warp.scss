@@ -160,7 +160,7 @@ li.warpmenu-link-top {
 /********************************Onboarding message box*************************************/
 /*******************************************************************************************/
 
-.warp-onboarding.warp-hide {
+.warp-onboarding.warp-onboarding-hide {
   display: none;
 }
 
@@ -248,4 +248,7 @@ li.warpmenu-link-top {
 
 .warpbtn-open {
   right: 239px;
+  a{
+    right: 239px;
+  }
 }

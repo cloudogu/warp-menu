@@ -128,6 +128,69 @@ function createMenuEntry(id, entries, title, nav) {
     nav.appendChild(ul);
 }
 
+function appendOnboardingTooltip() {
+    let onboarding = document.createElement('div');
+    addClass(onboarding, 'warp-onboarding');
+
+    let label = document.createElement('label');
+    onboarding.appendChild(label);
+
+    let msg = document.createElement('p');
+    addClass(msg, 'warp-onboarding-msg');
+    label.innerHTML = "Klicken Sie auf \"Menü\", um ihre Tools zu sehen. Das Menü verbindet ihre Toolchain und ist von jedem Tool aus zugänglich.";
+
+    label.appendChild(msg);
+
+    let hint = document.createElement('p');
+    addClass(hint, 'warp-onboarding-hint');
+    hint.innerHTML = "Diesen Hinweis nicht mehr anzeigen"
+    let checkbox = document.createElement('input')
+    checkbox.type = "checkbox";
+
+    function hideTooltip() {
+        addClass(onboarding, 'warp-onboarding-hide')
+        localStorage.setItem("hideTooltip", "true")
+    }
+
+    checkbox.onclick = hideTooltip
+
+    hint.appendChild(checkbox);
+    label.appendChild(hint);
+
+    body.appendChild(onboarding);
+}
+
+function createMenuToggleFunctionality(nav) {
+    let div = document.createElement('div');
+    addClass(div, 'warpbtn');
+    let btn = document.createElement('a');
+    addClass(btn, 'warpbtn-link');
+
+    function toggleNav() {
+        toggleClass(div, 'warpbtn-open');
+        toggleClass(nav, 'warpmenu-open');
+        toggleClass(body, 'warpmenu-push-toleft');
+    }
+
+    btn.innerHTML = "Menü"
+
+    div.onclick = toggleNav;
+    div.appendChild(btn);
+
+    // hide menu
+    document.onclick = function (e) {
+        if (e && e.target) {
+            var target = e.target;
+            // TODO define marker class to stop menu from collapsing
+            if (hasClass(nav, 'warpmenu-open') && !hasClass(target, 'warpbtn-link') && !hasClass(target, 'warpmenu') && !hasClass(target, 'warpmenu-home')) {
+                toggleNav();
+            }
+        }
+    };
+
+    body.appendChild(div);
+}
+
 function initWarpMenu(categories) {
     addClass(body, 'warpmenu-push');
 
@@ -167,56 +230,10 @@ function initWarpMenu(categories) {
 
     createMenuEntry("warpc.info", informationEntries, "Information", nav);
 
-    let onboarding = document.createElement('div');
-    addClass(onboarding, 'warp-onboarding');
-
-    let label = document.createElement('label');
-    onboarding.appendChild(label);
-
-    let msg = document.createElement('p');
-    addClass(msg, 'warp-onboarding-msg');
-    label.innerHTML = "Klicken Sie auf \"Menü\", um ihre Tools zu sehen. Das Menü verbindet ihre Toolchain und ist von jedem Tool aus zugänglich.";
-
-    label.appendChild(msg);
-
-    let hint = document.createElement('p');
-    addClass(hint, 'warp-onboarding-hint');
-    hint.innerHTML = "Diesen Hinweis nicht mehr anzeigen"
-    let checkbox = document.createElement('input')
-    checkbox.type = "checkbox";
-    hint.appendChild(checkbox);
-    label.appendChild(hint);
-
-    body.appendChild(onboarding);
-
-    let div = document.createElement('div');
-    addClass(div, 'warpbtn');
-    let btn = document.createElement('a');
-    addClass(btn, 'warpbtn-link');
-
-    function toggleNav() {
-        toggleClass(div, 'warpbtn-open');
-        toggleClass(nav, 'warpmenu-open');
-        toggleClass(body, 'warpmenu-push-toleft');
+    if (localStorage.getItem("hideTooltip") !== "true") {
+        appendOnboardingTooltip();
     }
-
-    btn.innerHTML = "Menü"
-
-    div.onclick = toggleNav;
-    div.appendChild(btn);
-
-    // hide menu
-    document.onclick = function (e) {
-        if (e && e.target) {
-            var target = e.target;
-            // TODO define marker class to stop menu from collapsing
-            if (hasClass(nav, 'warpmenu-open') && !hasClass(target, 'warpbtn-link') && !hasClass(target, 'warpmenu') && !hasClass(target, 'warpmenu-home')) {
-                toggleNav();
-            }
-        }
-    };
-
-    body.appendChild(div);
+    createMenuToggleFunctionality(nav);
 }
 
 var asyncCounter = 0;
