@@ -178,6 +178,8 @@ function initWarpMenu(categories) {
         toggleClass(body, 'warpmenu-push-toleft');
     }
 
+    btn.innerHTML = "Menü"
+
     div.onclick = toggleNav;
     div.appendChild(btn);
 
