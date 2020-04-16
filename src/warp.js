@@ -139,10 +139,9 @@ function createToggleButton() {
     return {toggleColumn, toggle};
 }
 
-function createTooltip(container) {
+function createTooltip() {
     let tooltipColumn = document.createElement('div');
     addClass(tooltipColumn, 'warp-menu-column-tooltip');
-    container.appendChild(tooltipColumn);
 
     let tooltipLabel = document.createElement('label');
     addClass(tooltipLabel, 'warp-onboarding');
@@ -160,12 +159,25 @@ function createTooltip(container) {
     checkbox.type = 'checkbox';
     hint.appendChild(checkbox);
     tooltipLabel.appendChild(hint);
+
+    function hideTooltip() {
+        addClass(tooltipColumn, 'warp-onboarding-container-hide');
+        localStorage.setItem('warpMenuHideTooltip', 'hide');
+    }
+
+    checkbox.onclick = hideTooltip;
     return tooltipColumn;
+}
+
+function isTooltipDisabled() {
+    let config = localStorage.getItem('warpMenuHideTooltip');
+    return config === 'hide';
 }
 
 function createMenu() {
     let menuContainer = document.createElement('div');
     addClass(menuContainer, 'warp-menu-column-menu');
+    addClass(menuContainer, 'menu-container-hide');
 
     let menu = document.createElement('div');
     addClass(menu, 'menu');
@@ -179,23 +191,23 @@ function initWarpMenu(categories) {
     let container = document.createElement('div');
     addClass(container, 'warp-menu-container');
 
-    let tooltipColumn = createTooltip(container);
+    let tooltipColumn = createTooltip();
     let {toggleColumn, toggle} = createToggleButton();
     let menuContainer = createMenu();
 
     function toggleNav() {
         toggleClass(menuContainer, 'menu-container-hide');
     }
+
     toggle.onclick = toggleNav;
 
-    container.appendChild(tooltipColumn)
+    if (!isTooltipDisabled()) {
+        container.appendChild(tooltipColumn)
+    }
     container.appendChild(toggleColumn);
     container.appendChild(menuContainer);
 
     body.appendChild(container);
-
-
-
 
 
     /*addClass(body, 'warpmenu-push');

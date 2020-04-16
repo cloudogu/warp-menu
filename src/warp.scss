@@ -201,6 +201,10 @@ li.warpmenu-link-top {
     width: 16rem;
     font-size: 1rem;
     cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 
     .warp-onboarding-msg {
       margin: 0 0 0.5rem;
@@ -278,7 +282,6 @@ li.warpmenu-link-top {
 .warp-menu-column-menu {
   display: inline-block;
   z-index: 9997;
-  flex-basis: 15rem;
   background-color: yellow;
   transition: flex-basis 300ms ease-in-out;
   overflow: hidden;
@@ -290,7 +293,6 @@ li.warpmenu-link-top {
     display: inline-block;
     left: 0;
     top: 0;
-    width: 15rem;
     background-color: green;
     height: 100%;
   }
@@ -298,4 +300,31 @@ li.warpmenu-link-top {
 
 .menu-container-hide {
   flex-basis: 0;
+}
+
+/*Layout Spalte*/
+ul {
+  list-style: none;
+}
+
+.warp-container {
+  position: relative;
+  transition: right 0.5s ease, left 0.5s ease;
+}
+
+.warp-wrapper {
+  background-color: $brand-primary-darker;
+  color: $white;
+  writing-mode: vertical-lr;
+  height: 100vh;
+  align-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 1rem;
+
+  li {
+    writing-mode: horizontal-tb;
+    width: 192px;
+  }
 }
