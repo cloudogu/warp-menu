@@ -156,37 +156,53 @@ li.warpmenu-link-top {
 /***************************************New CSS*********************************************/
 /*******************************************************************************************/
 
+.warp-menu-container {
+  position: fixed;
+  z-index: 9996;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  display: -ms-flexbox;
+  flex-direction: row;
+  -ms-flex-direction: row;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  pointer-events: none;
+  user-select: none;
+}
+
 /*******************************************************************************************/
 /********************************Onboarding message box*************************************/
 /*******************************************************************************************/
 
-.warp-onboarding.warp-onboarding-hide {
-  display: none;
-}
-
-.warp-onboarding {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  right: 2.9rem;
-  height: 100vh;
-  font-size: 1.125rem;
+.warp-menu-column-tooltip {
+  z-index: 9997;
+  flex-basis: 16rem;
   display: flex;
   display: -ms-flexbox;
   flex-direction: column;
   -ms-flex-direction: column;
-  justify-content: center;
   -ms-flex-pack: center;
+  justify-content: center;
+  pointer-events: all;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 
-  label {
+  label.warp-onboarding {
+    flex-basis: auto;
+    position: relative;
+    margin-right: 1.5rem;
     display: inline-block;
     border-radius: 10px;
     padding: 2rem;
     background-color: $brand-primary-darker;
     color: white;
-    max-width: 16rem;
+    width: 16rem;
     font-size: 1rem;
-    flex-basis: auto;
     cursor: pointer;
 
     .warp-onboarding-msg {
@@ -200,7 +216,7 @@ li.warpmenu-link-top {
     }
   }
 
-  label::after {
+  label.warp-onboarding::after {
     content: " ";
     display: inline-block;
     position: absolute;
@@ -211,21 +227,25 @@ li.warpmenu-link-top {
     top: calc(50% - 1rem);
     transform: rotate(45deg);
   }
+}
 
+.warp-onboarding-container-hide {
+  display: none;
 }
 
 /*******************************************************************************************/
 /********************************Warp menu toggle button************************************/
 /*******************************************************************************************/
 
-.warpbtn {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  right: 0;
+.warp-menu-column-toggle {
+  z-index: 9997;
+  flex-basis: 1rem;
+  pointer-events: all;
+  user-select: all;
 
-  a {
-    position: fixed;
+  a.warpbtn {
+    z-index: 9998;
+    position: relative;
     top: calc(50vh - 2rem);
     right: 0;
     height: 4em;
@@ -244,11 +264,41 @@ li.warpmenu-link-top {
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
   }
+
+  .warpbtn-open {
+    right: 239px;
+
+    a {
+      right: 239px;
+    }
+  }
 }
 
-.warpbtn-open {
-  right: 239px;
-  a{
-    right: 239px;
+/*******************************************************************************************/
+/***************************************Warp menu*******************************************/
+/*******************************************************************************************/
+
+.warp-menu-column-menu {
+  display: inline-block;
+  z-index: 9997;
+  flex-basis: 15rem;
+  background-color: yellow;
+  transition: flex-basis 2000ms ease-in-out;
+  overflow: hidden;
+  pointer-events: all;
+  user-select: all;
+
+  .menu {
+    position: relative;
+    display: inline-block;
+    left: 0;
+    top: 0;
+    width: 15rem;
+    background-color: green;
+    height: 100%;
   }
+}
+
+.menu-container-hide {
+  flex-basis: 0;
 }

@@ -192,7 +192,65 @@ function createMenuToggleFunctionality(nav) {
 }
 
 function initWarpMenu(categories) {
-    addClass(body, 'warpmenu-push');
+    let container = document.createElement('div');
+    addClass(container, 'warp-menu-container');
+
+    ////////////////////////////////////////////////////////////
+    ////////////////////Tooltip creation////////////////////////
+    ////////////////////////////////////////////////////////////
+
+    let tooltipColumn = document.createElement('div');
+    addClass(tooltipColumn, 'warp-menu-column-tooltip');
+    container.appendChild(tooltipColumn);
+
+    let tooltipLabel = document.createElement('label');
+    addClass(tooltipLabel, 'warp-onboarding');
+    tooltipColumn.appendChild(tooltipLabel);
+
+    let text = document.createElement('p');
+    addClass(text, 'warp-onboarding-msg');
+    text.innerHTML = 'Klicken Sie auf "Menü", um ihre Tools zu sehen. Das Menü verbindet ihre Toolchain und ist von jedem Tool aus zugänglich.';
+    tooltipLabel.appendChild(text);
+
+    let hint = document.createElement('p');
+    addClass(hint, 'warp-onboarding-hint');
+    hint.innerHTML = 'Diesen Hinweis nicht mehr anzeigen.';
+    let checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    hint.appendChild(checkbox);
+    tooltipLabel.appendChild(hint);
+
+    container.appendChild(tooltipColumn)
+
+    ////////////////////////////////////////////////////////////
+    //////////////////////Toggle creation///////////////////////
+    ////////////////////////////////////////////////////////////
+
+    let toggle = document.createElement('div');
+    addClass(toggle, 'warp-warp-column-toggle');
+    container.appendChild(toggle);
+
+
+    ////////////////////////////////////////////////////////////
+    //////////////////////Menu creation/////////////////////////
+    ////////////////////////////////////////////////////////////
+
+    let menuContainer = document.createElement('div');
+    addClass(menuContainer, 'warp-warp-column-menu');
+    container.appendChild(menuContainer);
+
+
+    ////////////////////////////////////////////////////////////
+    //////////////////////Body creation/////////////////////////
+    ////////////////////////////////////////////////////////////
+
+    body.appendChild(container);
+
+
+
+
+
+    /*addClass(body, 'warpmenu-push');
 
     // create html
     var nav = document.createElement('nav');
@@ -233,7 +291,7 @@ function initWarpMenu(categories) {
     if (localStorage.getItem("hideTooltip") !== "true") {
         appendOnboardingTooltip();
     }
-    createMenuToggleFunctionality(nav);
+    createMenuToggleFunctionality(nav);*/
 }
 
 var asyncCounter = 0;
