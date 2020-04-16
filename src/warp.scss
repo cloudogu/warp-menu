@@ -188,6 +188,7 @@ li.warpmenu-link-top {
   justify-content: center;
   pointer-events: all;
   user-select: all;
+  transition: visibility 0.5s, opacity 0.5s linear;
 
   label.warp-onboarding {
     flex-basis: auto;
@@ -231,7 +232,8 @@ li.warpmenu-link-top {
 }
 
 .warp-onboarding-container-hide {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 /*******************************************************************************************/
@@ -283,23 +285,25 @@ li.warpmenu-link-top {
   display: inline-block;
   z-index: 9997;
   background-color: yellow;
-  transition: flex-basis 300ms ease-in-out;
+  transition: max-width 600ms ease-in-out;
   overflow: hidden;
   pointer-events: all;
   user-select: all;
+  max-width: 100%;
 
   .menu {
     position: relative;
     display: inline-block;
     left: 0;
     top: 0;
+    transition: width 300ms ease-in-out;
     background-color: green;
     height: 100%;
   }
 }
 
 .menu-container-hide {
-  flex-basis: 0;
+  max-width: 0;
 }
 
 /*Layout Spalte*/
