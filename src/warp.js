@@ -128,77 +128,18 @@ function createMenuEntry(id, entries, title, nav) {
     nav.appendChild(ul);
 }
 
-function appendOnboardingTooltip() {
-    let onboarding = document.createElement('div');
-    addClass(onboarding, 'warp-onboarding');
+function createToggleButton() {
+    let toggleColumn = document.createElement('div');
+    addClass(toggleColumn, 'warp-menu-column-toggle');
 
-    let label = document.createElement('label');
-    onboarding.appendChild(label);
-
-    let msg = document.createElement('p');
-    addClass(msg, 'warp-onboarding-msg');
-    label.innerHTML = "Klicken Sie auf \"Menü\", um ihre Tools zu sehen. Das Menü verbindet ihre Toolchain und ist von jedem Tool aus zugänglich.";
-
-    label.appendChild(msg);
-
-    let hint = document.createElement('p');
-    addClass(hint, 'warp-onboarding-hint');
-    hint.innerHTML = "Diesen Hinweis nicht mehr anzeigen"
-    let checkbox = document.createElement('input')
-    checkbox.type = "checkbox";
-
-    function hideTooltip() {
-        addClass(onboarding, 'warp-onboarding-hide')
-        localStorage.setItem("hideTooltip", "true")
-    }
-
-    checkbox.onclick = hideTooltip
-
-    hint.appendChild(checkbox);
-    label.appendChild(hint);
-
-    body.appendChild(onboarding);
+    let toggle = document.createElement('a');
+    addClass(toggle, 'warpbtn')
+    toggle.innerHTML = 'Menü';
+    toggleColumn.appendChild(toggle);
+    return {toggleColumn, toggle};
 }
 
-function createMenuToggleFunctionality(nav) {
-    let div = document.createElement('div');
-    addClass(div, 'warpbtn');
-    let btn = document.createElement('a');
-    addClass(btn, 'warpbtn-link');
-
-    function toggleNav() {
-        toggleClass(div, 'warpbtn-open');
-        toggleClass(nav, 'warpmenu-open');
-        toggleClass(body, 'warpmenu-push-toleft');
-    }
-
-    btn.innerHTML = "Menü"
-
-    div.onclick = toggleNav;
-    div.appendChild(btn);
-
-    // hide menu
-    document.onclick = function (e) {
-        if (e && e.target) {
-            var target = e.target;
-            // TODO define marker class to stop menu from collapsing
-            if (hasClass(nav, 'warpmenu-open') && !hasClass(target, 'warpbtn-link') && !hasClass(target, 'warpmenu') && !hasClass(target, 'warpmenu-home')) {
-                toggleNav();
-            }
-        }
-    };
-
-    body.appendChild(div);
-}
-
-function initWarpMenu(categories) {
-    let container = document.createElement('div');
-    addClass(container, 'warp-menu-container');
-
-    ////////////////////////////////////////////////////////////
-    ////////////////////Tooltip creation////////////////////////
-    ////////////////////////////////////////////////////////////
-
+function createTooltip(container) {
     let tooltipColumn = document.createElement('div');
     addClass(tooltipColumn, 'warp-menu-column-tooltip');
     container.appendChild(tooltipColumn);
@@ -219,40 +160,29 @@ function initWarpMenu(categories) {
     checkbox.type = 'checkbox';
     hint.appendChild(checkbox);
     tooltipLabel.appendChild(hint);
+    return tooltipColumn;
+}
 
-
-    ////////////////////////////////////////////////////////////
-    //////////////////////Toggle creation///////////////////////
-    ////////////////////////////////////////////////////////////
-
-    let toggleColumn = document.createElement('div');
-    addClass(toggleColumn, 'warp-menu-column-toggle');
-
-    let toggle = document.createElement('a');
-    addClass(toggle, 'warpbtn')
-    toggle.innerHTML = 'Menü';
-    toggleColumn.appendChild(toggle);
-
-
-
-
-
-
-
-
-    ////////////////////////////////////////////////////////////
-    //////////////////////Menu creation/////////////////////////
-    ////////////////////////////////////////////////////////////
-
+function createMenu() {
     let menuContainer = document.createElement('div');
     addClass(menuContainer, 'warp-menu-column-menu');
 
+    let menu = document.createElement('div');
+    addClass(menu, 'menu');
+    menu.innerHTML = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
 
+    menuContainer.appendChild(menu);
+    return menuContainer;
+}
 
+function initWarpMenu(categories) {
+    let container = document.createElement('div');
+    addClass(container, 'warp-menu-container');
 
-    ////////////////////////////////////////////////////////////
-    //////////////////////Body creation/////////////////////////
-    ////////////////////////////////////////////////////////////
+    let tooltipColumn = createTooltip(container);
+    let {toggleColumn, toggle} = createToggleButton();
+    let menuContainer = createMenu();
+
     function toggleNav() {
         toggleClass(menuContainer, 'menu-container-hide');
     }
