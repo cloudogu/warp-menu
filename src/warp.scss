@@ -282,7 +282,7 @@ li.warpmenu-link-top {
 /*******************************************************************************************/
 
 .warp-menu-column-menu {
-  display: inline-block;
+  display: block;
   z-index: 9997;
   background-color: yellow;
   transition: max-width 600ms ease-in-out;
@@ -304,6 +304,7 @@ li.warpmenu-link-top {
 
 .menu-container-hide {
   max-width: 0;
+  flex-basis: 0;
 }
 
 /*Layout Spalte*/
