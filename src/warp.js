@@ -86,46 +86,32 @@ function toggleCategory(e) {
     }
 }
 
-function createMenuEntry(id, entries, title, nav) {
-    var ul = document.createElement('ul');
-    ul.id = id;
-    var collapsed = false;
-    if (lss) {
-        collapsed = localStorage.getItem(id + '.collapsed');
-    }
-    if (collapsed) {
-        addClass(ul, 'warpmenu-collapsed');
-    }
-    for (var i = 0; i < entries.length; i++) {
-        var link = entries[i];
-        var li = document.createElement('li');
-        var a = document.createElement('a');
-        if (link.Target && link.Target == 'external') {
+function createMenuEntry(id, entries, title, list) {
+    let li = document.createElement('li');
+
+    let h3 = document.createElement('h3');
+    h3.innerHTML = title;
+
+    let ul = document.createElement('ul');
+
+    for (let i = 0; i < entries.length; i++) {
+        let link = entries[i];
+        let li = document.createElement('li');
+        let a = document.createElement('a');
+        if (link.Target && link.Target === 'external') {
             a.target = '_blank'
         } else {
             a.target = '_top';
         }
         a.href = createLink(link.Href);
         a.innerHTML = link.DisplayName;
-        addClass(li, 'warpmenu-link');
-        if (i === 0) {
-            addClass(li, 'warpmenu-link-top');
-        }
         li.appendChild(a);
         ul.appendChild(li);
     }
 
-    var h3 = document.createElement('h3');
-    h3.rel = id;
-    addClass(h3, 'warpbtn-link');
-    if (collapsed) {
-        addClass(h3, 'warpmenu-category-open');
-    }
-    h3.onclick = toggleCategory;
-    h3.innerHTML = title;
-    nav.appendChild(h3);
-
-    nav.appendChild(ul);
+    li.appendChild(h3);
+    li.appendChild(ul);
+    list.appendChild(li);
 }
 
 function createToggleButton() {
@@ -174,16 +160,35 @@ function isTooltipDisabled() {
     return config === 'hide';
 }
 
-function createMenu() {
+function createMenu(categories) {
     let menuContainer = document.createElement('div');
-    addClass(menuContainer, 'warp-menu-column-menu');
-    addClass(menuContainer, 'menu-container-hide');
+    addClass(menuContainer, 'warp-menu-column-menu')
+    addClass(menuContainer, 'menu-container-hide')
 
     let menu = document.createElement('div');
     addClass(menu, 'menu');
-    menu.innerHTML = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
-
     menuContainer.appendChild(menu);
+
+    let warpContainer = document.createElement('div');
+    addClass(warpContainer, 'warp-container');
+    addClass(warpContainer, 'warp-move');
+    menu.appendChild(warpContainer);
+
+    let list = document.createElement('ul');
+    addClass(list, 'warp-wrapper');
+    warpContainer.appendChild(list);
+
+    for (let c = 0; c < categories.length; c++) {
+        let category = categories[c];
+
+        if (category.Title.toUpperCase() === "INFORMATION") {
+            informationEntries = category.Entries;
+        } else {
+            let id = getCategoryKey(category);
+            createMenuEntry(id, category.Entries, category.Title, list);
+        }
+    }
+
     return menuContainer;
 }
 
@@ -193,7 +198,7 @@ function initWarpMenu(categories) {
 
     let tooltipColumn = createTooltip();
     let {toggleColumn, toggle} = createToggleButton();
-    let menuContainer = createMenu();
+    let menuContainer = createMenu(categories);
 
     function toggleNav() {
         toggleClass(menuContainer, 'menu-container-hide');
@@ -208,50 +213,6 @@ function initWarpMenu(categories) {
     container.appendChild(menuContainer);
 
     body.appendChild(container);
-
-
-    /*addClass(body, 'warpmenu-push');
-
-    // create html
-    var nav = document.createElement('nav');
-    nav.className = "warpmenu warpmenu-vertical warpmenu-right";
-    nav.id = "warpmenu-s1";
-    body.appendChild(nav);
-
-    var home = document.createElement('div');
-    addClass(home, 'warpmenu-home');
-    var homeLink = document.createElement('a');
-    homeLink.target = '_top';
-    homeLink.href = createLink('/');
-    var logo = document.createElement('div');
-    addClass(logo, 'warpmenu-logo');
-    homeLink.appendChild(logo);
-    home.appendChild(homeLink);
-    nav.appendChild(home);
-
-    for (var c = 0; c < categories.length; c++) {
-        var category = categories[c];
-
-        if (category.Title.toUpperCase() === "INFORMATION") {
-            informationEntries = category.Entries;
-        } else {
-            var id = getCategoryKey(category);
-            createMenuEntry(id, category.Entries, category.Title, nav);
-        }
-    }
-
-    // fixed about page - entry
-    informationEntries.push({
-        DisplayName: ABOUT_CLOUDOGU_TOKEN,
-        Href: createLink("/info/index.html")
-    });
-
-    createMenuEntry("warpc.info", informationEntries, "Information", nav);
-
-    if (localStorage.getItem("hideTooltip") !== "true") {
-        appendOnboardingTooltip();
-    }
-    createMenuToggleFunctionality(nav);*/
 }
 
 var asyncCounter = 0;
