@@ -187,10 +187,7 @@ li.warpmenu-link-top {
   -ms-flex-pack: center;
   justify-content: center;
   pointer-events: all;
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+/Edge */
-  user-select: none; /* Standard */
+  user-select: all;
 
   label.warp-onboarding {
     flex-basis: auto;
@@ -283,7 +280,7 @@ li.warpmenu-link-top {
   z-index: 9997;
   flex-basis: 15rem;
   background-color: yellow;
-  transition: flex-basis 2000ms ease-in-out;
+  transition: flex-basis 300ms ease-in-out;
   overflow: hidden;
   pointer-events: all;
   user-select: all;

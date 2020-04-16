@@ -220,15 +220,24 @@ function initWarpMenu(categories) {
     hint.appendChild(checkbox);
     tooltipLabel.appendChild(hint);
 
-    container.appendChild(tooltipColumn)
 
     ////////////////////////////////////////////////////////////
     //////////////////////Toggle creation///////////////////////
     ////////////////////////////////////////////////////////////
 
-    let toggle = document.createElement('div');
-    addClass(toggle, 'warp-warp-column-toggle');
-    container.appendChild(toggle);
+    let toggleColumn = document.createElement('div');
+    addClass(toggleColumn, 'warp-menu-column-toggle');
+
+    let toggle = document.createElement('a');
+    addClass(toggle, 'warpbtn')
+    toggle.innerHTML = 'Menü';
+    toggleColumn.appendChild(toggle);
+
+
+
+
+
+
 
 
     ////////////////////////////////////////////////////////////
@@ -236,13 +245,22 @@ function initWarpMenu(categories) {
     ////////////////////////////////////////////////////////////
 
     let menuContainer = document.createElement('div');
-    addClass(menuContainer, 'warp-warp-column-menu');
-    container.appendChild(menuContainer);
+    addClass(menuContainer, 'warp-menu-column-menu');
+
+
 
 
     ////////////////////////////////////////////////////////////
     //////////////////////Body creation/////////////////////////
     ////////////////////////////////////////////////////////////
+    function toggleNav() {
+        toggleClass(menuContainer, 'menu-container-hide');
+    }
+    toggle.onclick = toggleNav;
+
+    container.appendChild(tooltipColumn)
+    container.appendChild(toggleColumn);
+    container.appendChild(menuContainer);
 
     body.appendChild(container);
 
