@@ -70,9 +70,9 @@ function toggleCategory(e) {
     toggleClass(target, 'warpmenu-category-open');
     toggleCollapsed(target.id);
     const container = document.getElementsByClassName('warp-menu-container')[0];
-    container.style.display = 'none';
-    container.offsetHeight;
-    container.style.display = '';
+    //Toggle hide class twice to force redraw
+    toggleClass(container, 'warpmenu-hide-container')
+    toggleClass(container, 'warpmenu-hide-container')
     // var target = e.target;
     // if (target && target.rel) {
     //     toggleClass(target, 'warpmenu-category-open');
@@ -220,6 +220,7 @@ function createMenu(categories) {
 function initWarpMenu(categories) {
     let container = document.createElement('div');
     addClass(container, 'warp-menu-container');
+    container.id = 'warp-menu-container';
 
     let tooltipColumn = createTooltip();
     let {toggleColumn, toggle} = createToggleButton();
