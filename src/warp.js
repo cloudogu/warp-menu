@@ -173,6 +173,10 @@ function isTooltipDisabled() {
     return config === 'hide';
 }
 
+function getLogoutUrl() {
+    return window.location.href;
+}
+
 function createMenu(categories) {
     let menuContainer = document.createElement('div');
     addClass(menuContainer, 'warp-menu-column-menu')
@@ -193,7 +197,6 @@ function createMenu(categories) {
     addClass(list, 'warp-menu-category-list');
     menu.appendChild(list);
 
-
     let firstListElement = document.createElement('li');
     let homeHref = document.createElement('a');
     homeHref.href = '#';
@@ -213,6 +216,40 @@ function createMenu(categories) {
             createMenuEntry(id, category.Entries, category.Title, list);
         }
     }
+
+    let placeholder = document.createElement('li');
+    addClass(placeholder, 'warp-menu-placeholder');
+    list.appendChild(placeholder);
+
+    let logout = document.createElement('li');
+    let logoutHref = document.createElement('a');
+    addClass(logoutHref, 'warp-menu-logout-link');
+    logoutHref.innerHTML = 'EcoSystem Logout'
+    logoutHref.href = getLogoutUrl();
+    logout.appendChild(logoutHref);
+    list.appendChild(logout);
+
+    let settingsEntry = document.createElement('li');
+    let settingsHeadline = document.createElement('h3');
+
+    settingsHeadline.innerHTML = 'Einstellungen';
+    settingsHeadline.onclick = toggleCategory;
+    settingsHeadline.id = 'collapse-warp-menu-category-header-' + 'Settings';
+    if (isOpenCollapsible(settingsHeadline.id)) {
+        addClass(settingsHeadline, 'warpmenu-category-open');
+    }
+
+    let ul = document.createElement('ul');
+    let li = document.createElement('li');
+    let label = document.createElement('label');
+    let input = document.createElement('input');
+    input.type = 'checkbox';
+    label.appendChild(input);
+    label.innerHTML = label.innerHTML + 'Tooltip zum Menü anzeigen';
+    li.appendChild(label);
+    ul.appendChild(li)
+    settingsEntry.appendChild(ul);
+    list.appendChild(settingsEntry);
 
     return menuContainer;
 }

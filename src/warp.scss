@@ -159,10 +159,10 @@
 
 * {
   box-sizing: border-box;
+  font-family: $font-family-sans-serif !important;
 }
 
 .warp-menu-container {
-  //font-family: $font-family-sans-serif !important;
   position: fixed;
   z-index: 9996;
   top: 0;
@@ -179,6 +179,10 @@
   user-select: none;
   line-height: 1.3125rem;
   font-family: Droid-sans, sans-serif;
+  a{
+    color: white !important;
+    text-decoration: none;
+  }
 }
 
 /*******************************************************************************************/
@@ -244,18 +248,22 @@
   opacity: 0;
 }
 
+@keyframes mymove {
+  from {visibility: visible;}
+  to {visibility: hidden;}
+}
+
 /*******************************************************************************************/
 /********************************Warp menu toggle button************************************/
 /*******************************************************************************************/
 
 .warp-menu-column-toggle {
-  z-index: 9997;
+  z-index: 9998;
   flex-basis: auto;
   pointer-events: all;
   user-select: all;
 
   a.warpbtn {
-    z-index: 9998;
     position: relative;
     top: calc(50vh - 2rem);
     right: 0;
@@ -275,6 +283,7 @@
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
+    border-left: 1px solid $brand-primary;
   }
 
   .warpbtn-open {
@@ -306,6 +315,9 @@
   $gradient-start: calc(160px);
   $gradient-col-width: calc(192px);
   background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
+  -webkit-box-shadow: -9px 0px 30px -12px rgba(0,66,107,1);
+  -moz-box-shadow: -9px 0px 30px -12px rgba(0,66,107,1);
+  box-shadow: -9px 0px 30px -12px rgba(0,66,107,1);
 
   .warp-menu-shift-container {
     position: relative;
@@ -342,6 +354,7 @@
         writing-mode: horizontal-tb;
         width: 192px;
         padding-top: 0.75rem;
+        flex-basis: auto;
 
         h3:not(.warpmenu-category-open) + ul {
           display: none;
@@ -374,6 +387,19 @@
         ul {
           padding: 0 !important;
         }
+      }
+
+      li.warp-menu-placeholder {
+        flex-grow: 10;
+      }
+
+      a.warp-menu-logout-link {
+        cursor: pointer;
+      }
+
+      a.warp-menu-logout-link::before {
+        content: "\27A1  ";
+        font-size: 1rem;
       }
     }
   }
@@ -509,7 +535,7 @@ ul {
   }
 }
 
-.warpmenu-hide-container{
+.warpmenu-hide-container {
   display: none;
 }
 
