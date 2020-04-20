@@ -182,14 +182,17 @@ function createMenu(categories) {
     addClass(menu, 'warp-menu-shift-container');
     menuContainer.appendChild(menu);
 
+    let overlay = document.createElement('div');
+    addClass(overlay, 'warp-menu-gradient-overlay');
+    menuContainer.appendChild(overlay);
+
+    let overlayInner = document.createElement('div');
+    overlay.appendChild(overlayInner);
+
     let list = document.createElement('ul');
     addClass(list, 'warp-menu-category-list');
     menu.appendChild(list);
 
-    let overlay = document.createElement('div');
-    addClass(overlay, 'warp-menu-gradient-overlay');
-    overlay.innerHTML = ' ';
-    list.appendChild(overlay);
 
     let firstListElement = document.createElement('li');
     let homeHref = document.createElement('a');

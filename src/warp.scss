@@ -378,16 +378,25 @@
   }
 
   .warp-menu-gradient-overlay {
-    display: inline-block;
-    position: fixed;
+    width: 0;
+    height: 0;
+    position: relative;
     right: 0;
-    max-width: 192px;
-    min-width: 192px;
-    transition: max-width, min-width 150ms ease-in-out;
-    height: 100%;
+    top: -100vh;
+    display: inline-block;
+    margin: 0;
     z-index: -1;
-    background-color: $brand-primary-darker;
+
+    div {
+      background-color: $brand-primary-darker;
+      width: 192px;
+      height: 100vh;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
+
 }
 
 .warp-menu-category-list > li {
