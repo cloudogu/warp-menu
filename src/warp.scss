@@ -1,166 +1,172 @@
-/** button start **/
-
+///** button start **/
+//
 @import "../node_modules/ces-theme/src/scss/variables";
-
-/* adjustment for Nexus3 in order that warp menu is shown there as it should*/
-li.warpmenu-link a:not([class*="x-"]):visited,
-li.warpmenu-link a:not([class*="x-"]):hover {
-  color: $white;
-  text-decoration: none;
-  border-bottom: none;
-}
-/** button end **/
-
-
-.warpmenu-logo {
-  //margin-top: 15px;
-  width: 170px;
-  height: 52px;
-  background-image: url(images/blib-white-160px.png);
-  background-size: 80px;
-  background-repeat: no-repeat;
-  background-position: 74px;
-}
-
-.warpmenu {
-  font-family: $font-family-sans-serif !important;
-  background: $brand-primary-darker;
-  position: fixed;
-  font-size: 12px;
-  line-height: 21px;
-}
-
-.warpmenu-home {
-  padding: 0 0 1px 0;
-  //margin: 20px 0 0 0;
-  display: block;
-  text-decoration: none;
-  text-align: center;
-  background-color: inherit;
-}
-
-.warpmenu-home a {
-  text-align: center;
-  border: 0;
-  padding: 0;
-}
-
-.warpmenu h3 {
-  font-size: 14px;
-  color: $white;
-  padding: 20px 0 5px 5px;
-  margin: 0;
-  font-weight: bold;
-  text-decoration: none;
-  text-transform: uppercase;
-  text-align: left;
-  background-color: inherit;
-}
-
-.warpmenu h3::before {
-  content: "\25BC  ";
-}
-
-.warpmenu h3.warpmenu-category-open::before {
-  content: "\25B6  ";
-}
-
-/* .warpmenu h3::after{
-	content: " \25BC";
-}
-
-.warpmenu h3.warpmenu-category-open::after{
-	content: " \25C0";
-} */
-
-.warpmenu h3:hover {
-  cursor: pointer;
-}
-
-ul.warpmenu-collapsed {
-  display: none;
-}
-
-.warpmenu ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.warpmenu li {
-  display: block;
-  border-bottom: 1px solid $brand-primary;
-}
-
-.warpmenu li a {
-  padding: 10px;
-  display: block;
-  color: $white;
-  font-weight: 300;
-  text-decoration: none;
-  text-align: left;
-  border-bottom: none;
-}
-
-.warpmenu-link:hover {
-  background: $brand-primary;
-}
-
-.warpmenu li:active {
-  background: $brand-primary;
-  color: $white;
-}
-
-/* Orientation-dependent styles for the content of the menu */
-
-.warpmenu-vertical {
-  width: 240px;
-  height: 100%;
-  top: 0;
-  z-index: 9999;
-}
-
-li.warpmenu-link-top {
-  border-top: 1px solid $brand-primary;
-}
-
-/* Vertical menu that slides from the left or right */
-
-.warpmenu-right {
-  right: -240px;
-}
-
-.warpmenu-right.warpmenu-open {
-  right: 0;
-}
-
-/* Push classes applied to the body */
-
-.warpmenu-push {
-  /*overflow-x: hidden;*/
-  position: relative;
-  left: 0;
-}
-
-.warpmenu-push-toleft {
-  left: -240px;
-}
-
-/* Transitions */
-.warpmenu,
-.warpmenu-push {
-  transition: left 0.3s ease, right 0.3s ease;
-}
+//
+///* adjustment for Nexus3 in order that warp menu is shown there as it should*/
+//li.warpmenu-link a:not([class*="x-"]):visited,
+//li.warpmenu-link a:not([class*="x-"]):hover {
+//  color: $white;
+//  text-decoration: none;
+//  border-bottom: none;
+//}
+//
+///** button end **/
+//
+//
+//.warpmenu-logo {
+//  //margin-top: 15px;
+//  width: 170px;
+//  height: 52px;
+//  background-image: url(images/blib-white-160px.png);
+//  background-size: 80px;
+//  background-repeat: no-repeat;
+//  background-position: 74px;
+//}
+//
+//.warpmenu {
+//  font-family: $font-family-sans-serif !important;
+//  background: $brand-primary-darker;
+//  position: fixed;
+//  font-size: 12px;
+//  line-height: 21px;
+//}
+//
+//.warpmenu-home {
+//  padding: 0 0 1px 0;
+//  //margin: 20px 0 0 0;
+//  display: block;
+//  text-decoration: none;
+//  text-align: center;
+//  background-color: inherit;
+//}
+//
+//.warpmenu-home a {
+//  text-align: center;
+//  border: 0;
+//  padding: 0;
+//}
+//
+//.warpmenu h3 {
+//  font-size: 14px;
+//  color: $white;
+//  padding: 20px 0 5px 5px;
+//  margin: 0;
+//  font-weight: bold;
+//  text-decoration: none;
+//  text-transform: uppercase;
+//  text-align: left;
+//  background-color: inherit;
+//}
+//
+//.warpmenu h3::before {
+//  content: "\25BC  ";
+//}
+//
+//.warpmenu h3.warpmenu-category-open::before {
+//  content: "\25B6  ";
+//}
+//
+///* .warpmenu h3::after{
+//	content: " \25BC";
+//}
+//
+//.warpmenu h3.warpmenu-category-open::after{
+//	content: " \25C0";
+//} */
+//
+//.warpmenu h3:hover {
+//  cursor: pointer;
+//}
+//
+//ul.warpmenu-collapsed {
+//  display: none;
+//}
+//
+//.warpmenu ul {
+//  padding: 0;
+//  margin: 0;
+//  list-style: none;
+//}
+//
+//.warpmenu li {
+//  display: block;
+//  border-bottom: 1px solid $brand-primary;
+//}
+//
+//.warpmenu li a {
+//  padding: 10px;
+//  display: block;
+//  color: $white;
+//  font-weight: 300;
+//  text-decoration: none;
+//  text-align: left;
+//  border-bottom: none;
+//}
+//
+//.warpmenu-link:hover {
+//  background: $brand-primary;
+//}
+//
+//.warpmenu li:active {
+//  background: $brand-primary;
+//  color: $white;
+//}
+//
+///* Orientation-dependent styles for the content of the menu */
+//
+//.warpmenu-vertical {
+//  width: 240px;
+//  height: 100%;
+//  top: 0;
+//  z-index: 9999;
+//}
+//
+//li.warpmenu-link-top {
+//  border-top: 1px solid $brand-primary;
+//}
+//
+///* Vertical menu that slides from the left or right */
+//
+//.warpmenu-right {
+//  right: -240px;
+//}
+//
+//.warpmenu-right.warpmenu-open {
+//  right: 0;
+//}
+//
+///* Push classes applied to the body */
+//
+//.warpmenu-push {
+//  /*overflow-x: hidden;*/
+//  position: relative;
+//  left: 0;
+//}
+//
+//.warpmenu-push-toleft {
+//  left: -240px;
+//}
+//
+///* Transitions */
+//.warpmenu,
+//.warpmenu-push {
+//  transition: left 0.3s ease, right 0.3s ease;
+//}
 
 /*******************************************************************************************/
 /***************************************New CSS*********************************************/
 /*******************************************************************************************/
 
+* {
+  box-sizing: border-box;
+}
+
 .warp-menu-container {
+  //font-family: $font-family-sans-serif !important;
   position: fixed;
   z-index: 9996;
   top: 0;
-  left: 0;
+  right: 0;
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -171,6 +177,8 @@ li.warpmenu-link-top {
   justify-content: flex-end;
   pointer-events: none;
   user-select: none;
+  line-height: 1.3125rem;
+  font-family: Droid-sans, sans-serif;
 }
 
 /*******************************************************************************************/
@@ -282,54 +290,203 @@ li.warpmenu-link-top {
 /*******************************************************************************************/
 
 .warp-menu-column-menu {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
   display: block;
   z-index: 9997;
   background-color: yellow;
   transition: max-width 600ms ease-in-out;
   overflow: hidden;
   pointer-events: all;
-  user-select: all;
   max-width: 100%;
+  $gradient-darker-darker: #002f4d;
+  $gradient-start: calc(160px);
+  $gradient-col-width: calc(192px + 1rem);
+  background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
 
-  .menu {
+  .warp-menu-shift-container {
     position: relative;
     display: inline-block;
     left: 0;
     top: 0;
     transition: width 300ms ease-in-out;
-    background-color: green;
-    height: 100%;
+
+    @media screen and(min-width: 769px) {
+      height: 100%;
+    }
+
+    .warp-menu-category-list {
+      color: $white;
+      writing-mode: vertical-lr;
+      height: 100vh;
+      align-content: flex-start;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 1rem 0;
+
+
+      a {
+        display: block;
+        text-align: center;
+
+        img {
+          width: auto;
+          height: 48px;
+        }
+      }
+
+      li {
+        writing-mode: horizontal-tb;
+        width: 192px;
+
+        h3:not(.warpmenu-category-open) + ul {
+          display: none;
+        }
+
+        h3::before {
+          content: "\25B6  ";
+          font-size: 0.7rem;
+        }
+
+        h3.warpmenu-category-open::before {
+          content: "\25BC  ";
+          font-size: 1rem;
+        }
+
+        a.warp-menu-target-link {
+          display: inline;
+          margin: 0;
+          padding: 0;
+          text-decoration: none;
+          color: white !important;
+        }
+      }
+    }
+
   }
+
+  .warp-menu-gradient-overlay {
+    display: inline-block;
+    position: fixed;
+    right: 0;
+    max-width: 192px;
+    min-width: 192px;
+    transition: max-width, min-width 150ms ease-in-out;
+    height: 100%;
+    z-index: -1;
+    background-color: $brand-primary-darker;
+  }
+}
+
+.warp-menu-category-list > li {
+  padding-left: 1rem;
+  cursor: pointer;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.warp-menu-category-list > li {
+  border-bottom: 1px solid $brand-primary;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+ul {
+  list-style: none;
 }
 
 .menu-container-hide {
   max-width: 0;
   flex-basis: 0;
+
+  .warp-menu-gradient-overlay {
+    max-width: 0;
+    min-width: 0;
+  }
+
+  //  .warp-menu-shift-container{
+  //    display: none;
+  //  }
+  //
+  //  div{
+  //    ul{
+  //      div{
+  //        display: none;
+  //      }
+  //    }
+  //  }
+  //  .warp-menu-gradient-overlay {
+  //    display: none;
+  //  }
 }
 
-/*Layout Spalte*/
-ul {
-  list-style: none;
-}
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE10+ CSS styles go here */
+  .warp-wrapper {
+    -ms-writing-mode: tb-rl;
+    flex-wrap: wrap-reverse;
 
-.warp-container {
-  position: relative;
-  transition: right 0.5s ease, left 0.5s ease;
-}
-
-.warp-wrapper {
-  background-color: $brand-primary-darker;
-  color: $white;
-  writing-mode: vertical-lr;
-  height: 100vh;
-  align-content: flex-start;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 1rem;
-
-  li {
-    writing-mode: horizontal-tb;
-    width: 192px;
+    li {
+      -ms-writing-mode: lr-tb;
+    }
   }
 }
+
+/*TODO:
+   - Menu auf bottom setzen
+   - Button auf Menu setzen
+   - Animation von unten einstellen
+   - Margins/paddings
+   - Menüpunkte am bottom verankern
+ */
+@media screen and (max-width: 768px) {
+  .warp-menu-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    //height: 100vh;
+    width: 100%;
+    display: block;
+
+  }
+
+  .warp-menu-column-menu {
+    //display: block;
+    z-index: 9997;
+    background-color: yellow;
+    transition: max-height 600ms ease-in-out;
+    overflow: hidden;
+
+    width: 100%;
+
+    .menu {
+      position: relative;
+      display: inline-block;
+      //left: 0;
+      //top: 0;
+      transition: height 300ms ease-in-out;
+      background-color: green;
+    }
+  }
+
+  .warp-container {
+    column-width: 192px;
+    width: 100vw;
+  }
+  .warp-wrapper {
+    //height: auto;
+    writing-mode: vertical-lr;
+    padding: 1rem 0;
+    //max-width:100%;
+
+    li {
+      width: 192px;
+    }
+  }
+}
+

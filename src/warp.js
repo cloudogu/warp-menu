@@ -66,24 +66,30 @@ function getCategoryKey(category) {
 }
 
 function toggleCategory(e) {
-    var target = e.target;
-    if (target && target.rel) {
-        toggleClass(target, 'warpmenu-category-open');
-        var el = document.getElementById(target.rel);
-        if (el) {
-            if (hasClass(el, 'warpmenu-collapsed')) {
-                if (lss) {
-                    localStorage.removeItem(target.rel + '.collapsed');
-                }
-                removeClass(el, 'warpmenu-collapsed');
-            } else {
-                if (lss) {
-                    localStorage.setItem(target.rel + '.collapsed', true);
-                }
-                addClass(el, 'warpmenu-collapsed');
-            }
-        }
-    }
+    const target = e.target;
+    toggleClass(target, 'warpmenu-category-open');
+    const container = document.getElementsByClassName('warp-menu-container')[0];
+    container.style.display = 'none';
+    container.offsetHeight;
+    container.style.display = '';
+    // var target = e.target;
+    // if (target && target.rel) {
+    //     toggleClass(target, 'warpmenu-category-open');
+    //     var el = document.getElementById(target.rel);
+    //     if (el) {
+    //         if (hasClass(el, 'warpmenu-collapsed')) {
+    //             if (lss) {
+    //                 localStorage.removeItem(target.rel + '.collapsed');
+    //             }
+    //             removeClass(el, 'warpmenu-collapsed');
+    //         } else {
+    //             if (lss) {
+    //                 localStorage.setItem(target.rel + '.collapsed', true);
+    //             }
+    //             addClass(el, 'warpmenu-collapsed');
+    //         }
+    //     }
+    // }
 }
 
 function createMenuEntry(id, entries, title, list) {
@@ -91,6 +97,7 @@ function createMenuEntry(id, entries, title, list) {
 
     let h3 = document.createElement('h3');
     h3.innerHTML = title;
+    h3.onclick = toggleCategory;
 
     let ul = document.createElement('ul');
 
@@ -98,6 +105,7 @@ function createMenuEntry(id, entries, title, list) {
         let link = entries[i];
         let li = document.createElement('li');
         let a = document.createElement('a');
+        addClass(a, 'warp-menu-target-link');
         if (link.Target && link.Target === 'external') {
             a.target = '_blank'
         } else {
@@ -166,17 +174,12 @@ function createMenu(categories) {
     addClass(menuContainer, 'menu-container-hide')
 
     let menu = document.createElement('div');
-    addClass(menu, 'menu');
+    addClass(menu, 'warp-menu-shift-container');
     menuContainer.appendChild(menu);
 
-    let warpContainer = document.createElement('div');
-    addClass(warpContainer, 'warp-container');
-    addClass(warpContainer, 'warp-move');
-    menu.appendChild(warpContainer);
-
     let list = document.createElement('ul');
-    addClass(list, 'warp-wrapper');
-    warpContainer.appendChild(list);
+    addClass(list, 'warp-menu-category-list');
+    menu.appendChild(list);
 
     for (let c = 0; c < categories.length; c++) {
         let category = categories[c];
