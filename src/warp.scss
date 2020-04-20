@@ -250,7 +250,7 @@
 
 .warp-menu-column-toggle {
   z-index: 9997;
-  flex-basis: 1rem;
+  flex-basis: auto;
   pointer-events: all;
   user-select: all;
 
@@ -261,6 +261,7 @@
     right: 0;
     height: 4em;
     display: inline-block;
+    width: 1.5rem;
     background-color: $brand-primary-darker;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -511,3 +512,5 @@ ul {
 .warpmenu-hide-container{
   display: none;
 }
+
+
