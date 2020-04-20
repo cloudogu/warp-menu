@@ -68,6 +68,7 @@ function getCategoryKey(category) {
 function toggleCategory(e) {
     const target = e.target;
     toggleClass(target, 'warpmenu-category-open');
+    toggleCollapsed(target.id);
     const container = document.getElementsByClassName('warp-menu-container')[0];
     container.style.display = 'none';
     container.offsetHeight;
@@ -98,6 +99,10 @@ function createMenuEntry(id, entries, title, list) {
     let h3 = document.createElement('h3');
     h3.innerHTML = title;
     h3.onclick = toggleCategory;
+    h3.id = 'collapse-warp-menu-category-header-' + title;
+    if (isOpenCollapsible(h3.id)) {
+        addClass(h3, 'warpmenu-category-open');
+    }
 
     let ul = document.createElement('ul');
 
@@ -194,7 +199,6 @@ function createMenu(categories) {
     homeHref.appendChild(img);
     firstListElement.appendChild(homeHref);
     list.appendChild(firstListElement);
-
 
     for (let c = 0; c < categories.length; c++) {
         let category = categories[c];

@@ -24,6 +24,18 @@ function toggleClass(elem, c) {
   fn(elem, c);
 }
 
+function toggleCollapsed(id) {
+  if (localStorage.getItem(id) === null) {
+    localStorage.setItem(id, 'true');
+  } else {
+    localStorage.removeItem(id);
+  }
+}
+
+function isOpenCollapsible(id) {
+  return localStorage.getItem(id) !== null;
+}
+
 function addStylesheet(href, callback, scope){
   // http://thudjs.tumblr.com/post/637855087/stylesheet-onload-or-lack-thereof
   var link = document.createElement('link');
