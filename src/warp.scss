@@ -327,7 +327,6 @@
       margin: 0;
       padding: 1rem 0;
 
-
       a {
         display: block;
         text-align: center;
@@ -363,9 +362,12 @@
           text-decoration: none;
           color: white !important;
         }
+
+        ul{
+          padding: 0 !important;
+        }
       }
     }
-
   }
 
   .warp-menu-gradient-overlay {

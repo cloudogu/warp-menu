@@ -181,6 +181,21 @@ function createMenu(categories) {
     addClass(list, 'warp-menu-category-list');
     menu.appendChild(list);
 
+    let overlay = document.createElement('div');
+    addClass(overlay, 'warp-menu-gradient-overlay');
+    overlay.innerHTML = ' ';
+    list.appendChild(overlay);
+
+    let firstListElement = document.createElement('li');
+    let homeHref = document.createElement('a');
+    homeHref.href = '#';
+    let img = document.createElement('img');
+    img.src = 'images/blib-white-160px.png'
+    homeHref.appendChild(img);
+    firstListElement.appendChild(homeHref);
+    list.appendChild(firstListElement);
+
+
     for (let c = 0; c < categories.length; c++) {
         let category = categories[c];
 
