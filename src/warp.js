@@ -269,7 +269,13 @@ function initWarpMenu(categories) {
     let menuContainer = createMenu(categories);
 
     function toggleNav() {
+        if (hasClass(container, 'collapsing')) return;
+
+        addClass(container, 'collapsing')
         toggleClass(menuContainer, 'menu-container-hide');
+        setTimeout(function () {
+            removeClass(container, 'collapsing')
+        }, 300);
     }
 
     toggle.onclick = toggleNav;
@@ -279,6 +285,15 @@ function initWarpMenu(categories) {
     }
     container.appendChild(toggleColumn);
     container.appendChild(menuContainer);
+
+    // hide menu
+    document.onclick = function (e) {
+        if (e && e.target) {
+            if (!hasClass(menuContainer, 'menu-container-hide')) {
+                toggleNav();
+            }
+        }
+    };
 
     body.appendChild(container);
 }
