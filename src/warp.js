@@ -159,7 +159,10 @@ function createToggleButton() {
     addClass(toggle, 'warpbtn')
     toggle.innerHTML = MENU_TOKEN;
     toggleColumn.appendChild(toggle);
-    return {toggleColumn, toggle};
+    return {
+        "toggleColumn": toggleColumn,
+        "toggle": toggle
+    };
 }
 
 function createTooltip() {
@@ -276,7 +279,7 @@ function initWarpMenu(categories) {
     container.id = 'warp-menu-container';
 
     let tooltipColumn = createTooltip();
-    let {toggleColumn, toggle} = createToggleButton();
+    let toggleResult = createToggleButton();
     let menuContainer = createMenu(categories);
 
     function toggleNav() {
@@ -289,12 +292,12 @@ function initWarpMenu(categories) {
         }, 300);
     }
 
-    toggle.onclick = toggleNav;
+    toggleResult.toggle.onclick = toggleNav;
 
     if (!isTooltipDisabled()) {
         container.appendChild(tooltipColumn)
     }
-    container.appendChild(toggleColumn);
+    container.appendChild(toggleResult.toggleColumn);
     container.appendChild(menuContainer);
 
     // hide menu
