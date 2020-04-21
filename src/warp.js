@@ -141,7 +141,7 @@ function createToggleButton() {
 
     let toggle = document.createElement('a');
     addClass(toggle, 'warpbtn')
-    toggle.innerHTML = 'Menü';
+    toggle.innerHTML = MENU_TOKEN;
     toggleColumn.appendChild(toggle);
     return {toggleColumn, toggle};
 }
@@ -156,12 +156,12 @@ function createTooltip() {
 
     let text = document.createElement('p');
     addClass(text, 'warp-onboarding-msg');
-    text.innerHTML = 'Klicken Sie auf "Menü", um ihre Tools zu sehen. Das Menü verbindet ihre Toolchain und ist von jedem Tool aus zugänglich.';
+    text.innerHTML = ONBOARDING_TEXT_TOKEN;
     tooltipLabel.appendChild(text);
 
     let hint = document.createElement('p');
     addClass(hint, 'warp-onboarding-hint');
-    hint.innerHTML = 'Diesen Hinweis nicht mehr anzeigen.';
+    hint.innerHTML = ONBOARDING_HINT_TOKEN;
     let checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     hint.appendChild(checkbox);
@@ -196,7 +196,7 @@ function addLogoutMenuEntry(list) {
     let logout = document.createElement('li');
     let logoutHref = document.createElement('a');
     addClass(logoutHref, 'warp-menu-logout-link');
-    logoutHref.innerHTML = 'EcoSystem Logout'
+    logoutHref.innerHTML = ECOSYSTEM_LOGOUT_TOKEN;
     logoutHref.href = getLogoutUrl();
     logout.appendChild(logoutHref);
     list.appendChild(logout);
