@@ -156,33 +156,33 @@
 /*******************************************************************************************/
 /***************************************New CSS*********************************************/
 /*******************************************************************************************/
+/*TODO:
+   - Mobil Button auf MenÜ setzen
+   - Mobil Tooltip zu Button setzen
+   - Mobil Animation von unten einstellen
+   - Margins/paddings/Fontsizes
+   - Brwosertest (IE10/11, Safari)
+   - CSS aufräumen
+ */
+
+@import "../node_modules/ces-theme/src/scss/variables";
 
 * {
   box-sizing: border-box;
-  font-family: $font-family-sans-serif !important;
 }
 
 .warp-menu-container {
+  //font-family: $font-family-sans-serif !important;
   position: fixed;
   z-index: 9996;
   top: 0;
-  right: 0;
+  right:0;
   height: 100vh;
   width: 100vw;
-  display: flex;
-  display: -ms-flexbox;
-  flex-direction: row;
-  -ms-flex-direction: row;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
   pointer-events: none;
   user-select: none;
   line-height: 1.3125rem;
   font-family: Droid-sans, sans-serif;
-  a{
-    color: white !important;
-    text-decoration: none;
-  }
 }
 
 /*******************************************************************************************/
@@ -234,23 +234,14 @@
     content: " ";
     display: inline-block;
     position: absolute;
-    width: 2rem;
-    height: 2rem;
     background-color: $brand-primary-darker;
-    right: -1rem;
-    top: calc(50% - 1rem);
     transform: rotate(45deg);
   }
 }
 
 .warp-onboarding-container-hide {
-  visibility: hidden;
+  visibility: hidden; // visibility hidden is okay because display: none is set after timeout in javascript
   opacity: 0;
-}
-
-@keyframes mymove {
-  from {visibility: visible;}
-  to {visibility: hidden;}
 }
 
 /*******************************************************************************************/
@@ -258,40 +249,30 @@
 /*******************************************************************************************/
 
 .warp-menu-column-toggle {
-  z-index: 9998;
-  flex-basis: auto;
+  z-index: 9997;
+  flex-basis: 1rem;
   pointer-events: all;
   user-select: all;
 
   a.warpbtn {
+    z-index: 9998;
     position: relative;
-    top: calc(50vh - 2rem);
-    right: 0;
-    height: 4em;
+
+    //right: 0;
+    //height: 4em;
     display: inline-block;
-    width: 1.5rem;
     background-color: $brand-primary-darker;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    writing-mode: vertical-rl;
+
+
     text-align: center;
     color: white;
-    transform: rotate(180deg);
+
     padding: 0.25em 0.125em;
     cursor: pointer;
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
-    border-left: 1px solid $brand-primary;
-  }
-
-  .warpbtn-open {
-    right: 239px;
-
-    a {
-      right: 239px;
-    }
   }
 }
 
@@ -300,176 +281,385 @@
 /*******************************************************************************************/
 
 .warp-menu-column-menu {
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+/Edge */
-  user-select: none; /* Standard */
   display: block;
   z-index: 9997;
   background-color: yellow;
   transition: max-width 600ms ease-in-out;
   overflow: hidden;
   pointer-events: all;
+  user-select: all;
   max-width: 100%;
-  $gradient-darker-darker: #002f4d;
-  $gradient-start: calc(160px);
-  $gradient-col-width: calc(192px);
-  background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
-  -webkit-box-shadow: -9px 0px 30px -12px rgba(0,66,107,1);
-  -moz-box-shadow: -9px 0px 30px -12px rgba(0,66,107,1);
-  box-shadow: -9px 0px 30px -12px rgba(0,66,107,1);
 
   .warp-menu-shift-container {
     position: relative;
     display: inline-block;
     left: 0;
     top: 0;
-    transition: width 300ms ease-in-out;
+  }
 
-    @media screen and(min-width: 769px) {
-      height: 100%;
+  .warp-menu-image-container {
+    margin-left: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    height: 50px;
+    padding: 0;
+    text-align: center;
+
+    img {
+      height: inherit;
+      width: auto;
+      padding: 0;
+      margin: 0;
     }
 
-    .warp-menu-category-list {
-      color: $white;
-      writing-mode: vertical-lr;
-      height: 100vh;
-      align-content: flex-start;
-      display: flex;
-      flex-wrap: wrap;
-      margin: 0;
-      padding: 1rem 0;
+    //right:0;
+  }
 
-      a {
-        display: block;
-        text-align: center;
+  .warp-container-inside {
+    position: relative;
+    transition: right 0.5s ease, left 0.5s ease;
+    right: 0;
+  }
 
-        img {
-          width: auto;
-          height: 48px;
-        }
+  .warp-menu-category-list {
+    //border-top: 3px solid $brand-primary;
+    box-sizing: border-box;
+    color: $white;
+    /*Falls wir auf Flex-Lösung zurückgehen*/
+    //align-content: flex-start;
+    //display: flex;
+    //flex-wrap: wrap;
+    margin: 0;
+    padding: 0 0 1rem;
+
+
+
+    h3 {
+      margin-left: 1rem;
+    }
+  }
+}
+/*******************************************************************************************/
+/*************************************Large-Screen******************************************/
+/*******************************************************************************************/
+@media screen and (min-width: 769px) {
+
+  .warp-menu-container {
+    position: fixed;
+    z-index: 9996;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    display: -ms-flexbox;
+    flex-direction: row;
+    -ms-flex-direction: row;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1.3125rem;
+    font-family: Droid-sans, sans-serif;
+    a{
+      color: white !important;
+      text-decoration: none;
+    }
+  }
+
+  /*******************************************************************************************/
+  /********************************Onboarding message box*************************************/
+  /*******************************************************************************************/
+
+  .warp-menu-column-tooltip {
+    z-index: 9997;
+    flex-basis: 16rem;
+    display: flex;
+    display: -ms-flexbox;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    pointer-events: all;
+    user-select: all;
+    transition: visibility 0.5s, opacity 0.5s linear;
+
+    label.warp-onboarding {
+      flex-basis: auto;
+      position: relative;
+      margin-right: 1.5rem;
+      display: inline-block;
+      border-radius: 10px;
+      padding: 2rem;
+      background-color: $brand-primary-darker;
+      color: white;
+      width: 16rem;
+      font-size: 1rem;
+      cursor: pointer;
+      -webkit-user-select: none; /* Safari */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* IE10+/Edge */
+      user-select: none; /* Standard */
+
+      .warp-onboarding-msg {
+        margin: 0 0 0.5rem;
       }
 
-      li {
-        writing-mode: horizontal-tb;
-        width: 192px;
-        padding-top: 0.75rem;
-        flex-basis: auto;
+      .warp-onboarding-hint {
+        margin: 0;
+        font-size: 0.8em;
+        text-align: right;
+      }
+    }
 
-        h3:not(.warpmenu-category-open) + ul {
-          display: none;
+    label.warp-onboarding::after {
+      content: " ";
+      display: inline-block;
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      background-color: $brand-primary-darker;
+      right: -1rem;
+      top: calc(50% - 1rem);
+      transform: rotate(45deg);
+    }
+  }
+
+  .warp-onboarding-container-hide {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  @keyframes mymove {
+    from {visibility: visible;}
+    to {visibility: hidden;}
+  }
+
+  /*******************************************************************************************/
+  /********************************Warp menu toggle button************************************/
+  /*******************************************************************************************/
+
+  .warp-menu-column-toggle {
+    z-index: 9998;
+    flex-basis: auto;
+    pointer-events: all;
+    user-select: all;
+
+    a.warpbtn {
+      position: relative;
+      top: calc(50vh - 2rem);
+      right: 0;
+      height: 4em;
+      display: inline-block;
+      width: 1.5rem;
+      background-color: $brand-primary-darker;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      writing-mode: vertical-rl;
+      text-align: center;
+      color: white;
+      transform: rotate(180deg);
+      padding: 0.25em 0.125em;
+      cursor: pointer;
+      -webkit-user-select: none; /* Safari */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* IE10+/Edge */
+      user-select: none; /* Standard */
+      border-left: 1px solid $brand-primary;
+    }
+
+    .warpbtn-open {
+      right: 239px;
+
+      a {
+        right: 239px;
+      }
+    }
+  }
+
+  /*******************************************************************************************/
+  /***************************************Warp menu*******************************************/
+  /*******************************************************************************************/
+
+  .warp-menu-column-menu {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+    display: block;
+    z-index: 9997;
+    background-color: yellow;
+    transition: max-width 600ms ease-in-out;
+    overflow: hidden;
+    pointer-events: all;
+    max-width: 100%;
+    $gradient-darker-darker: #002f4d;
+    $gradient-start: calc(160px);
+    $gradient-col-width: calc(192px);
+    background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
+    -webkit-box-shadow: -9px 0px 30px -12px rgba(0,66,107,1);
+    -moz-box-shadow: -9px 0px 30px -12px rgba(0,66,107,1);
+    box-shadow: -9px 0px 30px -12px rgba(0,66,107,1);
+
+    .warp-menu-shift-container {
+      position: relative;
+      display: inline-block;
+      left: 0;
+      top: 0;
+      transition: width 300ms ease-in-out;
+
+      @media screen and(min-width: 769px) {
+        height: 100%;
+      }
+
+      .warp-menu-category-list {
+        color: $white;
+        writing-mode: vertical-lr;
+        height: 100vh;
+        align-content: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 1rem 0;
+
+        a {
+          display: block;
+          text-align: center;
+
+          img {
+            width: auto;
+            height: 48px;
+          }
         }
 
-        h3::before {
-          content: "\25B6  ";
-          font-size: 0.7rem;
+        li {
+          writing-mode: horizontal-tb;
+          width: 192px;
+          padding-top: 0.75rem;
+          flex-basis: auto;
+
+          h3:not(.warpmenu-category-open) + ul {
+            display: none;
+          }
+
+          h3::before {
+            content: "\25B6  ";
+            font-size: 0.7rem;
+          }
+
+          h3.warpmenu-category-open::before {
+            content: "\25BC  ";
+            font-size: 1rem;
+          }
+
+          a.warp-menu-target-link {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            text-decoration: none;
+            color: white !important;
+            cursor: pointer;
+          }
+
+          a.warp-menu-target-link:hover {
+            background-color: $brand-primary;
+          }
+
+          ul {
+            padding: 0 !important;
+          }
         }
 
-        h3.warpmenu-category-open::before {
-          content: "\25BC  ";
-          font-size: 1rem;
+        li.warp-menu-placeholder {
+          flex-grow: 10;
         }
 
-        a.warp-menu-target-link {
-          display: inline-block;
-          margin: 0;
-          padding: 0;
-          text-align: left;
-          text-decoration: none;
-          color: white !important;
+        a.warp-menu-logout-link {
           cursor: pointer;
         }
 
-        a.warp-menu-target-link:hover {
-          background-color: $brand-primary;
+        a.warp-menu-logout-link::before {
+          content: "\27A1  ";
+          font-size: 1rem;
         }
-
-        ul {
-          padding: 0 !important;
-        }
-      }
-
-      li.warp-menu-placeholder {
-        flex-grow: 10;
-      }
-
-      a.warp-menu-logout-link {
-        cursor: pointer;
-      }
-
-      a.warp-menu-logout-link::before {
-        content: "\27A1  ";
-        font-size: 1rem;
       }
     }
-  }
 
-  .warp-menu-gradient-overlay {
-    width: 0;
-    height: 0;
-    position: relative;
-    right: 0;
-    top: -100vh;
-    display: inline-block;
-    margin: 0;
-    z-index: -1;
-
-    div {
-      background-color: $brand-primary-darker;
-      width: 192px;
-      height: 100vh;
-      position: absolute;
+    .warp-menu-gradient-overlay {
+      width: 0;
+      height: 0;
+      position: relative;
       right: 0;
-      top: 0;
+      top: -100vh;
+      display: inline-block;
+      margin: 0;
+      z-index: -1;
+
+      div {
+        background-color: $brand-primary-darker;
+        width: 192px;
+        height: 100vh;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
+
+  }
+
+  .warp-menu-category-list > li {
+    padding-left: 1rem;
+
+    h3 {
+      margin: 0;
+      cursor: pointer;
     }
   }
 
-}
+  .warp-menu-category-list > li {
+    border-bottom: 1px solid $brand-primary;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
 
-.warp-menu-category-list > li {
-  padding-left: 1rem;
+  ul {
+    list-style: none;
+  }
 
-  h3 {
-    margin: 0;
-    cursor: pointer;
+  .menu-container-hide {
+    max-width: 0;
+    flex-basis: 0;
+
+    .warp-menu-gradient-overlay {
+      max-width: 0;
+      min-width: 0;
+    }
+
+    //  .warp-menu-shift-container{
+    //    display: none;
+    //  }
+    //
+    //  div{
+    //    ul{
+    //      div{
+    //        display: none;
+    //      }
+    //    }
+    //  }
+    //  .warp-menu-gradient-overlay {
+    //    display: none;
+    //  }
   }
 }
-
-.warp-menu-category-list > li {
-  border-bottom: 1px solid $brand-primary;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
 ul {
   list-style: none;
 }
 
-.menu-container-hide {
-  max-width: 0;
-  flex-basis: 0;
 
-  .warp-menu-gradient-overlay {
-    max-width: 0;
-    min-width: 0;
-  }
-
-  //  .warp-menu-shift-container{
-  //    display: none;
-  //  }
-  //
-  //  div{
-  //    ul{
-  //      div{
-  //        display: none;
-  //      }
-  //    }
-  //  }
-  //  .warp-menu-gradient-overlay {
-  //    display: none;
-  //  }
-}
-
+/*******************************************************************************************/
+/***************************************IE-Hacks********************************************/
+/*******************************************************************************************/
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   /* IE10+ CSS styles go here */
   .warp-wrapper {
@@ -482,61 +672,138 @@ ul {
   }
 }
 
-/*TODO:
-   - Menu auf bottom setzen
-   - Button auf Menu setzen
-   - Animation von unten einstellen
-   - Margins/paddings
-   - Menüpunkte am bottom verankern
- */
+/*******************************************************************************************/
+/*************************************Small-Screen******************************************/
+/*******************************************************************************************/
 @media screen and (max-width: 768px) {
   .warp-menu-container {
+    //font-family: $font-family-sans-serif !important;
     position: fixed;
+    z-index: 9996;
+    top: 0;
+    right:0;
+    height: 100vh;
+    width: 100vw;
+    //display: flex;
+    //display: -ms-flexbox;
+    //flex-direction: row;
+    //-ms-flex-direction: row;
+    //-ms-flex-pack: end;
+    //justify-content: flex-end;
+    //pointer-events: none;
+    //user-select: none;
+    //line-height: 1.3125rem;
+    //font-family: Droid-sans, sans-serif;
+  }
+
+  .warp-menu-container {
+    //position: fixed;
     bottom: 0;
-    right: 0;
+    //right:0;
     //height: 100vh;
-    width: 100%;
+    width: 100vw;
     display: block;
 
   }
-
-  .warp-menu-column-menu {
-    //display: block;
-    z-index: 9997;
-    background-color: yellow;
-    transition: max-height 600ms ease-in-out;
-    overflow: hidden;
-
-    width: 100%;
-
-    .menu {
-      position: relative;
+  .menu-container-hide {
+    height: 0;
+  }
+  .warp-menu-column-tooltip {
+    label.warp-onboarding::after {
+      content: " ";
       display: inline-block;
-      //left: 0;
-      //top: 0;
-      transition: height 300ms ease-in-out;
-      background-color: green;
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      background-color: $brand-primary-darker;
+      right: 1rem;
+      bottom: - 1rem;
+      transform: rotate(45deg);
     }
   }
+  /*******************************************************************************************/
+  /***********************************Small*Toggle-Button*************************************/
+  /*******************************************************************************************/
+  .warp-menu-column-toggle {
+    position:relative;
+    display:flex;
+    flex-basis: 1rem;
+    bottom:0;
 
-  .warp-container {
-    column-width: 192px;
+    a.warpbtn {
+      bottom: 0;
+      display: inline-block;
+      background-color: $brand-primary-darker;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+      padding: 0.125em 0.25em;
+    }
+  }
+  /*******************************************************************************************/
+  /***************************************Small*Menu******************************************/
+  /*******************************************************************************************/
+  .warp-menu-column-menu {
+    position:absolute;
+    transition: height 600ms ease-in-out;
+    overflow: hidden;
+    bottom:0;
+  }
+
+  .warp-menu-shift-container {
+    transition: height 300ms ease-in-out;
+
+
+
+  }
+  /*Variante Flex, falls wir schnell umstellen wollen.*/
+  //.warp-menu-category-list {
+  //
+  //  align-items:flex-end;
+  //  //justify-content: flex-end;
+  //  display: flex;
+  //  padding: 1rem 0;
+  //  width:100vw;
+  //  writing-mode: vertical-lr;
+  //  flex-wrap:wrap;
+  //  //flex-direction:column-reverse;
+  //  background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 170px, $brand-primary-darker 170px, black 192px);
+  //  //align-content: flex-start;
+  //  max-height:66.66%;
+  //
+  //  li {
+  //    writing-mode: horizontal-tb;
+  //    width:192px;
+  //    max-width: 192px;
+  //  }
+  //}
+  .warp-menu-category-list {
+    width:100vw;
+    column-count:4;
+    //background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 20%, $brand-primary-darker 22%, black 25%);
+  }
+}
+@media screen and (max-width: 700px) {
+  .warp-menu-category-list {
     width: 100vw;
-  }
-  .warp-wrapper {
-    //height: auto;
-    writing-mode: vertical-lr;
-    padding: 1rem 0;
-    //max-width:100%;
-
-    li {
-      width: 192px;
-    }
+    columns: 3;
+    //background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 28%, $brand-primary-darker 30%, black 33.33333%);
   }
 }
-
-.warpmenu-hide-container {
-  display: none;
+@media screen and (max-width: 470px) {
+  .warp-menu-category-list {
+    width:100vw;
+    columns: 160px;
+    column-gap: 0;
+    //background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 45%, $brand-primary-darker 48%, black 50%);
+  }
+  /*Variante Flex, falls wir schnell umstellen wollen.*/
+  //  .warp-menu-category-list {
+  //    max-height: 80%;
+  //    background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 155px, $brand-primary-darker 155px, black 160px);
+  //
+  //    li {
+  //      word-break: break-all;
+  //      width:10rem;
+  //    }
+  //  }
 }
-
-

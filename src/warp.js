@@ -189,6 +189,7 @@ function createTooltip() {
     function hideTooltip() {
         addClass(tooltipColumn, 'warp-onboarding-container-hide');
         if (lss) localStorage.setItem('warpMenuHideTooltip', 'hide');
+        setTimeout(function(){ tooltipColumn.style.display = 'none'; }, 3000);
     }
 
     checkbox.onclick = hideTooltip;
