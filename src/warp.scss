@@ -165,8 +165,6 @@
    - CSS aufräumen
  */
 
-@import "../node_modules/ces-theme/src/scss/variables";
-
 * {
   box-sizing: border-box;
 }
@@ -230,8 +228,7 @@
     }
   }
 
-  label.warp-onboarding::after {
-    content: " ";
+  .warp-onboarding-after-arrow {
     display: inline-block;
     position: absolute;
     background-color: $brand-primary-darker;
@@ -412,8 +409,7 @@
       }
     }
 
-    label.warp-onboarding::after {
-      content: " ";
+    .warp-onboarding-after-arrow {
       display: inline-block;
       position: absolute;
       width: 2rem;
@@ -629,27 +625,11 @@
 
   .menu-container-hide {
     max-width: 0;
-    flex-basis: 0;
 
     .warp-menu-gradient-overlay {
       max-width: 0;
       min-width: 0;
     }
-
-    //  .warp-menu-shift-container{
-    //    display: none;
-    //  }
-    //
-    //  div{
-    //    ul{
-    //      div{
-    //        display: none;
-    //      }
-    //    }
-    //  }
-    //  .warp-menu-gradient-overlay {
-    //    display: none;
-    //  }
   }
 }
 ul {
@@ -709,8 +689,7 @@ ul {
     height: 0;
   }
   .warp-menu-column-tooltip {
-    label.warp-onboarding::after {
-      content: " ";
+    .warp-onboarding-after-arrow {
       display: inline-block;
       position: absolute;
       width: 2rem;
@@ -719,6 +698,10 @@ ul {
       right: 1rem;
       bottom: - 1rem;
       transform: rotate(45deg);
+
+      /* IE */
+      zoom: 1;
+      *display: inline;
     }
   }
   /*******************************************************************************************/

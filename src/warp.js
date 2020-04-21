@@ -186,6 +186,11 @@ function createTooltip() {
     hint.appendChild(checkbox);
     tooltipLabel.appendChild(hint);
 
+    let tooltipLabelArrow = document.createElement('div');
+    tooltipLabelArrow.innerText = ' ';
+    addClass(tooltipLabelArrow, 'warp-onboarding-after-arrow');
+    tooltipLabel.appendChild(tooltipLabelArrow)
+
     function hideTooltip() {
         addClass(tooltipColumn, 'warp-onboarding-container-hide');
         if (lss) localStorage.setItem('warpMenuHideTooltip', 'hide');
