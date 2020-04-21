@@ -13,6 +13,10 @@ var languageArray = {
 
 //Custom Translation Tokens
 var ABOUT_CLOUDOGU_TOKEN = "About Cloudogu";
+var MENU_TOKEN = "Menu";
+var ECOSYSTEM_LOGOUT_TOKEN = "EcoSystem Logout";
+var ONBOARDING_TEXT_TOKEN = "Click 'Menu' to view all tools. That menu connects your toolchain and is available from any tool.";
+var ONBOARDING_HINT_TOKEN = "Do not show this hint again.";
 
 var informationEntries = new Array();
 
@@ -50,6 +54,10 @@ function getLanguage() {
 function setCustomTranslationTokens(language) {
     if (language === "de") {
         ABOUT_CLOUDOGU_TOKEN = "Über Cloudogu";
+        MENU_TOKEN = "Menü";
+        ECOSYSTEM_LOGOUT_TOKEN = "EcoSystem Logout";
+        ONBOARDING_TEXT_TOKEN = "Klicken Sie auf 'Menü', um ihre Tools zu sehen. Das Menü verbindet ihre Toolchain und ist von jedem Tool aus zugänglich.";
+        ONBOARDING_HINT_TOKEN = "Diesen Hinweis nicht mehr anzeigen.";
     }
 }
 
@@ -180,6 +188,31 @@ function getLogoutUrl() {
     return baseHref + '/cas/logout';
 }
 
+function addLogoutMenuEntry(list) {
+    let placeholder = document.createElement('li');
+    addClass(placeholder, 'warp-menu-placeholder');
+    list.appendChild(placeholder);
+
+    let logout = document.createElement('li');
+    let logoutHref = document.createElement('a');
+    addClass(logoutHref, 'warp-menu-logout-link');
+    logoutHref.innerHTML = 'EcoSystem Logout'
+    logoutHref.href = getLogoutUrl();
+    logout.appendChild(logoutHref);
+    list.appendChild(logout);
+}
+
+function createHomeHref() {
+    let li = document.createElement('li');
+    let homeHref = document.createElement('a');
+    homeHref.href = createLink('');
+    let img = document.createElement('img');
+    img.src = 'images/blib-white-160px.png'
+    homeHref.appendChild(img);
+    li.appendChild(homeHref);
+    return li;
+}
+
 function createMenu(categories) {
     let menuContainer = document.createElement('div');
     addClass(menuContainer, 'warp-menu-column-menu')
@@ -200,14 +233,8 @@ function createMenu(categories) {
     addClass(list, 'warp-menu-category-list');
     menu.appendChild(list);
 
-    let firstListElement = document.createElement('li');
-    let homeHref = document.createElement('a');
-    homeHref.href = '#';
-    let img = document.createElement('img');
-    img.src = 'images/blib-white-160px.png'
-    homeHref.appendChild(img);
-    firstListElement.appendChild(homeHref);
-    list.appendChild(firstListElement);
+    let homeHref = createHomeHref();
+    list.appendChild(homeHref);
 
     for (let c = 0; c < categories.length; c++) {
         let category = categories[c];
@@ -220,17 +247,14 @@ function createMenu(categories) {
         }
     }
 
-    let placeholder = document.createElement('li');
-    addClass(placeholder, 'warp-menu-placeholder');
-    list.appendChild(placeholder);
+    // fixed about page - entry
+    informationEntries.push({
+        DisplayName: ABOUT_CLOUDOGU_TOKEN,
+        Href: createLink("/info/index.html")
+    });
+    createMenuEntry("warpc.info", informationEntries, "Information", list);
 
-    let logout = document.createElement('li');
-    let logoutHref = document.createElement('a');
-    addClass(logoutHref, 'warp-menu-logout-link');
-    logoutHref.innerHTML = 'EcoSystem Logout'
-    logoutHref.href = getLogoutUrl();
-    logout.appendChild(logoutHref);
-    list.appendChild(logout);
+    addLogoutMenuEntry(list);
 
     return menuContainer;
 }
