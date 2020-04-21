@@ -22,6 +22,22 @@ var informationEntries = new Array();
 
 var lss = isLocalStorageSupported();
 
+function toggleCollapsedInStorage(id) {
+    if (!lss) return;
+
+    if (localStorage.getItem(id) === null) {
+        localStorage.setItem(id, 'true');
+    } else {
+        localStorage.removeItem(id);
+    }
+}
+
+function isOpenCollapsible(id) {
+    if (!lss) return false;
+
+    return localStorage.getItem(id) !== null;
+}
+
 // create link
 function createLink(href) {
     if (href.indexOf('http') === 0) {
@@ -76,7 +92,7 @@ function getCategoryKey(category) {
 function toggleCategory(e) {
     const target = e.target;
     toggleClass(target, 'warpmenu-category-open');
-    toggleCollapsed(target.id);
+    toggleCollapsedInStorage(target.id);
     const container = document.getElementsByClassName('warp-menu-container')[0];
     //Toggle hide class twice to force redraw
     toggleClass(container, 'warpmenu-hide-container')
@@ -169,7 +185,7 @@ function createTooltip() {
 
     function hideTooltip() {
         addClass(tooltipColumn, 'warp-onboarding-container-hide');
-        localStorage.setItem('warpMenuHideTooltip', 'hide');
+        if (lss) localStorage.setItem('warpMenuHideTooltip', 'hide');
     }
 
     checkbox.onclick = hideTooltip;
@@ -177,15 +193,10 @@ function createTooltip() {
 }
 
 function isTooltipDisabled() {
+    if (!lss) return false;
+
     let config = localStorage.getItem('warpMenuHideTooltip');
     return config === 'hide';
-}
-
-function getLogoutUrl() {
-    let firstSlashIndex = window.location.href.indexOf('/');
-    if (firstSlashIndex === -1) return window.location.href + '/cas/logout';
-    const baseHref = window.location.href.substr(0, firstSlashIndex)
-    return baseHref + '/cas/logout';
 }
 
 function addLogoutMenuEntry(list) {
@@ -197,7 +208,7 @@ function addLogoutMenuEntry(list) {
     let logoutHref = document.createElement('a');
     addClass(logoutHref, 'warp-menu-logout-link');
     logoutHref.innerHTML = ECOSYSTEM_LOGOUT_TOKEN;
-    logoutHref.href = getLogoutUrl();
+    logoutHref.href = createLink('/cas/logout');
     logout.appendChild(logoutHref);
     list.appendChild(logout);
 }
