@@ -300,7 +300,7 @@ function initWarpMenu(categories) {
     // hide menu
     document.onclick = function (e) {
         if (e && e.target) {
-            if (!hasClass(menuContainer, 'menu-container-hide')) {
+            if (!hasClass(menuContainer, 'menu-container-hide') && !hasClass('warp-menu-category-list')) {
                 toggleNav();
             }
         }
