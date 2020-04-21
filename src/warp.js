@@ -180,31 +180,6 @@ function getLogoutUrl() {
     return baseHref + '/cas/logout';
 }
 
-function createSettingsEntry() {
-    let settingsEntry = document.createElement('li');
-    let settingsHeadline = document.createElement('h3');
-
-    settingsHeadline.innerHTML = 'Einstellungen';
-    settingsHeadline.onclick = toggleCategory;
-    settingsHeadline.id = 'collapse-warp-menu-category-header-' + 'Settings';
-    if (isOpenCollapsible(settingsHeadline.id)) {
-        addClass(settingsHeadline, 'warpmenu-category-open');
-    }
-
-    let ul = document.createElement('ul');
-    let li = document.createElement('li');
-    let label = document.createElement('label');
-    let input = document.createElement('input');
-    input.type = 'checkbox';
-    label.appendChild(input);
-    label.innerHTML = label.innerHTML + 'Tooltip zum Menü anzeigen';
-    li.appendChild(label);
-    ul.appendChild(li)
-    settingsEntry.appendChild(settingsHeadline)
-    settingsEntry.appendChild(ul);
-    return settingsEntry;
-}
-
 function createMenu(categories) {
     let menuContainer = document.createElement('div');
     addClass(menuContainer, 'warp-menu-column-menu')
@@ -256,9 +231,6 @@ function createMenu(categories) {
     logoutHref.href = getLogoutUrl();
     logout.appendChild(logoutHref);
     list.appendChild(logout);
-
-    let settingsEntry = createSettingsEntry();
-    list.appendChild(settingsEntry);
 
     return menuContainer;
 }
