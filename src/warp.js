@@ -226,8 +226,8 @@ function createHomeHref() {
 
 function createMenu(categories) {
     let menuContainer = document.createElement('div');
-    addClass(menuContainer, 'warp-menu-column-menu')
-    addClass(menuContainer, 'menu-container-hide')
+    addClass(menuContainer, 'warp-menu-column-menu');
+    addClass(menuContainer, 'menu-container-hide');
 
     let menu = document.createElement('div');
     addClass(menu, 'warp-menu-shift-container');
