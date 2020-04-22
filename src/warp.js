@@ -219,6 +219,7 @@ function addLogoutMenuEntry(list) {
 function createHomeHrefWithImage() {
     var homeHrefListElement = document.createElement('li');
     var homeHref = document.createElement('a');
+    addClass(homeHref, 'warp-menu-home-button')
     homeHref.href = createLink('');
     var homeHrefImage = document.createElement('img');
     homeHrefImage.src = 'images/blib-white-160px.png'
