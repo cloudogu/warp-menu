@@ -90,12 +90,12 @@ function getCategoryKey(category) {
 }
 
 function toggleCategory(e) {
-    let container = document.getElementsByClassName('warp-menu-container')[0];
-    let list = document.getElementsByClassName('warp-menu-category-list')[0];
-    let width = list.clientWidth;
-    let height = list.clientHeight;
+    var container = document.getElementsByClassName('warp-menu-container')[0];
+    var list = document.getElementsByClassName('warp-menu-category-list')[0];
+    var width = list.clientWidth;
+    var height = list.clientHeight;
 
-    let target = e.target;
+    var target = e.target;
     toggleClass(target, 'warpmenu-category-open');
     toggleCollapsedInStorage(target.id);
 
@@ -110,22 +110,22 @@ function toggleCategory(e) {
 }
 
 function createMenuEntry(id, entries, title, list) {
-    let li = document.createElement('li');
+    var category = document.createElement('li');
 
-    let h3 = document.createElement('h3');
-    h3.innerHTML = title;
-    h3.onclick = toggleCategory;
-    h3.id = 'collapse-warp-menu-category-header-' + title;
-    if (isOpenCollapsible(h3.id)) {
-        addClass(h3, 'warpmenu-category-open');
+    var categoryHeader = document.createElement('h3');
+    categoryHeader.innerHTML = title;
+    categoryHeader.onclick = toggleCategory;
+    categoryHeader.id = 'collapse-warp-menu-category-header-' + title;
+    if (isOpenCollapsible(categoryHeader.id)) {
+        addClass(categoryHeader, 'warpmenu-category-open');
     }
 
-    let ul = document.createElement('ul');
+    var categoryLinkList = document.createElement('ul');
 
-    for (let i = 0; i < entries.length; i++) {
-        let link = entries[i];
-        let li = document.createElement('li');
-        let a = document.createElement('a');
+    for (var i = 0; i < entries.length; i++) {
+        var link = entries[i];
+        var li = document.createElement('li');
+        var a = document.createElement('a');
         addClass(a, 'warp-menu-target-link');
         if (link.Target && link.Target === 'external') {
             a.target = '_blank'
@@ -135,19 +135,19 @@ function createMenuEntry(id, entries, title, list) {
         a.href = createLink(link.Href);
         a.innerHTML = link.DisplayName;
         li.appendChild(a);
-        ul.appendChild(li);
+        categoryLinkList.appendChild(li);
     }
 
-    li.appendChild(h3);
-    li.appendChild(ul);
-    list.appendChild(li);
+    category.appendChild(categoryHeader);
+    category.appendChild(categoryLinkList);
+    list.appendChild(category);
 }
 
 function createToggleButton() {
-    let toggleColumn = document.createElement('div');
+    var toggleColumn = document.createElement('div');
     addClass(toggleColumn, 'warp-menu-column-toggle');
 
-    let toggle = document.createElement('a');
+    var toggle = document.createElement('a');
     addClass(toggle, 'warpbtn')
     toggle.innerHTML = MENU_TOKEN;
     toggleColumn.appendChild(toggle);
@@ -158,27 +158,27 @@ function createToggleButton() {
 }
 
 function createTooltip() {
-    let tooltipColumn = document.createElement('div');
+    var tooltipColumn = document.createElement('div');
     addClass(tooltipColumn, 'warp-menu-column-tooltip');
 
-    let tooltipLabel = document.createElement('label');
+    var tooltipLabel = document.createElement('label');
     addClass(tooltipLabel, 'warp-onboarding');
     tooltipColumn.appendChild(tooltipLabel);
 
-    let text = document.createElement('p');
+    var text = document.createElement('p');
     addClass(text, 'warp-onboarding-msg');
     text.innerHTML = ONBOARDING_TEXT_TOKEN;
     tooltipLabel.appendChild(text);
     createHomeHrefWithImage
-    let hint = document.createElement('p');
+    var hint = document.createElement('p');
     addClass(hint, 'warp-onboarding-hint');
     hint.innerHTML = ONBOARDING_HINT_TOKEN;
-    let checkbox = document.createElement('input');
+    var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     hint.appendChild(checkbox);
     tooltipLabel.appendChild(hint);
 
-    let tooltipLabelArrow = document.createElement('div');
+    var tooltipLabelArrow = document.createElement('div');
     tooltipLabelArrow.innerText = ' ';
     addClass(tooltipLabelArrow, 'warp-onboarding-after-arrow');
     tooltipLabel.appendChild(tooltipLabelArrow)
@@ -198,17 +198,17 @@ function createTooltip() {
 function isTooltipDisabled() {
     if (!lss) return false;
 
-    let config = localStorage.getItem('warpMenuHideTooltip');
-    return config === 'hide';
+    var tooltipConfig = localStorage.getItem('warpMenuHideTooltip');
+    return tooltipConfig === 'hide';
 }
 
 function addLogoutMenuEntry(list) {
-    let placeholder = document.createElement('li');
+    var placeholder = document.createElement('li');
     addClass(placeholder, 'warp-menu-placeholder');
     list.appendChild(placeholder);
 
-    let logout = document.createElement('li');
-    let logoutHref = document.createElement('a');
+    var logout = document.createElement('li');
+    var logoutHref = document.createElement('a');
     addClass(logoutHref, 'warp-menu-logout-link');
     logoutHref.innerHTML = ECOSYSTEM_LOGOUT_TOKEN;
     logoutHref.href = createLink('/cas/logout');
@@ -217,47 +217,47 @@ function addLogoutMenuEntry(list) {
 }
 
 function createHomeHrefWithImage() {
-    let li = document.createElement('li');
-    let homeHref = document.createElement('a');
+    var homeHrefListElement = document.createElement('li');
+    var homeHref = document.createElement('a');
     homeHref.href = createLink('');
-    let img = document.createElement('img');
-    img.src = 'images/blib-white-160px.png'
-    homeHref.appendChild(img);
-    li.appendChild(homeHref);
-    return li;
+    var homeHrefImage = document.createElement('img');
+    homeHrefImage.src = 'images/blib-white-160px.png'
+    homeHref.appendChild(homeHrefImage);
+    homeHrefListElement.appendChild(homeHref);
+    return homeHrefListElement;
 }
 
 function createMenu(categories) {
-    let menuContainer = document.createElement('div');
+    var menuContainer = document.createElement('div');
     addClass(menuContainer, 'warp-menu-column-menu');
     addClass(menuContainer, 'menu-container-hide');
 
-    let menu = document.createElement('div');
+    var menu = document.createElement('div');
     addClass(menu, 'warp-menu-shift-container');
     menuContainer.appendChild(menu);
 
-    let overlay = document.createElement('div');
+    var overlay = document.createElement('div');
     addClass(overlay, 'warp-menu-gradient-overlay');
     menuContainer.appendChild(overlay);
 
-    let overlayInner = document.createElement('div');
+    var overlayInner = document.createElement('div');
     overlay.appendChild(overlayInner);
 
-    let list = document.createElement('ul');
+    var list = document.createElement('ul');
     addClass(list, 'warp-menu-category-list');
     menu.appendChild(list);
 
-    let homeHref = createHomeHrefWithImage();
-    list.appendChild(homeHref);
+    var homeHrefElement = createHomeHrefWithImage();
+    list.appendChild(homeHrefElement);
 
-    for (let c = 0; c < categories.length; c++) {
-        let category = categories[c];
+    for (var c = 0; c < categories.length; c++) {
+        var currentCategory = categories[c];
 
-        if (category.Title.toUpperCase() === "INFORMATION") {
-            informationEntries = category.Entries;
+        if (currentCategory.Title.toUpperCase() === "INFORMATION") {
+            informationEntries = currentCategory.Entries;
         } else {
-            let id = getCategoryKey(category);
-            createMenuEntry(id, category.Entries, category.Title, list);
+            var id = getCategoryKey(currentCategory);
+            createMenuEntry(id, currentCategory.Entries, currentCategory.Title, list);
         }
     }
 
@@ -274,31 +274,31 @@ function createMenu(categories) {
 }
 
 function initWarpMenu(categories) {
-    let container = document.createElement('div');
-    addClass(container, 'warp-menu-container');
-    container.id = 'warp-menu-container';
+    var warpMenuContainer = document.createElement('div');
+    addClass(warpMenuContainer, 'warp-menu-container');
+    warpMenuContainer.id = 'warp-menu-container';
 
-    let tooltipColumn = createTooltip();
-    let toggleResult = createToggleButton();
-    let menuContainer = createMenu(categories);
+    var tooltipColumn = createTooltip();
+    var toggleResult = createToggleButton();
+    var menuContainer = createMenu(categories);
 
     function toggleNav() {
-        if (hasClass(container, 'collapsing')) return;
+        if (hasClass(warpMenuContainer, 'collapsing')) return;
 
-        addClass(container, 'collapsing')
+        addClass(warpMenuContainer, 'collapsing')
         toggleClass(menuContainer, 'menu-container-hide');
         setTimeout(function () {
-            removeClass(container, 'collapsing')
+            removeClass(warpMenuContainer, 'collapsing')
         }, 300);
     }
 
     toggleResult.toggle.onclick = toggleNav;
 
     if (!isTooltipDisabled()) {
-        container.appendChild(tooltipColumn)
+        warpMenuContainer.appendChild(tooltipColumn)
     }
-    container.appendChild(toggleResult.toggleColumn);
-    container.appendChild(menuContainer);
+    warpMenuContainer.appendChild(toggleResult.toggleColumn);
+    warpMenuContainer.appendChild(menuContainer);
 
     // hide menu
     document.onclick = function (e) {
@@ -309,7 +309,7 @@ function initWarpMenu(categories) {
         }
     };
 
-    body.appendChild(container);
+    body.appendChild(warpMenuContainer);
 }
 
 var asyncCounter = 0;
