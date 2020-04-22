@@ -151,6 +151,18 @@ function createToggleButton() {
     addClass(toggle, 'warpbtn')
     toggle.innerHTML = MENU_TOKEN;
     toggleColumn.appendChild(toggle);
+
+    // The button on bottom must be bigger when there is a scrollbar on screen.
+    var func = function(){
+        if (body.scrollWidth !== body.clientWidth){
+            addClass(toggle, 'scrollbar-warpbtn')
+        }
+        else{
+            removeClass(toggle, 'scrollbar-warpbtn')
+        }
+    }
+    window.addEventListener('resize', func)
+
     return {
         "toggleColumn": toggleColumn,
         "toggle": toggle
