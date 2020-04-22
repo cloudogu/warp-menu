@@ -149,24 +149,27 @@ function createToggleButton() {
 
     var toggle = document.createElement('a');
     addClass(toggle, 'warpbtn')
+    toggle.id = 'warp-menu-warpbtn';
     toggle.innerHTML = MENU_TOKEN;
     toggleColumn.appendChild(toggle);
 
     // The button on bottom must be bigger when there is a scrollbar on screen.
-    var func = function(){
-        if (body.scrollWidth !== body.clientWidth){
-            addClass(toggle, 'scrollbar-warpbtn')
-        }
-        else{
-            removeClass(toggle, 'scrollbar-warpbtn')
-        }
-    }
-    window.addEventListener('resize', func)
+    window.addEventListener('resize', resizeToggleButtonIfNeeded)
 
     return {
         "toggleColumn": toggleColumn,
         "toggle": toggle
     };
+}
+
+function resizeToggleButtonIfNeeded() {
+    var toggle = document.getElementById('warp-menu-warpbtn');
+    if (body.scrollWidth !== body.clientWidth){
+        addClass(toggle, 'scrollbar-warpbtn')
+    }
+    else{
+        removeClass(toggle, 'scrollbar-warpbtn')
+    }
 }
 
 function createTooltip() {
@@ -320,6 +323,7 @@ function initWarpMenu(categories) {
     };
 
     body.appendChild(warpMenuContainer);
+    resizeToggleButtonIfNeeded();
 }
 
 var asyncCounter = 0;
