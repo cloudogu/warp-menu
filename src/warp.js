@@ -90,31 +90,23 @@ function getCategoryKey(category) {
 }
 
 function toggleCategory(e) {
-    const target = e.target;
+    let container = document.getElementsByClassName('warp-menu-container')[0];
+    let list = document.getElementsByClassName('warp-menu-category-list')[0];
+    let width = list.clientWidth;
+    let height = list.clientHeight;
+
+    let target = e.target;
     toggleClass(target, 'warpmenu-category-open');
     toggleCollapsedInStorage(target.id);
-    const container = document.getElementsByClassName('warp-menu-container')[0];
-    //Toggle hide class twice to force redraw
-    toggleClass(container, 'warpmenu-hide-container')
-    toggleClass(container, 'warpmenu-hide-container')
-    // var target = e.target;
-    // if (target && target.rel) {
-    //     toggleClass(target, 'warpmenu-category-open');
-    //     var el = document.getElementById(target.rel);
-    //     if (el) {
-    //         if (hasClass(el, 'warpmenu-collapsed')) {
-    //             if (lss) {
-    //                 localStorage.removeItem(target.rel + '.collapsed');
-    //             }
-    //             removeClass(el, 'warpmenu-collapsed');
-    //         } else {
-    //             if (lss) {
-    //                 localStorage.setItem(target.rel + '.collapsed', true);
-    //             }
-    //             addClass(el, 'warpmenu-collapsed');
-    //         }
-    //     }
-    // }
+
+    // The container does not realize it when the content grows.
+    // So we force a redraw by hiding and showing again.
+    if (list.clientWidth !== width || list.clientHeight !== height) {
+        toggleClass(container, 'menu-container-hide')
+        setTimeout(function () {
+            toggleClass(container, 'menu-container-hide')
+        }, 50);
+    }
 }
 
 function createMenuEntry(id, entries, title, list) {
@@ -177,7 +169,7 @@ function createTooltip() {
     addClass(text, 'warp-onboarding-msg');
     text.innerHTML = ONBOARDING_TEXT_TOKEN;
     tooltipLabel.appendChild(text);
-
+    createHomeHrefWithImage
     let hint = document.createElement('p');
     addClass(hint, 'warp-onboarding-hint');
     hint.innerHTML = ONBOARDING_HINT_TOKEN;
@@ -194,7 +186,9 @@ function createTooltip() {
     function hideTooltip() {
         addClass(tooltipColumn, 'warp-onboarding-container-hide');
         if (lss) localStorage.setItem('warpMenuHideTooltip', 'hide');
-        setTimeout(function(){ tooltipColumn.style.display = 'none'; }, 3000);
+        setTimeout(function () {
+            tooltipColumn.style.display = 'none';
+        }, 3000);
     }
 
     checkbox.onclick = hideTooltip;
@@ -222,7 +216,7 @@ function addLogoutMenuEntry(list) {
     list.appendChild(logout);
 }
 
-function createHomeHref() {
+function createHomeHrefWithImage() {
     let li = document.createElement('li');
     let homeHref = document.createElement('a');
     homeHref.href = createLink('');
@@ -253,7 +247,7 @@ function createMenu(categories) {
     addClass(list, 'warp-menu-category-list');
     menu.appendChild(list);
 
-    let homeHref = createHomeHref();
+    let homeHref = createHomeHrefWithImage();
     list.appendChild(homeHref);
 
     for (let c = 0; c < categories.length; c++) {
