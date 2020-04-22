@@ -17,6 +17,7 @@ $gradient-darker-darker: #002f4d;
   user-select: none;
   line-height: 1.3125rem;
   font-family: Droid-sans, sans-serif;
+  font-size: 0.75rem;
 }
 
 /*******************************************************************************************/
@@ -123,6 +124,16 @@ $gradient-darker-darker: #002f4d;
   user-select: all;
   max-width: 100%;
 
+  .warp-menu-gradient-overlay {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    margin: 0;
+    z-index: -1;
+    background-color: $brand-primary-darker;
+  }
+
   .warp-menu-shift-container {
     position: relative;
     display: inline-block;
@@ -148,12 +159,6 @@ $gradient-darker-darker: #002f4d;
     //right:0;
   }
 
-  .warp-container-inside {
-    position: relative;
-    transition: right 0.5s ease, left 0.5s ease;
-    right: 0;
-  }
-
   .warp-menu-category-list {
     //border-top: 3px solid $brand-primary;
     box-sizing: border-box;
@@ -165,9 +170,13 @@ $gradient-darker-darker: #002f4d;
     margin: 0;
     padding: 0 0 1rem;
 
+    > li {
+      padding-left: 1.25rem;
+    }
 
     h3 {
-      margin-left: 1rem;
+      //margin-left: 1rem;
+      font-size: 0.875rem;
     }
   }
 }
@@ -338,6 +347,10 @@ $gradient-darker-darker: #002f4d;
     -moz-box-shadow: -9px 0px 30px -12px rgba(0, 66, 107, 1);
     box-shadow: -9px 0px 30px -12px rgba(0, 66, 107, 1);
 
+    .warp-menu-gradient-overlay {
+      width: 192px;
+    }
+
     .warp-menu-shift-container {
       position: relative;
       display: inline-block;
@@ -404,6 +417,8 @@ $gradient-darker-darker: #002f4d;
 
           ul {
             padding: 0 !important;
+
+
           }
         }
 
@@ -421,27 +436,6 @@ $gradient-darker-darker: #002f4d;
         }
       }
     }
-
-    .warp-menu-gradient-overlay {
-      width: 0;
-      height: 0;
-      position: relative;
-      right: 0;
-      top: -100vh;
-      display: inline-block;
-      margin: 0;
-      z-index: -1;
-
-      div {
-        background-color: $brand-primary-darker;
-        width: 192px;
-        height: 100vh;
-        position: absolute;
-        right: 0;
-        top: 0;
-      }
-    }
-
   }
 
   .warp-menu-category-list > li {
@@ -465,11 +459,6 @@ $gradient-darker-darker: #002f4d;
 
   .menu-container-hide {
     max-width: 0;
-
-    .warp-menu-gradient-overlay {
-      max-width: 0;
-      min-width: 0;
-    }
   }
 }
 
@@ -557,7 +546,7 @@ ul {
       border-top-left-radius: 5px;
       padding: 0.125em 0.25em;
       position: relative;
-      right: calc(-100vw + 3rem);
+      right: calc(-100vw + 2.28rem);
       border-bottom: 1px solid $brand-primary;
 
     }
@@ -567,16 +556,20 @@ ul {
   /*******************************************************************************************/
 
   .warp-menu-column-menu {
-    position: relative;
+    //position: relative;
     transition: max-height 600ms ease-in-out;
-    overflow: hidden;
-    bottom: 0;
-    display: block;
+    //overflow: hidden;
+    //bottom: 0;
+    //display: block;
     max-height: 100%;
+    white-space: nowrap;
+    background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 20%, $brand-primary-darker 22%, $gradient-darker-darker 25%);
 
     .warp-menu-shift-container {
       bottom: 0;
       left: 0;
+      display: inline-flex !important; //refactoring: display:inline-block in media-query auslagern, inline flex für nicht-IE
+      display: -ms-inline-flexbox;
     }
   }
 
@@ -607,46 +600,92 @@ ul {
   //  }
   //}
   .warp-menu-category-list {
+    padding-top: 1.25rem !important;
     width: 100vw;
     column-count: 4;
-    background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 20%, $brand-primary-darker 22%, $gradient-darker-darker 25%);
-  }
-  .warp-menu-gradient-overlay {
-    width: 0;
-    height: 0;
-    position: relative;
-    right: 0;
-    //top: -100vh;
-    display: inline-block;
-    margin: 0;
-    z-index: -1;
+    float: left;
 
-    div {
-      background-color: $brand-primary-darker;
-      width: 25%;
-      //height: 100vh;
-      width: calc(100vw / 4);
-      position: absolute;
-      right: 0;
-      top: 0;
+    a { //refactorieren bis ende warp-menu-category-list
+      display: block;
+      text-align: center;
+
+      img {
+        width: auto;
+        height: 36px;
+      }
     }
+
+    li {
+
+      h3:not(.warpmenu-category-open) + ul {
+        display: none;
+      }
+
+      h3::before {
+        content: "\25B6  ";
+        font-size: 0.7rem;
+      }
+
+      h3.warpmenu-category-open::before {
+        content: "\25BC  ";
+        font-size: 1rem;
+      }
+
+      a.warp-menu-target-link {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        text-decoration: none;
+        color: white !important;
+        cursor: pointer;
+      }
+
+      a.warp-menu-target-link:hover {
+        background-color: $brand-primary;
+      }
+
+      ul {
+        padding: 0 !important;
+
+
+      }
+    }
+
+    > li > ul {
+      padding: 0;
+    }
+  }
+
+  .warp-menu-gradient-overlay {
+    width: 25%;
   }
 }
 
 @media screen and (max-width: 700px) {
+  .warp-menu-column-menu {
+    background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 28%, $brand-primary-darker 30%, $gradient-darker-darker 33.33333%);
+  }
   .warp-menu-category-list {
     width: 100vw;
     columns: 3;
-    background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 28%, $brand-primary-darker 30%, $gradient-darker-darker 33.33333%);
+  }
+  .warp-menu-gradient-overlay {
+    width: 33.33%;
   }
 }
 
 @media screen and (max-width: 470px) {
+  .warp-menu-column-menu {
+    background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 45%, $brand-primary-darker 48%, $gradient-darker-darker 50%);
+  }
   .warp-menu-category-list {
     width: 100vw;
     columns: 160px;
     column-gap: 0;
-    background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 45%, $brand-primary-darker 48%, $gradient-darker-darker 50%);
+  }
+  .warp-menu-gradient-overlay {
+    width: 50%;
   }
   /*Variante Flex, falls wir schnell umstellen wollen.*/
   //  .warp-menu-category-list {
