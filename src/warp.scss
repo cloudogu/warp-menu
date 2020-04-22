@@ -456,3 +456,9 @@ $gradient-darker-darker: #002f4d;
     }
   }
 }
+
+.warp-menu-hide-to-refresh{
+  .warp-menu-column-menu{
+    display: none;
+  }
+}

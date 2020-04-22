@@ -102,9 +102,9 @@ function toggleCategory(e) {
     // The container does not realize it when the content grows.
     // So we force a redraw by hiding and showing again.
     if (list.clientWidth !== width || list.clientHeight !== height) {
-        toggleClass(container, 'menu-container-hide')
+        toggleClass(container, 'warp-menu-hide-to-refresh')
         setTimeout(function () {
-            toggleClass(container, 'menu-container-hide')
+            toggleClass(container, 'warp-menu-hide-to-refresh')
         }, 50);
     }
 }
