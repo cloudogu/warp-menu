@@ -1,170 +1,6 @@
-///** button start **/
-//
 @import "../node_modules/ces-theme/src/scss/variables";
-//
-///* adjustment for Nexus3 in order that warp menu is shown there as it should*/
-//li.warpmenu-link a:not([class*="x-"]):visited,
-//li.warpmenu-link a:not([class*="x-"]):hover {
-//  color: $white;
-//  text-decoration: none;
-//  border-bottom: none;
-//}
-//
-///** button end **/
-//
-//
-//.warpmenu-logo {
-//  //margin-top: 15px;
-//  width: 170px;
-//  height: 52px;
-//  background-image: url(images/blib-white-160px.png);
-//  background-size: 80px;
-//  background-repeat: no-repeat;
-//  background-position: 74px;
-//}
-//
-//.warpmenu {
-//  font-family: $font-family-sans-serif !important;
-//  background: $brand-primary-darker;
-//  position: fixed;
-//  font-size: 12px;
-//  line-height: 21px;
-//}
-//
-//.warpmenu-home {
-//  padding: 0 0 1px 0;
-//  //margin: 20px 0 0 0;
-//  display: block;
-//  text-decoration: none;
-//  text-align: center;
-//  background-color: inherit;
-//}
-//
-//.warpmenu-home a {
-//  text-align: center;
-//  border: 0;
-//  padding: 0;
-//}
-//
-//.warpmenu h3 {
-//  font-size: 14px;
-//  color: $white;
-//  padding: 20px 0 5px 5px;
-//  margin: 0;
-//  font-weight: bold;
-//  text-decoration: none;
-//  text-transform: uppercase;
-//  text-align: left;
-//  background-color: inherit;
-//}
-//
-//.warpmenu h3::before {
-//  content: "\25BC  ";
-//}
-//
-//.warpmenu h3.warpmenu-category-open::before {
-//  content: "\25B6  ";
-//}
-//
-///* .warpmenu h3::after{
-//	content: " \25BC";
-//}
-//
-//.warpmenu h3.warpmenu-category-open::after{
-//	content: " \25C0";
-//} */
-//
-//.warpmenu h3:hover {
-//  cursor: pointer;
-//}
-//
-//ul.warpmenu-collapsed {
-//  display: none;
-//}
-//
-//.warpmenu ul {
-//  padding: 0;
-//  margin: 0;
-//  list-style: none;
-//}
-//
-//.warpmenu li {
-//  display: block;
-//  border-bottom: 1px solid $brand-primary;
-//}
-//
-//.warpmenu li a {
-//  padding: 10px;
-//  display: block;
-//  color: $white;
-//  font-weight: 300;
-//  text-decoration: none;
-//  text-align: left;
-//  border-bottom: none;
-//}
-//
-//.warpmenu-link:hover {
-//  background: $brand-primary;
-//}
-//
-//.warpmenu li:active {
-//  background: $brand-primary;
-//  color: $white;
-//}
-//
-///* Orientation-dependent styles for the content of the menu */
-//
-//.warpmenu-vertical {
-//  width: 240px;
-//  height: 100%;
-//  top: 0;
-//  z-index: 9999;
-//}
-//
-//li.warpmenu-link-top {
-//  border-top: 1px solid $brand-primary;
-//}
-//
-///* Vertical menu that slides from the left or right */
-//
-//.warpmenu-right {
-//  right: -240px;
-//}
-//
-//.warpmenu-right.warpmenu-open {
-//  right: 0;
-//}
-//
-///* Push classes applied to the body */
-//
-//.warpmenu-push {
-//  /*overflow-x: hidden;*/
-//  position: relative;
-//  left: 0;
-//}
-//
-//.warpmenu-push-toleft {
-//  left: -240px;
-//}
-//
-///* Transitions */
-//.warpmenu,
-//.warpmenu-push {
-//  transition: left 0.3s ease, right 0.3s ease;
-//}
 
-/*******************************************************************************************/
-/***************************************New CSS*********************************************/
-/*******************************************************************************************/
-/*TODO:
-   - Mobil Button auf MenÜ setzen
-   - Mobil Tooltip zu Button setzen
-   - Mobil Animation von unten einstellen
-   - Margins/paddings/Fontsizes
-   - Brwosertest (IE10/11, Safari)
-   - CSS aufräumen
- */
-
+$gradient-darker-darker: #002f4d;
 * {
   box-sizing: border-box;
 }
@@ -174,7 +10,7 @@
   position: fixed;
   z-index: 9996;
   top: 0;
-  right:0;
+  right: 0;
   height: 100vh;
   width: 100vw;
   pointer-events: none;
@@ -330,12 +166,12 @@
     padding: 0 0 1rem;
 
 
-
     h3 {
       margin-left: 1rem;
     }
   }
 }
+
 /*******************************************************************************************/
 /*************************************Large-Screen******************************************/
 /*******************************************************************************************/
@@ -358,7 +194,8 @@
     user-select: none;
     line-height: 1.3125rem;
     font-family: Droid-sans, sans-serif;
-    a{
+
+    a {
       color: white !important;
       text-decoration: none;
     }
@@ -427,8 +264,12 @@
   }
 
   @keyframes mymove {
-    from {visibility: visible;}
-    to {visibility: hidden;}
+    from {
+      visibility: visible;
+    }
+    to {
+      visibility: hidden;
+    }
   }
 
   /*******************************************************************************************/
@@ -493,16 +334,15 @@
     $gradient-start: calc(160px);
     $gradient-col-width: calc(192px);
     background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
-    -webkit-box-shadow: -9px 0px 30px -12px rgba(0,66,107,1);
-    -moz-box-shadow: -9px 0px 30px -12px rgba(0,66,107,1);
-    box-shadow: -9px 0px 30px -12px rgba(0,66,107,1);
+    -webkit-box-shadow: -9px 0px 30px -12px rgba(0, 66, 107, 1);
+    -moz-box-shadow: -9px 0px 30px -12px rgba(0, 66, 107, 1);
+    box-shadow: -9px 0px 30px -12px rgba(0, 66, 107, 1);
 
     .warp-menu-shift-container {
       position: relative;
       display: inline-block;
       left: 0;
       top: 0;
-      transition: width 300ms ease-in-out;
 
       @media screen and(min-width: 769px) {
         height: 100%;
@@ -632,6 +472,7 @@
     }
   }
 }
+
 ul {
   list-style: none;
 }
@@ -661,83 +502,89 @@ ul {
     position: fixed;
     z-index: 9996;
     top: 0;
-    right:0;
+    right: 0;
     height: 100vh;
     width: 100vw;
-    //display: flex;
-    //display: -ms-flexbox;
-    //flex-direction: row;
-    //-ms-flex-direction: row;
-    //-ms-flex-pack: end;
-    //justify-content: flex-end;
+    display: flex;
+    display: -ms-flexbox;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
     //pointer-events: none;
     //user-select: none;
     //line-height: 1.3125rem;
     //font-family: Droid-sans, sans-serif;
   }
 
-  .warp-menu-container {
-    //position: fixed;
-    bottom: 0;
-    //right:0;
-    //height: 100vh;
-    width: 100vw;
-    display: block;
-
-  }
-  .menu-container-hide {
-    height: 0;
-  }
   .warp-menu-column-tooltip {
-    .warp-onboarding-after-arrow {
-      display: inline-block;
-      position: absolute;
-      width: 2rem;
-      height: 2rem;
-      background-color: $brand-primary-darker;
-      right: 1rem;
-      bottom: - 1rem;
-      transform: rotate(45deg);
+    flex-direction: row;
+    -ms-flex-direction: row;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
 
-      /* IE */
-      zoom: 1;
-      *display: inline;
+    label.warp-onboarding {
+      margin-right: 0;
+      margin-bottom: 2rem;
     }
+  }
+
+  .warp-onboarding-after-arrow {
+    display: inline-block;
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    background-color: $brand-primary-darker;
+    right: 0;
+    bottom: -1rem;
+    transform: rotate(45deg);
+
   }
   /*******************************************************************************************/
   /***********************************Small*Toggle-Button*************************************/
   /*******************************************************************************************/
   .warp-menu-column-toggle {
-    position:relative;
-    display:flex;
-    flex-basis: 1rem;
-    bottom:0;
+    position: relative;
+    //display:flex;
+    flex-basis: auto;
+    //bottom:0;
+    z-index: 9998;
 
     a.warpbtn {
-      bottom: 0;
       display: inline-block;
       background-color: $brand-primary-darker;
-      border-top-right-radius: 5px;
+      border-top-right-radius: 0px;
       border-top-left-radius: 5px;
       padding: 0.125em 0.25em;
+      position: relative;
+      right: calc(-100vw + 3rem);
+      border-bottom: 1px solid $brand-primary;
+
     }
   }
   /*******************************************************************************************/
   /***************************************Small*Menu******************************************/
   /*******************************************************************************************/
+
   .warp-menu-column-menu {
-    position:absolute;
-    transition: height 600ms ease-in-out;
+    position: relative;
+    transition: max-height 600ms ease-in-out;
     overflow: hidden;
-    bottom:0;
+    bottom: 0;
+    display: block;
+    max-height: 100%;
+
+    .warp-menu-shift-container {
+      bottom: 0;
+      left: 0;
+    }
   }
 
-  .warp-menu-shift-container {
-    transition: height 300ms ease-in-out;
-
-
-
+  .menu-container-hide {
+    max-height: 0;
   }
+
+
   /*Variante Flex, falls wir schnell umstellen wollen.*/
   //.warp-menu-category-list {
   //
@@ -760,24 +607,46 @@ ul {
   //  }
   //}
   .warp-menu-category-list {
-    width:100vw;
-    column-count:4;
-    //background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 20%, $brand-primary-darker 22%, black 25%);
+    width: 100vw;
+    column-count: 4;
+    background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 20%, $brand-primary-darker 22%, $gradient-darker-darker 25%);
+  }
+  .warp-menu-gradient-overlay {
+    width: 0;
+    height: 0;
+    position: relative;
+    right: 0;
+    //top: -100vh;
+    display: inline-block;
+    margin: 0;
+    z-index: -1;
+
+    div {
+      background-color: $brand-primary-darker;
+      width: 25%;
+      //height: 100vh;
+      width: calc(100vw / 4);
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
 }
+
 @media screen and (max-width: 700px) {
   .warp-menu-category-list {
     width: 100vw;
     columns: 3;
-    //background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 28%, $brand-primary-darker 30%, black 33.33333%);
+    background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 28%, $brand-primary-darker 30%, $gradient-darker-darker 33.33333%);
   }
 }
+
 @media screen and (max-width: 470px) {
   .warp-menu-category-list {
-    width:100vw;
+    width: 100vw;
     columns: 160px;
     column-gap: 0;
-    //background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 45%, $brand-primary-darker 48%, black 50%);
+    background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 45%, $brand-primary-darker 48%, $gradient-darker-darker 50%);
   }
   /*Variante Flex, falls wir schnell umstellen wollen.*/
   //  .warp-menu-category-list {
