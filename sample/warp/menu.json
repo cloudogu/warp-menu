@@ -363,16 +363,5 @@
             "Target": "external"
          }
       ]
-   },
-   {
-      "Title":"External3",
-      "Entries":[
-         {
-            "DisplayName":"scm-manager.org",
-            "Href":"https://scm-manager.org",
-            "Title":"Home of SCM-Manager",
-            "Target": "external"
-         }
-      ]
    }
 ]
