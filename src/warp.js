@@ -95,8 +95,8 @@ function getTranslations(language) {
 }
 
 function toggleCategory(e) {
-    var container = document.getElementsByClassName('warp-menu-container')[0];
-    var list = document.getElementsByClassName('warp-menu-category-list')[0];
+    var container = document.getElementById('warp-menu-container');
+    var list = document.getElementById('warp-menu-category-list');
     var width = list.clientWidth;
     var height = list.clientHeight;
 
@@ -262,6 +262,7 @@ function createMenu(categories) {
 
     var list = document.createElement('ul');
     addClass(list, 'warp-menu-category-list');
+    list.id = 'warp-menu-category-list';
     menu.appendChild(list);
 
     var homeHrefElement = createHomeHrefWithImage();
