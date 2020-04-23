@@ -112,10 +112,13 @@ function toggleCategory(e) {
             toggleClass(container, 'warp-menu-hide-to-refresh')
         }, 50);
     }
+
+    setCorrectColumnCount();
 }
 
 function createMenuEntry(id, entries, title, list) {
     var category = document.createElement('li');
+    let categoryInsideContainer = document.createElement('div');
 
     var categoryHeader = document.createElement('h3');
     categoryHeader.innerHTML = title;
@@ -143,8 +146,9 @@ function createMenuEntry(id, entries, title, list) {
         categoryLinkList.appendChild(li);
     }
 
-    category.appendChild(categoryHeader);
-    category.appendChild(categoryLinkList);
+    categoryInsideContainer.appendChild(categoryHeader);
+    categoryInsideContainer.appendChild(categoryLinkList);
+    category.appendChild(categoryInsideContainer);
     list.appendChild(category);
 }
 
@@ -275,7 +279,7 @@ function createMenu(categories) {
             informationEntries = currentCategory.Entries;
         } else {
             var title = currentCategory.Title
-            if (isTranslateable(title)){
+            if (isTranslateable(title)) {
                 title = getLocalizedString(title);
             }
             var id = getCategoryKey(currentCategory);
@@ -291,6 +295,8 @@ function createMenu(categories) {
     createMenuEntry("warpc.info", informationEntries, "Information", list);
 
     addLogoutMenuEntry(list);
+
+    window.addEventListener('resize', setCorrectColumnCount)
 
     return menuContainer;
 }
@@ -311,6 +317,10 @@ function initWarpMenu(categories) {
         setTimeout(function () {
             removeClass(warpMenuContainer, 'collapsing')
         }, 300);
+
+        if (!hasClass(warpMenuContainer, 'menu-container-hide')){
+            setCorrectColumnCount();
+        }
     }
 
     toggleResult.toggle.onclick = toggleNav;
@@ -334,6 +344,24 @@ function initWarpMenu(categories) {
 
     body.appendChild(warpMenuContainer);
     resizeToggleButtonIfNeeded();
+}
+
+function setCorrectColumnCount() {
+    var list = document.getElementById('warp-menu-category-list');
+    let columnCount = 0;
+    for (let node of list.childNodes) {
+        for (let el of node.childNodes) {
+            let current = Math.floor(el.offsetLeft / 192) + 1;
+            if (current > columnCount) columnCount = current;
+        }
+    }
+
+    removeClass(list, 'warp-menu-column-count-1');
+    removeClass(list, 'warp-menu-column-count-2');
+    removeClass(list, 'warp-menu-column-count-3');
+    removeClass(list, 'warp-menu-column-count-4');
+    removeClass(list, 'warp-menu-column-count-5');
+    addClass(list, 'warp-menu-column-count-'+columnCount);
 }
 
 var asyncCounter = 0;
