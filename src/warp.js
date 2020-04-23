@@ -164,10 +164,9 @@ function createToggleButton() {
 
 function resizeToggleButtonIfNeeded() {
     var toggle = document.getElementById('warp-menu-warpbtn');
-    if (body.scrollWidth !== body.clientWidth){
+    if (body.scrollWidth !== body.clientWidth) {
         addClass(toggle, 'scrollbar-warpbtn')
-    }
-    else{
+    } else {
         removeClass(toggle, 'scrollbar-warpbtn')
     }
 }
@@ -297,7 +296,6 @@ function initWarpMenu(categories) {
 
     function toggleNav() {
         if (hasClass(warpMenuContainer, 'collapsing')) return;
-
         addClass(warpMenuContainer, 'collapsing')
         toggleClass(menuContainer, 'menu-container-hide');
         setTimeout(function () {
@@ -316,7 +314,9 @@ function initWarpMenu(categories) {
     // hide menu
     document.onclick = function (e) {
         if (e && e.target) {
-            if (!hasClass(menuContainer, 'menu-container-hide') && !hasClass('warp-menu-category-list')) {
+            let menuIsVisible = !hasClass(menuContainer, 'menu-container-hide');
+            let isClickOnMenu = e.path.indexOf(menuContainer) !== -1;
+            if (menuIsVisible && !isClickOnMenu) {
                 toggleNav();
             }
         }

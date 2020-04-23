@@ -198,12 +198,14 @@ $gradient-darker-darker: #002f4d;
 
   .warp-menu-gradient-overlay {
     height: 100%;
+    max-width: 100%;
     position: absolute;
     right: 0;
     display: inline-block;
     margin: 0;
     z-index: 0;
     background-color: $brand-primary-darker;
+    transition: max-width 600ms ease-in-out;
   }
 
 
@@ -300,6 +302,9 @@ $gradient-darker-darker: #002f4d;
 
     .menu-container-hide {
       max-width: 0;
+      .warp-menu-gradient-overlay {
+        max-width: 0;
+      }
     }
   }
 
