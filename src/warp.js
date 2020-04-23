@@ -334,6 +334,8 @@ function initWarpMenu(categories) {
     // hide menu
     document.onclick = function (e) {
         if (e && e.target) {
+            if (e.path === null || e.path === undefined) return;
+
             let menuIsVisible = !hasClass(menuContainer, 'menu-container-hide');
             let isClickOnMenu = e.path.indexOf(menuContainer) !== -1;
             if (menuIsVisible && !isClickOnMenu) {
