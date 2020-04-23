@@ -106,7 +106,7 @@ function toggleCategory(e) {
 
 function createMenuEntry(id, entries, title, list) {
     var category = document.createElement('li');
-    let categoryInsideContainer = document.createElement('div');
+    var categoryInsideContainer = document.createElement('div');
 
     var categoryHeader = document.createElement('h3');
     categoryHeader.innerHTML = title;
@@ -324,8 +324,8 @@ function initWarpMenu(categories) {
         if (e && e.target) {
             if (e.path === null || e.path === undefined) return;
 
-            let menuIsVisible = !hasClass(menuContainer, 'menu-container-hide');
-            let isClickOnMenu = e.path.indexOf(menuContainer) !== -1;
+            var menuIsVisible = !hasClass(menuContainer, 'menu-container-hide');
+            var isClickOnMenu = e.path.indexOf(menuContainer) !== -1;
             if (menuIsVisible && !isClickOnMenu) {
                 toggleNav();
             }
