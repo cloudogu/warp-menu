@@ -226,10 +226,6 @@ function isTooltipDisabled() {
 }
 
 function addLogoutMenuEntry(list) {
-    var placeholder = document.createElement('li');
-    addClass(placeholder, 'warp-menu-placeholder');
-    list.appendChild(placeholder);
-
     var logout = document.createElement('li');
     var logoutHref = document.createElement('a');
     addClass(logoutHref, 'warp-menu-logout-link');
