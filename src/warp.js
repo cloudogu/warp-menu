@@ -2,21 +2,6 @@ var baseUrl = '';
 
 var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
-var categories = {
-    "Development Apps": "Entwicklung",
-    "Administration Apps": "Administration",
-    "Documentation": "Dokumentation"
-};
-var languageArray = {
-    "de": categories
-};
-
-//Custom Translation Tokens
-var ABOUT_CLOUDOGU_TOKEN = "About Cloudogu";
-var MENU_TOKEN = "Menu";
-var ECOSYSTEM_LOGOUT_TOKEN = "EcoSystem Logout";
-var ONBOARDING_TEXT_TOKEN = "Click 'Menu' to view all tools. That menu connects your toolchain and is available from any tool.";
-var ONBOARDING_HINT_TOKEN = "Do not show this hint again.";
 
 var informationEntries = new Array();
 
@@ -64,29 +49,49 @@ function getLanguage() {
         navigator.languages[0] :
         (navigator.language || navigator.userLanguage || navigator.browserLanguage);
 
-    return language;
+    return language.split("-")[0];
 }
 
-function setCustomTranslationTokens(language) {
-    if (language === "de") {
-        ABOUT_CLOUDOGU_TOKEN = "Über Cloudogu";
-        MENU_TOKEN = "Menü";
-        ECOSYSTEM_LOGOUT_TOKEN = "EcoSystem Logout";
-        ONBOARDING_TEXT_TOKEN = "Klicken Sie auf 'Menü', um ihre Tools zu sehen. Das Menü verbindet ihre Toolchain und ist von jedem Tool aus zugänglich.";
-        ONBOARDING_HINT_TOKEN = "Diesen Hinweis nicht mehr anzeigen.";
-    }
+function getLocalizedString(key) {
+    var language = getLanguage();
+    var translations = getTranslations(language);
+    return translations[key];
+}
+
+function isTranslateable(key) {
+    var language = getLanguage();
+    var translations = getTranslations(language);
+    return translations.hasOwnProperty(key);
 }
 
 function getCategoryKey(category) {
-    var language = getLanguage();
-    setCustomTranslationTokens(language);
-    //if language = German, change category.title to German language
-    if (language.indexOf("de") > -1) {
-        if (languageArray["de"][category.Title] !== undefined)
-            category.Title = languageArray["de"][category.Title];
-    }
-
     return "warpc." + category.Title.toLowerCase().replace(/\s+/g, "_");
+}
+
+function getTranslations(language) {
+    if (language === "de") {
+        return {
+            "aboutCloudoguToken": "Über Cloudogu",
+            "menuToken": "Menü",
+            "ecosystemLogoutToken": "EcoSystem Logout",
+            "onboardingTextToken": "Klicken Sie auf 'Menü', um ihre Tools zu sehen. Das Menü verbindet ihre Toolchain und ist von jedem Tool aus zugänglich.",
+            "onboardingHintToken": "Diesen Hinweis nicht mehr anzeigen.",
+            "Development Apps": "Entwicklung",
+            "Administration Apps": "Administration",
+            "Documentation": "Dokumentation"
+        };
+    } else {
+        return {
+            "aboutCloudoguToken": "About Cloudogu",
+            "menuToken": "Menu",
+            "ecosystemLogoutToken": "EcoSystem Logout",
+            "onboardingTextToken": "Click 'Menu' to view all tools. That menu connects your toolchain and is available from any tool.",
+            "onboardingHintToken": "Do not show this hint again.",
+            "Development Apps": "Development Apps",
+            "Administration Apps": "Administration Apps",
+            "Documentation": "Documentation"
+        };
+    }
 }
 
 function toggleCategory(e) {
@@ -115,7 +120,7 @@ function createMenuEntry(id, entries, title, list) {
     var categoryHeader = document.createElement('h3');
     categoryHeader.innerHTML = title;
     categoryHeader.onclick = toggleCategory;
-    categoryHeader.id = 'collapse-warp-menu-category-header-' + title;
+    categoryHeader.id = id;
     if (isOpenCollapsible(categoryHeader.id)) {
         addClass(categoryHeader, 'warpmenu-category-open');
     }
@@ -150,7 +155,7 @@ function createToggleButton() {
     var toggle = document.createElement('a');
     addClass(toggle, 'warpbtn')
     toggle.id = 'warp-menu-warpbtn';
-    toggle.innerHTML = MENU_TOKEN;
+    toggle.innerHTML = getLocalizedString("menuToken");
     toggleColumn.appendChild(toggle);
 
     // The button on bottom must be bigger when there is a scrollbar on screen.
@@ -181,12 +186,12 @@ function createTooltip() {
 
     var text = document.createElement('p');
     addClass(text, 'warp-onboarding-msg');
-    text.innerHTML = ONBOARDING_TEXT_TOKEN;
+    text.innerHTML = getLocalizedString("onboardingTextToken");
     tooltipLabel.appendChild(text);
     createHomeHrefWithImage
     var hint = document.createElement('p');
     addClass(hint, 'warp-onboarding-hint');
-    hint.innerHTML = ONBOARDING_HINT_TOKEN;
+    hint.innerHTML = getLocalizedString("onboardingHintToken");
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     hint.appendChild(checkbox);
@@ -224,7 +229,7 @@ function addLogoutMenuEntry(list) {
     var logout = document.createElement('li');
     var logoutHref = document.createElement('a');
     addClass(logoutHref, 'warp-menu-logout-link');
-    logoutHref.innerHTML = ECOSYSTEM_LOGOUT_TOKEN;
+    logoutHref.innerHTML = getLocalizedString("ecosystemLogoutToken");
     logoutHref.href = createLink('/cas/logout');
     logout.appendChild(logoutHref);
     list.appendChild(logout);
@@ -268,14 +273,18 @@ function createMenu(categories) {
         if (currentCategory.Title.toUpperCase() === "INFORMATION") {
             informationEntries = currentCategory.Entries;
         } else {
+            var title = currentCategory.Title
+            if (isTranslateable(title)){
+                title = getLocalizedString(title);
+            }
             var id = getCategoryKey(currentCategory);
-            createMenuEntry(id, currentCategory.Entries, currentCategory.Title, list);
+            createMenuEntry(id, currentCategory.Entries, title, list);
         }
     }
 
     // fixed about page - entry
     informationEntries.push({
-        DisplayName: ABOUT_CLOUDOGU_TOKEN,
+        DisplayName: getLocalizedString("aboutCloudoguToken"),
         Href: createLink("/info/index.html")
     });
     createMenuEntry("warpc.info", informationEntries, "Information", list);
