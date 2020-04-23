@@ -318,7 +318,7 @@ function initWarpMenu(categories) {
             removeClass(warpMenuContainer, 'collapsing')
         }, 300);
 
-        if (!hasClass(warpMenuContainer, 'menu-container-hide')){
+        if (!hasClass(warpMenuContainer, 'menu-container-hide')) {
             setCorrectColumnCount();
         }
     }
@@ -348,12 +348,12 @@ function initWarpMenu(categories) {
 
 function setCorrectColumnCount() {
     var list = document.getElementById('warp-menu-category-list');
-    let columnCount = 0;
-    for (let node of list.childNodes) {
-        for (let el of node.childNodes) {
-            let current = Math.floor(el.offsetLeft / 192) + 1;
-            if (current > columnCount) columnCount = current;
-        }
+    var columnCount = 0;
+
+    for (var i = 0; i < list.childNodes.length; i++) {
+        var node = list.childNodes[i];
+        var current = Math.floor(node.offsetLeft / 192) + 1;
+        if (current > columnCount) columnCount = current;
     }
 
     removeClass(list, 'warp-menu-column-count-1');
@@ -361,7 +361,7 @@ function setCorrectColumnCount() {
     removeClass(list, 'warp-menu-column-count-3');
     removeClass(list, 'warp-menu-column-count-4');
     removeClass(list, 'warp-menu-column-count-5');
-    addClass(list, 'warp-menu-column-count-'+columnCount);
+    addClass(list, 'warp-menu-column-count-' + columnCount);
 }
 
 var asyncCounter = 0;
