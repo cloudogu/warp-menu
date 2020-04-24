@@ -184,6 +184,12 @@ $gradient-darker-darker: #002f4d;
           }
         }
 
+        > li:first-child {
+          display: block;
+          padding: 0 0 1rem;
+          width: 100%;
+        }
+
         > li.warp-menu-logout-placeholder {
           border: 0;
         }
@@ -417,12 +423,6 @@ $gradient-darker-darker: #002f4d;
 
           > li {
             display: inline-block;
-            width: 100%;
-          }
-
-          > li:first-child {
-            display: block;
-            padding: 0 0 1rem;
             width: 100%;
           }
 
