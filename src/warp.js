@@ -240,7 +240,6 @@ function createHomeHrefWithImage() {
     addClass(homeHref, 'warp-menu-home-button');
     homeHref.href = createLink('');
     var homeHrefImage = document.createElement('img');
-    homeHrefImage.src = 'images/blib-white-160px.png';
     homeHref.appendChild(homeHrefImage);
     homeHrefListElement.appendChild(homeHref);
     return homeHrefListElement;
