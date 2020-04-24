@@ -3,7 +3,7 @@ var baseUrl = '';
 var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
 
-var informationEntries = new Array();
+var informationEntries = [];
 
 var lss = isLocalStorageSupported();
 
@@ -107,9 +107,9 @@ function toggleCategory(e) {
     // The container does not realize it when the content grows.
     // So we force a redraw by hiding and showing again.
     if (list.clientWidth !== width || list.clientHeight !== height) {
-        toggleClass(container, 'warp-menu-hide-to-refresh')
+        toggleClass(container, 'warp-menu-hide-to-refresh');
         setTimeout(function () {
-            toggleClass(container, 'warp-menu-hide-to-refresh')
+            toggleClass(container, 'warp-menu-hide-to-refresh');
         }, 50);
     }
 
@@ -136,7 +136,7 @@ function createMenuEntry(id, entries, title, list) {
         var a = document.createElement('a');
         addClass(a, 'warp-menu-target-link');
         if (link.Target && link.Target === 'external') {
-            a.target = '_blank'
+            a.target = '_blank';
         } else {
             a.target = '_top';
         }
@@ -157,13 +157,13 @@ function createToggleButton() {
     addClass(toggleColumn, 'warp-menu-column-toggle');
 
     var toggle = document.createElement('a');
-    addClass(toggle, 'warpbtn')
+    addClass(toggle, 'warpbtn');
     toggle.id = 'warp-menu-warpbtn';
     toggle.innerHTML = getLocalizedString("menuToken");
     toggleColumn.appendChild(toggle);
 
     // The button on bottom must be bigger when there is a scrollbar on screen.
-    window.addEventListener('resize', resizeToggleButtonIfNeeded)
+    window.addEventListener('resize', resizeToggleButtonIfNeeded);
 
     return {
         "toggleColumn": toggleColumn,
@@ -174,9 +174,9 @@ function createToggleButton() {
 function resizeToggleButtonIfNeeded() {
     var toggle = document.getElementById('warp-menu-warpbtn');
     if (body.scrollWidth !== body.clientWidth) {
-        addClass(toggle, 'scrollbar-warpbtn')
+        addClass(toggle, 'scrollbar-warpbtn');
     } else {
-        removeClass(toggle, 'scrollbar-warpbtn')
+        removeClass(toggle, 'scrollbar-warpbtn');
     }
 }
 
@@ -192,7 +192,6 @@ function createTooltip() {
     addClass(text, 'warp-onboarding-msg');
     text.innerHTML = getLocalizedString("onboardingTextToken");
     tooltipLabel.appendChild(text);
-    createHomeHrefWithImage
     var hint = document.createElement('p');
     addClass(hint, 'warp-onboarding-hint');
     hint.innerHTML = getLocalizedString("onboardingHintToken");
@@ -204,7 +203,7 @@ function createTooltip() {
     var tooltipLabelArrow = document.createElement('div');
     tooltipLabelArrow.innerText = ' ';
     addClass(tooltipLabelArrow, 'warp-onboarding-after-arrow');
-    tooltipLabel.appendChild(tooltipLabelArrow)
+    tooltipLabel.appendChild(tooltipLabelArrow);
 
     function hideTooltip() {
         addClass(tooltipColumn, 'warp-onboarding-container-hide');
@@ -238,10 +237,10 @@ function addLogoutMenuEntry(list) {
 function createHomeHrefWithImage() {
     var homeHrefListElement = document.createElement('li');
     var homeHref = document.createElement('a');
-    addClass(homeHref, 'warp-menu-home-button')
+    addClass(homeHref, 'warp-menu-home-button');
     homeHref.href = createLink('');
     var homeHrefImage = document.createElement('img');
-    homeHrefImage.src = 'images/blib-white-160px.png'
+    homeHrefImage.src = 'images/blib-white-160px.png';
     homeHref.appendChild(homeHrefImage);
     homeHrefListElement.appendChild(homeHref);
     return homeHrefListElement;
@@ -274,7 +273,7 @@ function createMenu(categories) {
         if (currentCategory.Title.toUpperCase() === "INFORMATION") {
             informationEntries = currentCategory.Entries;
         } else {
-            var title = currentCategory.Title
+            var title = currentCategory.Title;
             if (isTranslateable(title)) {
                 title = getLocalizedString(title);
             }
@@ -292,7 +291,7 @@ function createMenu(categories) {
 
     addLogoutMenuEntry(list);
 
-    window.addEventListener('resize', setCorrectColumnCount)
+    window.addEventListener('resize', setCorrectColumnCount);
 
     return menuContainer;
 }
@@ -308,10 +307,10 @@ function initWarpMenu(categories) {
 
     function toggleNav() {
         if (hasClass(warpMenuContainer, 'collapsing')) return;
-        addClass(warpMenuContainer, 'collapsing')
+        addClass(warpMenuContainer, 'collapsing');
         toggleClass(menuContainer, 'menu-container-hide');
         setTimeout(function () {
-            removeClass(warpMenuContainer, 'collapsing')
+            removeClass(warpMenuContainer, 'collapsing');
         }, 300);
 
         if (!hasClass(warpMenuContainer, 'menu-container-hide')) {
@@ -322,7 +321,7 @@ function initWarpMenu(categories) {
     toggleResult.toggle.onclick = toggleNav;
 
     if (!isTooltipDisabled()) {
-        warpMenuContainer.appendChild(tooltipColumn)
+        warpMenuContainer.appendChild(tooltipColumn);
     }
     warpMenuContainer.appendChild(toggleResult.toggleColumn);
     warpMenuContainer.appendChild(menuContainer);
