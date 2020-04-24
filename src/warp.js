@@ -103,16 +103,6 @@ function toggleCategory(e) {
     var target = e.target;
     toggleClass(target, 'warpmenu-category-open');
     toggleCollapsedInStorage(target.id);
-
-    // The container does not realize it when the content grows.
-    // So we force a redraw by hiding and showing again.
-    if (list.clientWidth !== width || list.clientHeight !== height) {
-        toggleClass(container, 'warp-menu-hide-to-refresh');
-        setTimeout(function () {
-            toggleClass(container, 'warp-menu-hide-to-refresh');
-        }, 50);
-    }
-
     setCorrectColumnCount();
 }
 
