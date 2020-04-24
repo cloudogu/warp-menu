@@ -210,12 +210,16 @@ function isTooltipDisabled() {
 }
 
 function addLogoutMenuEntry(list) {
+    var placeholder = document.createElement('li');
+    addClass(placeholder, 'warp-menu-logout-placeholder');
     var logout = document.createElement('li');
+    addClass(logout, 'warp-menu-logout-list-element');
     var logoutHref = document.createElement('a');
     addClass(logoutHref, 'warp-menu-logout-link');
     logoutHref.innerHTML = getLocalizedString("ecosystemLogoutToken");
     logoutHref.href = createLink('/cas/logout');
     logout.appendChild(logoutHref);
+    list.appendChild(placeholder);
     list.appendChild(logout);
 }
 
