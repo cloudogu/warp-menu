@@ -95,11 +95,6 @@ function getTranslations(language) {
 }
 
 function toggleCategory(e) {
-    var container = document.getElementById('warp-menu-container');
-    var list = document.getElementById('warp-menu-category-list');
-    var width = list.clientWidth;
-    var height = list.clientHeight;
-
     var target = e.target;
     toggleClass(target, 'warpmenu-category-open');
     toggleCollapsedInStorage(target.id);
