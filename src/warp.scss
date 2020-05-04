@@ -415,13 +415,15 @@ $gradient-darker-darker: #002f4d;
       transition: max-height 600ms ease-in-out;
       background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 20%, $brand-primary-darker 22%, $gradient-darker-darker 25%);
       overflow-y: auto;
-      //max-height: calc(100vh - 100px);
       max-height: calc(var(--vh, 1vh) * 100 - 2.5rem);
+      -webkit-box-shadow: 0px -9px 30px -12px rgba(0, 66, 107, 1);
+      -moz-box-shadow: 0px -9px 30px -12px rgba(0, 66, 107, 1);
+      box-shadow: 0px -9px 30px -12px rgba(0, 66, 107, 1);
 
       .warp-menu-shift-container {
         bottom: 0;
         left: 0;
-        display: inline-flex !important; //refactoring: display:inline-block in media-query auslagern, inline flex für nicht-IE
+        display: inline-flex !important;
         display: -ms-inline-flexbox;
 
         .warp-menu-category-list {
