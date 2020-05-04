@@ -147,22 +147,10 @@ function createToggleButton() {
     toggle.innerHTML = getLocalizedString("menuToken");
     toggleColumn.appendChild(toggle);
 
-    // The button on bottom must be bigger when there is a scrollbar on screen.
-    window.addEventListener('resize', resizeToggleButtonIfNeeded);
-
     return {
         "toggleColumn": toggleColumn,
         "toggle": toggle
     };
-}
-
-function resizeToggleButtonIfNeeded() {
-    var toggle = document.getElementById('warp-menu-warpbtn');
-    if (body.scrollWidth !== body.clientWidth) {
-        addClass(toggle, 'scrollbar-warpbtn');
-    } else {
-        removeClass(toggle, 'scrollbar-warpbtn');
-    }
 }
 
 function createTooltip() {
