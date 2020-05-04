@@ -220,6 +220,12 @@ $gradient-darker-darker: #002f4d;
     }
   }
 
+  .menu-container-hide {
+    .warp-menu-gradient-overlay {
+      max-width: 0;
+    }
+  }
+
   .warp-menu-gradient-overlay {
     height: 100%;
     max-width: 100%;
