@@ -317,7 +317,9 @@ function initWarpMenu(categories) {
     };
 
     body.appendChild(warpMenuContainer);
-    resizeToggleButtonIfNeeded();
+
+    setCorrectVh();
+    window.addEventListener('resize', setCorrectVh);
 }
 
 function setCorrectColumnCount() {
@@ -364,4 +366,12 @@ if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
     // load model
     asyncCounter++;
     ajax('/warp/menu.json', loaded);
+}
+
+function setCorrectVh(){
+    var correctVh = window.innerHeight * 0.01;
+    // This is used to calculate correct inner height of the display
+    /* jshint ignore:start */
+    document.getElementById('warp-menu-container').style.setProperty('--vh', `${correctVh}px`);
+    /* jshint ignore:end */
 }

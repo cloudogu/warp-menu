@@ -415,7 +415,8 @@ $gradient-darker-darker: #002f4d;
       transition: max-height 600ms ease-in-out;
       background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 20%, $brand-primary-darker 22%, $gradient-darker-darker 25%);
       overflow-y: auto;
-      max-height: calc(100vh - 100px);
+      //max-height: calc(100vh - 100px);
+      max-height: calc(var(--vh, 1vh) * 100 - 2.5rem);
 
       .warp-menu-shift-container {
         bottom: 0;
