@@ -368,10 +368,10 @@ if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
     ajax('/warp/menu.json', loaded);
 }
 
+// According to https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+// This trick is used to get the correct height on mobile devices.
 function setCorrectVh(){
-    var correctVh = window.innerHeight * 0.01;
+    var correctVh = (window.innerHeight * 0.01) + 'px';
     // This is used to calculate correct inner height of the display
-    /* jshint ignore:start */
-    document.getElementById('warp-menu-container').style.setProperty('--vh', `${correctVh}px`);
-    /* jshint ignore:end */
+    document.getElementById('warp-menu-container').style.setProperty('--vh', correctVh);
 }
