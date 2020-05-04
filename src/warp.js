@@ -228,7 +228,8 @@ function createHomeHrefWithImage() {
     var homeHref = document.createElement('a');
     addClass(homeHref, 'warp-menu-home-button');
     homeHref.href = createLink('');
-    var homeHrefImage = document.createElement('img');
+    var homeHrefImage = document.createElement('div');
+    addClass(homeHrefImage, 'img');
     homeHref.appendChild(homeHrefImage);
     homeHrefListElement.appendChild(homeHref);
     return homeHrefListElement;

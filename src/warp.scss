@@ -131,10 +131,12 @@ $gradient-darker-darker: #002f4d;
           display: block;
           text-align: center;
 
-          img {
-            width: auto;
+          div.img {
+            width: 78.36px;
             height: 48px;
-            content: url(images/blib-white-160px.png);
+            display: inline-block;
+            background-image: url(images/blib-white-160px.png);
+            background-size: 100%;
           }
         }
 
@@ -143,9 +145,10 @@ $gradient-darker-darker: #002f4d;
           padding-top: 0.5rem;
           padding-bottom: 0.5rem;
 
-          h3, a.warp-menu-target-link, a.warp-menu-logout-link{
-            padding-left:1.25rem;
-            :hover, :focus, :active{
+          h3, a.warp-menu-target-link, a.warp-menu-logout-link {
+            padding-left: 1.25rem;
+
+            :hover, :focus, :active {
               background-color: $brand-primary;
             }
           }
@@ -318,10 +321,11 @@ $gradient-darker-darker: #002f4d;
           }
         }
 
-        a.warp-menu-target-link{
-          width:100%;
-          width:192px;
+        a.warp-menu-target-link {
+          width: 100%;
+          width: 192px;
         }
+
         .warp-menu-category-list.warp-menu-column-count-1 {
           column-count: 1;
         }
@@ -437,8 +441,9 @@ $gradient-darker-darker: #002f4d;
           > li > ul {
             padding: 0;
           }
-          a.warp-menu-target-link{
-            width:100%;
+
+          a.warp-menu-target-link {
+            width: 100%;
           }
         }
       }
