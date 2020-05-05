@@ -319,6 +319,10 @@ $gradient-darker-darker: #002f4d;
               display: inline-block;
             }
           }
+
+          > li.warp-menu-logout-list-element {
+            right: 0;
+          }
         }
 
         a.warp-menu-target-link {
