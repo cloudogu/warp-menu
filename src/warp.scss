@@ -298,9 +298,10 @@ $gradient-darker-darker: #002f4d;
     /*******************************************************************************************/
 
     .warp-menu-column-menu {
-      $gradient-start: calc(160px);
-      $gradient-col-width: calc(192px);
+      $gradient-start: 160px;
+      $gradient-col-width: 192px;
       background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
+      background-image: -ms-repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
       -webkit-box-shadow: -9px 0px 30px -12px rgba(0, 66, 107, 1);
       -moz-box-shadow: -9px 0px 30px -12px rgba(0, 66, 107, 1);
       box-shadow: -9px 0px 30px -12px rgba(0, 66, 107, 1);
