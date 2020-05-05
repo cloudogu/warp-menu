@@ -340,7 +340,6 @@ function setCorrectColumnCount() {
     removeClass(list, 'warp-menu-column-count-2');
     removeClass(list, 'warp-menu-column-count-3');
     removeClass(list, 'warp-menu-column-count-4');
-    removeClass(list, 'warp-menu-column-count-5');
     addClass(list, 'warp-menu-column-count-' + columnCount);
 }
 

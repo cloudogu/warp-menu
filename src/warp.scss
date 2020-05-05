@@ -208,6 +208,7 @@ $gradient-darker-darker: #002f4d;
 
         > li.warp-menu-logout-placeholder {
           border: 0;
+          height: calc(1.66666em + 1.75em);
         }
 
         > li.warp-menu-logout-list-element {
@@ -353,10 +354,6 @@ $gradient-darker-darker: #002f4d;
 
         .warp-menu-category-list.warp-menu-column-count-4 {
           column-count: 4;
-        }
-
-        .warp-menu-category-list.warp-menu-column-count-5 {
-          column-count: 5;
         }
       }
 
