@@ -153,6 +153,15 @@ $gradient-darker-darker: #002f4d;
             }
           }
 
+          a.warp-menu-logout-link {
+            display: inline-block;
+            width: 100%;
+          }
+
+          a.warp-menu-logout-link:hover {
+            background-color: $brand-primary;
+          }
+
           h3:not(.warpmenu-category-open) + ul {
             display: none;
           }
