@@ -11,9 +11,9 @@ $gradient-darker-darker: #002f4d;
   width: 100vw;
   pointer-events: none;
   user-select: none;
-  line-height: 1.3125rem;
+  line-height: 1.75em;
   font-family: Droid-sans, sans-serif;
-  font-size: 0.75rem;
+  font-size: 12px;
   display: flex;
   display: -ms-flexbox;
 
@@ -41,7 +41,7 @@ $gradient-darker-darker: #002f4d;
 
   .warp-menu-column-tooltip {
     z-index: 9997;
-    flex-basis: 16rem;
+    flex-basis: 21.33333em;
     display: flex;
     display: -ms-flexbox;
     flex-direction: column;
@@ -55,18 +55,18 @@ $gradient-darker-darker: #002f4d;
     label.warp-onboarding {
       flex-basis: auto;
       position: relative;
-      margin-right: 1.5rem;
+      margin-right: 1.5em;
       display: inline-block;
       border-radius: 10px;
-      padding: 2rem;
+      padding: 2em;
       background-color: $brand-primary-darker;
       color: white;
-      width: 16rem;
-      font-size: 1rem;
+      width: 16em;
+      font-size: 1.33333em;
       cursor: pointer;
 
       .warp-onboarding-msg {
-        margin: 0 0 0.5rem;
+        margin: 0 0 0.5em;
       }
 
       .warp-onboarding-hint {
@@ -81,8 +81,8 @@ $gradient-darker-darker: #002f4d;
       position: absolute;
       background-color: $brand-primary-darker;
       transform: rotate(45deg);
-      width: 2rem;
-      height: 2rem;
+      width: 2em;
+      height: 2em;
       right: 0;
     }
   }
@@ -125,7 +125,6 @@ $gradient-darker-darker: #002f4d;
 
       .warp-menu-category-list {
         margin: 0;
-        padding: 0 0 1.125rem;
 
         a.warp-menu-home-button {
           display: block;
@@ -142,11 +141,11 @@ $gradient-darker-darker: #002f4d;
 
         > li {
           border-bottom: 1px solid $brand-primary;
-          padding-top: 0.5rem;
-          padding-bottom: 0.5rem;
+          padding-top: 0.66666em;
+          padding-bottom: 0.66666em;
 
           h3, a.warp-menu-target-link, a.warp-menu-logout-link {
-            padding-left: 1.25rem;
+            padding-left: 1.66666em;
 
             :hover, :focus, :active {
               background-color: $brand-primary;
@@ -193,7 +192,7 @@ $gradient-darker-darker: #002f4d;
 
         > li:first-child {
           display: block;
-          padding: 0 0 1rem;
+          padding: 0 0 1.33333em;
           width: 100%;
         }
 
@@ -214,7 +213,7 @@ $gradient-darker-darker: #002f4d;
 
         a.warp-menu-logout-link::before {
           content: "\27A5 \2000";
-          font-size: 1.125rem;
+          font-size: 1.5em;
         }
       }
     }
@@ -248,23 +247,17 @@ $gradient-darker-darker: #002f4d;
     -ms-flex-direction: row;
     -ms-flex-pack: end;
     justify-content: flex-end;
-    line-height: 1.3125rem;
 
     /*******************************************************************************************/
     /********************************Onboarding message box*************************************/
     /*******************************************************************************************/
     .warp-menu-column-tooltip {
-
-      label.warp-onboarding {
-        margin-right: 1.5rem;
-      }
-
       .warp-onboarding-after-arrow {
         display: inline-block;
         position: absolute;
         background-color: $brand-primary-darker;
-        right: -1rem;
-        top: calc(50% - 1rem);
+        right: -1em;
+        top: calc(50% - 1em);
         transform: rotate(45deg);
       }
     }
@@ -275,7 +268,7 @@ $gradient-darker-darker: #002f4d;
 
     .warp-menu-column-toggle {
       a.warpbtn {
-        top: calc(50vh - 2rem);
+        top: calc(50vh - 2.66666em);
         border-bottom-right-radius: 5px;
         border-top-right-radius: 5px;
         writing-mode: vertical-rl;
@@ -283,7 +276,7 @@ $gradient-darker-darker: #002f4d;
         transform: rotate(180deg);
         border-left: 1px solid $brand-primary;
         height: 4em;
-        width: 1.5rem;
+        width: 2em;
         right: 0;
         padding: 0.25em 0.125em;
       }
@@ -309,7 +302,7 @@ $gradient-darker-darker: #002f4d;
         top: 0;
 
         .warp-menu-category-list {
-          padding: 1rem 0;
+          padding: 1.33333em 0;
           display: inline-block;
           column-width: 192px;
           column-fill: auto;
@@ -317,7 +310,7 @@ $gradient-darker-darker: #002f4d;
           column-gap: 0;
 
           > li {
-            padding-top: 0.75rem;
+            padding-top: 1em;
             width: 192px;
             display: list-item;
 
@@ -389,11 +382,11 @@ $gradient-darker-darker: #002f4d;
 
       label.warp-onboarding {
         margin-right: 0;
-        margin-bottom: 2rem;
+        margin-bottom: 2em;
       }
 
       .warp-onboarding-after-arrow {
-        bottom: -1rem;
+        bottom: -1em;
       }
     }
     /*******************************************************************************************/
@@ -421,7 +414,7 @@ $gradient-darker-darker: #002f4d;
       transition: max-height 600ms ease-in-out;
       background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 20%, $brand-primary-darker 22%, $gradient-darker-darker 25%);
       overflow-y: auto;
-      max-height: calc(var(--vh, 1vh) * 100 - 2.5rem);
+      max-height: calc(var(--vh, 1vh) * 100 - 3.33333em);
       -webkit-box-shadow: 0px -9px 30px -12px rgba(0, 66, 107, 1);
       -moz-box-shadow: 0px -9px 30px -12px rgba(0, 66, 107, 1);
       box-shadow: 0px -9px 30px -12px rgba(0, 66, 107, 1);
@@ -433,7 +426,7 @@ $gradient-darker-darker: #002f4d;
         display: -ms-inline-flexbox;
 
         .warp-menu-category-list {
-          padding-top: 1.25rem !important;
+          padding-top: 1.66666em;
           width: 100vw;
           column-gap: 0;
           float: left;
