@@ -74,6 +74,15 @@ $gradient-darker-darker: #002f4d;
         margin: 0;
         font-size: 0.8em;
         text-align: right;
+
+        input {
+          vertical-align: middle;
+          margin-right: 0.75em;
+        }
+
+        section {
+          display: inline;
+        }
       }
     }
 

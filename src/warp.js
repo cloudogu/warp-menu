@@ -167,10 +167,12 @@ function createTooltip() {
     tooltipLabel.appendChild(text);
     var hint = document.createElement('p');
     addClass(hint, 'warp-onboarding-hint');
-    hint.innerHTML = getLocalizedString("onboardingHintToken");
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     hint.appendChild(checkbox);
+    let hintText = document.createElement('section');
+    hintText.innerHTML = getLocalizedString("onboardingHintToken");
+    hint.appendChild(hintText);
     tooltipLabel.appendChild(hint);
 
     var tooltipLabelArrow = document.createElement('div');
