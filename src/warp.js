@@ -287,11 +287,11 @@ function setMenuCorrectPosition() {
     var largeScreen = window.matchMedia("(min-width: 769px)");
     if (largeScreen.matches && hasClass(menu, 'menu-container-hide')) {
         if (hasClass(menu, 'menu-container-hide')) {
-            container.style.right = -categoryList.scrollWidth + "px";
+            container.style.right = -categoryList.clientWidth + "px";
         }
     } else if (hasClass(menu, 'menu-container-hide')) {
         if (hasClass(menu, 'menu-container-hide')) {
-            container.style.bottom = -categoryList.scrollHeight + "px";
+            container.style.bottom = -categoryList.clientHeight + "px";
         }
     }
 }
