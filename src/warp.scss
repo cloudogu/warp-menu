@@ -311,9 +311,9 @@ $gradient-darker-darker: #002f4d;
         writing-mode: vertical-rl;
         text-align: center;
         transform: rotate(180deg);
-        border-left: 1px solid $brand-primary;
+        border-left: 1px solid $brand-primary !important;
         height: 4em;
-        width: 2em;
+        font-size: 1.3em;
         right: 0;
         padding: 0.25em 0.125em;
       }
