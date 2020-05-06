@@ -153,9 +153,15 @@ $gradient-darker-darker: #002f4d;
           border-bottom: 1px solid $brand-primary;
           padding-top: 0.66666em;
           padding-bottom: 0.66666em;
+          font-size: 1.2em;
 
-          h3, a.warp-menu-target-link, a.warp-menu-logout-link {
-            padding-left: 1.66666em;
+          h3 {
+            padding-left: 1.1em;
+            margin-bottom: 1rem;
+          }
+
+          a.warp-menu-target-link, a.warp-menu-logout-link {
+            padding-left: 1.28333em;
 
             :hover, :focus, :active {
               background-color: $brand-primary;
@@ -186,7 +192,9 @@ $gradient-darker-darker: #002f4d;
 
           a.warp-menu-target-link {
             display: inline-block;
-            margin: 0;
+            margin: 0.5em 0 0;
+            padding-top: 0.25em;
+            padding-bottom: 0.25em;
             text-align: left;
             text-decoration: none;
           }
