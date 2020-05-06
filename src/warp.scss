@@ -304,6 +304,8 @@ $gradient-darker-darker: #002f4d;
     /*******************************************************************************************/
 
     .warp-menu-column-toggle {
+      width: 26px;
+
       a.warpbtn {
         top: calc(50vh - 2em);
         border-bottom-right-radius: 5px;
@@ -313,7 +315,7 @@ $gradient-darker-darker: #002f4d;
         transform: rotate(180deg);
         border-left: 1px solid $brand-primary !important;
         height: 4em;
-        font-size: 1.3em;
+        font-size: 16px;
         right: 0;
         padding: 0.25em 0.125em;
         -webkit-box-shadow: 2px 0 15px -5px black;
