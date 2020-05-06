@@ -65,6 +65,8 @@ $gradient-darker-darker: #002f4d;
       width: 20em;
       font-size: 1.33333em;
       cursor: pointer;
+      border: 1px solid $brand-primary;
+
 
       .warp-onboarding-msg {
         margin: 0 0 0.5em;
@@ -158,7 +160,7 @@ $gradient-darker-darker: #002f4d;
           border-bottom: 1px solid $brand-primary;
           padding-top: 0.66666em;
           padding-bottom: 0.66666em;
-          font-size: 1.2em;
+          font-size: 1.1em;
 
           h3 {
             padding-left: 1.1em;
@@ -292,6 +294,8 @@ $gradient-darker-darker: #002f4d;
         right: -1em;
         top: calc(50% - 1em);
         transform: rotate(45deg);
+        border-right: 1px solid $brand-primary;
+        border-top: 1px solid $brand-primary;
       }
     }
 
@@ -420,6 +424,8 @@ $gradient-darker-darker: #002f4d;
 
       .warp-onboarding-after-arrow {
         bottom: -1em;
+        border-right: 1px solid $brand-primary;
+        border-bottom: 1px solid $brand-primary;
       }
     }
     /*******************************************************************************************/
