@@ -170,7 +170,7 @@ function createTooltip() {
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     hint.appendChild(checkbox);
-    let hintText = document.createElement('section');
+    var hintText = document.createElement('section');
     hintText.innerHTML = getLocalizedString("onboardingHintToken");
     hint.appendChild(hintText);
     tooltipLabel.appendChild(hint);
