@@ -228,6 +228,7 @@ function createHomeHrefWithImage() {
 
 function createMenu(categories) {
     var menuContainer = document.createElement('div');
+    menuContainer.id = 'warp-menu-column-menu';
     addClass(menuContainer, 'warp-menu-column-menu');
     addClass(menuContainer, 'menu-container-hide');
 
@@ -272,8 +273,27 @@ function createMenu(categories) {
     addLogoutMenuEntry(list);
 
     window.addEventListener('resize', setCorrectColumnCount);
+    window.addEventListener('resize', setMenuCorrectPosition);
 
     return menuContainer;
+}
+
+function setMenuCorrectPosition() {
+    var container = document.getElementById('warp-menu-container');
+    container.style.right = 0;
+    container.style.bottom = 0;
+    var categoryList = document.getElementById('warp-menu-category-list');
+    var menu = document.getElementById('warp-menu-column-menu');
+    var largeScreen = window.matchMedia("(min-width: 769px)");
+    if (largeScreen.matches && hasClass(menu, 'menu-container-hide')) {
+        if (hasClass(menu, 'menu-container-hide')) {
+            container.style.right = -categoryList.scrollWidth + "px";
+        }
+    } else if (hasClass(menu, 'menu-container-hide')) {
+        if (hasClass(menu, 'menu-container-hide')) {
+            container.style.bottom = -categoryList.scrollHeight + "px";
+        }
+    }
 }
 
 function initWarpMenu(categories) {
@@ -296,6 +316,8 @@ function initWarpMenu(categories) {
         if (!hasClass(warpMenuContainer, 'menu-container-hide')) {
             setCorrectColumnCount();
         }
+
+        setMenuCorrectPosition();
     }
 
     toggleResult.toggle.onclick = toggleNav;
@@ -323,6 +345,8 @@ function initWarpMenu(categories) {
 
     setCorrectVh();
     window.addEventListener('resize', setCorrectVh);
+    setCorrectColumnCount();
+    setMenuCorrectPosition();
 }
 
 function setCorrectColumnCount() {
@@ -376,7 +400,7 @@ if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
 
 // According to https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
 // This trick is used to get the correct height on mobile devices.
-function setCorrectVh(){
+function setCorrectVh() {
     var correctVh = (window.innerHeight * 0.01) + 'px';
     // This is used to calculate correct inner height of the display
     document.getElementById('warp-menu-container').style.setProperty('--vh', correctVh);
