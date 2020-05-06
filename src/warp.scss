@@ -508,6 +508,9 @@ $gradient-darker-darker: #002f4d;
         .warp-menu-category-list {
           column-count: 4;
           columns: 4;
+          li.warp-menu-logout-list-element{
+            width: 25%;
+          }
         }
       }
     }
@@ -521,6 +524,9 @@ $gradient-darker-darker: #002f4d;
       width: 100vw;
       columns: 3;
       column-count: 3;
+      li.warp-menu-logout-list-element{
+        width: 33.33%;
+      }
     }
     .warp-menu-gradient-overlay {
       width: 33.33%;
@@ -534,6 +540,9 @@ $gradient-darker-darker: #002f4d;
     .warp-menu-category-list {
       width: 100vw;
       columns: 160px;
+      li.warp-menu-logout-list-element{
+        width: 50%;
+      }
     }
     .warp-menu-gradient-overlay {
       width: 50%;
