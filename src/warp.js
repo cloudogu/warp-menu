@@ -75,7 +75,7 @@ function getTranslations(language) {
             "menuToken": "Menü",
             "ecosystemLogoutToken": "EcoSystem Logout",
             "onboardingTextToken": "Klicken Sie auf 'Menü', um ihre Tools zu sehen. Das Menü verbindet ihre Toolchain und ist von jedem Tool aus zugänglich.",
-            "onboardingHintToken": "Diesen Hinweis nicht mehr anzeigen.",
+            "onboardingHintToken": "Hinweis nicht mehr anzeigen",
             "Development Apps": "Entwicklung",
             "Administration Apps": "Administration",
             "Documentation": "Dokumentation"
@@ -86,7 +86,7 @@ function getTranslations(language) {
             "menuToken": "Menu",
             "ecosystemLogoutToken": "EcoSystem Logout",
             "onboardingTextToken": "Click 'Menu' to view all tools. That menu connects your toolchain and is available from any tool.",
-            "onboardingHintToken": "Do not show this hint again.",
+            "onboardingHintToken": "Do not show this hint again",
             "Development Apps": "Development Apps",
             "Administration Apps": "Administration Apps",
             "Documentation": "Documentation"
@@ -169,10 +169,11 @@ function createTooltip() {
     addClass(hint, 'warp-onboarding-hint');
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    hint.appendChild(checkbox);
     var hintText = document.createElement('section');
     hintText.innerHTML = getLocalizedString("onboardingHintToken");
+
     hint.appendChild(hintText);
+    hint.appendChild(checkbox);
     tooltipLabel.appendChild(hint);
 
     var tooltipLabelArrow = document.createElement('div');
