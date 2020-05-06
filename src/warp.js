@@ -10,17 +10,17 @@ var lss = isLocalStorageSupported();
 function toggleCollapsedInStorage(id) {
     if (!lss) return;
 
-    if (localStorage.getItem(id) === null) {
-        localStorage.setItem(id, 'true');
+    if (localStorage.getItem(id) === null || localStorage.getItem(id) === 'true') {
+        localStorage.setItem(id, 'false');
     } else {
-        localStorage.removeItem(id);
+        localStorage.setItem(id, 'true');
     }
 }
 
 function isOpenCollapsible(id) {
-    if (!lss) return false;
+    if (!lss) return true;
 
-    return localStorage.getItem(id) !== null;
+    return localStorage.getItem(id) === 'true' || localStorage.getItem(id) === null;
 }
 
 // create link
