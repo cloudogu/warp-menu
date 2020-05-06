@@ -336,7 +336,7 @@ $gradient-darker-darker: #002f4d;
       -moz-box-shadow: -9px 0px 30px -12px black;
       box-shadow: -9px 0px 30px -12px black;
       transition: max-width 600ms ease-in-out;
-      max-width: 100%;
+      max-width: calc(192px * 4);
 
       .warp-menu-shift-container {
         left: 0;
