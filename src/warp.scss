@@ -325,10 +325,8 @@ $gradient-darker-darker: #002f4d;
     /*******************************************************************************************/
 
     .warp-menu-column-menu {
-      $gradient-start: 160px;
-      $gradient-col-width: 192px;
-      background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
-      background-image: -ms-repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
+      overflow-x: auto;
+      max-width: calc(100vw - 3.5em);
 
       &:not(.menu-container-hide) {
         -webkit-box-shadow: -9px 0px 30px -12px black;
@@ -337,6 +335,10 @@ $gradient-darker-darker: #002f4d;
       }
 
       .warp-menu-shift-container {
+        $gradient-start: 160px;
+        $gradient-col-width: 192px;
+        background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
+        background-image: -ms-repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
         left: 0;
         top: 0;
 

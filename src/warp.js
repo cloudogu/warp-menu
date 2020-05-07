@@ -233,9 +233,10 @@ function createMenu(categories) {
     addClass(menuContainer, 'warp-menu-column-menu');
     addClass(menuContainer, 'menu-container-hide');
 
-    var menu = document.createElement('div');
-    addClass(menu, 'warp-menu-shift-container');
-    menuContainer.appendChild(menu);
+    var shiftContainer = document.createElement('div');
+    shiftContainer.id = 'warp-menu-shift-container';
+    addClass(shiftContainer, 'warp-menu-shift-container');
+    menuContainer.appendChild(shiftContainer);
 
     var overlay = document.createElement('div');
     addClass(overlay, 'warp-menu-gradient-overlay');
@@ -244,7 +245,7 @@ function createMenu(categories) {
     var list = document.createElement('ul');
     addClass(list, 'warp-menu-category-list');
     list.id = 'warp-menu-category-list';
-    menu.appendChild(list);
+    shiftContainer.appendChild(list);
 
     var homeHrefElement = createHomeHrefWithImage();
     list.appendChild(homeHrefElement);
@@ -359,6 +360,7 @@ function initWarpMenu(categories) {
 
 function setCorrectColumnCount() {
     var list = document.getElementById('warp-menu-category-list');
+    var shiftContainer = document.getElementById('warp-menu-shift-container');
     var columnCount = 0;
 
     for (var i = 0; i < list.childNodes.length; i++) {
@@ -371,8 +373,11 @@ function setCorrectColumnCount() {
         if (current > columnCount) columnCount = current;
     }
     list.style.columnCount = null;
-    var largeScreen = window.matchMedia("(min-width: 769px)");
+    shiftContainer.style.width = null;
+
+    var largeScreen = window.matchMedia('(min-width: 769px)');
     if (largeScreen.matches) {
+        shiftContainer.style.width = 'calc('+columnCount+' * 192px)';
         list.style.columnCount = columnCount;
     }
 }
