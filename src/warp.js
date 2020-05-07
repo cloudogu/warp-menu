@@ -276,11 +276,21 @@ function createMenu(categories) {
 
     window.addEventListener('resize', setCorrectColumnCount);
     window.addEventListener('resize', setMenuCorrectPosition);
+
+    // Timeout is needed here. Won't work otherwise
     window.addEventListener('orientationchange', function () {
         setTimeout(function () {
             setMenuCorrectPosition();
         }, 300);
     });
+
+    // Timeout is needed here. Won't work otherwise
+    window.addEventListener('resize', function () {
+        setTimeout(function () {
+            setMenuCorrectPosition();
+        }, 300);
+    });
+
 
     return menuContainer;
 }
