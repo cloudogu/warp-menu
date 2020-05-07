@@ -136,6 +136,7 @@ $gradient-darker-darker: #002f4d;
   .warp-menu-column-menu {
     overflow: hidden;
     pointer-events: all;
+    transition: box-shadow 300ms ease-in-out;
 
     .warp-menu-shift-container {
       z-index: 1;
