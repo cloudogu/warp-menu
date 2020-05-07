@@ -277,8 +277,11 @@ $gradient-darker-darker: #002f4d;
     -ms-flex-direction: row;
     -ms-flex-pack: end;
     justify-content: flex-end;
-    transition: right 600ms ease-in-out;
     right: -100vw;
+
+    &:not(.notransition) {
+      transition: right 600ms ease-in-out;
+    }
 
     /*******************************************************************************************/
     /********************************Onboarding message box*************************************/
@@ -385,8 +388,11 @@ $gradient-darker-darker: #002f4d;
     -ms-flex-direction: column;
     -ms-flex-pack: end;
     justify-content: flex-end;
-    transition: bottom 600ms ease-in-out;
     bottom: -100vh;
+
+    &:not(.notransition) {
+      transition: bottom 600ms ease-in-out;
+    }
 
     /*******************************************************************************************/
     /********************************Onboarding message box*************************************/

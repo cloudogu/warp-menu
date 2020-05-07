@@ -277,20 +277,20 @@ function createMenu(categories) {
     window.addEventListener('resize', setCorrectColumnCount);
     window.addEventListener('resize', setMenuCorrectPosition);
 
-    // Timeout is needed here. Won't work otherwise
     window.addEventListener('orientationchange', function () {
-        setTimeout(function () {
+        // Can only be done in next frame. Won't work otherwise
+        window.requestAnimationFrame(function () {
             setMenuCorrectPosition();
-        }, 300);
+        });
     });
 
     // Timeout is needed here. Won't work otherwise
     window.addEventListener('resize', function () {
-        setTimeout(function () {
+        // Can only be done in next frame. Won't work otherwise
+        window.requestAnimationFrame(function () {
             setMenuCorrectPosition();
-        }, 300);
+        });
     });
-
 
     return menuContainer;
 }
@@ -315,6 +315,7 @@ function setMenuCorrectPosition() {
 function initWarpMenu(categories) {
     var warpMenuContainer = document.createElement('div');
     addClass(warpMenuContainer, 'warp-menu-container');
+    addClass(warpMenuContainer, 'notransition');
     warpMenuContainer.id = 'warp-menu-container';
 
     var tooltipColumn = createTooltip();
@@ -325,6 +326,7 @@ function initWarpMenu(categories) {
         if (hasClass(warpMenuContainer, 'collapsing')) {
             return;
         }
+        removeClass(warpMenuContainer, 'notransition');
 
         addClass(warpMenuContainer, 'collapsing');
         toggleClass(menuContainer, 'menu-container-hide');
@@ -337,6 +339,7 @@ function initWarpMenu(categories) {
         }
 
         setMenuCorrectPosition();
+        setTimeout(function(){ addClass(warpMenuContainer, 'notransition') }, 600);
     }
 
     toggleResult.toggle.onclick = toggleNav;
@@ -387,7 +390,7 @@ function setCorrectColumnCount() {
 
     var largeScreen = window.matchMedia('(min-width: 769px)');
     if (largeScreen.matches) {
-        shiftContainer.style.width = 'calc('+columnCount+' * 192px)';
+        shiftContainer.style.width = 'calc(' + columnCount + ' * 192px)';
         list.style.columnCount = columnCount;
     }
 }
