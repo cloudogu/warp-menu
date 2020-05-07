@@ -202,6 +202,7 @@ function isTooltipDisabled() {
 
 function addLogoutMenuEntry(list) {
     var placeholder = document.createElement('li');
+    placeholder.innerText = ' ';
     addClass(placeholder, 'warp-menu-logout-placeholder');
     var logout = document.createElement('li');
     addClass(logout, 'warp-menu-logout-list-element');
@@ -357,6 +358,11 @@ function setCorrectColumnCount() {
         var node = list.childNodes[i];
         var current = Math.floor(node.offsetLeft / 192) + 1;
 
+        if (hasClass(node, 'warp-menu-logout-placeholder')) {
+            console.log(node);
+            console.log(current);
+        }
+
         if (hasClass(node, 'warp-menu-logout-list-element'))
             continue; // Skip logout button because it is positioned outside of list
 
@@ -367,7 +373,7 @@ function setCorrectColumnCount() {
     removeClass(list, 'warp-menu-column-count-2');
     removeClass(list, 'warp-menu-column-count-3');
     removeClass(list, 'warp-menu-column-count-4');
-    addClass(list, 'warp-menu-column-count-' + columnCount);
+    addClass(list, 'warp-menu-column-count-' + Math.min(4, columnCount));
 }
 
 var asyncCounter = 0;
