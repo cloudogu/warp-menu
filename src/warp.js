@@ -202,7 +202,7 @@ function isTooltipDisabled() {
 
 function addLogoutMenuEntry(list) {
     var placeholder = document.createElement('li');
-    placeholder.innerText = ' ';
+    placeholder.innerText = '\xa0';
     addClass(placeholder, 'warp-menu-logout-placeholder');
     var logout = document.createElement('li');
     addClass(logout, 'warp-menu-logout-list-element');
