@@ -116,19 +116,19 @@ function createMenuEntry(id, entries, title, list) {
     var categoryLinkList = document.createElement('ul');
 
     for (var i = 0; i < entries.length; i++) {
-        var link = entries[i];
-        var li = document.createElement('li');
-        var a = document.createElement('a');
-        addClass(a, 'warp-menu-target-link');
-        if (link.Target && link.Target === 'external') {
-            a.target = '_blank';
+        var currentEntry = entries[i];
+        var categoryListItem = document.createElement('li');
+        var categoryListItemLink = document.createElement('a');
+        addClass(categoryListItemLink, 'warp-menu-target-link');
+        if (currentEntry.Target && currentEntry.Target === 'external') {
+            categoryListItemLink.target = '_blank';
         } else {
-            a.target = '_top';
+            categoryListItemLink.target = '_top';
         }
-        a.href = createLink(link.Href);
-        a.innerHTML = link.DisplayName;
-        li.appendChild(a);
-        categoryLinkList.appendChild(li);
+        categoryListItemLink.href = createLink(currentEntry.Href);
+        categoryListItemLink.innerHTML = currentEntry.DisplayName;
+        categoryListItem.appendChild(categoryListItemLink);
+        categoryLinkList.appendChild(categoryListItem);
     }
 
     categoryInsideContainer.appendChild(categoryHeader);
@@ -275,6 +275,11 @@ function createMenu(categories) {
 
     window.addEventListener('resize', setCorrectColumnCount);
     window.addEventListener('resize', setMenuCorrectPosition);
+    window.addEventListener('orientationchange', function () {
+        setTimeout(function () {
+            setMenuCorrectPosition();
+        }, 300);
+    });
 
     return menuContainer;
 }
@@ -283,7 +288,6 @@ function setMenuCorrectPosition() {
     var container = document.getElementById('warp-menu-container');
     container.style.right = 0;
     container.style.bottom = 0;
-    var categoryList = document.getElementById('warp-menu-category-list');
     var menu = document.getElementById('warp-menu-column-menu');
     var largeScreen = window.matchMedia("(min-width: 769px)");
     if (largeScreen.matches && hasClass(menu, 'menu-container-hide')) {
@@ -307,7 +311,10 @@ function initWarpMenu(categories) {
     var menuContainer = createMenu(categories);
 
     function toggleNav() {
-        if (hasClass(warpMenuContainer, 'collapsing')) return;
+        if (hasClass(warpMenuContainer, 'collapsing')) {
+            return;
+        }
+
         addClass(warpMenuContainer, 'collapsing');
         toggleClass(menuContainer, 'menu-container-hide');
         setTimeout(function () {
