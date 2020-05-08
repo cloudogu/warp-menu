@@ -439,6 +439,7 @@ $gradient-darker-darker: #002f4d;
     .warp-menu-column-menu {
       background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 20%, $brand-primary-darker 22%, $gradient-darker-darker 25%);
       overflow-y: auto;
+      max-height: calc(var(--vh, 1vh) * 100 - 3.33333em);
 
       &::-webkit-scrollbar {
         display: none; //Hide scrollbar (Would break design otherwise)
@@ -447,8 +448,6 @@ $gradient-darker-darker: #002f4d;
       scrollbar-width: none; //Hide scrollbar in Firefox (Would break design otherwise)
       -ms-overflow-style: none; //Hide scrollbar in IE (Would break design otherwise)
 
-
-      max-height: calc(var(--vh, 1vh) * 100 - 3.33333em);
 
       &:not(.menu-container-hide) {
         -webkit-box-shadow: 0px -9px 30px -12px black;
