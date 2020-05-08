@@ -302,6 +302,11 @@ function setMenuCorrectPosition() {
 
     // Move the warp menu into screen (So it is visible)
     container.style.right = 0;
+
+    // In any case we need to set top and bottom to null. Menu won't be hidden otherwise in mobile mode.
+    container.style.bottom = null;
+    container.style.top = null;
+
     if (largeScreen.matches) {
         container.style.top = 0;
     } else {
