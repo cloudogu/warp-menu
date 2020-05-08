@@ -438,7 +438,7 @@ $gradient-darker-darker: #002f4d;
 
     .warp-menu-column-menu {
       overflow-y: auto;
-      max-height: calc(var(--vh, 1vh) * 100 - 3.33333em);
+      max-height: calc(100% - 3.33333em);
 
       &::-webkit-scrollbar {
         display: none; //Hide scrollbar (Would break design otherwise)

@@ -297,10 +297,18 @@ function createMenu(categories) {
 
 function setMenuCorrectPosition() {
     var container = document.getElementById('warp-menu-container');
-    container.style.right = 0;
-    container.style.bottom = 0;
     var menu = document.getElementById('warp-menu-column-menu');
     var largeScreen = window.matchMedia("(min-width: 769px)");
+
+    // Move the warp menu into screen (So it is visible)
+    container.style.right = 0;
+    if (largeScreen.matches) {
+        container.style.top = 0;
+    } else {
+        container.style.bottom = 0;
+    }
+
+    // When it should be hidden, move it to outside the screen.
     if (largeScreen.matches && hasClass(menu, 'menu-container-hide')) {
         if (hasClass(menu, 'menu-container-hide')) {
             container.style.right = -menu.clientWidth + "px";
@@ -339,7 +347,9 @@ function initWarpMenu(categories) {
         }
 
         setMenuCorrectPosition();
-        setTimeout(function(){ addClass(warpMenuContainer, 'notransition') }, 600);
+        setTimeout(function () {
+            addClass(warpMenuContainer, 'notransition')
+        }, 600);
     }
 
     toggleResult.toggle.onclick = toggleNav;
