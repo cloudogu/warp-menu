@@ -264,7 +264,7 @@ $gradient-darker-darker: #002f4d;
     right: 0;
     display: inline-block;
     margin: 0;
-    z-index: 0;
+    z-index: -1;
     background-color: $brand-primary-darker;
   }
 
@@ -437,7 +437,6 @@ $gradient-darker-darker: #002f4d;
     /*******************************************************************************************/
 
     .warp-menu-column-menu {
-      background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 20%, $brand-primary-darker 22%, $gradient-darker-darker 25%);
       overflow-y: auto;
       max-height: calc(var(--vh, 1vh) * 100 - 3.33333em);
 
@@ -456,6 +455,7 @@ $gradient-darker-darker: #002f4d;
       }
 
       .warp-menu-shift-container {
+        background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 20%, $brand-primary-darker 22%, $gradient-darker-darker 25%);
         bottom: 0;
         left: 0;
         display: inline-flex !important;
@@ -509,7 +509,9 @@ $gradient-darker-darker: #002f4d;
 
   @media screen and (max-width: 700px) and (min-width: 471px) {
     .warp-menu-column-menu {
-      background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 28%, $brand-primary-darker 30%, $gradient-darker-darker 33.33333%);
+      .warp-menu-shift-container {
+        background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 28%, $brand-primary-darker 30%, $gradient-darker-darker 33.33333%);
+      }
     }
     .warp-menu-category-list {
       width: 100vw;
@@ -527,7 +529,9 @@ $gradient-darker-darker: #002f4d;
 
   @media screen and (max-width: 470px) {
     .warp-menu-column-menu {
-      background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 45%, $brand-primary-darker 48%, $gradient-darker-darker 50%);
+      .warp-menu-shift-container {
+        background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker 45%, $brand-primary-darker 48%, $gradient-darker-darker 50%);
+      }
     }
     .warp-menu-category-list {
       width: 100vw;

@@ -240,7 +240,7 @@ function createMenu(categories) {
 
     var overlay = document.createElement('div');
     addClass(overlay, 'warp-menu-gradient-overlay');
-    menuContainer.appendChild(overlay);
+    shiftContainer.appendChild(overlay);
 
     var list = document.createElement('ul');
     addClass(list, 'warp-menu-category-list');
