@@ -494,15 +494,13 @@ $gradient-darker-darker: #002f4d;
   /*******************************************************************************************/
   @media screen and (max-width: 768px) and (min-width: 701px) {
     .warp-menu-column-menu {
-      .warp-menu-shift-container {
-        .warp-menu-shift-container .warp-menu-category-list {
-          column-count: 4;
-          columns: 4;
+      .warp-menu-shift-container .warp-menu-category-list {
+        column-count: 4;
+        columns: 4;
 
-          > li.warp-menu-logout-list-element {
-            width: 25%;
-            right: 0;
-          }
+        > li.warp-menu-logout-list-element {
+          width: 25%;
+          right: 0;
         }
       }
     }
