@@ -2,21 +2,26 @@ var baseUrl = '';
 
 var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
-var categories = {
-    "Development Apps": "Entwicklung",
-    "Administration Apps": "Administration",
-    "Documentation": "Dokumentation"
-};
-var languageArray = {
-    "de": categories
-};
 
-//Custom Translation Tokens
-var ABOUT_CLOUDOGU_TOKEN = "About Cloudogu";
-
-var informationEntries = new Array();
+var informationEntries = [];
 
 var lss = isLocalStorageSupported();
+
+function toggleCollapsedInStorage(id) {
+    if (!lss) return;
+
+    if (localStorage.getItem(id) === null || localStorage.getItem(id) === 'true') {
+        localStorage.setItem(id, 'false');
+    } else {
+        localStorage.setItem(id, 'true');
+    }
+}
+
+function isOpenCollapsible(id) {
+    if (!lss) return true;
+
+    return localStorage.getItem(id) === 'true' || localStorage.getItem(id) === null;
+}
 
 // create link
 function createLink(href) {
@@ -44,155 +49,365 @@ function getLanguage() {
         navigator.languages[0] :
         (navigator.language || navigator.userLanguage || navigator.browserLanguage);
 
-    return language;
+    return language.split("-")[0];
 }
 
-function setCustomTranslationTokens(language) {
-    if (language === "de") {
-        ABOUT_CLOUDOGU_TOKEN = "Über Cloudogu";
-    }
+function getLocalizedString(key) {
+    var language = getLanguage();
+    var translations = getTranslations(language);
+    return translations[key];
+}
+
+function isTranslateable(key) {
+    var language = getLanguage();
+    var translations = getTranslations(language);
+    return translations.hasOwnProperty(key);
 }
 
 function getCategoryKey(category) {
-    var language = getLanguage();
-    setCustomTranslationTokens(language);
-    //if language = German, change category.title to German language
-    if (language.indexOf("de") > -1) {
-        if (languageArray["de"][category.Title] !== undefined)
-            category.Title = languageArray["de"][category.Title];
-    }
-
     return "warpc." + category.Title.toLowerCase().replace(/\s+/g, "_");
+}
+
+function getTranslations(language) {
+    if (language === "de") {
+        return {
+            "aboutCloudoguToken": "Über Cloudogu",
+            "menuToken": "Menü",
+            "ecosystemLogoutToken": "EcoSystem Logout",
+            "onboardingTextToken": "Klicken Sie auf 'Menü', um ihre Tools zu sehen. Das Menü verbindet ihre Toolchain und ist von jedem Tool aus zugänglich.",
+            "onboardingHintToken": "Hinweis nicht mehr anzeigen",
+            "Development Apps": "Entwicklung",
+            "Administration Apps": "Administration",
+            "Documentation": "Dokumentation"
+        };
+    } else {
+        return {
+            "aboutCloudoguToken": "About Cloudogu",
+            "menuToken": "Menu",
+            "ecosystemLogoutToken": "EcoSystem Logout",
+            "onboardingTextToken": "Click 'Menu' to view all tools. That menu connects your toolchain and is available from any tool.",
+            "onboardingHintToken": "Do not show this hint again",
+            "Development Apps": "Development Apps",
+            "Administration Apps": "Administration Apps",
+            "Documentation": "Documentation"
+        };
+    }
 }
 
 function toggleCategory(e) {
     var target = e.target;
-    if (target && target.rel) {
-        toggleClass(target, 'warpmenu-category-open');
-        var el = document.getElementById(target.rel);
-        if (el) {
-            if (hasClass(el, 'warpmenu-collapsed')) {
-                if (lss) {
-                    localStorage.removeItem(target.rel + '.collapsed');
-                }
-                removeClass(el, 'warpmenu-collapsed');
-            } else {
-                if (lss) {
-                    localStorage.setItem(target.rel + '.collapsed', true);
-                }
-                addClass(el, 'warpmenu-collapsed');
-            }
-        }
-    }
+    toggleClass(target, 'warpmenu-category-open');
+    toggleCollapsedInStorage(target.id);
+    setCorrectColumnCount();
 }
 
-function createMenuEntry(id, entries, title, nav) {
-    var ul = document.createElement('ul');
-    ul.id = id;
-    var collapsed = false;
-    if (lss) {
-        collapsed = localStorage.getItem(id + '.collapsed');
+function createMenuEntry(id, entries, title, list) {
+    var category = document.createElement('li');
+    var categoryInsideContainer = document.createElement('div');
+
+    var categoryHeader = document.createElement('h3');
+    categoryHeader.innerHTML = title;
+    categoryHeader.onclick = toggleCategory;
+    categoryHeader.id = id;
+    if (isOpenCollapsible(categoryHeader.id)) {
+        addClass(categoryHeader, 'warpmenu-category-open');
     }
-    if (collapsed) {
-        addClass(ul, 'warpmenu-collapsed');
-    }
+
+    var categoryLinkList = document.createElement('ul');
+
     for (var i = 0; i < entries.length; i++) {
-        var link = entries[i];
-        var li = document.createElement('li');
-        var a = document.createElement('a');
-        if (link.Target && link.Target == 'external') {
-            a.target = '_blank'
+        var currentEntry = entries[i];
+        var categoryListItem = document.createElement('li');
+        var categoryListItemLink = document.createElement('a');
+        addClass(categoryListItemLink, 'warp-menu-target-link');
+        if (currentEntry.Target && currentEntry.Target === 'external') {
+            categoryListItemLink.target = '_blank';
         } else {
-            a.target = '_top';
+            categoryListItemLink.target = '_top';
         }
-        a.href = createLink(link.Href);
-        a.innerHTML = link.DisplayName;
-        addClass(li, 'warpmenu-link');
-        if (i === 0) {
-            addClass(li, 'warpmenu-link-top');
-        }
-        li.appendChild(a);
-        ul.appendChild(li);
+        categoryListItemLink.href = createLink(currentEntry.Href);
+        categoryListItemLink.innerHTML = currentEntry.DisplayName;
+        categoryListItem.appendChild(categoryListItemLink);
+        categoryLinkList.appendChild(categoryListItem);
     }
 
-    var h3 = document.createElement('h3');
-    h3.rel = id;
-    addClass(h3, 'warpbtn-link');
-    if (collapsed) {
-        addClass(h3, 'warpmenu-category-open');
-    }
-    h3.onclick = toggleCategory;
-    h3.innerHTML = title;
-    nav.appendChild(h3);
-
-    nav.appendChild(ul);
+    categoryInsideContainer.appendChild(categoryHeader);
+    categoryInsideContainer.appendChild(categoryLinkList);
+    category.appendChild(categoryInsideContainer);
+    list.appendChild(category);
 }
 
-function initWarpMenu(categories) {
-    addClass(body, 'warpmenu-push');
+function createToggleButton() {
+    var toggleColumn = document.createElement('div');
+    addClass(toggleColumn, 'warp-menu-column-toggle');
 
-    // create html
-    var nav = document.createElement('nav');
-    nav.className = "warpmenu warpmenu-vertical warpmenu-right";
-    nav.id = "warpmenu-s1";
-    body.appendChild(nav);
+    var toggle = document.createElement('a');
+    addClass(toggle, 'warpbtn');
+    toggle.id = 'warp-menu-warpbtn';
+    toggle.innerHTML = getLocalizedString("menuToken");
+    toggleColumn.appendChild(toggle);
 
-    var home = document.createElement('div');
-    addClass(home, 'warpmenu-home');
-    var homeLink = document.createElement('a');
-    homeLink.target = '_top';
-    homeLink.href = createLink('/');
-    var logo = document.createElement('div');
-    addClass(logo, 'warpmenu-logo');
-    homeLink.appendChild(logo);
-    home.appendChild(homeLink);
-    nav.appendChild(home);
+    return {
+        "toggleColumn": toggleColumn,
+        "toggle": toggle
+    };
+}
+
+function createTooltip() {
+    var tooltipColumn = document.createElement('div');
+    addClass(tooltipColumn, 'warp-menu-column-tooltip');
+
+    var tooltipLabel = document.createElement('label');
+    addClass(tooltipLabel, 'warp-onboarding');
+    tooltipColumn.appendChild(tooltipLabel);
+
+    var text = document.createElement('p');
+    addClass(text, 'warp-onboarding-msg');
+    text.innerHTML = getLocalizedString("onboardingTextToken");
+    tooltipLabel.appendChild(text);
+    var hint = document.createElement('p');
+    addClass(hint, 'warp-onboarding-hint');
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    var hintText = document.createElement('section');
+    hintText.innerHTML = getLocalizedString("onboardingHintToken");
+
+    hint.appendChild(hintText);
+    hint.appendChild(checkbox);
+    tooltipLabel.appendChild(hint);
+
+    var tooltipLabelArrow = document.createElement('div');
+    tooltipLabelArrow.innerText = ' ';
+    addClass(tooltipLabelArrow, 'warp-onboarding-after-arrow');
+    tooltipLabel.appendChild(tooltipLabelArrow);
+
+    function hideTooltip() {
+        addClass(tooltipColumn, 'warp-onboarding-container-hide');
+        if (lss) localStorage.setItem('warpMenuHideTooltip', 'hide');
+        setTimeout(function () {
+            tooltipColumn.style.display = 'none';
+        }, 3000);
+    }
+
+    checkbox.onclick = hideTooltip;
+    return tooltipColumn;
+}
+
+function isTooltipDisabled() {
+    if (!lss) return false;
+
+    var tooltipConfig = localStorage.getItem('warpMenuHideTooltip');
+    return tooltipConfig === 'hide';
+}
+
+function addLogoutMenuEntry(list) {
+    var placeholder = document.createElement('li');
+    placeholder.innerText = '\xa0';
+    addClass(placeholder, 'warp-menu-logout-placeholder');
+    var logout = document.createElement('li');
+    addClass(logout, 'warp-menu-logout-list-element');
+    var logoutHref = document.createElement('a');
+    addClass(logoutHref, 'warp-menu-logout-link');
+    logoutHref.innerHTML = getLocalizedString("ecosystemLogoutToken");
+    logoutHref.href = createLink('/cas/logout');
+    logout.appendChild(logoutHref);
+    list.appendChild(placeholder);
+    list.appendChild(logout);
+}
+
+function createHomeHrefWithImage() {
+    var homeHrefListElement = document.createElement('li');
+    var homeHref = document.createElement('a');
+    addClass(homeHref, 'warp-menu-home-button');
+    homeHref.href = createLink('');
+    var homeHrefImage = document.createElement('div');
+    addClass(homeHrefImage, 'img');
+    homeHref.appendChild(homeHrefImage);
+    homeHrefListElement.appendChild(homeHref);
+    return homeHrefListElement;
+}
+
+function createMenu(categories) {
+    var menuContainer = document.createElement('div');
+    menuContainer.id = 'warp-menu-column-menu';
+    addClass(menuContainer, 'warp-menu-column-menu');
+    addClass(menuContainer, 'menu-container-hide');
+
+    var shiftContainer = document.createElement('div');
+    shiftContainer.id = 'warp-menu-shift-container';
+    addClass(shiftContainer, 'warp-menu-shift-container');
+    menuContainer.appendChild(shiftContainer);
+
+    var overlay = document.createElement('div');
+    addClass(overlay, 'warp-menu-gradient-overlay');
+    shiftContainer.appendChild(overlay);
+
+    var list = document.createElement('ul');
+    addClass(list, 'warp-menu-category-list');
+    list.id = 'warp-menu-category-list';
+    shiftContainer.appendChild(list);
+
+    var homeHrefElement = createHomeHrefWithImage();
+    list.appendChild(homeHrefElement);
 
     for (var c = 0; c < categories.length; c++) {
-        var category = categories[c];
+        var currentCategory = categories[c];
 
-        if (category.Title.toUpperCase() === "INFORMATION") {
-            informationEntries = category.Entries;
+        if (currentCategory.Title.toUpperCase() === "INFORMATION") {
+            informationEntries = currentCategory.Entries;
         } else {
-            var id = getCategoryKey(category);
-            createMenuEntry(id, category.Entries, category.Title, nav);
+            var title = currentCategory.Title;
+            if (isTranslateable(title)) {
+                title = getLocalizedString(title);
+            }
+            var id = getCategoryKey(currentCategory);
+            createMenuEntry(id, currentCategory.Entries, title, list);
         }
     }
 
     // fixed about page - entry
     informationEntries.push({
-        DisplayName: ABOUT_CLOUDOGU_TOKEN,
+        DisplayName: getLocalizedString("aboutCloudoguToken"),
         Href: createLink("/info/index.html")
     });
+    createMenuEntry("warpc.info", informationEntries, "Information", list);
 
-    createMenuEntry("warpc.info", informationEntries, "Information", nav);
+    addLogoutMenuEntry(list);
 
-    var div = document.createElement('div');
-    addClass(div, 'warpbtn');
-    var btn = document.createElement('a');
-    addClass(btn, 'warpbtn-link');
+    window.addEventListener('resize', setCorrectColumnCount);
+    window.addEventListener('resize', setMenuCorrectPosition);
 
-    function toggleNav() {
-        toggleClass(div, 'warpbtn-open');
-        toggleClass(nav, 'warpmenu-open');
-        toggleClass(body, 'warpmenu-push-toleft');
+    window.addEventListener('orientationchange', function () {
+        // Can only be done in next frame. Won't work otherwise
+        window.requestAnimationFrame(function () {
+            setMenuCorrectPosition();
+        });
+    });
+
+    // Timeout is needed here. Won't work otherwise
+    window.addEventListener('resize', function () {
+        // Can only be done in next frame. Won't work otherwise
+        window.requestAnimationFrame(function () {
+            setMenuCorrectPosition();
+        });
+    });
+
+    return menuContainer;
+}
+
+function setMenuCorrectPosition() {
+    var container = document.getElementById('warp-menu-container');
+    var menu = document.getElementById('warp-menu-column-menu');
+    var largeScreen = window.matchMedia("(min-width: 769px)");
+
+    // Move the warp menu into screen (So it is visible)
+    container.style.right = 0;
+
+    // In any case we need to set top and bottom to null. Menu won't be hidden otherwise in mobile mode.
+    container.style.bottom = null;
+    container.style.top = null;
+
+    if (largeScreen.matches) {
+        container.style.top = 0;
+    } else {
+        container.style.bottom = 0;
     }
 
-    div.onclick = toggleNav;
-    div.appendChild(btn);
+    // When it should be hidden, move it to outside the screen.
+    if (largeScreen.matches && hasClass(menu, 'menu-container-hide')) {
+        if (hasClass(menu, 'menu-container-hide')) {
+            container.style.right = -menu.clientWidth + "px";
+        }
+    } else if (hasClass(menu, 'menu-container-hide')) {
+        if (hasClass(menu, 'menu-container-hide')) {
+            container.style.bottom = -menu.clientHeight + "px";
+        }
+    }
+}
+
+function initWarpMenu(categories) {
+    var warpMenuContainer = document.createElement('div');
+    addClass(warpMenuContainer, 'warp-menu-container');
+    addClass(warpMenuContainer, 'notransition');
+    warpMenuContainer.id = 'warp-menu-container';
+
+    var tooltipColumn = createTooltip();
+    var toggleResult = createToggleButton();
+    var menuContainer = createMenu(categories);
+
+    function toggleNav() {
+        if (hasClass(warpMenuContainer, 'collapsing')) {
+            return;
+        }
+        removeClass(warpMenuContainer, 'notransition');
+
+        addClass(warpMenuContainer, 'collapsing');
+        toggleClass(menuContainer, 'menu-container-hide');
+        setTimeout(function () {
+            removeClass(warpMenuContainer, 'collapsing');
+        }, 300);
+
+        if (!hasClass(warpMenuContainer, 'menu-container-hide')) {
+            setCorrectColumnCount();
+        }
+
+        setMenuCorrectPosition();
+        setTimeout(function () {
+            addClass(warpMenuContainer, 'notransition')
+        }, 600);
+    }
+
+    toggleResult.toggle.onclick = toggleNav;
+
+    if (!isTooltipDisabled()) {
+        warpMenuContainer.appendChild(tooltipColumn);
+    }
+    warpMenuContainer.appendChild(toggleResult.toggleColumn);
+    warpMenuContainer.appendChild(menuContainer);
 
     // hide menu
     document.onclick = function (e) {
         if (e && e.target) {
-            var target = e.target;
-            // TODO define marker class to stop menu from collapsing
-            if (hasClass(nav, 'warpmenu-open') && !hasClass(target, 'warpbtn-link') && !hasClass(target, 'warpmenu') && !hasClass(target, 'warpmenu-home')) {
+            if (e.path === null || e.path === undefined) return;
+
+            var menuIsVisible = !hasClass(menuContainer, 'menu-container-hide');
+            var isClickOnMenu = e.path.indexOf(menuContainer) !== -1;
+            if (menuIsVisible && !isClickOnMenu) {
                 toggleNav();
             }
         }
     };
 
-    body.appendChild(div);
+    body.appendChild(warpMenuContainer);
+
+    setCorrectVh();
+    window.addEventListener('resize', setCorrectVh);
+    setCorrectColumnCount();
+    setMenuCorrectPosition();
+}
+
+function setCorrectColumnCount() {
+    var list = document.getElementById('warp-menu-category-list');
+    var shiftContainer = document.getElementById('warp-menu-shift-container');
+    var columnCount = 0;
+
+    for (var i = 0; i < list.childNodes.length; i++) {
+        var node = list.childNodes[i];
+        var current = Math.floor(node.offsetLeft / 192) + 1;
+
+        if (hasClass(node, 'warp-menu-logout-list-element'))
+            continue; // Skip logout button because it is positioned outside of list
+
+        if (current > columnCount) columnCount = current;
+    }
+    list.style.columnCount = null;
+    shiftContainer.style.width = null;
+
+    var largeScreen = window.matchMedia('(min-width: 769px)');
+    if (largeScreen.matches) {
+        shiftContainer.style.width = 'calc(' + columnCount + ' * 192px)';
+        list.style.columnCount = columnCount;
+    }
 }
 
 var asyncCounter = 0;
@@ -221,4 +436,12 @@ if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
     // load model
     asyncCounter++;
     ajax('/warp/menu.json', loaded);
+}
+
+// According to https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+// This trick is used to get the correct height on mobile devices.
+function setCorrectVh() {
+    var correctVh = (window.innerHeight * 0.01) + 'px';
+    // This is used to calculate correct inner height of the display
+    document.getElementById('warp-menu-container').style.setProperty('--vh', correctVh);
 }
