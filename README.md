@@ -1,4 +1,4 @@
-#![Cloudogu logo](https://cloudogu.com/images/logo.png)
+![Cloudogu logo](https://cloudogu.com/images/logo.png)
 # Warp-menu
 https://cloudogu.com
 

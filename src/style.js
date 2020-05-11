@@ -59,5 +59,11 @@ function addStylesheet(href, callback, scope){
 
   head.appendChild( link );
 
+  var meta = document.createElement('meta');
+  meta.name = 'viewport';
+  meta.content = 'width=device-width, initial-scale=1';
+
+  head.appendChild(meta);
+
   return link;
 }
