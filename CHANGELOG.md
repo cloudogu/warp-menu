@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.1](https://github.com/cloudogu/warp-menu/releases/tag/v1.0.1)
 ### Fixed
 - fix resize issue for large mobile displays 
 
