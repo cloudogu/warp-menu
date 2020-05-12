@@ -298,7 +298,7 @@ function createMenu(categories) {
 function setMenuCorrectPosition() {
     var container = document.getElementById('warp-menu-container');
     var menu = document.getElementById('warp-menu-column-menu');
-    var largeScreen = window.matchMedia("(min-width: 897px)");
+    var largeScreen = window.matchMedia("(min-width: 769px)");
 
     // Move the warp menu into screen (So it is visible)
     container.style.right = 0;
@@ -403,7 +403,7 @@ function setCorrectColumnCount() {
     list.style.columnCount = null;
     shiftContainer.style.width = null;
 
-    var largeScreen = window.matchMedia('(min-width: 897px)');
+    var largeScreen = window.matchMedia('(min-width: 769px)');
     if (largeScreen.matches) {
         shiftContainer.style.width = 'calc(' + columnCount + ' * 192px)';
         list.style.columnCount = columnCount;
