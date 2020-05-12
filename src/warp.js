@@ -397,8 +397,6 @@ function setCorrectColumnCount() {
         var current = Math.floor(node.offsetLeft / 192) + 1;
 
         if (hasClass(node, 'warp-menu-logout-list-element'))
-            console.log(node.offsetLeft / 192);
-        if (hasClass(node, 'warp-menu-logout-list-element'))
             continue; // Skip logout button because it is positioned outside of list
 
         if (current > columnCount) columnCount = current;
