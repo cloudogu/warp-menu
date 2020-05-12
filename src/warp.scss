@@ -273,7 +273,7 @@ $gradient-darker-darker: #002f4d;
   /********************************************Large screen only********************************************************/
   /*********************************************************************************************************************/
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: 897px) {
     flex-direction: row;
     -ms-flex-direction: row;
     -ms-flex-pack: end;
@@ -384,7 +384,7 @@ $gradient-darker-darker: #002f4d;
   /********************************************Small screen only********************************************************/
   /*********************************************************************************************************************/
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 896px) {
     flex-direction: column;
     -ms-flex-direction: column;
     -ms-flex-pack: end;
@@ -492,7 +492,7 @@ $gradient-darker-darker: #002f4d;
   /*******************************************************************************************/
   /********************************************Misc*******************************************/
   /*******************************************************************************************/
-  @media screen and (max-width: 768px) and (min-width: 701px) {
+  @media screen and (max-width: 896px) and (min-width: 701px) {
     .warp-menu-column-menu {
       .warp-menu-shift-container .warp-menu-category-list {
         column-count: 4;
