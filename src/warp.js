@@ -288,6 +288,7 @@ function createMenu(categories) {
     window.addEventListener('resize', function () {
         // Can only be done in next frame. Won't work otherwise
         window.requestAnimationFrame(function () {
+            setCorrectColumnCount();
             setMenuCorrectPosition();
         });
     });
@@ -395,6 +396,8 @@ function setCorrectColumnCount() {
         var node = list.childNodes[i];
         var current = Math.floor(node.offsetLeft / 192) + 1;
 
+        if (hasClass(node, 'warp-menu-logout-list-element'))
+            console.log(node.offsetLeft / 192);
         if (hasClass(node, 'warp-menu-logout-list-element'))
             continue; // Skip logout button because it is positioned outside of list
 

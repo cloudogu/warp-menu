@@ -235,15 +235,16 @@ $gradient-darker-darker: #002f4d;
         }
 
         > li.warp-menu-logout-placeholder {
+          -webkit-column-break-inside: avoid;
           border: 0;
-          height: calc(1.66666em + 1.75em);
+          height: 1em;
         }
 
         > li.warp-menu-logout-list-element {
           border-top: 1px solid $brand-primary;
           display: block;
           position: absolute;
-          bottom: 0;
+          bottom: 1em;
         }
 
         a.warp-menu-logout-link {
