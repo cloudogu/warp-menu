@@ -246,14 +246,18 @@ $desktop-view-column-width: 256px;
 
         > li.warp-menu-logout-placeholder {
           border: 0;
-          height: calc(1.66666em + 1.75em);
+
+          > div {
+            height: calc(1.66666em + 1.75em);
+            display: inline-block;
+          }
         }
 
         > li.warp-menu-logout-list-element {
           border-top: 1px solid $brand-primary;
           display: block;
           position: absolute;
-          bottom: 0;
+          bottom: 1em;
         }
 
         a.warp-menu-logout-link {
