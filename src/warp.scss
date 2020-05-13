@@ -50,8 +50,8 @@ $gradient-darker-darker: #002f4d;
     -ms-flex-direction: column;
     -ms-flex-pack: center;
     justify-content: center;
-    pointer-events: all;
-    user-select: all;
+    user-select: none;
+    pointer-events: none;
     transition: visibility 0.5s, opacity 0.5s linear;
 
     label.warp-onboarding {
@@ -66,6 +66,8 @@ $gradient-darker-darker: #002f4d;
       width: 20em;
       font-size: 1.33333em;
       cursor: pointer;
+      pointer-events: all;
+      user-select: all;
       -webkit-box-shadow: 0 0 15px -5px black;
       -moz-box-shadow: 0 0 15px -5px black;
       box-shadow: 0 0 15px -5px black;
