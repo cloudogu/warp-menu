@@ -11,7 +11,7 @@ $gradient-darker-darker: #002f4d;
   width: 100vw;
   pointer-events: none;
   user-select: none;
-  line-height: 1.75em;
+  line-height: 1.75em !important;
   font-family: Droid-sans, sans-serif;
   font-size: 13px;
   letter-spacing: 0.0125em;
@@ -73,6 +73,9 @@ $gradient-darker-darker: #002f4d;
 
       .warp-onboarding-msg {
         margin: 0 0 0.5em;
+        font-size: 1em; // Neccessary. Would be overridden by a dogu otherwise.
+        line-height: 1.75em; // Neccessary. Would be overridden by a dogu otherwise.
+        font-weight: normal; // Neccessary. Would be overridden by a dogu otherwise.
       }
 
       .warp-onboarding-hint {
@@ -195,6 +198,9 @@ $gradient-darker-darker: #002f4d;
           h3::before {
             content: "\25B8 \2000";
             display: inline-block;
+            margin-right: 0; // Neccessary. Would be overridden by a dogu otherwise.
+            text-align: left; // Neccessary. Would be overridden by a dogu otherwise.
+            opacity: 1; // Neccessary. Would be overridden by a dogu otherwise.
           }
 
           h3.warpmenu-category-open::before {
@@ -216,6 +222,7 @@ $gradient-darker-darker: #002f4d;
 
           ul {
             padding: 0;
+            margin: 0; // Neccessary. Would be overridden by a dogu otherwise.
           }
 
 
