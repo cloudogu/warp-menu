@@ -1,6 +1,7 @@
 @import "../node_modules/ces-theme/src/scss/variables";
 
 $gradient-darker-darker: #002f4d;
+$desktop-view-column-width: 256px;
 
 .warp-menu-container {
   position: fixed;
@@ -348,8 +349,8 @@ $gradient-darker-darker: #002f4d;
       }
 
       .warp-menu-shift-container {
-        $gradient-start: 160px;
-        $gradient-col-width: 192px;
+        $gradient-start: 220px;
+        $gradient-col-width: $desktop-view-column-width;
         background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
         background-image: -ms-repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
         left: 0;
@@ -358,14 +359,14 @@ $gradient-darker-darker: #002f4d;
         .warp-menu-category-list {
           padding: 1.33333em 0;
           display: inline-block;
-          column-width: 192px;
+          column-width: $desktop-view-column-width;
           column-fill: auto;
           height: 100vh;
           column-gap: 0;
 
           > li {
             padding-top: 1em;
-            width: 192px;
+            width: $desktop-view-column-width;
             display: list-item;
 
             > div {
@@ -379,12 +380,12 @@ $gradient-darker-darker: #002f4d;
         }
 
         a.warp-menu-target-link {
-          width: 192px;
+          width: $desktop-view-column-width;
         }
       }
 
       .warp-menu-gradient-overlay {
-        width: 192px;
+        width: $desktop-view-column-width;
       }
     }
   }
