@@ -318,7 +318,7 @@ $desktop-view-column-width: 256px;
     /*******************************************************************************************/
 
     .warp-menu-column-toggle {
-      width: 2.13461em;
+      min-width: 2.13461em;
 
       a.warpbtn {
         top: calc(50vh - 2em);
@@ -381,6 +381,7 @@ $desktop-view-column-width: 256px;
 
           > li.warp-menu-logout-list-element {
             right: 0;
+            border-bottom: 0;
           }
         }
 
