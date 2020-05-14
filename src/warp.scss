@@ -339,6 +339,7 @@ $desktop-view-column-width: 245px;
 
           a.warp-menu-target-link, a.warp-menu-logout-link {
             padding-left: 1.28333em;
+            cursor: pointer;
 
             :hover, :focus, :active {
               background-color: $brand-primary;
