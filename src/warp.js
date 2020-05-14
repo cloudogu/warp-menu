@@ -1,5 +1,5 @@
 var baseUrl = '';
-var desktopViewColumnWidthInPx = 256;
+var desktopViewColumnWidthInPx = 245;
 
 var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
