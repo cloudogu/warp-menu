@@ -182,6 +182,7 @@ $desktop-view-column-width: 245px;
     box-sizing: border-box !important;
     font-family: $font-family-sans-serif !important;
     color: $white !important;
+    -webkit-text-fill-color: $white !important; // Otherwise the color wouldn't work in Safari
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
