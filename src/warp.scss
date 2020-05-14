@@ -240,9 +240,6 @@ $desktop-view-column-width: 245px;
 
       .warp-onboarding-msg {
         margin: 0 0 0.5em;
-        font-size: 1em; // Neccessary. Would be overridden by a dogu otherwise.
-        line-height: 1.75em; // Neccessary. Would be overridden by a dogu otherwise.
-        font-weight: normal; // Neccessary. Would be overridden by a dogu otherwise.
       }
 
       .warp-onboarding-hint {
@@ -365,9 +362,6 @@ $desktop-view-column-width: 245px;
             all: unset;
             content: "\25B8 \2000";
             display: inline-block;
-            margin-right: 0; // Neccessary. Would be overridden by a dogu otherwise.
-            text-align: left; // Neccessary. Would be overridden by a dogu otherwise.
-            opacity: 1; // Neccessary. Would be overridden by a dogu otherwise.
           }
 
           h3.warpmenu-category-open::before {
@@ -389,7 +383,6 @@ $desktop-view-column-width: 245px;
 
           ul {
             padding: 0;
-            margin: 0; // Neccessary. Would be overridden by a dogu otherwise.
           }
 
 
