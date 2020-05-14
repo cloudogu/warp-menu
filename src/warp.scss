@@ -4,6 +4,12 @@ $gradient-darker-darker: #002f4d;
 $desktop-view-column-width: 256px;
 
 .warp-menu-container {
+  all: initial;
+
+  * {
+    all: unset;
+  }
+
   position: fixed;
   z-index: 9996;
   bottom: 0;
@@ -85,6 +91,7 @@ $desktop-view-column-width: 256px;
         margin: 0;
         font-size: 0.8em;
         text-align: right;
+        display: block;
 
         input {
           font-size: 1em;
@@ -199,6 +206,7 @@ $desktop-view-column-width: 256px;
           }
 
           h3::before {
+            all: unset;
             content: "\25B8 \2000";
             display: inline-block;
             margin-right: 0; // Neccessary. Would be overridden by a dogu otherwise.
@@ -266,6 +274,7 @@ $desktop-view-column-width: 256px;
         }
 
         a.warp-menu-logout-link::before {
+          all: unset;
           content: "\27A5 \2000";
           font-size: 1.5em;
         }
