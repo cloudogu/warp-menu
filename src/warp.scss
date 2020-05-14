@@ -233,6 +233,10 @@ $desktop-view-column-width: 245px;
       -moz-box-shadow: 0 0 15px -5px black;
       box-shadow: 0 0 15px -5px black;
 
+      // Match only IE
+      @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        width: auto;
+      }
 
       .warp-onboarding-msg {
         margin: 0 0 0.5em;
