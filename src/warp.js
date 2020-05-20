@@ -1,4 +1,5 @@
 var baseUrl = '';
+var desktopViewColumnWidthInPx = 245;
 
 var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
@@ -202,8 +203,11 @@ function isTooltipDisabled() {
 
 function addLogoutMenuEntry(list) {
     var placeholder = document.createElement('li');
-    placeholder.innerText = '\xa0';
     addClass(placeholder, 'warp-menu-logout-placeholder');
+    var placeholderChild = document.createElement('div');
+    placeholderChild.innerText = '\xa0';
+    placeholder.appendChild(placeholderChild);
+
     var logout = document.createElement('li');
     addClass(logout, 'warp-menu-logout-list-element');
     var logoutHref = document.createElement('a');
@@ -393,7 +397,7 @@ function setCorrectColumnCount() {
 
     for (var i = 0; i < list.childNodes.length; i++) {
         var node = list.childNodes[i];
-        var current = Math.floor(node.offsetLeft / 192) + 1;
+        var current = Math.floor(node.offsetLeft / desktopViewColumnWidthInPx) + 1;
 
         if (hasClass(node, 'warp-menu-logout-list-element'))
             continue; // Skip logout button because it is positioned outside of list
@@ -405,7 +409,7 @@ function setCorrectColumnCount() {
 
     var largeScreen = window.matchMedia('(min-width: 897px)');
     if (largeScreen.matches) {
-        shiftContainer.style.width = 'calc(' + columnCount + ' * 192px)';
+        shiftContainer.style.width = 'calc(' + columnCount + ' * ' + desktopViewColumnWidthInPx + 'px)';
         list.style.columnCount = columnCount;
     }
 }
