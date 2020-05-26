@@ -285,10 +285,11 @@ $desktop-view-column-width: 245px;
   .warp-menu-column-toggle {
     z-index: 9998;
     flex-basis: auto;
-    pointer-events: all;
+    pointer-events: none;
     user-select: all;
 
     a.warpbtn {
+      pointer-events: all;
       position: relative;
       display: inline-block;
       background-color: $brand-primary-darker;
