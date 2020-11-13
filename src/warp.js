@@ -72,10 +72,10 @@ function getCategoryKey(category) {
 function getTranslations(language) {
     if (language === "de") {
         return {
-            "aboutCloudoguToken": "Über Cloudogu",
-            "menuToken": "Menü",
+            "aboutCloudoguToken": "&Uuml;ber Cloudogu",
+            "menuToken": "Men&uuml;",
             "ecosystemLogoutToken": "EcoSystem Logout",
-            "onboardingTextToken": "Klicken Sie auf 'Menü', um ihre Tools zu sehen. Das Menü verbindet ihre Toolchain und ist von jedem Tool aus zugänglich.",
+            "onboardingTextToken": "Klicken Sie auf 'Men&uuml;', um ihre Tools zu sehen. Das Men&uuml; verbindet ihre Toolchain und ist von jedem Tool aus zug&auml;nglich.",
             "onboardingHintToken": "Hinweis nicht mehr anzeigen",
             "Development Apps": "Entwicklung",
             "Administration Apps": "Administration",
@@ -205,7 +205,7 @@ function addLogoutMenuEntry(list) {
     var placeholder = document.createElement('li');
     addClass(placeholder, 'warp-menu-logout-placeholder');
     var placeholderChild = document.createElement('div');
-    placeholderChild.innerText = '\xa0';
+    placeholderChild.innerHTML = '&nbsp;';
     placeholder.appendChild(placeholderChild);
 
     var logout = document.createElement('li');
@@ -426,7 +426,6 @@ function loaded(menu) {
         initWarpMenu(model);
     }
 }
-
 if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
 
     // load css
