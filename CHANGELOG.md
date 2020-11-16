@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.4](https://github.com/cloudogu/warp-menu/releases/tag/v1.0.4)
+### Fixed
+- escape special characters like 'ö', 'ä', 'ü' (#15)
+
 ## [v1.0.3](https://github.com/cloudogu/warp-menu/releases/tag/v1.0.3)
 ### Fixed
 - fix that the area around the menu button is not clickable
