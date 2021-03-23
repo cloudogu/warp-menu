@@ -12,7 +12,7 @@ You can open the Warp Menu in any dogu by clicking the "Menu" button on the righ
 If you are entering the EcoSystem for the first time, you will see a tooltip on the right side of the screen that points to the Warp Menu.
 By clicking on it, you can hide it permanently.
 
-![Warp Menu Placement](figures/WarpMenuFirstView.png)
+![Warp Menu Placement](figures/warp-menu/WarpMenuFirstView.png)
 
 If you click on the "Menu" button, you will see the Warp menu with all installed Dogus and other configured
 links are displayed. Clicking on the respective link will redirect you to the corresponding application.
@@ -26,7 +26,7 @@ The Warp Menu is divided into the following sections:
 
 In the development section you can find the Dogus Jenkins, Redmine, SCM-Manager, SonarQube and Sonatype Nexus and Swagger UI. Under Administration you can find the Dogus Cockpit and User Management. The Dogu Smeagol is located in the Documentation section. Under Information, the About Cloudogu page is linked. In this section you can also find other links. Among others, the user manual for the Cloudogu EcoSystem is linked there.
 
-![Warp Menu Tools](figures/WarpMenuFocus.png)
+![Warp Menu Tools](figures/warp-menu/WarpMenuFocus.png)
 
 
 ## Desktop view and mobile view
@@ -52,4 +52,4 @@ Mobile view on small devices, e.g. smartphone in landscape mode or tablet.
 
 Mobile view on large mobile devices, e.g. cell phone in landscape mode or tablet.
 
-![Warp menu four columns: mobile](figures/WarpMenuFourColumns.png)
+![Warp menu four columns: mobile](figures/warp-menu/WarpMenuFourColumns.png)
