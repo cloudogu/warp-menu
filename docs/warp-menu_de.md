@@ -10,7 +10,7 @@ Das Warp Menü können Sie in jedem Dogu über die Schaltfläche "Menü" am rech
 Sollten Sie zum ersten Mal das EcoSystem aufrufen, sehen Sie am rechten Bildschirmrand einen Tooltip, welcher auf das Warp Menü hinweist.
 Durch einen Klick darauf kann dieser dauerhaft ausgeblendet werden.
 
-![Warp Menü Platzierung](figures/warp-menue/WarpMenuFirstView.png)
+![Warp Menü Platzierung](figures/WarpMenuFirstView.png)
 
 Wenn sie auf die Schaltfläche "Menü" klicken, wird Ihnen das Warp Menü mit allen installierten Dogus und weiteren konfigurierten
 Links angezeigt. Ein Klick auf den jeweiligen Link leitet Sie auf die entsprechende Anwendung weiter.
@@ -24,7 +24,7 @@ Das Warp Menü ist in folgende Bereiche unterteilt:
 
 Im Bereich Entwicklung befinden sich die Dogus Jenkins, Redmine, SCM-Manager, SonarQube und Sonatype Nexus und Swagger UI. Unter Administration sind die Dogus Cockpit und User Management zu finden. Das Dogu Smeagol befindet sich im Bereich Dokumentation. Unter Information ist die Seite "Über Cloudogu" verlinkt. In diesem Bereich können sich auch weitere Links befinden. Unter anderem ist dort das Benutzerhandbuch zum Cloudogu EcoSystem verlinkt.
 
-![Warp Menü Tools](figures/warp-menue/WarpMenuFocus.png)
+![Warp Menü Tools](figures/WarpMenuFocus.png)
 
 
 ## Desktopansicht und mobile Ansicht
@@ -41,13 +41,13 @@ Abhängig von der Breite Ihres Bildschirmes, wird es entweder in zwei, drei und 
 
 Mobile Ansicht auf sehr kleinen Geräten, z.B einem Smartphone.
 
-![Warp Menü zwei Spalten: mobil](figures/warp-menue/WarpMenuTwoColumns.png)
+![Warp Menü zwei Spalten: mobil](figures/WarpMenuTwoColumns.png)
 
 
 Mobile Ansicht auf kleinen Geräten, z.B Smartphone im Querformat oder Tablet.
 
-![Warp Menü drei Spalten: mobil](figures/warp-menue/WarpMenuThreeColumns.png)
+![Warp Menü drei Spalten: mobil](figures/WarpMenuThreeColumns.png)
 
 Mobile Ansicht auf großen mobilen Geräten, z.B Handy im Querformat oder Tablet.
 
-![Warp Menü vier Spalten: mobil](figures/warp-menue/WarpMenuFourColumns.png)
+![Warp Menü vier Spalten: mobil](figures/WarpMenuFourColumns.png)
