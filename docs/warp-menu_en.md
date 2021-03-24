@@ -1,10 +1,7 @@
----
-title: "Warp Menu"
----
+# Warp Menu
 
 Translated with www.DeepL.com/Translator
 
-# Warp Menu
 The Warp Menu helps you navigate through the Cloudogu EcoSystem. The Warp Menu allows you to access all dogus and quickly switch between them.
 
 You can open the Warp Menu in any dogu by clicking the "Menu" button on the right side of the screen.
