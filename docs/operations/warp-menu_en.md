@@ -1,6 +1,4 @@
-# Warp Menu
-
-## Custom Entries
+# Custom Entries
 
 Custom entries can be inserted by using the externals part of etcd.
 The entries must be a json struct of the following form:
