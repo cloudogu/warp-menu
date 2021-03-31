@@ -221,9 +221,9 @@ function addLogoutMenuEntry(list) {
 
 function createHomeHrefWithImage() {
     var homeHrefListElement = document.createElement('li');
-    var homeHref = document.createElement('a');
+    var homeHref = document.createElement('div');
     addClass(homeHref, 'warp-menu-home-button');
-    homeHref.href = createLink('');
+    // homeHref.href = createLink('');
     var homeHrefImage = document.createElement('div');
     addClass(homeHrefImage, 'img');
     homeHref.appendChild(homeHrefImage);
