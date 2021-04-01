@@ -288,7 +288,7 @@ $desktop-view-column-width: 245px;
     pointer-events: none;
     user-select: all;
 
-    a.warpbtn {
+    button.warpbtn {
       pointer-events: all;
       position: relative;
       display: inline-block;
@@ -481,7 +481,7 @@ $desktop-view-column-width: 245px;
     .warp-menu-column-toggle {
       min-width: 2.13461em;
 
-      a.warpbtn {
+      button.warpbtn {
         top: calc(50vh - 2em);
         border-bottom-right-radius: 5px;
         border-top-right-radius: 5px;
@@ -599,7 +599,7 @@ $desktop-view-column-width: 245px;
       position: relative;
       font-size: 1.3em;
 
-      a.warpbtn {
+      button.warpbtn {
         display: inline-block;
         border-top-left-radius: 5px;
         position: relative;

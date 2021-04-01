@@ -142,7 +142,7 @@ function createToggleButton() {
     var toggleColumn = document.createElement('div');
     addClass(toggleColumn, 'warp-menu-column-toggle');
 
-    var toggle = document.createElement('a');
+    var toggle = document.createElement('button');
     addClass(toggle, 'warpbtn');
     toggle.id = 'warp-menu-warpbtn';
     toggle.innerHTML = getLocalizedString("menuToken");
@@ -362,6 +362,7 @@ function initWarpMenu(categories) {
     }
 
     toggleResult.toggle.onclick = toggleNav;
+    toggleResult.toggle.onkeydown = toggleNav;
 
     if (!isTooltipDisabled()) {
         warpMenuContainer.appendChild(tooltipColumn);
