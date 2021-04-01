@@ -158,7 +158,7 @@ function createTooltip() {
     var tooltipColumn = document.createElement('div');
     addClass(tooltipColumn, 'warp-menu-column-tooltip');
 
-    var tooltipLabel = document.createElement('label');
+    var tooltipLabel = document.createElement('div');
     addClass(tooltipLabel, 'warp-onboarding');
     tooltipColumn.appendChild(tooltipLabel);
 
@@ -170,7 +170,7 @@ function createTooltip() {
     addClass(hint, 'warp-onboarding-hint');
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    var hintText = document.createElement('section');
+    var hintText = document.createElement('span');
     hintText.innerHTML = getLocalizedString("onboardingHintToken");
 
     hint.appendChild(hintText);
