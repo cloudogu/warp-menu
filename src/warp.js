@@ -223,7 +223,6 @@ function createHomeWithImage() {
     var homeListElement = document.createElement('li');
     var homeContainer = document.createElement('div');
     addClass(homeContainer, 'warp-menu-home-button');
-    // homeHref.href = createLink('');
     var homeImage = document.createElement('div');
     addClass(homeImage, 'img');
     homeContainer.appendChild(homeImage);
