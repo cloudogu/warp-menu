@@ -144,6 +144,7 @@ function createToggleButton() {
 
     var toggle = document.createElement('button');
     addClass(toggle, 'warpbtn');
+    toggle.setAttribute('aria-haspopup','listbox');
     toggle.id = 'warp-menu-warpbtn';
     toggle.innerHTML = getLocalizedString("menuToken");
     toggleColumn.appendChild(toggle);
@@ -340,6 +341,7 @@ function initWarpMenu(categories) {
     var menuContainer = createMenu(categories);
 
     function toggleNav() {
+        var warpButton = document.getElementById("warp-menu-warpbtn");
         if (hasClass(warpMenuContainer, 'collapsing')) {
             return;
         }
@@ -359,10 +361,15 @@ function initWarpMenu(categories) {
         setTimeout(function () {
             addClass(warpMenuContainer, 'notransition')
         }, 600);
+        if (warpButton.hasAttribute('aria-expanded')){
+            warpButton.removeAttribute('aria-expanded');
+        }
+        else {
+            warpButton.setAttribute('aria-expanded', 'true');
+        }
     }
 
     toggleResult.toggle.onclick = toggleNav;
-    toggleResult.toggle.onkeydown = toggleNav;
 
     if (!isTooltipDisabled()) {
         warpMenuContainer.appendChild(tooltipColumn);
