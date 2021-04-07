@@ -6,9 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Fixed
-- generate valid html
+- generate valid html (#20)
 - fix displayed quotation marks
-- change css to target fixed html
+- change css to target fixed html (#20)
+
+### Changed
+- replace empty link to create valid HTML (#18)
+- refactor naming of variables to be more verbose (#18)
 
 ## [v1.0.4](https://github.com/cloudogu/warp-menu/releases/tag/v1.0.4)
 ### Fixed
