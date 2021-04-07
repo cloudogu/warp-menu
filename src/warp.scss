@@ -215,7 +215,7 @@ $desktop-view-column-width: 245px;
     pointer-events: none;
     transition: visibility 0.5s, opacity 0.5s linear;
 
-    label.warp-onboarding {
+    div.warp-onboarding {
       flex-basis: auto;
       position: relative;
       margin-right: 1.5em;
@@ -288,12 +288,15 @@ $desktop-view-column-width: 245px;
     pointer-events: none;
     user-select: all;
 
-    a.warpbtn {
+    button.warpbtn {
       pointer-events: all;
       position: relative;
       display: inline-block;
       background-color: $brand-primary-darker;
       cursor: pointer;
+    }
+    button.warpbtn:focus, button.warpbtn:hover {
+      background-color: $gradient-darker-darker;
     }
   }
 
@@ -481,17 +484,16 @@ $desktop-view-column-width: 245px;
     .warp-menu-column-toggle {
       min-width: 2.13461em;
 
-      a.warpbtn {
+      button.warpbtn {
         top: calc(50vh - 2em);
-        border-bottom-right-radius: 5px;
+        border-top-left-radius: 5px;
         border-top-right-radius: 5px;
-        writing-mode: vertical-rl;
         text-align: center;
-        transform: rotate(180deg);
-        border-left: 1px solid $brand-primary !important;
-        height: 4em;
+        transform: rotate(-90deg);
+        border-bottom: 1px solid $brand-primary !important;
+        width: 4em;
         font-size: 16px;
-        right: 0;
+        right: calc(-1em - 1px);
         padding: 0.25em 0.125em;
         -webkit-box-shadow: 2px 0 15px -5px black;
         -moz-box-shadow: 2px 0 15px -5px black;
@@ -599,7 +601,7 @@ $desktop-view-column-width: 245px;
       position: relative;
       font-size: 1.3em;
 
-      a.warpbtn {
+      button.warpbtn {
         display: inline-block;
         border-top-left-radius: 5px;
         position: relative;

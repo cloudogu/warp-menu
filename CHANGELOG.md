@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.1.0](https://github.com/cloudogu/warp-menu/releases/tag/v1.1.0)
+### Fixed
+- generate valid html (#20)
+- fix displayed quotation marks
+- change css to target fixed html (#20)
+
+### Changed
+- enable opening the warp menu by keyboard (#22)
+- replace empty link to create valid HTML (#18)
+- refactor naming of variables to be more verbose (#18)
+
 ## [v1.0.4](https://github.com/cloudogu/warp-menu/releases/tag/v1.0.4)
 ### Fixed
 - escape special characters like 'ö', 'ä', 'ü' (#15)

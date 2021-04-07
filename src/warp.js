@@ -75,7 +75,7 @@ function getTranslations(language) {
             "aboutCloudoguToken": "&Uuml;ber Cloudogu",
             "menuToken": "Men&uuml;",
             "ecosystemLogoutToken": "EcoSystem Logout",
-            "onboardingTextToken": "Klicken Sie auf 'Men&uuml;', um ihre Tools zu sehen. Das Men&uuml; verbindet ihre Toolchain und ist von jedem Tool aus zug&auml;nglich.",
+            "onboardingTextToken": "Klicken Sie auf „Men&uuml;“, um ihre Tools zu sehen. Das Men&uuml; verbindet ihre Toolchain und ist von jedem Tool aus zug&auml;nglich.",
             "onboardingHintToken": "Hinweis nicht mehr anzeigen",
             "Development Apps": "Entwicklung",
             "Administration Apps": "Administration",
@@ -86,7 +86,7 @@ function getTranslations(language) {
             "aboutCloudoguToken": "About Cloudogu",
             "menuToken": "Menu",
             "ecosystemLogoutToken": "EcoSystem Logout",
-            "onboardingTextToken": "Click 'Menu' to view all tools. That menu connects your toolchain and is available from any tool.",
+            "onboardingTextToken": "Click “Menu” to view all tools. That menu connects your toolchain and is available from any tool.",
             "onboardingHintToken": "Do not show this hint again",
             "Development Apps": "Development Apps",
             "Administration Apps": "Administration Apps",
@@ -142,8 +142,9 @@ function createToggleButton() {
     var toggleColumn = document.createElement('div');
     addClass(toggleColumn, 'warp-menu-column-toggle');
 
-    var toggle = document.createElement('a');
+    var toggle = document.createElement('button');
     addClass(toggle, 'warpbtn');
+    toggle.setAttribute('aria-haspopup','listbox');
     toggle.id = 'warp-menu-warpbtn';
     toggle.innerHTML = getLocalizedString("menuToken");
     toggleColumn.appendChild(toggle);
@@ -158,7 +159,7 @@ function createTooltip() {
     var tooltipColumn = document.createElement('div');
     addClass(tooltipColumn, 'warp-menu-column-tooltip');
 
-    var tooltipLabel = document.createElement('label');
+    var tooltipLabel = document.createElement('div');
     addClass(tooltipLabel, 'warp-onboarding');
     tooltipColumn.appendChild(tooltipLabel);
 
@@ -170,7 +171,7 @@ function createTooltip() {
     addClass(hint, 'warp-onboarding-hint');
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    var hintText = document.createElement('section');
+    var hintText = document.createElement('span');
     hintText.innerHTML = getLocalizedString("onboardingHintToken");
 
     hint.appendChild(hintText);
@@ -340,6 +341,7 @@ function initWarpMenu(categories) {
     var menuContainer = createMenu(categories);
 
     function toggleNav() {
+        var warpButton = document.getElementById("warp-menu-warpbtn");
         if (hasClass(warpMenuContainer, 'collapsing')) {
             return;
         }
@@ -359,6 +361,12 @@ function initWarpMenu(categories) {
         setTimeout(function () {
             addClass(warpMenuContainer, 'notransition')
         }, 600);
+        if (warpButton.hasAttribute('aria-expanded')){
+            warpButton.removeAttribute('aria-expanded');
+        }
+        else {
+            warpButton.setAttribute('aria-expanded', 'true');
+        }
     }
 
     toggleResult.toggle.onclick = toggleNav;
