@@ -295,6 +295,9 @@ $desktop-view-column-width: 245px;
       background-color: $brand-primary-darker;
       cursor: pointer;
     }
+    button.warpbtn:focus, button.warpbtn:hover {
+      background-color: $gradient-darker-darker;
+    }
   }
 
   /*******************************************************************************************/
