@@ -215,7 +215,7 @@ $desktop-view-column-width: 245px;
     pointer-events: none;
     transition: visibility 0.5s, opacity 0.5s linear;
 
-    label.warp-onboarding {
+    div.warp-onboarding {
       flex-basis: auto;
       position: relative;
       margin-right: 1.5em;
@@ -314,11 +314,11 @@ $desktop-view-column-width: 245px;
       .warp-menu-category-list {
         margin: 0;
 
-        div.warp-menu-home-button {
+        a.warp-menu-home-button {
           display: block;
           text-align: center;
 
-          .img {
+          div.img {
             width: 78.36px;
             height: 48px;
             display: inline-block;

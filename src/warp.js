@@ -75,7 +75,7 @@ function getTranslations(language) {
             "aboutCloudoguToken": "&Uuml;ber Cloudogu",
             "menuToken": "Men&uuml;",
             "ecosystemLogoutToken": "EcoSystem Logout",
-            "onboardingTextToken": "Klicken Sie auf 'Men&uuml;', um ihre Tools zu sehen. Das Men&uuml; verbindet ihre Toolchain und ist von jedem Tool aus zug&auml;nglich.",
+            "onboardingTextToken": "Klicken Sie auf „Men&uuml;“, um ihre Tools zu sehen. Das Men&uuml; verbindet ihre Toolchain und ist von jedem Tool aus zug&auml;nglich.",
             "onboardingHintToken": "Hinweis nicht mehr anzeigen",
             "Development Apps": "Entwicklung",
             "Administration Apps": "Administration",
@@ -86,7 +86,7 @@ function getTranslations(language) {
             "aboutCloudoguToken": "About Cloudogu",
             "menuToken": "Menu",
             "ecosystemLogoutToken": "EcoSystem Logout",
-            "onboardingTextToken": "Click 'Menu' to view all tools. That menu connects your toolchain and is available from any tool.",
+            "onboardingTextToken": "Click “Menu” to view all tools. That menu connects your toolchain and is available from any tool.",
             "onboardingHintToken": "Do not show this hint again",
             "Development Apps": "Development Apps",
             "Administration Apps": "Administration Apps",
@@ -158,7 +158,7 @@ function createTooltip() {
     var tooltipColumn = document.createElement('div');
     addClass(tooltipColumn, 'warp-menu-column-tooltip');
 
-    var tooltipLabel = document.createElement('label');
+    var tooltipLabel = document.createElement('div');
     addClass(tooltipLabel, 'warp-onboarding');
     tooltipColumn.appendChild(tooltipLabel);
 
@@ -170,7 +170,7 @@ function createTooltip() {
     addClass(hint, 'warp-onboarding-hint');
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    var hintText = document.createElement('section');
+    var hintText = document.createElement('span');
     hintText.innerHTML = getLocalizedString("onboardingHintToken");
 
     hint.appendChild(hintText);
@@ -219,15 +219,16 @@ function addLogoutMenuEntry(list) {
     list.appendChild(logout);
 }
 
-function createHomeWithImage() {
-    var homeListElement = document.createElement('li');
-    var homeContainer = document.createElement('div');
-    addClass(homeContainer, 'warp-menu-home-button');
-    var homeImage = document.createElement('div');
-    addClass(homeImage, 'img');
-    homeContainer.appendChild(homeImage);
-    homeListElement.appendChild(homeContainer);
-    return homeListElement;
+function createHomeHrefWithImage() {
+    var homeHrefListElement = document.createElement('li');
+    var homeHref = document.createElement('a');
+    addClass(homeHref, 'warp-menu-home-button');
+    homeHref.href = createLink('');
+    var homeHrefImage = document.createElement('div');
+    addClass(homeHrefImage, 'img');
+    homeHref.appendChild(homeHrefImage);
+    homeHrefListElement.appendChild(homeHref);
+    return homeHrefListElement;
 }
 
 function createMenu(categories) {
@@ -250,8 +251,8 @@ function createMenu(categories) {
     list.id = 'warp-menu-category-list';
     shiftContainer.appendChild(list);
 
-    var homeElement = createHomeWithImage();
-    list.appendChild(homeElement);
+    var homeHrefElement = createHomeHrefWithImage();
+    list.appendChild(homeHrefElement);
 
     for (var c = 0; c < categories.length; c++) {
         var currentCategory = categories[c];

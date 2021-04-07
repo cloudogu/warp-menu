@@ -1,4 +1,4 @@
-# Oberfläche
+# Warp Menü
 Das Warp Menü hilft Ihnen bei der Navigation durch das Cloudogu EcoSystem. Über das Warp Menü können Sie alle  Dogus erreichen und schnell zwischen diesen wechseln.
 
 Das Warp Menü können Sie in jedem Dogu über die Schaltfläche "Menü" am rechten Bildschirmrand öffnen.
