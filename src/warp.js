@@ -220,16 +220,15 @@ function addLogoutMenuEntry(list) {
     list.appendChild(logout);
 }
 
-function createHomeHrefWithImage() {
-    var homeHrefListElement = document.createElement('li');
-    var homeHref = document.createElement('a');
-    addClass(homeHref, 'warp-menu-home-button');
-    homeHref.href = createLink('');
-    var homeHrefImage = document.createElement('div');
-    addClass(homeHrefImage, 'img');
-    homeHref.appendChild(homeHrefImage);
-    homeHrefListElement.appendChild(homeHref);
-    return homeHrefListElement;
+function createHomeWithImage() {
+    var homeListElement = document.createElement('li');
+    var homeContainer = document.createElement('div');
+    addClass(homeContainer, 'warp-menu-home-button');
+    var homeImage = document.createElement('div');
+    addClass(homeImage, 'img');
+    homeContainer.appendChild(homeImage);
+    homeListElement.appendChild(homeContainer);
+    return homeListElement;
 }
 
 function createMenu(categories) {
@@ -252,8 +251,8 @@ function createMenu(categories) {
     list.id = 'warp-menu-category-list';
     shiftContainer.appendChild(list);
 
-    var homeHrefElement = createHomeHrefWithImage();
-    list.appendChild(homeHrefElement);
+    var homeElement = createHomeWithImage();
+    list.appendChild(homeElement);
 
     for (var c = 0; c < categories.length; c++) {
         var currentCategory = categories[c];
