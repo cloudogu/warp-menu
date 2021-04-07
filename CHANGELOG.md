@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - change css to target fixed html (#20)
 
 ### Changed
+- enable opening the warp menu by keyboard (#22)
 - replace empty link to create valid HTML (#18)
 - refactor naming of variables to be more verbose (#18)
 
