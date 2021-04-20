@@ -144,7 +144,7 @@ function createToggleButton() {
 
     var toggle = document.createElement('button');
     addClass(toggle, 'warpbtn');
-    toggle.setAttribute('aria-haspopup','listbox');
+    toggle.setAttribute('aria-haspopup', 'listbox');
     toggle.id = 'warp-menu-warpbtn';
     toggle.innerHTML = getLocalizedString("menuToken");
     toggleColumn.appendChild(toggle);
@@ -159,7 +159,7 @@ function createTooltip() {
     var tooltipColumn = document.createElement('div');
     addClass(tooltipColumn, 'warp-menu-column-tooltip');
 
-    var tooltipLabel = document.createElement('div');
+    var tooltipLabel = document.createElement('label');
     addClass(tooltipLabel, 'warp-onboarding');
     tooltipColumn.appendChild(tooltipLabel);
 
@@ -220,16 +220,15 @@ function addLogoutMenuEntry(list) {
     list.appendChild(logout);
 }
 
-function createHomeHrefWithImage() {
-    var homeHrefListElement = document.createElement('li');
-    var homeHref = document.createElement('a');
-    addClass(homeHref, 'warp-menu-home-button');
-    homeHref.href = createLink('');
-    var homeHrefImage = document.createElement('div');
-    addClass(homeHrefImage, 'img');
-    homeHref.appendChild(homeHrefImage);
-    homeHrefListElement.appendChild(homeHref);
-    return homeHrefListElement;
+function createHomeWithImage() {
+    var homeListElement = document.createElement('li');
+    var homeContainer = document.createElement('div');
+    addClass(homeContainer, 'warp-menu-home-button');
+    var homeImage = document.createElement('div');
+    addClass(homeImage, 'img');
+    homeContainer.appendChild(homeImage);
+    homeListElement.appendChild(homeContainer);
+    return homeListElement;
 }
 
 function createMenu(categories) {
@@ -252,8 +251,8 @@ function createMenu(categories) {
     list.id = 'warp-menu-category-list';
     shiftContainer.appendChild(list);
 
-    var homeHrefElement = createHomeHrefWithImage();
-    list.appendChild(homeHrefElement);
+    var homeElement = createHomeWithImage();
+    list.appendChild(homeElement);
 
     for (var c = 0; c < categories.length; c++) {
         var currentCategory = categories[c];
@@ -361,10 +360,9 @@ function initWarpMenu(categories) {
         setTimeout(function () {
             addClass(warpMenuContainer, 'notransition')
         }, 600);
-        if (warpButton.hasAttribute('aria-expanded')){
+        if (warpButton.hasAttribute('aria-expanded')) {
             warpButton.removeAttribute('aria-expanded');
-        }
-        else {
+        } else {
             warpButton.setAttribute('aria-expanded', 'true');
         }
     }
@@ -434,6 +432,7 @@ function loaded(menu) {
         initWarpMenu(model);
     }
 }
+
 if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
 
     // load css
