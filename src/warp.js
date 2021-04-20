@@ -159,7 +159,7 @@ function createTooltip() {
     var tooltipColumn = document.createElement('div');
     addClass(tooltipColumn, 'warp-menu-column-tooltip');
 
-    var tooltipLabel = document.createElement('div');
+    var tooltipLabel = document.createElement('label');
     addClass(tooltipLabel, 'warp-onboarding');
     tooltipColumn.appendChild(tooltipLabel);
 

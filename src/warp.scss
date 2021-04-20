@@ -215,7 +215,7 @@ $desktop-view-column-width: 245px;
     pointer-events: none;
     transition: visibility 0.5s, opacity 0.5s linear;
 
-    div.warp-onboarding {
+    label.warp-onboarding {
       flex-basis: auto;
       position: relative;
       margin-right: 1.5em;
@@ -584,7 +584,7 @@ $desktop-view-column-width: 245px;
       -ms-flex-pack: end;
       justify-content: flex-end;
 
-      div.warp-onboarding {
+      label.warp-onboarding {
         margin-right: 0;
         margin-bottom: 2em;
       }
