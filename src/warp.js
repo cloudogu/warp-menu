@@ -75,7 +75,7 @@ function getTranslations(language) {
             "aboutCloudoguToken": "&Uuml;ber Cloudogu",
             "menuToken": "Men&uuml;",
             "ecosystemLogoutToken": "EcoSystem Logout",
-            "onboardingTextToken": "Klicken Sie auf 'Men&uuml;', um ihre Tools zu sehen. Das Men&uuml; verbindet ihre Toolchain und ist von jedem Tool aus zug&auml;nglich.",
+            "onboardingTextToken": "Klicken Sie auf „Men&uuml;“, um ihre Tools zu sehen. Das Men&uuml; verbindet ihre Toolchain und ist von jedem Tool aus zug&auml;nglich.",
             "onboardingHintToken": "Hinweis nicht mehr anzeigen",
             "Development Apps": "Entwicklung",
             "Administration Apps": "Administration",
@@ -86,7 +86,7 @@ function getTranslations(language) {
             "aboutCloudoguToken": "About Cloudogu",
             "menuToken": "Menu",
             "ecosystemLogoutToken": "EcoSystem Logout",
-            "onboardingTextToken": "Click 'Menu' to view all tools. That menu connects your toolchain and is available from any tool.",
+            "onboardingTextToken": "Click “Menu” to view all tools. That menu connects your toolchain and is available from any tool.",
             "onboardingHintToken": "Do not show this hint again",
             "Development Apps": "Development Apps",
             "Administration Apps": "Administration Apps",
@@ -144,7 +144,7 @@ function createToggleButton() {
 
     var toggle = document.createElement('button');
     addClass(toggle, 'warpbtn');
-    toggle.setAttribute('aria-haspopup','listbox');
+    toggle.setAttribute('aria-haspopup', 'listbox');
     toggle.id = 'warp-menu-warpbtn';
     toggle.innerHTML = getLocalizedString("menuToken");
     toggleColumn.appendChild(toggle);
@@ -360,10 +360,9 @@ function initWarpMenu(categories) {
         setTimeout(function () {
             addClass(warpMenuContainer, 'notransition')
         }, 600);
-        if (warpButton.hasAttribute('aria-expanded')){
+        if (warpButton.hasAttribute('aria-expanded')) {
             warpButton.removeAttribute('aria-expanded');
-        }
-        else {
+        } else {
             warpButton.setAttribute('aria-expanded', 'true');
         }
     }
@@ -433,6 +432,7 @@ function loaded(menu) {
         initWarpMenu(model);
     }
 }
+
 if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
 
     // load css
