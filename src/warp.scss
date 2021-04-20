@@ -317,11 +317,11 @@ $desktop-view-column-width: 245px;
       .warp-menu-category-list {
         margin: 0;
 
-        a.warp-menu-home-button {
+        div.warp-menu-home-button {
           display: block;
           text-align: center;
 
-          div.img {
+          .img {
             width: 78.36px;
             height: 48px;
             display: inline-block;
@@ -584,7 +584,7 @@ $desktop-view-column-width: 245px;
       -ms-flex-pack: end;
       justify-content: flex-end;
 
-      label.warp-onboarding {
+      div.warp-onboarding {
         margin-right: 0;
         margin-bottom: 2em;
       }
