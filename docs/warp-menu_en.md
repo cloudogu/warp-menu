@@ -1,4 +1,4 @@
-# Warp Menu
+# GUI
 
 Translated with www.DeepL.com/Translator
 
