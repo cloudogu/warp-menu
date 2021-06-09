@@ -1,6 +1,6 @@
 ![Cloudogu logo](https://cloudogu.com/images/logo.png)
 
-[![GitHub license](https://img.shields.io/github/license/cloudogu/warp-menu.svg)](https://github.com/cloudogu/warp-menu/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/cloudogu/warp-menu.svg)](https://github.com/cloudogu/warp-menu/blob/develop/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/cloudogu/warp-menu.svg)](https://github.com/cloudogu/warp-menu/releases)
 
 # Warp-menu
