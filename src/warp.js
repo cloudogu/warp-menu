@@ -79,7 +79,8 @@ function getTranslations(language) {
             "onboardingHintToken": "Hinweis nicht mehr anzeigen",
             "Development Apps": "Entwicklung",
             "Administration Apps": "Administration",
-            "Documentation": "Dokumentation"
+            "Documentation": "Dokumentation",
+            "docsCloudoguComUrl": "CES-Dokumentation"
         };
     } else {
         return {
@@ -90,7 +91,8 @@ function getTranslations(language) {
             "onboardingHintToken": "Do not show this hint again",
             "Development Apps": "Development Apps",
             "Administration Apps": "Administration Apps",
-            "Documentation": "Documentation"
+            "Documentation": "Documentation",
+            "docsCloudoguComUrl": "CES-Dokumentation"
         };
     }
 }
@@ -269,11 +271,18 @@ function createMenu(categories) {
         }
     }
 
+    // fixed link to docs.cloudogu.com
+    informationEntries.push({
+        DisplayName: getLocalizedString("docsCloudoguComUrl"),
+        Href: createLink("https://docs.cloudogu.com")
+    });
+
     // fixed about page - entry
     informationEntries.push({
         DisplayName: getLocalizedString("aboutCloudoguToken"),
         Href: createLink("/info/index.html")
     });
+
     createMenuEntry("warpc.info", informationEntries, "Information", list);
 
     addLogoutMenuEntry(list);
