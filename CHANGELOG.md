@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Menu entry to docs.cloudogu.com
 - Makefile to build zip
 
-
 ## [v1.1.1](https://github.com/cloudogu/warp-menu/releases/tag/v1.1.1)
 ### Fixed
 - Reapplied lost changes in PR #23
