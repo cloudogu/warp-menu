@@ -80,7 +80,7 @@ function getTranslations(language) {
             "Development Apps": "Entwicklung",
             "Administration Apps": "Administration",
             "Documentation": "Dokumentation",
-            "docsCloudoguComUrl": "CES-Dokumentation"
+            "docsCloudoguComUrl": "Cloudogu EcoSystem Docs"
         };
     } else {
         return {
@@ -92,7 +92,7 @@ function getTranslations(language) {
             "Development Apps": "Development Apps",
             "Administration Apps": "Administration Apps",
             "Documentation": "Documentation",
-            "docsCloudoguComUrl": "CES Documentation"
+            "docsCloudoguComUrl": "Cloudogu EcoSystem Docs"
         };
     }
 }
