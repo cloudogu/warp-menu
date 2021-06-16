@@ -274,7 +274,8 @@ function createMenu(categories) {
     // fixed link to docs.cloudogu.com
     informationEntries.push({
         DisplayName: getLocalizedString("docsCloudoguComUrl"),
-        Href: createLink("https://docs.cloudogu.com")
+        Href: createLink("https://docs.cloudogu.com"),
+        Target: "external"
     });
 
     // fixed about page - entry
