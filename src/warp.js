@@ -92,7 +92,7 @@ function getTranslations(language) {
             "Development Apps": "Development Apps",
             "Administration Apps": "Administration Apps",
             "Documentation": "Documentation",
-            "docsCloudoguComUrl": "CES-Dokumentation"
+            "docsCloudoguComUrl": "CES Documentation"
         };
     }
 }
