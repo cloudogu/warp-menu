@@ -6,7 +6,7 @@
 # Warp-menu
 https://cloudogu.com
 
-Inside this repository lies the code for the Cloudogu warp-menu used to switch between single Dōgus in the browser.
+Inside this repository lies the code for the Cloudogu warp-menu used to switch between single Dogus in the browser.
 
 ### Quick start
 * Install dependencies with [npm](https://www.npmjs.com/) `npm install`
