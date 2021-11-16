@@ -72,6 +72,7 @@ function getCategoryKey(category) {
 function getTranslations(language) {
     if (language === "de") {
         return {
+            "myCloudogu": "myCloudogu",
             "aboutCloudoguToken": "&Uuml;ber Cloudogu",
             "menuToken": "Men&uuml;",
             "ecosystemLogoutToken": "EcoSystem Logout",
@@ -84,6 +85,7 @@ function getTranslations(language) {
         };
     } else {
         return {
+            "myCloudogu": "myCloudogu",
             "aboutCloudoguToken": "About Cloudogu",
             "menuToken": "Menu",
             "ecosystemLogoutToken": "EcoSystem Logout",
@@ -284,7 +286,13 @@ function createMenu(categories) {
         Href: createLink("/info/index.html")
     });
 
-    createMenuEntry("warpc.info", informationEntries, "Information", list);
+    //Link to community
+    informationEntries.push({
+        DisplayName: getLocalizedString("myCloudogu"),
+        Href: createLink("https://my.cloudogu.com")
+    });
+
+    createMenuEntry("warpc.info", informationEntries, "Support", list);
 
     addLogoutMenuEntry(list);
 
