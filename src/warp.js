@@ -127,6 +127,7 @@ function createMenuEntry(id, entries, title, list) {
         addClass(categoryListItemLink, 'warp-menu-target-link');
         if (currentEntry.Target && currentEntry.Target === 'external') {
             categoryListItemLink.target = '_blank';
+            addClass(categoryListItemLink, 'external');
         } else {
             categoryListItemLink.target = '_top';
         }
@@ -289,7 +290,8 @@ function createMenu(categories) {
     //Link to community
     informationEntries.push({
         DisplayName: getLocalizedString("myCloudogu"),
-        Href: createLink("https://my.cloudogu.com")
+        Href: createLink("https://my.cloudogu.com"),
+        Target: "external"
     });
 
     createMenuEntry("warpc.info", informationEntries, "Support", list);
