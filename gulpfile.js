@@ -33,6 +33,7 @@ var $ = require('gulp-load-plugins')();
 var del = require('del');
 var target = "target/warp";
 var info = require('./package.json');
+var sass = require('gulp-sass')(require('sass'));
 
 var config = {
   base64: {
@@ -44,15 +45,15 @@ var config = {
   logo: 'node_modules/ces-theme/dist/images/logo/blib-white-160px.png'
 };
 
-gulp.task('clean', function(cb){
-  del(['target', '.tmp'], cb);
-});
+gulp.task('clean', function(done){
+  return del(['target', '.tmp']);
+});//check
 
 gulp.task('images', function(){
   return gulp.src(['src/images/*.png', config.logo])
              .pipe($.imagemin())
              .pipe(gulp.dest('.tmp/images'));
-});
+});//check
 
 gulp.task('scripts', function(){
   return gulp.src(['src/*.js'])
@@ -60,84 +61,88 @@ gulp.task('scripts', function(){
              .pipe($.iife())
              .pipe($.uglify())
              .pipe(gulp.dest(target));
-});
+})//check
 
-gulp.task('stylesheets', ['images'], function(){
-  return gulp.src(['src/*.scss'])
-             .pipe($.sass())
+gulp.task('stylesheets', gulp.series('images', function(){
+  return gulp.src('src/*.scss')
+             .pipe(sass())
              .pipe($.autoprefixer(config.autoprefixer))
              .pipe($.concat('warp.css'))
              .pipe($.base64(config.base64))
              .pipe($.minifyCss())
              .pipe(gulp.dest(target));
-});
+}));//check
 
-gulp.task('default', ['scripts', 'stylesheets', 'images']);
+gulp.task('default', gulp.series('scripts', 'stylesheets', 'images'));
 
-gulp.task('release', ['scripts', 'stylesheets', 'images'], function(){
+gulp.task('release', gulp.series('scripts', 'stylesheets', 'images', function(){
   gulp.src('target/**')
       .pipe($.zip('warp-v' + info.version + '.zip'))
       .pipe(gulp.dest('target/'));
-});
+}));
 
 // code quality
 
-gulp.task('jshint', function(){
-  gulp.src('src/*.js')
+gulp.task('jshint', function(done){
+  return gulp.src('src/*.js')
       .pipe($.jshint())
       .pipe($.jshint.reporter('jshint-stylish'));
-});
+})//check
 
-gulp.task('csslint', function(){
-  gulp.src('src/*.css')
+gulp.task('csslint', function(done){
+  return gulp.src('src/*.css')
       .pipe($.csslint())
       .pipe($.csslint.reporter());
-})
+})//check
 
-gulp.task('lint', ['jshint', 'csslint']);
+gulp.task('lint', gulp.series('jshint', 'csslint'));//check
 
 // development tasks
 
-gulp.task('webserver', function(){
+gulp.task('webserver', function(done){
   connect.server({
     root: ['sample', '.tmp'],
     livereload: true,
     port: 8000
   });
-});
+  done();
+});//check
 
 gulp.task('sample-images', function(){
   return gulp.src(['src/images/*.png', config.logo])
              .pipe($.imagemin())
              .pipe(gulp.dest('.tmp/images'));
-});
+});//check
 
-gulp.task('sample-styles', ['sample-images'], function(){
-  gulp.src(['src/*.scss'])
-      .pipe($.sass())
+gulp.task('sample-styles', gulp.series('sample-images', function(){
+  return gulp.src(['src/*.scss'])
+      .pipe(sass())
       .pipe($.autoprefixer(config.autoprefixer))
       .pipe($.concat('warp.css'))
       .pipe($.base64(config.base64))
       .pipe(gulp.dest('.tmp/warp'));
-});
+}));//check
 
-gulp.task('sample', ['sample-styles'], function(){
-  gulp.src('src/*.js')
+gulp.task('sample', gulp.series('sample-styles', function(){
+  return gulp.src('src/*.js')
       .pipe($.concat('warp.js'))
       .pipe($.iife())
       .pipe(gulp.dest('.tmp/warp'));
-});
+}));//check
 
 gulp.task('reload', function(){
-  gulp.src('sample/index.html')
+  return gulp.src('sample/index.html')
       .pipe(connect.reload());
-});
+});//check
 
-gulp.task('watch', function(){
-  gulp.watch(['src/**', 'sample/index.html'], ['sample', 'reload']);
-});
+gulp.task('watch', async function(){
+  // return
+  // gulp.watch(['src/**', 'sample/index.html'], ['sample', 'reload']);
+  gulp.watch('src/**', gulp.series('sample'));
+  gulp.watch('sample/index.html', gulp.series('reload'));
+});//check
 
-gulp.task('serve', ['sample', 'webserver', 'watch'])
+gulp.task('serve', gulp.series('sample', 'webserver', 'watch'));
 
 // error handling
 
