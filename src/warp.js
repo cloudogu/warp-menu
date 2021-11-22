@@ -72,6 +72,7 @@ function getCategoryKey(category) {
 function getTranslations(language) {
     if (language === "de") {
         return {
+            "myCloudogu": "myCloudogu",
             "aboutCloudoguToken": "&Uuml;ber Cloudogu",
             "menuToken": "Men&uuml;",
             "ecosystemLogoutToken": "EcoSystem Logout",
@@ -84,6 +85,7 @@ function getTranslations(language) {
         };
     } else {
         return {
+            "myCloudogu": "myCloudogu",
             "aboutCloudoguToken": "About Cloudogu",
             "menuToken": "Menu",
             "ecosystemLogoutToken": "EcoSystem Logout",
@@ -125,6 +127,7 @@ function createMenuEntry(id, entries, title, list) {
         addClass(categoryListItemLink, 'warp-menu-target-link');
         if (currentEntry.Target && currentEntry.Target === 'external') {
             categoryListItemLink.target = '_blank';
+            addClass(categoryListItemLink, 'external');
         } else {
             categoryListItemLink.target = '_top';
         }
@@ -284,7 +287,14 @@ function createMenu(categories) {
         Href: createLink("/info/index.html")
     });
 
-    createMenuEntry("warpc.info", informationEntries, "Information", list);
+    //Link to community
+    informationEntries.push({
+        DisplayName: getLocalizedString("myCloudogu"),
+        Href: createLink("https://my.cloudogu.com"),
+        Target: "external"
+    });
+
+    createMenuEntry("warpc.info", informationEntries, "Support", list);
 
     addLogoutMenuEntry(list);
 
