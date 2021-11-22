@@ -350,6 +350,13 @@ $desktop-view-column-width: 245px;
             }
           }
 
+          a.external::after {
+            all: unset;
+            content: "\2000 \2bab";
+            display: inline-block;
+
+          }
+
           a.warp-menu-logout-link {
             display: inline-block;
             width: 100%;
