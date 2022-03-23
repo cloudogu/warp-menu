@@ -6,10 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.4.0](https://github.com/cloudogu/warp-menu/releases/tag/v1.4.0)
+### Changed
+- Changed the way the last category (support entries) are generated (#29)
+
 ## [v1.3.0](https://github.com/cloudogu/warp-menu/releases/tag/v1.3.0)
 ### Changed
-- add link to myCloudogu and regroup items to support (#27)
-- upgrade dependencies
+- Add link to myCloudogu and regroup items to support (#27)
+- Upgrade dependencies
 
 ## [v1.2.0](https://github.com/cloudogu/warp-menu/releases/tag/v1.2.0)
 ### Added
@@ -18,36 +22,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v1.1.1](https://github.com/cloudogu/warp-menu/releases/tag/v1.1.1)
 ### Fixed
-- Reapplied lost changes in PR #23
+- Reapplied lost changes in PR (#23)
 
 ## [v1.1.0](https://github.com/cloudogu/warp-menu/releases/tag/v1.1.0)
 ### Fixed
-- generate valid html (#20)
-- fix displayed quotation marks
-- change css to target fixed html (#20)
+- Generate valid html (#20)
+- Gix displayed quotation marks
+- Change css to target fixed html (#20)
 
 ### Changed
-- enable opening the warp menu by keyboard (#22)
-- replace empty link to create valid HTML (#18)
-- refactor naming of variables to be more verbose (#18)
+- Enable opening the warp menu by keyboard (#22)
+- Replace empty link to create valid HTML (#18)
+- Refactor naming of variables to be more verbose (#18)
 
 ## [v1.0.4](https://github.com/cloudogu/warp-menu/releases/tag/v1.0.4)
 ### Fixed
-- escape special characters like 'ö', 'ä', 'ü' (#15)
+- Escape special characters like 'ö', 'ä', 'ü' (#15)
 
 ## [v1.0.3](https://github.com/cloudogu/warp-menu/releases/tag/v1.0.3)
 ### Fixed
-- fix that the area around the menu button is not clickable
+- Fix that the area around the menu button is not clickable
 
 ## [v1.0.2](https://github.com/cloudogu/warp-menu/releases/tag/v1.0.2)
 ### Fixed
-- fix that some dogus affect the design of the warp menu
-- fix that the area around the tooltip is not clickable
-- make the warp menu wider in desktop view
+- Fix that some dogus affect the design of the warp menu
+- Fix that the area around the tooltip is not clickable
+- Make the warp menu wider in desktop view
 
 ## [v1.0.1](https://github.com/cloudogu/warp-menu/releases/tag/v1.0.1)
 ### Fixed
-- fix resize issue for large mobile displays
+- Fix resize issue for large mobile displays
 
 ## [v1.0.0](https://github.com/cloudogu/warp-menu/releases/tag/v1.0.0)
 ### Changed
