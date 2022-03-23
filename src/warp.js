@@ -281,6 +281,8 @@ function createMenu(categories) {
         }
     }
 
+    addLogoutMenuEntry(list);
+
     window.addEventListener('resize', setCorrectColumnCount);
     window.addEventListener('resize', setMenuCorrectPosition);
 
