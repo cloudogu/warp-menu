@@ -4,7 +4,6 @@ var desktopViewColumnWidthInPx = 245;
 var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
 
-var informationEntries = [];
 
 var lss = isLocalStorageSupported();
 
@@ -136,7 +135,7 @@ function createMenuEntry(id, entries, title, list) {
 
         // translate support entries which come without a display name
         categoryListItemLink.innerHTML = currentEntry.DisplayName;
-        if(isTranslateable(currentEntry.Title)){
+        if (isTranslateable(currentEntry.Title)) {
             categoryListItemLink.innerHTML = getLocalizedString(currentEntry.Title)
         }
 
@@ -266,19 +265,29 @@ function createMenu(categories) {
     var homeElement = createHomeWithImage();
     list.appendChild(homeElement);
 
+    var informationEntries = [];
+
     for (var c = 0; c < categories.length; c++) {
         var currentCategory = categories[c];
 
+        /*
+         * This Block shifts all entries in the menu.json which have the category "Information" into the support group
+         */
         if (currentCategory.Title.toUpperCase() === "INFORMATION") {
-            informationEntries = currentCategory.Entries;
-        } else {
-            var title = currentCategory.Title;
-            if (isTranslateable(title)) {
-                title = getLocalizedString(title);
-            }
-            var id = getCategoryKey(currentCategory);
-            createMenuEntry(id, currentCategory.Entries, title, list);
+            currentCategory.Entries.map(c => informationEntries.push(c))
+            continue;
         }
+        if (currentCategory.Title.toUpperCase() === "SUPPORT") {
+            informationEntries.map(e => currentCategory.Entries.unshift(e))
+        }
+        /*---*/
+
+        var title = currentCategory.Title;
+        if (isTranslateable(title)) {
+            title = getLocalizedString(title);
+        }
+        var id = getCategoryKey(currentCategory);
+        createMenuEntry(id, currentCategory.Entries, title, list);
     }
 
     addLogoutMenuEntry(list);
