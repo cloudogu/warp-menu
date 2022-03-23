@@ -22,7 +22,7 @@ etcdctl set config/nginx/externals/cloudogu '{"DisplayName": "Cloudogu","Descrip
 The last group of Warp Menu items is traditionally the Support group. Here you will find a link to external pages like [docs.cloudogu](https://docs.cloudogu.com/) and
 [mycloudogu.com](https://my.cloudogu.com/) as well as to the `about` page delivered by the nginx.
 By default, all these entries are enabled and stored in `config.yaml`.
-If you want to **not** show some of these entries you can set a key in the `etcd`.   
+If you want to hide some of these entries you can set a key in the `etcd`.   
 
 ```bash
 etcdctl get /config/_global/disabled_warpmenu_support_entries
