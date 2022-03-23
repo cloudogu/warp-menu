@@ -365,6 +365,18 @@
     ]
   },
   {
+    "Title": "Information",
+    "Order": 0,
+    "Entries": [
+      {
+        "DisplayName": "Privacy Policies",
+        "Href": "/static/privacy_policies.html",
+        "Title": "Contains information about the privacy policies enforced by our company",
+        "Target": "external"
+      }
+    ]
+  },
+  {
     "Title": "Support",
     "Entries": [
       {
