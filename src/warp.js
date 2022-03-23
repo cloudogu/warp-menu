@@ -125,6 +125,7 @@ function createMenuEntry(id, entries, title, list) {
         var categoryListItem = document.createElement('li');
         var categoryListItemLink = document.createElement('a');
         addClass(categoryListItemLink, 'warp-menu-target-link');
+
         if (currentEntry.Target && currentEntry.Target === 'external') {
             categoryListItemLink.target = '_blank';
             addClass(categoryListItemLink, 'external');
@@ -132,7 +133,13 @@ function createMenuEntry(id, entries, title, list) {
             categoryListItemLink.target = '_top';
         }
         categoryListItemLink.href = createLink(currentEntry.Href);
+
+        // translate support entries which come without a display name
         categoryListItemLink.innerHTML = currentEntry.DisplayName;
+        if(isTranslateable(currentEntry.Title)){
+            categoryListItemLink.innerHTML = getLocalizedString(currentEntry.Title)
+        }
+
         categoryListItem.appendChild(categoryListItemLink);
         categoryLinkList.appendChild(categoryListItem);
     }
@@ -273,30 +280,6 @@ function createMenu(categories) {
             createMenuEntry(id, currentCategory.Entries, title, list);
         }
     }
-
-    // fixed link to docs.cloudogu.com
-    informationEntries.push({
-        DisplayName: getLocalizedString("docsCloudoguComUrl"),
-        Href: createLink("https://docs.cloudogu.com"),
-        Target: "external"
-    });
-
-    // fixed about page - entry
-    informationEntries.push({
-        DisplayName: getLocalizedString("aboutCloudoguToken"),
-        Href: createLink("/info/index.html")
-    });
-
-    //Link to community
-    informationEntries.push({
-        DisplayName: getLocalizedString("myCloudogu"),
-        Href: createLink("https://my.cloudogu.com"),
-        Target: "external"
-    });
-
-    createMenuEntry("warpc.info", informationEntries, "Support", list);
-
-    addLogoutMenuEntry(list);
 
     window.addEventListener('resize', setCorrectColumnCount);
     window.addEventListener('resize', setMenuCorrectPosition);
