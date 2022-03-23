@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
-- Changed the way the last category; support entries at the end of the warp menu is generated (#29)
+- Changed the way the last category (support entries) are generated (#29)
 
 ## [v1.3.0](https://github.com/cloudogu/warp-menu/releases/tag/v1.3.0)
 ### Changed
