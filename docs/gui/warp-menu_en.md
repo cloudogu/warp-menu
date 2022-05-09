@@ -40,12 +40,12 @@ Depending on the width of your screen, it will be displayed either in two, three
 
 Mobile view on very small devices, e.g. a smartphone.
 
-![Warp Menu two columns: mobile](images/warp-menu/WarpMenuTwoColumns.png)
+![Warp Menu two columns: mobile](figures/warp-menu/WarpMenuTwoColumns.png)
 
 
 Mobile view on small devices, e.g. smartphone in landscape mode or tablet.
 
-![Warp menu three columns: mobile](images/warp-menu/WarpMenuThreeColumns.png)
+![Warp menu three columns: mobile](figures/warp-menu/WarpMenuThreeColumns.png)
 
 Mobile view on large mobile devices, e.g. cell phone in landscape mode or tablet.
 
