@@ -45,6 +45,11 @@ var config = {
   logo: 'node_modules/ces-theme/dist/images/logo/blib-white-160px.png'
 };
 
+gulp.task('copyfonts', function() {
+  return gulp.src('node_modules/ces-theme/dist/fonts/*.{ttf,woff,eot}')
+      .pipe(gulp.dest('.tmp/fonts'));
+});
+
 gulp.task('clean', function(done){
   return del(['target', '.tmp']);
 });
@@ -53,6 +58,11 @@ gulp.task('images', function(){
   return gulp.src(['src/images/*.png', config.logo])
              .pipe($.imagemin())
              .pipe(gulp.dest('.tmp/images'));
+});
+
+gulp.task('vectors', function(){
+  return gulp.src('src/images/*.svg')
+      .pipe(gulp.dest('.tmp/images'));
 });
 
 gulp.task('scripts', function(){
@@ -73,7 +83,7 @@ gulp.task('stylesheets', gulp.series('images', function(){
              .pipe(gulp.dest(target));
 }));
 
-gulp.task('default', gulp.series('scripts', 'stylesheets', 'images'));
+gulp.task('default', gulp.series('scripts', 'stylesheets', 'images', 'copyfonts', 'vectors'));
 
 gulp.task('release', gulp.series('scripts', 'stylesheets', 'images', function(){
   gulp.src('target/**')
@@ -140,7 +150,7 @@ gulp.task('watch', async function(){
   gulp.watch('sample/index.html', gulp.series('reload'));
 });
 
-gulp.task('serve', gulp.series('sample', 'webserver', 'watch'));
+gulp.task('serve', gulp.series('sample', 'webserver', 'copyfonts', 'vectors', 'watch' ));
 
 // error handling
 

@@ -1,7 +1,22 @@
 @import "../node_modules/ces-theme/src/scss/variables";
 
+/* Droid Sans */
+@font-face {
+  font-family: "Droid Sans";
+  src: url('../fonts/DroidSans-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Droid Sans Bold";
+  src: url('../fonts/DroidSans-Bold-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
 $gradient-darker-darker: #002f4d;
 $desktop-view-column-width: 245px;
+$font-family-sans-serif-bold: 'Droid Sans Bold';
 
 .warp-menu-container {
   all: initial;
@@ -172,7 +187,8 @@ $desktop-view-column-width: 245px;
   pointer-events: none;
   user-select: none;
   line-height: 1.75em !important;
-  font-family: Droid-sans, sans-serif;
+  //font-family: Droid-sans, sans-serif;
+  font-family: $font-family-sans-serif;
   font-size: 13px;
   letter-spacing: 0.0125em;
   display: flex;
@@ -352,9 +368,14 @@ $desktop-view-column-width: 245px;
 
           a.external::after {
             all: unset;
-            content: "\2000 \2bab";
+            content: "\2000";
             display: inline-block;
-
+            width:8px;
+            margin-left: 4px;
+            background-image: url("../images/external.svg");
+            background-size: contain;
+            background-position: center 60%;
+            background-repeat: no-repeat;
           }
 
           a.warp-menu-logout-link {
@@ -403,7 +424,7 @@ $desktop-view-column-width: 245px;
             cursor: pointer;
             display: block;
             font-size: 1.17em;
-            font-weight: bold;
+            font-family: $font-family-sans-serif-bold !important;
           }
         }
 
@@ -437,8 +458,14 @@ $desktop-view-column-width: 245px;
 
         a.warp-menu-logout-link::before {
           all: unset;
-          content: "\27A5 \2000";
-          font-size: 1.5em;
+          content:"\2000";
+          width:16px;
+          margin-right: 4px;
+          background-image: url("../images/logout.svg");
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+          display: inline-block;
         }
       }
     }
