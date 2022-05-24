@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.5.0](https://github.com/cloudogu/warp-menu/releases/tag/v1.5.0)
+### Added
+- fonts are copied into warp menu (#32)
+- new icons to replace unreliable special characters (#32)
+
+### Fixed
+- remove superfluous script
+- enable gulp to move fonts and svgs (#32)
+
 ## [v1.4.0](https://github.com/cloudogu/warp-menu/releases/tag/v1.4.0)
 ### Changed
 - Changed the way the last category (support entries) are generated (#29)
