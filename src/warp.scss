@@ -3,20 +3,20 @@
 /* Droid Sans */
 @font-face {
   font-family: "Droid Sans";
-  src: url('../fonts/DroidSans-webfont.woff') format('woff');
+  src: url('./fonts/DroidSans-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "Droid Sans Bold";
-  src: url('../fonts/DroidSans-Bold-webfont.woff') format('woff');
+  src: url('./fonts/DroidSans-Bold-webfont.woff') format('woff');
   font-weight: bold;
   font-style: normal;
 }
 
 $gradient-darker-darker: #002f4d;
 $desktop-view-column-width: 245px;
-$font-family-sans-serif-bold: 'Droid Sans Bold';
+$font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
 
 .warp-menu-container {
   all: initial;
@@ -372,7 +372,7 @@ $font-family-sans-serif-bold: 'Droid Sans Bold';
             display: inline-block;
             width:8px;
             margin-left: 4px;
-            background-image: url("../images/external.svg");
+            background-image: url(images/external.svg);
             background-size: contain;
             background-position: center 60%;
             background-repeat: no-repeat;
@@ -461,7 +461,7 @@ $font-family-sans-serif-bold: 'Droid Sans Bold';
           content:"\2000";
           width:16px;
           margin-right: 4px;
-          background-image: url("../images/logout.svg");
+          background-image: url(images/logout.svg);
           background-size: contain;
           background-position: center;
           background-repeat: no-repeat;

@@ -47,7 +47,8 @@ var config = {
 
 gulp.task('copyfonts', function() {
   return gulp.src('node_modules/ces-theme/dist/fonts/*.{ttf,woff,eot}')
-      .pipe(gulp.dest('.tmp/fonts'));
+      .pipe(gulp.dest('.tmp/warp/fonts'))
+      .pipe(gulp.dest('target/warp/fonts'));
 });
 
 gulp.task('clean', function(done){
