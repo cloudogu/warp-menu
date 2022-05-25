@@ -265,7 +265,7 @@ function createMenu(categories) {
     var homeElement = createHomeWithImage();
     list.appendChild(homeElement);
 
-    var informationEntries = [];
+    let informationEntries = [];
 
     for (var c = 0; c < categories.length; c++) {
         var currentCategory = categories[c];
@@ -278,7 +278,8 @@ function createMenu(categories) {
             continue;
         }
         if (currentCategory.Title.toUpperCase() === "SUPPORT") {
-            informationEntries.map(e => currentCategory.Entries.unshift(e))
+            informationEntries.map(e => currentCategory.Entries.unshift(e)) // prepends information entries to support category
+            informationEntries = [] // set to empty array, so we know the information entries have been mapped to support
         }
         /*---*/
 
@@ -288,6 +289,14 @@ function createMenu(categories) {
         }
         var id = getCategoryKey(currentCategory);
         createMenuEntry(id, currentCategory.Entries, title, list);
+    }
+
+    /**
+     * This catches the edge case when "Information" entries should be mapped to the "Support" category but no "Support"
+     * category is present.
+     */
+    if (informationEntries.length > 0) {
+        createMenuEntry("Support", informationEntries, "Support", list);
     }
 
     addLogoutMenuEntry(list);
