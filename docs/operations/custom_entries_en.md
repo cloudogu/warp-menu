@@ -19,12 +19,20 @@ The entries can be inserted with etcdctl e.g.:
 ```bash
 etcdctl set config/nginx/externals/cloudogu '{"DisplayName": "Cloudogu","Description": "Home of Cloudogu", "Category": "External Links", "URL": "https://cloudogu.com/"}'
 ```
-### Add own entries to `Support` category
-If desired, own links can be inserted into already existing `Support` category.
-For this purpose, the value `Information` must be stored in the key `"Category"`.
+
+### Add own entries to existing categories
+If desired, own links can be inserted into already existing categories.
+For this purpose, the value of the respective category must be stored in the respecting `"Category"`.
+
+The following (existing) mappings are possible:
+* `Development Apps` -> Development Apps
+* `Administration Apps` -> Administration Apps
+* `Documentation` -> Documentation
+* `Support`-> Support
+
 For example:
 ```bash
-etcdctl set config/nginx/externals/cloudogu '{"DisplayName": "This is a Support Link", "Description": "Link to my Support", "Category": "Information", "URL": "https://my.support.com/"}'
+etcdctl set config/nginx/externals/cloudogu '{"DisplayName": "This is a custom Link", "Description": "Link to my resource", "Category": "Development Apps", "URL": "https://my.stuff.com/"}'
 ```
 
 ## Hide `Support` category entries
