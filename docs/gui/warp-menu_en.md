@@ -16,14 +16,14 @@ links are displayed. Clicking on the respective link will redirect you to the co
 
 The Warp Menu is divided into the following sections:
 
-* Development
-* Administration
+* Development Apps
+* Administration Apps
 * Documentation
-* Information
+* Support
 
-In the development section you can find the Dogus Jenkins, Redmine, SCM-Manager, SonarQube and Sonatype Nexus and Swagger UI. Under Administration you can find the Dogus Cockpit and User Management. The Dogu Smeagol is located in the Documentation section. Under Information, the About Cloudogu page is linked. In this section you can also find other links. Among others, the user manual for the Cloudogu EcoSystem is linked there.
+In the development apps section you can find the Dogus Jenkins, Redmine, SCM-Manager, SonarQube and Sonatype Nexus and Swagger UI. Under Administration you can find the Dogus Cockpit and User Management. The Dogu Smeagol is located in the Documentation section. Under Support, the About Cloudogu page is linked. In this section you can also find other links. Among others, the user manual for the Cloudogu EcoSystem is linked there.
 
-![Warp Menu Tools](figures/warp-menu/WarpMenuFocus.png)
+![Warp Menu Tools](figures/warp-menu/WarpMenuFocus_en.png)
 
 
 ## Desktop view and mobile view
