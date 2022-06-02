@@ -243,50 +243,36 @@ function createHomeWithImage() {
 }
 
 function createMenu(categories) {
-    var menuContainer = document.createElement('div');
+    const menuContainer = document.createElement('div');
     menuContainer.id = 'warp-menu-column-menu';
     addClass(menuContainer, 'warp-menu-column-menu');
     addClass(menuContainer, 'menu-container-hide');
 
-    var shiftContainer = document.createElement('div');
+    const shiftContainer = document.createElement('div');
     shiftContainer.id = 'warp-menu-shift-container';
     addClass(shiftContainer, 'warp-menu-shift-container');
     menuContainer.appendChild(shiftContainer);
 
-    var overlay = document.createElement('div');
+    const overlay = document.createElement('div');
     addClass(overlay, 'warp-menu-gradient-overlay');
     shiftContainer.appendChild(overlay);
 
-    var list = document.createElement('ul');
+    const list = document.createElement('ul');
     addClass(list, 'warp-menu-category-list');
     list.id = 'warp-menu-category-list';
     shiftContainer.appendChild(list);
 
-    var homeElement = createHomeWithImage();
+    const homeElement = createHomeWithImage();
     list.appendChild(homeElement);
 
-    var informationEntries = [];
+    for (let c = 0; c < categories.length; c++) {
+        let currentCategory = categories[c];
 
-    for (var c = 0; c < categories.length; c++) {
-        var currentCategory = categories[c];
-
-        /*
-         * This Block shifts all entries in the menu.json which have the category "Information" into the support group
-         */
-        if (currentCategory.Title.toUpperCase() === "INFORMATION") {
-            currentCategory.Entries.map(c => informationEntries.push(c))
-            continue;
-        }
-        if (currentCategory.Title.toUpperCase() === "SUPPORT") {
-            informationEntries.map(e => currentCategory.Entries.unshift(e))
-        }
-        /*---*/
-
-        var title = currentCategory.Title;
+        let title = currentCategory.Title;
         if (isTranslateable(title)) {
             title = getLocalizedString(title);
         }
-        var id = getCategoryKey(currentCategory);
+        let id = getCategoryKey(currentCategory);
         createMenuEntry(id, currentCategory.Entries, title, list);
     }
 

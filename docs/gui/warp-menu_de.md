@@ -17,11 +17,11 @@ Das Warp Menü ist in folgende Bereiche unterteilt:
 * Entwicklung
 * Administration
 * Dokumentation
-* Information
+* Support
 
-Im Bereich Entwicklung befinden sich die Dogus Jenkins, Redmine, SCM-Manager, SonarQube und Sonatype Nexus und Swagger UI. Unter Administration sind die Dogus Cockpit und User Management zu finden. Das Dogu Smeagol befindet sich im Bereich Dokumentation. Unter Information ist die Seite "Über Cloudogu" verlinkt. In diesem Bereich können sich auch weitere Links befinden. Unter anderem ist dort das Benutzerhandbuch zum Cloudogu EcoSystem verlinkt.
+Im Bereich Entwicklung befinden sich Dogus wie Jenkins, Redmine, SCM-Manager, SonarQube und Sonatype Nexus und Swagger UI. Unter Administration sind die Dogus Cockpit und User Management zu finden. Das Dogu Smeagol befindet sich im Bereich Dokumentation. Unter Information ist die Seite "Über Cloudogu" verlinkt. In diesem Bereich können sich auch weitere Links befinden. Unter anderem ist dort das Benutzerhandbuch zum Cloudogu EcoSystem verlinkt.
 
-![Warp Menü Tools](figures/warp-menu/WarpMenuFocus.png)
+![Warp Menü Tools](figures/warp-menu/WarpMenuFocus_de.png)
 
 
 ## Desktopansicht und mobile Ansicht
