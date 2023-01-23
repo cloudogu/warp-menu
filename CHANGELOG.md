@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.7.0](https://github.com/cloudogu/warp-menu/releases/tag/v1.7.0)
+### Changed
+- Rename development apps to applications (#39)
+
+## [v1.6.0](https://github.com/cloudogu/warp-menu/releases/tag/v1.6.0)
+### Removed
+- removed information category mapping (#36) 
+### Changed
+- update configuration documentation
+
 ## [v1.5.0](https://github.com/cloudogu/warp-menu/releases/tag/v1.5.0)
 ### Added
 - fonts are copied into warp menu (#32)
