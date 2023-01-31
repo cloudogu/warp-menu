@@ -332,6 +332,7 @@ function setMenuCorrectPosition() {
 function initWarpMenu(categories) {
     var warpMenuContainer = document.createElement('div');
     addClass(warpMenuContainer, 'warp-menu-container');
+    addClass(warpMenuContainer, 'print-hidden');
     addClass(warpMenuContainer, 'notransition');
     warpMenuContainer.id = 'warp-menu-container';
 
