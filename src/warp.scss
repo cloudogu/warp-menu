@@ -775,3 +775,10 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
     }
   }
 }
+
+/*Hide warp menu for print*/
+@media print {
+  .print-hidden {
+    display: none !important;
+  }
+}
