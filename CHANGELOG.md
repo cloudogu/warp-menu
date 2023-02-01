@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.7.1](https://github.com/cloudogu/warp-menu/releases/tag/v1.7.1)
+### Fixed
+Remove Warp Menu from print layouts (#41)
+
 ## [v1.7.0](https://github.com/cloudogu/warp-menu/releases/tag/v1.7.0)
 ### Changed
 - Rename development apps to applications (#39)
