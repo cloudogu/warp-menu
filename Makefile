@@ -1,6 +1,6 @@
 WARP_MENU_VERSION:=v1.7.1
 ZIPFILE_NAME:=warp-$(WARP_MENU_VERSION).zip
-SHA_FILE_NAME:=$(ZIPFILE_NAME).zip.sha256
+SHA_FILE_NAME:=$(ZIPFILE_NAME).sha256
 
 .DEFAULT_GOAL:=package
 
@@ -9,6 +9,7 @@ clean-build:
 
 clean-zip:
 	rm -rf target/warp-*.zip
+	rm -rf target/warp-*.zip.sha256
 
 build: clean-build
 	gulp
