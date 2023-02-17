@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.7.2](https://github.com/cloudogu/warp-menu/releases/tag/v1.7.2)
+### Fixed
+- The menu will be collapsed when clicking outside (#43)
+
 ## [v1.7.1](https://github.com/cloudogu/warp-menu/releases/tag/v1.7.1)
 ### Fixed
 - Remove Warp Menu from print layouts (#41)
