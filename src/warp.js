@@ -379,10 +379,9 @@ function initWarpMenu(categories) {
     // hide menu
     document.onclick = function (e) {
         if (e && e.target) {
-            if (e.path === null || e.path === undefined) return;
-
-            var menuIsVisible = !hasClass(menuContainer, 'menu-container-hide');
-            var isClickOnMenu = e.path.indexOf(menuContainer) !== -1;
+            const menuIsVisible = !hasClass(menuContainer, 'menu-container-hide');
+            const targetParent = e.target.closest('#warp-menu-container');
+            const isClickOnMenu = targetParent !== undefined && targetParent !== null;
             if (menuIsVisible && !isClickOnMenu) {
                 toggleNav();
             }
