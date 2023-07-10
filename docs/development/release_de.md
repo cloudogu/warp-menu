@@ -9,6 +9,7 @@
             * `Branch name for production releases: [] master`
         * default-Werte bei allen anderen Angaben akzeptieren
 * WARP_MENU_VERSION=NEWVERSION in Makefile setzen
+* NEWVERSION in package.json ersetzen
 * `git add Makefile`
 * `git commit -m "Bump version"`
 * `CHANGELOG.md` pflegen (nach [keepachangelog.com](https://keepachangelog.com/en/1.0.0/))
