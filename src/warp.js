@@ -4,7 +4,6 @@ var desktopViewColumnWidthInPx = 245;
 var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
 
-
 var lss = isLocalStorageSupported();
 
 function toggleCollapsedInStorage(id) {
@@ -71,7 +70,7 @@ function getCategoryKey(category) {
 function getTranslations(language) {
     if (language === "de") {
         return {
-            "myCloudogu": "myCloudogu",
+            "platform": "cloudogu platform",
             "aboutCloudoguToken": "&Uuml;ber Cloudogu",
             "menuToken": "Men&uuml;",
             "ecosystemLogoutToken": "EcoSystem Logout",
@@ -84,7 +83,7 @@ function getTranslations(language) {
         };
     } else {
         return {
-            "myCloudogu": "myCloudogu",
+            "platform": "cloudogu platform",
             "aboutCloudoguToken": "About Cloudogu",
             "menuToken": "Menu",
             "ecosystemLogoutToken": "EcoSystem Logout",
