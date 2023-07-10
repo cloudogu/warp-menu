@@ -9,7 +9,7 @@ https://cloudogu.com
 Inside this repository lies the code for the Cloudogu warp-menu used to switch between single Dogus in the browser.
 
 ### Quick start
-* Install dependencies with [npm](https://www.npmjs.com/) `npm install` (Node v12.22.9 works)
+* Install dependencies with [yarn]([https://www.npmjs.com/](https://yarnpkg.com/)) `yarn install` (Node v12.22.9 works)
 * Execute [gulp](http://gulpjs.com/) `gulp`
 * Copy the target directory to `/var/www/warp`
 * Enable mod_substitute with `a2enmod substitute`
@@ -24,7 +24,7 @@ EOF
 ```
 
 ### Development
-* Install dependencies with [npm](https://www.npmjs.com/) `npm install` (Node v12.22.9 works)
+* Install dependencies with [yarn]([https://www.npmjs.com/](https://yarnpkg.com/)) `yarn install` (Node v12.22.9 works)
 * start web server with livereload on [port 8000](http://localhost:8000) with `gulp serve` 
 * execute jshint by typing `gulp jshint`
 * release build with `gulp`
@@ -37,7 +37,7 @@ The Cloudogu EcoSystem is an open platform, which lets you choose how and where 
 Want to talk to the Cloudogu team? Need help or support? There are several ways to get in touch with us:
 
 * [Website](https://cloudogu.com)
-* [myCloudogu-Forum](https://forum.cloudogu.com/topic/34?ctx=1)
+* [Cloudogu-Community-Forum](https://community.cloudogu.com/)
 * [Email hello@cloudogu.com](mailto:hello@cloudogu.com)
 
 ---

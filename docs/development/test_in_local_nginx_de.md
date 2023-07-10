@@ -2,7 +2,7 @@
 
 ## Baue warp-menu Artefakte und kopiere diese ins lokale Ecosystem
 innerhalb des Warp-Menü-Repos ausführen
-- npm install
+- yarn install
 - gulp
 - cp -r target/warp <ecosystem/root>
 

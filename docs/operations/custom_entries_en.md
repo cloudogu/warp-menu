@@ -37,7 +37,7 @@ etcdctl set config/nginx/externals/cloudogu '{"DisplayName": "This is a custom L
 
 ## Hide `Support` category entries
 The last group of Warp Menu items is traditionally the Support group. Here you will find a link to external pages like [docs.cloudogu](https://docs.cloudogu.com/) and
-[mycloudogu.com](https://my.cloudogu.com/) as well as to the `about` page delivered by the nginx.
+[platform.cloudogu.com](https://platform.cloudogu.com/en/) as well as to the `about` page delivered by the nginx.
 By default, all these entries are enabled and stored in `config.yaml`.
 If you want to hide some of these entries you can set a key in the `etcd`.   
 
@@ -47,12 +47,13 @@ etcdctl get /config/_global/disabled_warpmenu_support_entries
 
 The key contains, if filled, a json list of tokens which should not be displayed. The name of the tokens can be found in `config.yaml` in the 
 nginx.
-An example can be used with the command `etcdctl set /config/_global/disabled_warpmenu_support_entries '["myCloudogu", "aboutCloudoguToken"]'`.
-the link to [mycloudogu.com](https://my.cloudogu.com/) and to the `about` page should be removed.
+An example can be used with the command `etcdctl set /config/_global/disabled_warpmenu_support_entries '["platform", "aboutCloudoguToken"]'`.
+the link to [platform.cloudogu.com](https://platform.cloudogu.com/en/) and to the `about` page should be removed.
 If all entries are included in the `etcd` key the `support` group will not be displayed in the warp menu.
 
 Currently, three keys are defined:
-* `myCloudogu` - link to the __myCloudogu__ platform.
+* `myCloudogu` - link to the cloudogu platform => Kept for compatibility reasons. My Cloudogu no longer exists, it is now the cloudogu platform
+* `platform` - link to the cloudogu platform
 * `aboutCloudoguToken` - link to the __About__ page of Cloudogu GmbH
 * `docsCloudoguComUrl` - link to the documentation space of the Cloudogu ecosystem
 
