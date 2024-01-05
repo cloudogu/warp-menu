@@ -219,8 +219,8 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
   /*******************************************************************************************/
 
   // Warp Logo
-  --_warp-defaultLogo: url(/images/blib-white-160px.png);
-  --_warp-logo-url: var(--custom-warp-logo, var(--_defaultLogo));
+  --_warp-defaultLogo: url(images/blib-white-160px.png);
+  --_warp-logo-url: var(--custom-warp-logo, var(--_warp-defaultLogo));
   --_warp-logo-height: var(--custom-warp-logo-height, 48px);
   --_warp-logo-width: var(--custom-warp-logo-width, 78.36px);
   --_warp-logo-background: var(--custom-warp-logo-background, initial);
@@ -356,6 +356,7 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
             height: var(--_warp-logo-height);
             display: inline-block;
             background-image: var(--_warp-logo-url);
+            background-repeat: no-repeat;
             background-size: 100% auto;
           }
         }
