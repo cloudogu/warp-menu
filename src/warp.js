@@ -6,6 +6,11 @@ var body = document.getElementsByTagName('body')[0];
 
 var lss = isLocalStorageSupported();
 
+var customLogo = getComputedStyle(document.documentElement).getPropertyValue('--custom-warp-logo');
+if (customLogo.length > 0) {
+    console.log("custom logo found, place Powered by Cloudogu");
+}
+
 function toggleCollapsedInStorage(id) {
     if (!lss) return;
 
