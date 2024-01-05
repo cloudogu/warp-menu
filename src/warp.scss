@@ -215,6 +215,19 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
   }
 
   /*******************************************************************************************/
+  /**********************************Whitelabel Mapping***************************************/
+  /*******************************************************************************************/
+
+  // Warp Logo
+  --_warp-defaultLogo: url(/images/blib-white-160px.png);
+  --_warp-logo-url: var(--custom-warp-logo, var(--_defaultLogo));
+  --_warp-logo-height: var(--custom-warp-logo-height, 48px);
+  --_warp-logo-width: var(--custom-warp-logo-width, 78.36px);
+
+  --_brand-primary: var(--custom-brand-primary, var(--brand-primary, $brand-primary));
+
+
+  /*******************************************************************************************/
   /********************************Onboarding message box*************************************/
   /*******************************************************************************************/
 
@@ -338,11 +351,12 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
           text-align: center;
 
           .img {
-            width: 78.36px;
-            height: 48px;
+            
+            width: var(--_warp-logo-width);
+            height: var(--_warp-logo-height);
             display: inline-block;
-            background-image: url(images/blib-white-160px.png);
-            background-size: 100%;
+            background-image: var(--_warp-logo-url);
+            background-size: 100% auto;
           }
         }
 
@@ -384,7 +398,7 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
           }
 
           a.warp-menu-logout-link:hover {
-            background-color: $brand-primary;
+            background-color: var(--_brand-primary);
           }
 
           h3:not(.warpmenu-category-open) + ul {
@@ -411,7 +425,8 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
           }
 
           a.warp-menu-target-link:hover {
-            background-color: $brand-primary;
+            --_link-background-color: var(--custom-na-brand-primary, var(--brand-primary, $brand-primary));
+            background-color: var(--_link-background-color);
           }
 
           ul {
