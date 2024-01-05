@@ -223,6 +223,7 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
   --_warp-logo-url: var(--custom-warp-logo, var(--_defaultLogo));
   --_warp-logo-height: var(--custom-warp-logo-height, 48px);
   --_warp-logo-width: var(--custom-warp-logo-width, 78.36px);
+  --_warp-logo-background: var(--custom-warp-logo-background, initial);
 
   --_brand-primary: var(--custom-brand-primary, var(--brand-primary, $brand-primary));
 
@@ -351,7 +352,6 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
           text-align: center;
 
           .img {
-            
             width: var(--_warp-logo-width);
             height: var(--_warp-logo-height);
             display: inline-block;
@@ -445,7 +445,9 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
 
         > li:first-child {
           display: block;
-          padding: 0 0 1.33333em;
+          padding-top: 1.33333em;
+          padding-bottom: 1.33333em;
+          background-color: var(--_warp-logo-background);
           width: 100%;
         }
 
@@ -574,7 +576,6 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
         top: 0;
 
         .warp-menu-category-list {
-          padding: 1.33333em 0;
           display: inline-block;
           column-width: $desktop-view-column-width;
           column-fill: auto;
