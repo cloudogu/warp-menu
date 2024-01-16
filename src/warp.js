@@ -11,6 +11,61 @@ if (customLogo.length > 0) {
     console.log("custom logo found, place Powered by Cloudogu");
 }
 
+// Identify custom logo
+
+function updatePoweredByCloudogu() {
+    // Get the first list item
+    var firstListItem = document.querySelector('#warp-menu-category-list li:first-child');
+
+    // Check if the paragraph element already exists
+    var existingParagraph = firstListItem.querySelector('p');
+    
+    // Get the logo element
+    var logoElement = document.querySelector('.warp-menu-home-button .img');
+    var logoURL = getComputedStyle(logoElement).getPropertyValue('background-image');
+    
+    if (!logoURL.includes('spidey')) {
+        // Remove the paragraph element
+        if (existingParagraph){
+            firstListItem.removeChild(existingParagraph);
+        }
+        
+        return;
+    }
+    
+    if (!existingParagraph) {
+        // Create a new text node
+        var textNode = document.createTextNode('Powered by Cloudogu');
+
+        // Create a new paragraph element
+        var paragraphElement = document.createElement('p');
+
+        // Append the text node to the paragraph element
+        paragraphElement.appendChild(textNode);
+
+        // Append the paragraph element to the first list item
+        firstListItem.appendChild(paragraphElement);
+    }
+}
+
+function registerLogoObserver() {
+    
+    function handleClassChange(mutationsList, observer) {
+        for (var mutation of mutationsList) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                updatePoweredByCloudogu();    
+            }
+        }
+    }
+
+    var targetNode = document.documentElement;
+    var config = { attributes: true, attributeFilter: ['class'] };
+    var observer = new MutationObserver(handleClassChange);
+
+    observer.observe(targetNode, config);
+    updatePoweredByCloudogu();
+}
+
 function toggleCollapsedInStorage(id) {
     if (!lss) return;
 
@@ -398,6 +453,7 @@ function initWarpMenu(categories) {
     window.addEventListener('resize', setCorrectVh);
     setCorrectColumnCount();
     setMenuCorrectPosition();
+    registerLogoObserver();
 }
 
 function setCorrectColumnCount() {

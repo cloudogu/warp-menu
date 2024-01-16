@@ -1,6 +1,17 @@
-:root{
-    --custom-brand-primary: #209016;
-    --custom-warp-logo: url(/images/spidey.svg);
-    --custom-warp-logo-height: 90px;
-    --custom-warp-logo-background: black;
+.ces-whitelabel{
+    --colors-brand: #852c7a;
+    --colors-brand-stronger: #3f0f3a;
+}
+
+.ces-whitelabel-green{
+    --colors-brand: #37c43c;
+    --colors-brand-stronger: #1d5b0d;
+}
+
+.ces-whitelabel-spidey{
+    --warp-logo: url(/images/spidey.svg);
+    --warp-logo-height: 90px;
+    --warp-logo-width: 78.36px;
+    --warp-logo-background: #540303;
+    --colors-brand: #540303;
 }

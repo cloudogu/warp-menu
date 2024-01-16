@@ -18,6 +18,9 @@ $gradient-darker-darker: #002f4d;
 $desktop-view-column-width: 245px;
 $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
 
+$brand-primary: var(--colors-brand);
+$brand-primary-darker: var(--colors-brand-stronger);
+
 .warp-menu-container {
   all: initial;
 
@@ -215,20 +218,6 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
   }
 
   /*******************************************************************************************/
-  /**********************************Whitelabel Mapping***************************************/
-  /*******************************************************************************************/
-
-  // Warp Logo
-  --_warp-defaultLogo: url(images/blib-white-160px.png);
-  --_warp-logo-url: var(--custom-warp-logo, var(--_warp-defaultLogo));
-  --_warp-logo-height: var(--custom-warp-logo-height, 48px);
-  --_warp-logo-width: var(--custom-warp-logo-width, 78.36px);
-  --_warp-logo-background: var(--custom-warp-logo-background, initial);
-
-  --_brand-primary: var(--custom-brand-primary, var(--brand-primary, $brand-primary));
-
-
-  /*******************************************************************************************/
   /********************************Onboarding message box*************************************/
   /*******************************************************************************************/
 
@@ -262,11 +251,6 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
       -webkit-box-shadow: 0 0 15px -5px black;
       -moz-box-shadow: 0 0 15px -5px black;
       box-shadow: 0 0 15px -5px black;
-
-      // Match only IE
-      @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-        width: auto;
-      }
 
       .warp-onboarding-msg {
         margin: 0 0 0.5em;
@@ -352,10 +336,10 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
           text-align: center;
 
           .img {
-            width: var(--_warp-logo-width);
-            height: var(--_warp-logo-height);
+            width: var(--warp-logo-width, 78.36px);
+            height: var(--warp-logo-height, 48px);
             display: inline-block;
-            background-image: var(--_warp-logo-url);
+            background-image: var(--warp-logo, url(images/blib-white-160px.png));
             background-repeat: no-repeat;
             background-size: 100% auto;
           }
@@ -399,7 +383,7 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
           }
 
           a.warp-menu-logout-link:hover {
-            background-color: var(--_brand-primary);
+            background-color: $brand-primary;
           }
 
           h3:not(.warpmenu-category-open) + ul {
@@ -426,8 +410,7 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
           }
 
           a.warp-menu-target-link:hover {
-            --_link-background-color: var(--custom-na-brand-primary, var(--brand-primary, $brand-primary));
-            background-color: var(--_link-background-color);
+            background-color: $brand-primary;
           }
 
           ul {
@@ -445,10 +428,12 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
         }
 
         > li:first-child {
-          display: block;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           padding-top: 1.33333em;
           padding-bottom: 1.33333em;
-          background-color: var(--_warp-logo-background);
+          background-color: var(--warp-logo-background, initial);
           width: 100%;
         }
 
@@ -572,7 +557,6 @@ $font-family-sans-serif-bold: 'Droid Sans Bold', sans-serif;
         $gradient-start: 220px;
         $gradient-col-width: $desktop-view-column-width;
         background-image: repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
-        background-image: -ms-repeating-linear-gradient(to right, $brand-primary-darker, $brand-primary-darker $gradient-start, $brand-primary-darker $gradient-start, $gradient-darker-darker $gradient-col-width);
         left: 0;
         top: 0;
 
