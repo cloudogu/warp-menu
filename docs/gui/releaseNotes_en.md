@@ -6,6 +6,4 @@ Technical details on a release can be found in the corresponding [Changelog](htt
 
 ## Release 1.7.3
 
-**New functionalities**
-
 * The [Cloudogu Platform](https://platform.cloudogu.com/en/) can be accessed via the Warp Menu.
