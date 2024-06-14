@@ -1,4 +1,4 @@
-# Warp Menu
+# Documentation
 
 The Warp Menu helps you navigate through the Cloudogu EcoSystem. The Warp Menu allows you to access all dogus and quickly switch between them.
 
