@@ -1,4 +1,4 @@
-# Warp Menü
+# Dokumentation
 
 Das Warp Menü hilft Ihnen bei der Navigation durch das Cloudogu EcoSystem. Über das Warp Menü können Sie alle  Dogus erreichen und schnell zwischen diesen wechseln.
 
