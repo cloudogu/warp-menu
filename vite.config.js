@@ -63,6 +63,10 @@ export default defineConfig(({command, mode}) => {
                         dest: '../.tmp/images'
                     },
                     {
+                        src: 'src/*.js',
+                        dest: '../.tmp/warp'
+                    },
+                    {
                         src: 'warp.js',
                         dest: '../.tmp/warp'
                     },
