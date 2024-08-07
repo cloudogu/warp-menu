@@ -2,8 +2,6 @@ import { resolve } from 'path'
 import {defineConfig, loadEnv} from "vite";
 import viteImagemin from 'vite-plugin-imagemin'
 import {viteStaticCopy} from 'vite-plugin-static-copy'
-import cleanPlugin from 'vite-plugin-clean';
-
 
 /*
  * Copyright (c) 2013 - 2014, TRIOLOGY GmbH
@@ -48,7 +46,7 @@ export default defineConfig(({command, mode}) => {
                     },
                     {
                         src: 'node_modules/ces-theme/dist/fonts/*.{ttf,woff,eot}',
-                        dest: 'warp/fonts'
+                        dest: 'fonts'
                     },
                     {
                         src: 'src/images/*.svg',
@@ -73,14 +71,9 @@ export default defineConfig(({command, mode}) => {
                     {
                         src: 'src/images/*.png',
                         dest: '../.tmp/images'
-                    }
+                    },
                 ]
             }),
-            cleanPlugin(
-                {
-                    targetFiles: ['target', '../.tmp']
-                }
-            )
         ],
         define: {
             "process.env": process.env
@@ -89,23 +82,16 @@ export default defineConfig(({command, mode}) => {
             lib: {
                 entry: resolve(__dirname, 'src/warp.js'),
                 name: 'warp-menu',
-                fileName: 'warp-menu',
+                fileName: 'warp',
             },
             minify: true,
-            outDir: 'target',
+            outDir: 'target/warp',
             chunkSizeWarningLimit: 2048,
         }
     };
 
     if (command === "serve") {
         const env = loadEnv(mode, process.cwd(), "");
-        config["server"] = {
-            proxy: {
-                '/': {
-                    target: 'http://localhost:8080/'
-                }
-            }
-        }
     };
 
     return config;
