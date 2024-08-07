@@ -57,8 +57,14 @@ function addStylesheet(href, callback, scope){
     callback.call(scope || window, false, link);
   }, 15000);
 
-  head.appendChild( link );
-
+  // make sure warp.css is the first styles applied so it is overrideable
+  var otherStyles = document.querySelector('head link[rel="stylesheet"]');
+  if (otherStyles) {
+    otherStyles.parentNode.insertBefore(link, otherStyles);
+  } else {
+    head.appendChild(link);
+  }
+  
   var meta = document.createElement('meta');
   meta.name = 'viewport';
   meta.content = 'width=device-width, initial-scale=1';

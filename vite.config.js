@@ -44,45 +44,37 @@ export default defineConfig(({command, mode}) => {
                 targets: [
                     {
                         src: 'node_modules/ces-theme/dist/fonts/*.{ttf,woff,eot}',
-                        dest: '.tmp/warp/fonts'
+                        dest: '../.tmp/warp/fonts'
                     },
                     {
                         src: 'node_modules/ces-theme/dist/fonts/*.{ttf,woff,eot}',
-                        dest: 'target/warp/fonts'
+                        dest: 'warp/fonts'
                     },
                     {
                         src: 'src/images/*.svg',
-                        dest: '.tmp/images'
-                    },
-                    {
-                        src: 'src/images/*.svg',
-                        dest: '.tmp/images'
+                        dest: '../.tmp/images'
                     },
                     {
                         src: 'node_modules/ces-theme/dist/images/logo/blib-white-160px.png',
-                        dest: '.tmp/images'
+                        dest: '../.tmp/images'
                     },
                     {
                         src: 'src/images/*.png',
-                        dest: '.tmp/images'
-                    },
-                    {
-                        src: 'src/*.js',
-                        dest: '.tmp/warp'
+                        dest: '../.tmp/images'
                     },
                     {
                         src: 'warp.js',
-                        dest: '.tmp/warp'
+                        dest: '../.tmp/warp'
                     },
                     {
                         src: 'src/images/*.png',
-                        dest: '.tmp/images'
+                        dest: '../.tmp/images'
                     }
                 ]
             }),
             cleanPlugin(
                 {
-                    targetFiles: ['target', '.tmp']
+                    targetFiles: ['target', '../.tmp']
                 }
             )
         ],
