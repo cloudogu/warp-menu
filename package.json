@@ -2,6 +2,7 @@
   "name": "warp-menu",
   "version": "1.7.3",
   "license": "MIT",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/cloudogu/warp-menu"
@@ -27,6 +28,15 @@
     "gulp-zip": "^3.2.0",
     "jshint": "^2.13.1",
     "jshint-stylish": "^0.4.0",
-    "sass": "^1.43.4"
+    "sass": "^1.43.4",
+    "vite": "^5.3.5",
+    "vite-plugin-clean": "^1.0.0",
+    "vite-plugin-imagemin": "^0.6.1",
+    "vite-plugin-static-copy": "^1.0.6"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   }
 }
