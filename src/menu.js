@@ -1,3 +1,10 @@
+import {addClass, hasClass} from "./style.js";
+import {getLocalizedString, isTranslateable} from "./translation.js";
+import {getCategoryKey, isOpenCollapsible, toggleCategory} from "./toggle.js";
+import {setCorrectColumnCount} from "./warp.js";
+import {createLink} from "./utils.js";
+
+
 function createMenuEntry(id, entries, title, list) {
     var category = document.createElement('li');
     var categoryInsideContainer = document.createElement('div');
@@ -42,7 +49,7 @@ function createMenuEntry(id, entries, title, list) {
     list.appendChild(category);
 }
 
-function createMenu(categories) {
+export function createMenu(categories) {
     const menuContainer = document.createElement('div');
     menuContainer.id = 'warp-menu-column-menu';
     addClass(menuContainer, 'warp-menu-column-menu');
@@ -99,7 +106,7 @@ function createMenu(categories) {
     return menuContainer;
 }
 
-function setMenuCorrectPosition() {
+export function setMenuCorrectPosition() {
     var container = document.getElementById('warp-menu-container');
     var menu = document.getElementById('warp-menu-column-menu');
     var largeScreen = window.matchMedia("(min-width: 897px)");
@@ -129,7 +136,7 @@ function setMenuCorrectPosition() {
     }
 }
 
-function createHomeWithImage() {
+export function createHomeWithImage() {
     var homeListElement = document.createElement('li');
     var homeContainer = document.createElement('div');
     addClass(homeContainer, 'warp-menu-home-button');
@@ -140,7 +147,7 @@ function createHomeWithImage() {
     return homeListElement;
 }
 
-function addLogoutMenuEntry(list) {
+export function addLogoutMenuEntry(list) {
     var placeholder = document.createElement('li');
     addClass(placeholder, 'warp-menu-logout-placeholder');
     var placeholderChild = document.createElement('div');

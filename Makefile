@@ -12,7 +12,7 @@ clean-zip:
 	rm -rf target/warp-*.zip.sha256
 
 build: clean-build
-	gulp
+	vite build
 
 package: build clean-zip
 	cd target; zip -r $(ZIPFILE_NAME) warp

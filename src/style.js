@@ -1,30 +1,33 @@
 // classie
 // https://github.com/desandro/classie
 
-function classReg(className) {
+
+import {head} from "./warp.js";
+
+export function classReg(className) {
   return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
 }
 
-function hasClass(elem, c) {
+export function hasClass(elem, c) {
   return classReg(c).test(elem.className);
 }
 
-function addClass( elem, c ) {
+export function addClass( elem, c ) {
   if ( !hasClass(elem, c) ) {
     elem.className = elem.className + ' ' + c;
   }
 }
 
-function removeClass(elem, c) {
+export function removeClass(elem, c) {
   elem.className = elem.className.replace(classReg( c ), ' ');
 }
 
-function toggleClass(elem, c) {
+export function toggleClass(elem, c) {
   var fn = hasClass(elem, c) ? removeClass : addClass;
   fn(elem, c);
 }
 
-function addStylesheet(href, callback, scope){
+export function addStylesheet(href, callback, scope){
   // http://thudjs.tumblr.com/post/637855087/stylesheet-onload-or-lack-thereof
   var link = document.createElement('link');
   link.setAttribute('href', href);

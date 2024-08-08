@@ -1,6 +1,11 @@
+import {addClass, toggleClass} from "./style.js";
+import {setCorrectColumnCount} from "./warp.js";
+import {getLocalizedString} from "./translation.js";
+import {isLocalStorageSupported} from "./utils.js";
+
 var lss = isLocalStorageSupported();
 
-function toggleCollapsedInStorage(id) {
+export function toggleCollapsedInStorage(id) {
     if (!lss) return;
 
     if (localStorage.getItem(id) === null || localStorage.getItem(id) === 'true') {
@@ -10,17 +15,17 @@ function toggleCollapsedInStorage(id) {
     }
 }
 
-function isOpenCollapsible(id) {
+export function isOpenCollapsible(id) {
     if (!lss) return true;
 
     return localStorage.getItem(id) === 'true' || localStorage.getItem(id) === null;
 }
 
-function getCategoryKey(category) {
+export function getCategoryKey(category) {
     return "warpc." + category.Title.toLowerCase().replace(/\s+/g, "_");
 }
 
-function toggleCategory(e) {
+export function toggleCategory(e) {
     var target = e.target;
     toggleClass(target, 'warpmenu-category-open');
     toggleCollapsedInStorage(target.id);
@@ -28,7 +33,7 @@ function toggleCategory(e) {
 }
 
 
-function createToggleButton() {
+export function createToggleButton() {
     var toggleColumn = document.createElement('div');
     addClass(toggleColumn, 'warp-menu-column-toggle');
 

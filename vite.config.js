@@ -42,7 +42,7 @@ export default defineConfig(({command, mode}) => {
                 targets: [
                     {
                         src: 'node_modules/ces-theme/dist/fonts/*.{ttf,woff,eot}',
-                        dest: '../.tmp/warp/fonts'
+                        dest: '../../.tmp/warp/fonts'
                     },
                     {
                         src: 'node_modules/ces-theme/dist/fonts/*.{ttf,woff,eot}',
@@ -50,41 +50,45 @@ export default defineConfig(({command, mode}) => {
                     },
                     {
                         src: 'src/images/*.svg',
-                        dest: '../.tmp/images'
+                        dest: '../../.tmp/images'
                     },
                     {
                         src: 'node_modules/ces-theme/dist/images/logo/blib-white-160px.png',
-                        dest: '../.tmp/images'
+                        dest: '../../.tmp/images'
                     },
                     {
                         src: 'src/images/*.png',
-                        dest: '../.tmp/images'
+                        dest: '../../.tmp/images'
                     },
                     {
-                        src: 'src/*.js',
-                        dest: '../.tmp/warp'
-                    },
-                    {
-                        src: 'warp.js',
-                        dest: '../.tmp/warp'
+                        src: 'src/*.css',
+                        dest: '../../.tmp/warp'
                     },
                     {
                         src: 'src/images/*.png',
-                        dest: '../.tmp/images'
+                        dest: '../../.tmp/images'
+                    },
+                    {
+                        src: 'sample/*',
+                        dest: '../../.tmp'
                     },
                 ]
             }),
         ],
-        define: {
-            "process.env": process.env
-        },
         build: {
+            target: ['es2023'],
             lib: {
                 entry: resolve(__dirname, 'src/warp.js'),
-                name: 'warp-menu',
+                name: 'warp',
                 fileName: 'warp',
+                formats: ['es', 'esm'],
+                filename: (format) => ({
+                    es: `warp.js`,
+                    esm: `warp.min.js`,
+                })[format]
             },
             minify: true,
+            cssMinify: true,
             outDir: 'target/warp',
             chunkSizeWarningLimit: 2048,
         }
@@ -92,7 +96,7 @@ export default defineConfig(({command, mode}) => {
 
     if (command === "serve") {
         const env = loadEnv(mode, process.cwd(), "");
-    };
+    }
 
     return config;
 });

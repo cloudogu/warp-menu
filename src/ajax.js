@@ -1,4 +1,4 @@
-function ajax(url, success) {
+export function ajax(url, success) {
 	var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	xhr.open('GET', url);
 	xhr.onreadystatechange = function() {

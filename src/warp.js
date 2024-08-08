@@ -1,10 +1,17 @@
+import {addClass, addStylesheet, hasClass, removeClass} from "./style.js";
+import {createTooltip, isTooltipDisabled} from "./tooltip.js";
+import {createToggleButton} from "./toggle.js";
+import {setMenuCorrectPosition} from "./menu.js";
+import {setCorrectVh} from "./utils.js";
+import {ajax} from "./ajax.js";
+
 var desktopViewColumnWidthInPx = 245;
 
-var head = document.getElementsByTagName('head')[0];
+export var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
 
 
-function initWarpMenu(categories) {
+export function initWarpMenu(categories) {
     var warpMenuContainer = document.createElement('div');
     addClass(warpMenuContainer, 'warp-menu-container');
     addClass(warpMenuContainer, 'print-hidden');
@@ -71,7 +78,7 @@ function initWarpMenu(categories) {
     setMenuCorrectPosition();
 }
 
-function setCorrectColumnCount() {
+export function setCorrectColumnCount() {
     var list = document.getElementById('warp-menu-category-list');
     var shiftContainer = document.getElementById('warp-menu-shift-container');
     var columnCount = 0;
@@ -98,7 +105,7 @@ function setCorrectColumnCount() {
 var asyncCounter = 0;
 var model;
 
-function loaded(menu) {
+export function loaded(menu) {
     if (menu) {
         model = menu;
     }

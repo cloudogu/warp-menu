@@ -1,4 +1,7 @@
-function createTooltip() {
+import {addClass} from "./style.js";
+import {getLocalizedString} from "./translation.js";
+
+export function createTooltip() {
     var tooltipColumn = document.createElement('div');
     addClass(tooltipColumn, 'warp-menu-column-tooltip');
 
@@ -38,7 +41,7 @@ function createTooltip() {
     return tooltipColumn;
 }
 
-function isTooltipDisabled() {
+export function isTooltipDisabled() {
     if (!lss) return false;
 
     var tooltipConfig = localStorage.getItem('warpMenuHideTooltip');

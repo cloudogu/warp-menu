@@ -1,4 +1,4 @@
-function getLanguage() {
+export function getLanguage() {
     var language = navigator.languages ?
         navigator.languages[0] :
         (navigator.language || navigator.userLanguage || navigator.browserLanguage);
@@ -6,19 +6,19 @@ function getLanguage() {
     return language.split("-")[0];
 }
 
-function getLocalizedString(key) {
+export function getLocalizedString(key) {
     var language = getLanguage();
     var translations = getTranslations(language);
     return translations[key];
 }
 
-function isTranslateable(key) {
+export function isTranslateable(key) {
     var language = getLanguage();
     var translations = getTranslations(language);
     return translations.hasOwnProperty(key);
 }
 
-function getTranslations(language) {
+export function getTranslations(language) {
     if (language === "de") {
         return {
             "platform": "cloudogu platform",
