@@ -1,7 +1,7 @@
-import {addClass, addStylesheet, hasClass, removeClass} from "./style.js";
+import {addClass, addStylesheet, hasClass, removeClass, toggleClass} from "./style.js";
 import {createTooltip, isTooltipDisabled} from "./tooltip.js";
 import {createToggleButton} from "./toggle.js";
-import {setMenuCorrectPosition} from "./menu.js";
+import {createMenu, setMenuCorrectPosition} from "./menu.js";
 import {setCorrectVh} from "./utils.js";
 import {ajax} from "./ajax.js";
 

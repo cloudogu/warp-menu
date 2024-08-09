@@ -3,7 +3,7 @@ import {setCorrectColumnCount} from "./warp.js";
 import {getLocalizedString} from "./translation.js";
 import {isLocalStorageSupported} from "./utils.js";
 
-var lss = isLocalStorageSupported();
+export var lss = isLocalStorageSupported();
 
 export function toggleCollapsedInStorage(id) {
     if (!lss) return;

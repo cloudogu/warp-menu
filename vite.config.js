@@ -1,7 +1,4 @@
-import { resolve } from 'path'
 import {defineConfig, loadEnv} from "vite";
-import viteImagemin from 'vite-plugin-imagemin'
-import {viteStaticCopy} from 'vite-plugin-static-copy'
 
 /*
  * Copyright (c) 2013 - 2014, TRIOLOGY GmbH
@@ -32,60 +29,15 @@ import {viteStaticCopy} from 'vite-plugin-static-copy'
 
 export default defineConfig(({command, mode}) => {
     const config = {
-        plugins: [
-            viteImagemin(
-                {
-                    optipng: {optimizationLevel: 7}
-                }
-            ),
-            viteStaticCopy({
-                targets: [
-                    {
-                        src: 'node_modules/ces-theme/dist/fonts/*.{ttf,woff,eot}',
-                        dest: '../../.tmp/warp/fonts'
-                    },
-                    {
-                        src: 'node_modules/ces-theme/dist/fonts/*.{ttf,woff,eot}',
-                        dest: 'fonts'
-                    },
-                    {
-                        src: 'src/images/*.svg',
-                        dest: '../../.tmp/images'
-                    },
-                    {
-                        src: 'node_modules/ces-theme/dist/images/logo/blib-white-160px.png',
-                        dest: '../../.tmp/images'
-                    },
-                    {
-                        src: 'src/images/*.png',
-                        dest: '../../.tmp/images'
-                    },
-                    {
-                        src: 'src/*.css',
-                        dest: '../../.tmp/warp'
-                    },
-                    {
-                        src: 'src/images/*.png',
-                        dest: '../../.tmp/images'
-                    },
-                    {
-                        src: 'sample/*',
-                        dest: '../../.tmp'
-                    },
-                ]
-            }),
-        ],
         build: {
-            target: ['es2023'],
-            lib: {
-                entry: resolve(__dirname, 'src/warp.js'),
-                name: 'warp',
-                fileName: 'warp',
-                formats: ['es', 'esm'],
-                filename: (format) => ({
-                    es: `warp.js`,
-                    esm: `warp.min.js`,
-                })[format]
+            rollupOptions: {
+                input: {
+                    main: './src/warp.js',
+                },
+                output: {
+                    format: 'iife',
+                    entryFileNames: 'warp.js',
+                },
             },
             minify: true,
             cssMinify: true,
