@@ -1,7 +1,7 @@
 import {addClass, hasClass} from "./style.js";
 import {getLocalizedString, isTranslateable} from "./translation.js";
 import {getCategoryKey, isOpenCollapsible, toggleCategory} from "./toggle.js";
-import {setCorrectColumnCount} from "./warp.js";
+import {setCorrectColumnCount, warp} from "./warp.js";
 import {createLink} from "./utils.js";
 
 
@@ -107,8 +107,8 @@ export function createMenu(categories) {
 }
 
 export function setMenuCorrectPosition() {
-    var container = document.getElementById('warp-menu-container');
-    var menu = document.getElementById('warp-menu-column-menu');
+    var container = warp.shadowRoot.getElementById('warp-menu-container');
+    var menu = warp.shadowRoot.getElementById('warp-menu-column-menu');
     var largeScreen = window.matchMedia("(min-width: 897px)");
 
     // Move the warp menu into screen (So it is visible)
