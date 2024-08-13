@@ -8,14 +8,11 @@
   },
   "devDependencies": {
     "ces-theme": "https://github.com/cloudogu/ces-theme.git",
-    "del": "^2.2.0",
-    "jshint": "^2.13.1",
-    "jshint-stylish": "^0.4.0",
-    "sass": "^1.43.4",
+    "eslint": "^9.9.0",
+    "prettier": "^3.3.3",
     "vite": "^5.3.5",
-    "vite-plugin-clean": "^1.0.0",
-    "vite-plugin-imagemin": "^0.6.1",
-    "vite-plugin-static-copy": "^1.0.6"
+    "vite-plugin-static-copy": "^1.0.6",
+    "vite-plugin-zip-file": "^3.1.0"
   },
   "scripts": {
     "dev": "vite",

@@ -3,7 +3,7 @@
 ## Baue warp-menu Artefakte und kopiere diese ins lokale Ecosystem
 innerhalb des Warp-Menü-Repos ausführen
 - yarn install
-- gulp
+- vite build
 - cp -r target/warp <ecosystem/root>
 
 ## Kopieren von warp-menu Artefakten in den nginx Container

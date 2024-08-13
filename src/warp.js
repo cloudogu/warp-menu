@@ -155,7 +155,7 @@ if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
     warp.asyncCounter++;
     addStylesheet('/warp/warp.css', function (success) {
         if (success) {
-            loaded();
+            window.onload = loaded;
         }
     });
 
