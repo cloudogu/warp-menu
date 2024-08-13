@@ -7,7 +7,6 @@
     "url": "https://github.com/cloudogu/warp-menu"
   },
   "devDependencies": {
-    "ces-theme": "https://github.com/cloudogu/ces-theme.git",
     "eslint": "^9.9.0",
     "prettier": "^3.3.3",
     "vite": "^5.3.5",

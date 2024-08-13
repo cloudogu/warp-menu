@@ -5,112 +5,84 @@ import {createMenu, setMenuCorrectPosition} from "./menu.js";
 import {setCorrectVh} from "./utils.js";
 import {ajax} from "./ajax.js";
 
+var desktopViewColumnWidthInPx = 245;
 
-export class Warp extends HTMLElement{
+export var head = document.getElementsByTagName('head')[0];
+var body = document.getElementsByTagName('body')[0];
 
-    constructor() {
-        super();
 
-        const shadowRoot = this.attachShadow({mode: "open"});
-        fetch('warp/warp.css').then(response => response.text()).then(css => {
-            const style = document.createElement("style");
-            style.textContent = css;
-            shadowRoot.appendChild(style);
-        })
-    }
-    
-    _asyncCounter = 0;
-    _model;
+export function initWarpMenu(categories) {
+    var warpMenuContainer = document.createElement('div');
+    addClass(warpMenuContainer, 'warp-menu-container');
+    addClass(warpMenuContainer, 'print-hidden');
+    addClass(warpMenuContainer, 'notransition');
+    warpMenuContainer.id = 'warp-menu-container';
 
-    initWarpMenu(categories) {
-        var warpMenuContainer = document.createElement('div');
-        addClass(warpMenuContainer, 'warp-menu-container');
-        addClass(warpMenuContainer, 'print-hidden');
-        addClass(warpMenuContainer, 'notransition');
-        warpMenuContainer.id = 'warp-menu-container';
+    var tooltipColumn = createTooltip();
+    var toggleResult = createToggleButton();
+    var menuContainer = createMenu(categories);
 
-        var tooltipColumn = createTooltip();
-        var toggleResult = createToggleButton();
-        var menuContainer = createMenu(categories);
+    function toggleNav() {
+        var warpButton = document.getElementById("warp-menu-warpbtn");
+        if (hasClass(warpMenuContainer, 'collapsing')) {
+            return;
+        }
+        removeClass(warpMenuContainer, 'notransition');
 
-        function toggleNav() {
-            var warpButton = document.getElementById("warp-menu-warpbtn");
-            if (hasClass(warpMenuContainer, 'collapsing')) {
-                return;
-            }
-            removeClass(warpMenuContainer, 'notransition');
+        addClass(warpMenuContainer, 'collapsing');
+        toggleClass(menuContainer, 'menu-container-hide');
+        setTimeout(function () {
+            removeClass(warpMenuContainer, 'collapsing');
+        }, 300);
 
-            addClass(warpMenuContainer, 'collapsing');
-            toggleClass(menuContainer, 'menu-container-hide');
-            setTimeout(function () {
-                removeClass(warpMenuContainer, 'collapsing');
-            }, 300);
-
-            if (!hasClass(warpMenuContainer, 'menu-container-hide')) {
-                setCorrectColumnCount();
-            }
-
-            setMenuCorrectPosition();
-            setTimeout(function () {
-                addClass(warpMenuContainer, 'notransition')
-            }, 600);
-            if (warpButton.hasAttribute('aria-expanded')) {
-                warpButton.removeAttribute('aria-expanded');
-            } else {
-                warpButton.setAttribute('aria-expanded', 'true');
-            }
+        if (!hasClass(warpMenuContainer, 'menu-container-hide')) {
+            setCorrectColumnCount();
         }
 
-        toggleResult.toggle.onclick = toggleNav;
-
-        if (!isTooltipDisabled()) {
-            warpMenuContainer.appendChild(tooltipColumn);
-        }
-        warpMenuContainer.appendChild(toggleResult.toggleColumn);
-        warpMenuContainer.appendChild(menuContainer);
-
-        // hide menu
-        document.onclick = function (e) {
-            if (e && e.target) {
-                const menuIsVisible = !hasClass(menuContainer, 'menu-container-hide');
-                const targetParent = e.target.closest('#warp-menu-container');
-                const isClickOnMenu = targetParent !== undefined && targetParent !== null;
-                if (menuIsVisible && !isClickOnMenu) {
-                    toggleNav();
-                }
-            }
-        };
-
-        this.shadowRoot.appendChild(warpMenuContainer);
-        // body.appendChild(warpMenuContainer);
-
-        setCorrectVh();
-        window.addEventListener('resize', setCorrectVh);
-        this.setCorrectColumnCount();
         setMenuCorrectPosition();
+        setTimeout(function () {
+            addClass(warpMenuContainer, 'notransition')
+        }, 600);
+        if (warpButton.hasAttribute('aria-expanded')) {
+            warpButton.removeAttribute('aria-expanded');
+            menuContainer.setAttribute('aria-hidden', 'true');
+        } else {
+            warpButton.setAttribute('aria-expanded', 'true');
+            menuContainer.removeAttribute('aria-hidden');
+        }
     }
 
-    get asyncCounter() {
-        return this._asyncCounter;
-    }
+    toggleResult.toggle.onclick = toggleNav;
 
-    set asyncCounter(counter) {
-        this._asyncCounter = counter;
+    if (!isTooltipDisabled()) {
+        warpMenuContainer.appendChild(tooltipColumn);
     }
+    warpMenuContainer.appendChild(toggleResult.toggleColumn);
+    warpMenuContainer.appendChild(menuContainer);
 
-    get model() {
-        return this._model;
-    }
+    // hide menu
+    document.onclick = function (e) {
+        if (e && e.target) {
+            const menuIsVisible = !hasClass(menuContainer, 'menu-container-hide');
+            const targetParent = e.target.closest('#warp-menu-container');
+            const isClickOnMenu = targetParent !== undefined && targetParent !== null;
+            if (menuIsVisible && !isClickOnMenu) {
+                toggleNav();
+            }
+        }
+    };
 
-    set model(model) {
-        this._model = model;
-    }
+    body.appendChild(warpMenuContainer);
+
+    setCorrectVh();
+    window.addEventListener('resize', setCorrectVh);
+    setCorrectColumnCount();
+    setMenuCorrectPosition();
 }
 
-
 export function setCorrectColumnCount() {
-    var list = warp.shadowRoot.getElementById('warp-menu-category-list');
-    var shiftContainer = warp.shadowRoot.getElementById('warp-menu-shift-container');
+    var list = document.getElementById('warp-menu-category-list');
+    var shiftContainer = document.getElementById('warp-menu-shift-container');
     var columnCount = 0;
 
     for (var i = 0; i < list.childNodes.length; i++) {
@@ -132,34 +104,30 @@ export function setCorrectColumnCount() {
     }
 }
 
-function loaded(menu) {
-    if (menu) {
-        warp.model = menu;
-    }
-    warp.asyncCounter--;
+var asyncCounter = 0;
+var model;
 
-    if (warp.asyncCounter === 0) {
-        warp.initWarpMenu(warp.model);
+export function loaded(menu) {
+    if (menu) {
+        model = menu;
+    }
+    --asyncCounter;
+    if (asyncCounter === 0) {
+        initWarpMenu(model);
     }
 }
 
-customElements.define("warp-menu", Warp)
-export const warp = document.querySelector('warp-menu');
-export var head = document.getElementsByTagName('head')[0];
-
-var desktopViewColumnWidthInPx = 245;
-var body = document.getElementsByTagName('body')[0];
-
 if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
+
     // load css
-    warp.asyncCounter++;
+    asyncCounter++;
     addStylesheet('/warp/warp.css', function (success) {
         if (success) {
-            window.onload = loaded;
+            loaded();
         }
     });
 
     // load model
-    warp.asyncCounter++;
+    asyncCounter++;
     ajax('/warp/menu.json', loaded);
 }
