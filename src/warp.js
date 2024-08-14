@@ -10,13 +10,25 @@ var desktopViewColumnWidthInPx = 245;
 export var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
 
+const warpMenuContainerHtml = `
+<div class="text-danger warp-menu-container print-hidden notransition" id="warp-menu-container">
+</div>
+`;
+
+function createHtml(htmlString) {
+    const test = "text-danger";
+    const element = document.createElement("div");
+    element.innerHTML = htmlString;
+    element.classList.add("text-danger");
+    return element.firstElementChild;
+}
 
 export function initWarpMenu(categories) {
-    var warpMenuContainer = document.createElement('div');
-    addClass(warpMenuContainer, 'warp-menu-container');
-    addClass(warpMenuContainer, 'print-hidden');
-    addClass(warpMenuContainer, 'notransition');
-    warpMenuContainer.id = 'warp-menu-container';
+    const warpMenuRoot = document.createElement('div');
+    warpMenuRoot.id = 'warp-menu-root';
+
+    const warpMenuContainer = createHtml(warpMenuContainerHtml);
+    warpMenuRoot.appendChild(warpMenuContainer);
 
     var tooltipColumn = createTooltip();
     var toggleResult = createToggleButton();
@@ -108,6 +120,7 @@ var asyncCounter = 0;
 var model;
 
 console.log("2");
+
 export function loaded(menu) {
     if (menu) {
         model = menu;
@@ -117,6 +130,7 @@ export function loaded(menu) {
         initWarpMenu(model);
     }
 }
+
 console.log("3");
 if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
 

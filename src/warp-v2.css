@@ -31,6 +31,9 @@
     --ces-color-inverted-text: #FCFCFD;
 }
 
+/*
+ * Reset-css for warp menu container
+ */
 .warp-menu-container * {
     animation: none;
     animation-delay: 0;
