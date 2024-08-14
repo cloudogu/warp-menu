@@ -1,44 +1,82 @@
-import {addClass} from "./style.js";
 import {getLocalizedString} from "./translation.js";
 import {lss} from "./toggle.js";
+import {createHtml} from "./utils";
 
 export function createTooltip() {
-    var tooltipColumn = document.createElement('div');
-    addClass(tooltipColumn, 'warp-menu-column-tooltip');
+    const tooltipColumnHtml = `
+    <div 
+        class="warp-menu-column-tooltip   
+          z-[9997]  basis-[21.33333em] flex flex-col justify-center 
+          select-none pointer-events-none transition-all duration-500 ease-line" 
+        id="warp-menu-column-tooltip">
+    </div>
+    `;
+    const tooltipColumn = createHtml(tooltipColumnHtml);
 
-    var tooltipLabel = document.createElement('label');
-    addClass(tooltipLabel, 'warp-onboarding');
+    const tooltipLabelHtml = `
+    <div 
+        class="warp-menu-column-tooltip label warp-onboarding 
+           basis-auto relative mr-6 inline-block rounded-[10px] 
+           p-8 bg-[#00426B] text-white w-[20em] text-[1.33333em] cursor-pointer 
+           pointer-events-auto select-auto shadow-[0_0_15px_-5px_black] mr-0 mb-8">
+    </div>
+    `;
+
+    const tooltipLabel = createHtml(tooltipLabelHtml);
     tooltipColumn.appendChild(tooltipLabel);
 
-    var text = document.createElement('p');
-    addClass(text, 'warp-onboarding-msg');
-    text.innerHTML = getLocalizedString("onboardingTextToken");
-    tooltipLabel.appendChild(text);
-    var hint = document.createElement('p');
-    addClass(hint, 'warp-onboarding-hint');
-    var checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    var hintText = document.createElement('span');
-    hintText.innerHTML = getLocalizedString("onboardingHintToken");
+    const tooltipLabelTextHtml = `
+    <p class="warp-onboarding-msg">
+    </p>`
 
-    hint.appendChild(hintText);
-    hint.appendChild(checkbox);
-    tooltipLabel.appendChild(hint);
+    const tooltipLabelText = createHtml(tooltipLabelTextHtml)
+    tooltipLabelText.innerHTML = getLocalizedString("onboardingTextToken");
+    tooltipLabel.appendChild(tooltipLabelText);
 
-    var tooltipLabelArrow = document.createElement('div');
+    const tooltipLabelHintHtml = `
+    <p class="m-0 text-[0.8em] text-right block">
+    </p>`
+
+    const tooltipLabelHint = createHtml(tooltipLabelHintHtml);
+
+    const tooltipLabelHintCheckboxHtml = `
+    <input class="text-[1em] align-middle font-normal m-[0.6em_0_0.7em_0.75em] appearance-none"/>`
+
+    const tooltipLabelHintCheckbox = createHtml(tooltipLabelHintCheckboxHtml);
+    tooltipLabelHintCheckbox.type = 'checkbox';
+
+    const tooltipLabelHintTextHtml = `
+    <span class="inline">
+    </span>`
+
+    const tooltipLabelHintText = createHtml(tooltipLabelHintTextHtml);
+    tooltipLabelHintText.innerHTML = getLocalizedString("onboardingHintToken");
+
+    tooltipLabelHint.appendChild(tooltipLabelHintText);
+    tooltipLabelHint.appendChild(tooltipLabelHintCheckbox);
+    tooltipLabel.appendChild(tooltipLabelHint);
+
+
+
+    const tooltipLabelArrowHtml = `
+    <div class="inline-block absolute bg-[#00426B] rotate-45 w-[2em] h-[2em] right-0">
+    
+    </div>`
+
+    const tooltipLabelArrow = createHtml(tooltipLabelArrowHtml);
     tooltipLabelArrow.innerText = ' ';
-    addClass(tooltipLabelArrow, 'warp-onboarding-after-arrow');
+
     tooltipLabel.appendChild(tooltipLabelArrow);
 
     function hideTooltip() {
-        addClass(tooltipColumn, 'warp-onboarding-container-hide');
+        tooltipColumn.classList.add("invisible opacity-0")
         if (lss) localStorage.setItem('warpMenuHideTooltip', 'hide');
         setTimeout(function () {
             tooltipColumn.style.display = 'none';
         }, 3000);
     }
 
-    checkbox.onclick = hideTooltip;
+    tooltipLabelHintCheckbox.onclick = hideTooltip;
     return tooltipColumn;
 }
 

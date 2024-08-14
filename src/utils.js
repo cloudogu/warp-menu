@@ -26,3 +26,9 @@ export function createLink(href) {
         return baseUrl + href;
     }
 }
+
+export function createHtml(htmlString) {
+    const element = document.createElement("div");
+    element.innerHTML = htmlString;
+    return element.firstElementChild;
+}

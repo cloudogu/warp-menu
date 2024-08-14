@@ -2,7 +2,7 @@ import {addClass, addStylesheet, hasClass, removeClass, toggleClass} from "./sty
 import {createTooltip, isTooltipDisabled} from "./tooltip.js";
 import {createToggleButton} from "./toggle.js";
 import {createMenu, setMenuCorrectPosition} from "./menu.js";
-import {setCorrectVh} from "./utils.js";
+import {createHtml, setCorrectVh} from "./utils.js";
 import {ajax} from "./ajax.js";
 
 var desktopViewColumnWidthInPx = 245;
@@ -17,12 +17,6 @@ const warpMenuContainerHtml = `
     id="warp-menu-container">
 </div>
 `;
-
-function createHtml(htmlString) {
-    const element = document.createElement("div");
-    element.innerHTML = htmlString;
-    return element.firstElementChild;
-}
 
 export function initWarpMenu(categories) {
     const warpMenuRoot = document.createElement('div');
