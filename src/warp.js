@@ -11,15 +11,16 @@ export var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
 
 const warpMenuContainerHtml = `
-<div class="text-danger warp-menu-container print-hidden notransition" id="warp-menu-container">
+<div 
+    class="warp-menu-container print-hidden notransition fixed bottom-0 right-0 h-screen w-screen 
+           pointer-events-none select-none leading-[1.75em] text-[13px] tracking-[0.0125em] flex" 
+    id="warp-menu-container">
 </div>
 `;
 
 function createHtml(htmlString) {
-    const test = "text-danger";
     const element = document.createElement("div");
     element.innerHTML = htmlString;
-    element.classList.add("text-danger");
     return element.firstElementChild;
 }
 
@@ -29,6 +30,7 @@ export function initWarpMenu(categories) {
 
     const warpMenuContainer = createHtml(warpMenuContainerHtml);
     warpMenuRoot.appendChild(warpMenuContainer);
+    warpMenuContainer.appendChild(createHtml("<div></div>"))
 
     var tooltipColumn = createTooltip();
     var toggleResult = createToggleButton();
@@ -84,7 +86,7 @@ export function initWarpMenu(categories) {
         }
     };
 
-    body.appendChild(warpMenuContainer);
+    body.appendChild(warpMenuRoot);
 
     setCorrectVh();
     window.addEventListener('resize', setCorrectVh);
@@ -119,8 +121,6 @@ export function setCorrectColumnCount() {
 var asyncCounter = 0;
 var model;
 
-console.log("2");
-
 export function loaded(menu) {
     if (menu) {
         model = menu;
@@ -131,7 +131,6 @@ export function loaded(menu) {
     }
 }
 
-console.log("3");
 if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
 
     // load css
@@ -145,6 +144,4 @@ if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
     // load model
     asyncCounter++;
     ajax(cesWarpMenuMenuJsonUrl ?? '/warp/menu.json', loaded);
-} else {
-    console.log("asdasdasd");
 }

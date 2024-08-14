@@ -204,23 +204,6 @@
     list-style: none !important;
 }
 
-.warp-menu-container {
-    all: initial;
-    position: fixed;
-    z-index: 9996;
-    bottom: 0;
-    right: 0;
-    height: 100vh;
-    width: 100vw;
-    pointer-events: none;
-    user-select: none;
-    line-height: 1.75em !important;
-    font-size: 13px;
-    letter-spacing: 0.0125em;
-    display: flex;
-    display: -ms-flexbox;
-}
-
 .warp-menu-container .warp-menu-column-tooltip {
     z-index: 9997;
     flex-basis: 21.33333em;
