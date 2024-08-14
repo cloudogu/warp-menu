@@ -46,7 +46,7 @@ export default defineConfig(({command, mode}) => {
                 targets: [
                     {
                         src: 'node_modules/ces-theme/dist/fonts/*.{ttf,woff,eot}',
-                        dest: '../.tmp/warp/fonts'
+                        dest: '../../.tmp/warp/fonts'
                     },
                     {
                         src: 'node_modules/ces-theme/dist/fonts/*.{ttf,woff,eot}',
@@ -58,28 +58,32 @@ export default defineConfig(({command, mode}) => {
                     },
                     {
                         src: 'src/images/*.svg',
-                        dest: '../.tmp/images'
+                        dest: '../../.tmp/images'
                     },
                     {
                         src: 'node_modules/ces-theme/dist/images/logo/blib-white-160px.png',
-                        dest: '../.tmp/images'
+                        dest: '../../.tmp/images'
                     },
                     {
                         src: 'src/images/*.png',
-                        dest: '../.tmp/images'
+                        dest: '../../.tmp/images'
                     },
                     {
                         src: 'src/*.js',
-                        dest: '../.tmp/warp'
+                        dest: '../../.tmp/warp'
                     },
                     {
                         src: 'warp.js',
-                        dest: '../.tmp/warp'
+                        dest: '../../.tmp/warp'
                     },
                     {
                         src: 'src/images/*.png',
-                        dest: '../.tmp/images'
+                        dest: '../../.tmp/images'
                     },
+                    {
+                        src: 'sample/*',
+                        dest: '../../.tmp'
+                    }
                 ]
             }),
         ],
