@@ -219,6 +219,7 @@
 .warp-menu-container ul {
     list-style: none !important;
 }
+
 .warp-menu-container .warp-menu-column-tooltip {
     z-index: 9997;
     flex-basis: 21.33333em;
