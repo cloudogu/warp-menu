@@ -107,6 +107,7 @@ export function setCorrectColumnCount() {
 var asyncCounter = 0;
 var model;
 
+console.log("2");
 export function loaded(menu) {
     if (menu) {
         model = menu;
@@ -116,12 +117,12 @@ export function loaded(menu) {
         initWarpMenu(model);
     }
 }
-
+console.log("3");
 if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
 
     // load css
     asyncCounter++;
-    addStylesheet('/warp/warp.css', function (success) {
+    addStylesheet(cesWarpMenuWarpCssUrl ?? '/warp/warp.css', function (success) {
         if (success) {
             loaded();
         }
@@ -129,5 +130,7 @@ if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
 
     // load model
     asyncCounter++;
-    ajax('/warp/menu.json', loaded);
+    ajax(cesWarpMenuMenuJsonUrl ?? '/warp/menu.json', loaded);
+} else {
+    console.log("asdasdasd");
 }

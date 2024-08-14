@@ -1,8 +1,8 @@
-import { defineConfig, loadEnv } from "vite";
-import { viteStaticCopy } from "vite-plugin-static-copy";
-import { viteZip } from "vite-plugin-zip-file";
-import { readFileSync } from "fs";
-import { resolve } from "path";
+import {defineConfig, loadEnv} from "vite";
+import {viteStaticCopy} from "vite-plugin-static-copy";
+import zipPack from "vite-plugin-zip-pack";
+import {readFileSync} from "fs";
+import {resolve} from "path";
 
 /*
  * Copyright (c) 2013 - 2014, TRIOLOGY GmbH
@@ -37,58 +37,27 @@ const warpVersion = packageJson.version;
 export default defineConfig(({command, mode}) => {
     const config = {
         plugins: [
-            viteZip({
-                folderPath: "target",
-                outPath: "target",
-                zipName: 'warp-v' + warpVersion + '.zip'
+            zipPack({
+                inDir: "target/warp",
+                outDir: "target",
+                pathPrefix: "warp",
+                outFileName: 'warp-v' + warpVersion + '.zip',
             }),
             viteStaticCopy({
                 targets: [
                     {
-                        src: 'node_modules/ces-theme/dist/fonts/*.{ttf,woff,eot}',
-                        dest: '../../.tmp/warp/fonts'
+                        src: 'src/warp-v2.css',
+                        dest: '',
+                        rename: "warp.css"
                     },
-                    {
-                        src: 'node_modules/ces-theme/dist/fonts/*.{ttf,woff,eot}',
-                        dest: 'fonts'
-                    },
-                    {
-                        src: 'src/warp.css',
-                        dest: ''
-                    },
-                    {
-                        src: 'src/images/*.svg',
-                        dest: '../../.tmp/images'
-                    },
-                    {
-                        src: 'node_modules/ces-theme/dist/images/logo/blib-white-160px.png',
-                        dest: '../../.tmp/images'
-                    },
-                    {
-                        src: 'src/images/*.png',
-                        dest: '../../.tmp/images'
-                    },
-                    {
-                        src: 'src/*.js',
-                        dest: '../../.tmp/warp'
-                    },
-                    {
-                        src: 'warp.js',
-                        dest: '../../.tmp/warp'
-                    },
-                    {
-                        src: 'src/images/*.png',
-                        dest: '../../.tmp/images'
-                    },
-                    {
-                        src: 'sample/*',
-                        dest: '../../.tmp'
-                    }
                 ]
             }),
         ],
         server: {
-          open: true
+            open: 'sample/index.html',
+            watch: {
+                usePolling: true,
+            },
         },
         build: {
             rollupOptions: {

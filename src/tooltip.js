@@ -1,6 +1,6 @@
 import {addClass} from "./style.js";
 import {getLocalizedString} from "./translation.js";
-import {lss} from "./toggle";
+import {lss} from "./toggle.js";
 
 export function createTooltip() {
     var tooltipColumn = document.createElement('div');
