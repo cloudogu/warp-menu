@@ -61,15 +61,15 @@ function createMenuElement(categories){
     const element = createHtml(`
     <div 
         aria-hidden="true" id="warp-menu-column-menu" 
-        class="warp-menu-column-menu menu-container-hide overflow-hidden pointer-events-[all] transition-[box-shadow_300ms_ease-in-out]"
+        class="warp-menu-column-menu menu-container-hide overflow-hidden pointer-events-auto transition-[box-shadow_300ms_ease-in-out]"
     >
-        <div id="warp-menu-shift-container" class="warp-menu-shift-container">
+        <div id="warp-menu-shift-container" class="warp-menu-shift-container inline-block relative z-[1]">
             <div class="warp-menu-gradient-overlay">
             </div>  
-            <ul id="warp-menu-category-list" class="warp-menu-category-list">
+            <ul id="warp-menu-category-list" class="warp-menu-category-list m-0">
                 <li>
-                    <div class="warp-menu-home-button">
-                        <div class="img"></div>                                                    
+                    <div class="warp-menu-home-button block text-center">
+                        <div class="img inline-block w-[78.36px] h-[48px] bg-[url('images/blib-white-160px.png')] bg-[length:100%]"></div>                                                    
                     </div>  
                 </li>
             </ul>

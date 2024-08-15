@@ -678,6 +678,10 @@ video {
   right: 0px;
 }
 
+#warp-menu-root .z-\[1\] {
+  z-index: 1;
+}
+
 #warp-menu-root .z-\[9997\] {
   z-index: 9997;
 }
@@ -726,6 +730,10 @@ video {
   height: 2em;
 }
 
+#warp-menu-root .h-\[48px\] {
+  height: 48px;
+}
+
 #warp-menu-root .h-screen {
   height: 100vh;
 }
@@ -736,6 +744,10 @@ video {
 
 #warp-menu-root .w-\[2em\] {
   width: 2em;
+}
+
+#warp-menu-root .w-\[78\.36px\] {
+  width: 78.36px;
 }
 
 #warp-menu-root .w-screen {
@@ -802,6 +814,10 @@ video {
   background-color: rgb(0 66 107 / var(--tw-bg-opacity));
 }
 
+#warp-menu-root .bg-\[url\(\'images\/blib-white-160px\.png\'\)\] {
+  background-image: url('images/blib-white-160px.png');
+}
+
 #warp-menu-root .from {
   --tw-gradient-from: #fff var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
@@ -812,8 +828,16 @@ video {
   --tw-gradient-to: #fff var(--tw-gradient-to-position);
 }
 
+#warp-menu-root .bg-\[length\:100\%\] {
+  background-size: 100%;
+}
+
 #warp-menu-root .p-8 {
   padding: 2rem;
+}
+
+#warp-menu-root .text-center {
+  text-align: center;
 }
 
 #warp-menu-root .text-right {
