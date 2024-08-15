@@ -294,20 +294,6 @@
     background-color: #002f4d;
 }
 
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li {
-    border-bottom: 1px solid #23A3DD;
-    padding-top: 0.66666em;
-    padding-bottom: 0.66666em;
-    font-size: 1.1em;
-}
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li h3 {
-    padding-left: 1.1em;
-    margin-bottom: 1rem;
-}
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-target-link, .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-logout-link {
-    padding-left: 1.28333em;
-    cursor: pointer;
-}
 .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-target-link :hover, .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-target-link :focus, .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-target-link :active, .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-logout-link :hover, .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-logout-link :focus, .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-logout-link :active {
     background-color: #23A3DD;
 }

@@ -6,11 +6,11 @@ import {createHtml, createLink} from "./utils.js";
 
 function createCategory(title, onClick, id, entries){
     const element = createHtml(`
-    <li>
+    <li class="border-x-0 border-t-0 border-b border-[#23A3DD] py-[0.66666em] text-[1.1em] border-solid">
         <div>
             <h3 
                 id="${id}" 
-                class="${isOpenCollapsible(id) ? "warpmenu-category-open" : ""}">
+                class="pl-[1.1rem] ${isOpenCollapsible(id) ? "warpmenu-category-open" : ""}">
                 ${title}
             </h3>
             <ul></ul>
@@ -40,7 +40,7 @@ function createCategoryListEntry(currentEntry){
     <li>
          <a 
          href="${createLink(currentEntry.Href)}" 
-         class="warp-menu-target-link ${(isExternal) ? "external" : ""}" 
+         class="warp-menu-target-link ${(isExternal) ? "external" : ""} cursor-pointer pl-[1.28333em]" 
          target="${(isExternal) ? "_blank" : "_top"}">
          ${isTranslateable(currentEntry.Title) ? getLocalizedString(currentEntry.Title) : currentEntry.DisplayName}
         </a>
@@ -158,10 +158,10 @@ function createLogoutPlaceholder(){
 
 function createLogout(){
     return createHtml(`
-    <li class="warp-menu-logout-list-element">
+    <li class="warp-menu-logout-list-element border-x-0 border-b-0 border-t border-[#23A3DD] py-[0.66666em] text-[1.1em] border-solid">
         <a 
             href="${createLink('/cas/logout')}" 
-            class="warp-menu-logout-link">
+            class="warp-menu-logout-link cursor-pointer pl-[1.28333em]">
             ${getLocalizedString("ecosystemLogoutToken")}
         </a> 
     </li>
