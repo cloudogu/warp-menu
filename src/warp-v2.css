@@ -294,9 +294,6 @@
     background-color: #002f4d;
 }
 
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-target-link :hover, .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-target-link :focus, .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-target-link :active, .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-logout-link :hover, .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-logout-link :focus, .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-logout-link :active {
-    background-color: #23A3DD;
-}
 .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.external::after {
     all: unset;
     content: " ";
