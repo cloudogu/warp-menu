@@ -1,6 +1,6 @@
 import {getLocalizedString} from "./translation.js";
 import {lss} from "./toggle.js";
-import {createHtml} from "./utils";
+import {createHtml} from "./utils.js";
 
 export function createTooltip() {
     const tooltipColumnHtml = `
