@@ -6,10 +6,10 @@ import {createLink} from "./utils.js";
 
 
 function createMenuEntry(id, entries, title, list) {
-    var category = document.createElement('li');
-    var categoryInsideContainer = document.createElement('div');
+    let category = document.createElement('li');
+    let categoryInsideContainer = document.createElement('div');
 
-    var categoryHeader = document.createElement('h3');
+    let categoryHeader = document.createElement('h3');
     categoryHeader.innerHTML = title;
     categoryHeader.onclick = toggleCategory;
     categoryHeader.id = id;
@@ -17,12 +17,12 @@ function createMenuEntry(id, entries, title, list) {
         addClass(categoryHeader, 'warpmenu-category-open');
     }
 
-    var categoryLinkList = document.createElement('ul');
+    let categoryLinkList = document.createElement('ul');
 
-    for (var i = 0; i < entries.length; i++) {
-        var currentEntry = entries[i];
-        var categoryListItem = document.createElement('li');
-        var categoryListItemLink = document.createElement('a');
+    for (let i = 0; i < entries.length; i++) {
+        let currentEntry = entries[i];
+        let categoryListItem = document.createElement('li');
+        let categoryListItemLink = document.createElement('a');
         addClass(categoryListItemLink, 'warp-menu-target-link');
 
         if (currentEntry.Target && currentEntry.Target === 'external') {
@@ -110,9 +110,9 @@ export function createMenu(categories) {
 }
 
 export function setMenuCorrectPosition() {
-    var container = document.getElementById('warp-menu-container');
-    var menu = document.getElementById('warp-menu-column-menu');
-    var largeScreen = window.matchMedia("(min-width: 897px)");
+    let container = document.getElementById('warp-menu-container');
+    let menu = document.getElementById('warp-menu-column-menu');
+    let largeScreen = window.matchMedia("(min-width: 897px)");
 
     // Move the warp menu into screen (So it is visible)
     container.style.right = 0;
@@ -140,10 +140,10 @@ export function setMenuCorrectPosition() {
 }
 
 export function createHomeWithImage() {
-    var homeListElement = document.createElement('li');
-    var homeContainer = document.createElement('div');
+    let homeListElement = document.createElement('li');
+    let homeContainer = document.createElement('div');
     addClass(homeContainer, 'warp-menu-home-button');
-    var homeImage = document.createElement('div');
+    let homeImage = document.createElement('div');
     addClass(homeImage, 'img');
     homeContainer.appendChild(homeImage);
     homeListElement.appendChild(homeContainer);
@@ -151,15 +151,15 @@ export function createHomeWithImage() {
 }
 
 export function addLogoutMenuEntry(list) {
-    var placeholder = document.createElement('li');
+    let placeholder = document.createElement('li');
     addClass(placeholder, 'warp-menu-logout-placeholder');
-    var placeholderChild = document.createElement('div');
+    let placeholderChild = document.createElement('div');
     placeholderChild.innerHTML = '&nbsp;';
     placeholder.appendChild(placeholderChild);
 
-    var logout = document.createElement('li');
+    let logout = document.createElement('li');
     addClass(logout, 'warp-menu-logout-list-element');
-    var logoutHref = document.createElement('a');
+    let logoutHref = document.createElement('a');
     addClass(logoutHref, 'warp-menu-logout-link');
     logoutHref.innerHTML = getLocalizedString("ecosystemLogoutToken");
     logoutHref.href = createLink('/cas/logout');
