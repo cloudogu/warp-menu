@@ -294,12 +294,6 @@
     background-color: #002f4d;
 }
 
-.warp-menu-container .warp-menu-column-menu {
-    overflow: hidden;
-    pointer-events: all;
-    transition: box-shadow 300ms ease-in-out;
-}
-
 .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container {
     z-index: 1;
     position: relative;

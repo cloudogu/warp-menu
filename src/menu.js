@@ -59,7 +59,10 @@ function createMenuEntry(id, entries, title, list) {
  */
 function createMenuElement(categories){
     const element = createHtml(`
-    <div aria-hidden="true" id="warp-menu-column-menu" class="warp-menu-column-menu menu-container-hide">
+    <div 
+        aria-hidden="true" id="warp-menu-column-menu" 
+        class="warp-menu-column-menu menu-container-hide overflow-hidden pointer-events-[all] transition-[box-shadow_300ms_ease-in-out]"
+    >
         <div id="warp-menu-shift-container" class="warp-menu-shift-container">
             <div class="warp-menu-gradient-overlay">
             </div>  

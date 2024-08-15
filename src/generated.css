@@ -491,9 +491,6 @@ video {
 #asd .link {
 }
 
-#asd .text {
-}
-
 #asd .success {
 }
 
@@ -649,12 +646,28 @@ video {
   pointer-events: none;
 }
 
+#warp-menu-root .pointer-events-auto {
+  pointer-events: auto;
+}
+
 #warp-menu-root .visible {
   visibility: visible;
 }
 
+#warp-menu-root .invisible {
+  visibility: hidden;
+}
+
 #warp-menu-root .fixed {
   position: fixed;
+}
+
+#warp-menu-root .absolute {
+  position: absolute;
+}
+
+#warp-menu-root .relative {
+  position: relative;
 }
 
 #warp-menu-root .bottom-0 {
@@ -665,6 +678,42 @@ video {
   right: 0px;
 }
 
+#warp-menu-root .z-\[9997\] {
+  z-index: 9997;
+}
+
+#warp-menu-root .m-0 {
+  margin: 0px;
+}
+
+#warp-menu-root .m-\[0\.6em_0_0\.7em_0\.75em\] {
+  margin: 0.6em 0 0.7em 0.75em;
+}
+
+#warp-menu-root .mb-8 {
+  margin-bottom: 2rem;
+}
+
+#warp-menu-root .mr-0 {
+  margin-right: 0px;
+}
+
+#warp-menu-root .mr-6 {
+  margin-right: 1.5rem;
+}
+
+#warp-menu-root .block {
+  display: block;
+}
+
+#warp-menu-root .inline-block {
+  display: inline-block;
+}
+
+#warp-menu-root .inline {
+  display: inline;
+}
+
 #warp-menu-root .flex {
   display: flex;
 }
@@ -673,12 +722,41 @@ video {
   display: none;
 }
 
+#warp-menu-root .h-\[2em\] {
+  height: 2em;
+}
+
 #warp-menu-root .h-screen {
   height: 100vh;
 }
 
+#warp-menu-root .w-\[20em\] {
+  width: 20em;
+}
+
+#warp-menu-root .w-\[2em\] {
+  width: 2em;
+}
+
 #warp-menu-root .w-screen {
   width: 100vw;
+}
+
+#warp-menu-root .basis-\[21\.33333em\] {
+  flex-basis: 21.33333em;
+}
+
+#warp-menu-root .basis-auto {
+  flex-basis: auto;
+}
+
+#warp-menu-root .rotate-45 {
+  --tw-rotate: 45deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+#warp-menu-root .cursor-pointer {
+  cursor: pointer;
 }
 
 #warp-menu-root .select-none {
@@ -687,12 +765,41 @@ video {
           user-select: none;
 }
 
+#warp-menu-root .select-auto {
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+          user-select: auto;
+}
+
 #warp-menu-root .resize {
   resize: both;
 }
 
-#warp-menu-root .bg-brand-stronger {
-  background-color: var(--ces-color-brand-stronger);
+#warp-menu-root .appearance-none {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+#warp-menu-root .flex-col {
+  flex-direction: column;
+}
+
+#warp-menu-root .justify-center {
+  justify-content: center;
+}
+
+#warp-menu-root .overflow-hidden {
+  overflow: hidden;
+}
+
+#warp-menu-root .rounded-\[10px\] {
+  border-radius: 10px;
+}
+
+#warp-menu-root .bg-\[\#00426B\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 66 107 / var(--tw-bg-opacity));
 }
 
 #warp-menu-root .from {
@@ -705,8 +812,36 @@ video {
   --tw-gradient-to: #fff var(--tw-gradient-to-position);
 }
 
+#warp-menu-root .p-8 {
+  padding: 2rem;
+}
+
+#warp-menu-root .text-right {
+  text-align: right;
+}
+
+#warp-menu-root .align-middle {
+  vertical-align: middle;
+}
+
+#warp-menu-root .text-\[0\.8em\] {
+  font-size: 0.8em;
+}
+
+#warp-menu-root .text-\[1\.33333em\] {
+  font-size: 1.33333em;
+}
+
 #warp-menu-root .text-\[13px\] {
   font-size: 13px;
+}
+
+#warp-menu-root .text-\[1em\] {
+  font-size: 1em;
+}
+
+#warp-menu-root .font-normal {
+  font-weight: 400;
 }
 
 #warp-menu-root .leading-\[1\.75em\] {
@@ -717,17 +852,28 @@ video {
   letter-spacing: 0.0125em;
 }
 
-#warp-menu-root .text {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+#warp-menu-root .opacity-0 {
+  opacity: 0;
 }
 
-#warp-menu-root .placeholder::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-placeholder-opacity));
+#warp-menu-root .shadow-\[0_0_15px_-5px_black\] {
+  --tw-shadow: 0 0 15px -5px black;
+  --tw-shadow-colored: 0 0 15px -5px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-#warp-menu-root .placeholder::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-placeholder-opacity));
+#warp-menu-root .transition-\[box-shadow_300ms_ease-in-out\] {
+  transition-property: box-shadow 300ms ease-in-out;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+#warp-menu-root .transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+#warp-menu-root .duration-500 {
+  transition-duration: 500ms;
 }
