@@ -1,89 +1,98 @@
-import {addClass, hasClass} from "./style.js";
+import {hasClass} from "./style.js";
 import {getLocalizedString, isTranslateable} from "./translation.js";
 import {getCategoryKey, isOpenCollapsible, toggleCategory} from "./toggle.js";
 import {setCorrectColumnCount} from "./warp.js";
-import {createLink} from "./utils.js";
+import {createHtml, createLink} from "./utils.js";
 
+function createCategory(title, onClick, id, entries){
+    const element = createHtml(`
+    <li>
+        <div>
+            <h3 
+                id="${id}" 
+                class="${isOpenCollapsible(id) ? "warpmenu-category-open" : ""}">
+                ${title}
+            </h3>
+            <ul></ul>
+        </div
+    </li
+    `);
 
-function createMenuEntry(id, entries, title, list) {
-    let category = document.createElement('li');
-    let categoryInsideContainer = document.createElement('div');
-
-    let categoryHeader = document.createElement('h3');
-    categoryHeader.innerHTML = title;
-    categoryHeader.onclick = toggleCategory;
-    categoryHeader.id = id;
-    if (isOpenCollapsible(categoryHeader.id)) {
-        addClass(categoryHeader, 'warpmenu-category-open');
-    }
-
-    let categoryLinkList = document.createElement('ul');
+    const categoryHeader = element.firstElementChild.firstElementChild;
+    categoryHeader.onclick = onClick;
+    const categoryLinkList = categoryHeader.nextElementSibling;
 
     for (let i = 0; i < entries.length; i++) {
-        let currentEntry = entries[i];
-        let categoryListItem = document.createElement('li');
-        let categoryListItemLink = document.createElement('a');
-        addClass(categoryListItemLink, 'warp-menu-target-link');
-
-        if (currentEntry.Target && currentEntry.Target === 'external') {
-            categoryListItemLink.target = '_blank';
-            addClass(categoryListItemLink, 'external');
-        } else {
-            categoryListItemLink.target = '_top';
-        }
-        categoryListItemLink.href = createLink(currentEntry.Href);
-
-        // translate support entries which come without a display name
-        categoryListItemLink.innerHTML = currentEntry.DisplayName;
-        if (isTranslateable(currentEntry.Title)) {
-            categoryListItemLink.innerHTML = getLocalizedString(currentEntry.Title)
-        }
-
-        categoryListItem.appendChild(categoryListItemLink);
-        categoryLinkList.appendChild(categoryListItem);
+        categoryLinkList.appendChild(createCategoryListEntry(entries[i]));
     }
 
-    categoryInsideContainer.appendChild(categoryHeader);
-    categoryInsideContainer.appendChild(categoryLinkList);
-    category.appendChild(categoryInsideContainer);
-    list.appendChild(category);
+    return element;
 }
 
-export function createMenu(categories) {
-    const menuContainer = document.createElement('div');
-    menuContainer.id = 'warp-menu-column-menu';
-    addClass(menuContainer, 'warp-menu-column-menu');
-    addClass(menuContainer, 'menu-container-hide');
 
-    const shiftContainer = document.createElement('div');
-    shiftContainer.id = 'warp-menu-shift-container';
-    addClass(shiftContainer, 'warp-menu-shift-container');
-    menuContainer.appendChild(shiftContainer);
+/**
+ * @param {{Target?: string, Href: string, Title: string, DisplayName: string}} currentEntry
+ * @returns {HTMLElement}
+ */
+function createCategoryListEntry(currentEntry){
+    const isExternal = !!currentEntry.Target && currentEntry.Target === 'external';
+    return createHtml(`
+    <li>
+         <a 
+         href="${createLink(currentEntry.Href)}" 
+         class="warp-menu-target-link ${(isExternal) ? "external" : ""}" 
+         target="${(isExternal) ? "_blank" : "_top"}">
+         ${isTranslateable(currentEntry.Title) ? getLocalizedString(currentEntry.Title) : currentEntry.DisplayName}
+        </a>
+    </li>
+    `);
+}
 
-    const overlay = document.createElement('div');
-    addClass(overlay, 'warp-menu-gradient-overlay');
-    shiftContainer.appendChild(overlay);
+function createMenuEntry(id, entries, title, list) {
+    list.appendChild(createCategory(title, toggleCategory, id, entries));
+}
 
-    const list = document.createElement('ul');
-    addClass(list, 'warp-menu-category-list');
-    list.id = 'warp-menu-category-list';
-    shiftContainer.appendChild(list);
-
-    const homeElement = createHomeWithImage();
-    list.appendChild(homeElement);
+/**
+ *
+ * @param {Array<{Title: string, Entries: Array}>} categories
+ * @returns {HTMLElement}
+ */
+function createMenuElement(categories){
+    const element = createHtml(`
+    <div aria-hidden="true" id="warp-menu-column-menu" class="warp-menu-column-menu menu-container-hide">
+        <div id="warp-menu-shift-container" class="warp-menu-shift-container">
+            <div class="warp-menu-gradient-overlay">
+            </div>  
+            <ul id="warp-menu-category-list" class="warp-menu-category-list">
+                <li>
+                    <div class="warp-menu-home-button">
+                        <div class="img"></div>                                                    
+                    </div>  
+                </li>
+            </ul>
+        </div>          
+    </div>
+    `);
+    const list = element.querySelector("#warp-menu-category-list");
 
     for (let c = 0; c < categories.length; c++) {
-        let currentCategory = categories[c];
-
+        const currentCategory = categories[c];
         let title = currentCategory.Title;
         if (isTranslateable(title)) {
             title = getLocalizedString(title);
         }
-        let id = getCategoryKey(currentCategory);
+        const id = getCategoryKey(currentCategory);
         createMenuEntry(id, currentCategory.Entries, title, list);
     }
 
-    addLogoutMenuEntry(list);
+    list.appendChild(createLogoutPlaceholder());
+    list.appendChild(createLogout());
+
+    return element;
+}
+
+export function createMenu(categories) {
+    const menuContainer = createMenuElement(categories);
 
     window.addEventListener('resize', setCorrectColumnCount);
     window.addEventListener('resize', setMenuCorrectPosition);
@@ -103,16 +112,13 @@ export function createMenu(categories) {
         });
     });
 
-    // menu in default state should be hidden also to screen-readers
-    menuContainer.setAttribute('aria-hidden', 'true');
-
     return menuContainer;
 }
 
 export function setMenuCorrectPosition() {
-    let container = document.getElementById('warp-menu-container');
-    let menu = document.getElementById('warp-menu-column-menu');
-    let largeScreen = window.matchMedia("(min-width: 897px)");
+    const container = document.getElementById('warp-menu-container');
+    const menu = document.getElementById('warp-menu-column-menu');
+    const largeScreen = window.matchMedia("(min-width: 897px)");
 
     // Move the warp menu into screen (So it is visible)
     container.style.right = 0;
@@ -139,31 +145,22 @@ export function setMenuCorrectPosition() {
     }
 }
 
-export function createHomeWithImage() {
-    let homeListElement = document.createElement('li');
-    let homeContainer = document.createElement('div');
-    addClass(homeContainer, 'warp-menu-home-button');
-    let homeImage = document.createElement('div');
-    addClass(homeImage, 'img');
-    homeContainer.appendChild(homeImage);
-    homeListElement.appendChild(homeContainer);
-    return homeListElement;
+function createLogoutPlaceholder(){
+    return createHtml(`
+    <li class="warp-menu-logout-placeholder">
+        <div>&nbsp;</div>  
+    </li>
+    `);
 }
 
-export function addLogoutMenuEntry(list) {
-    let placeholder = document.createElement('li');
-    addClass(placeholder, 'warp-menu-logout-placeholder');
-    let placeholderChild = document.createElement('div');
-    placeholderChild.innerHTML = '&nbsp;';
-    placeholder.appendChild(placeholderChild);
-
-    let logout = document.createElement('li');
-    addClass(logout, 'warp-menu-logout-list-element');
-    let logoutHref = document.createElement('a');
-    addClass(logoutHref, 'warp-menu-logout-link');
-    logoutHref.innerHTML = getLocalizedString("ecosystemLogoutToken");
-    logoutHref.href = createLink('/cas/logout');
-    logout.appendChild(logoutHref);
-    list.appendChild(placeholder);
-    list.appendChild(logout);
+function createLogout(){
+    return createHtml(`
+    <li class="warp-menu-logout-list-element">
+        <a 
+            href="${createLink('/cas/logout')}" 
+            class="warp-menu-logout-link">
+            ${getLocalizedString("ecosystemLogoutToken")}
+        </a> 
+    </li>
+    `);
 }
