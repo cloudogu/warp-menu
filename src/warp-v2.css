@@ -1,34 +1,13 @@
-:root {
-    --ces-color-brand-stronger: #003250;
-    --ces-color-brand-strong: #00426B;
-    --ces-color-brand: #00629E;
-    --ces-color-brand-weak: #9EDAFF;
-    --ces-color-brand-weaker: #D4EDFC;
-    --ces-color-success-stronger: #0A2913;
-    --ces-color-success-strong: #145226;
-    --ces-color-success: #1F7A38;
-    --ces-color-success-weak: #85E09E;
-    --ces-color-success-weaker: #EBFAEF;
-    --ces-color-danger-stronger: #521414;
-    --ces-color-danger-strong: #7A1F1F;
-    --ces-color-danger: #CC3333;
-    --ces-color-danger-weak: #EBADAD;
-    --ces-color-danger-weaker: #F8EDED;
-    --ces-color-warning-stronger: #3D3700;
-    --ces-color-warning-strong: #574E00;
-    --ces-color-warning: #706500;
-    --ces-color-warning-weak: #FFE500;
-    --ces-color-warning-weaker: #FFFACC;
-    --ces-color-neutral-stronger: #333333;
-    --ces-color-neutral-strong: #4D4D4D;
-    --ces-color-neutral: #666666;
-    --ces-color-neutral-weak: #CCCCCC;
-    --ces-color-neutral-weaker: #F5F5F5;
-    --ces-color-default-background: #FFFFFF;
-    --ces-color-default-focus-inner: #FFFFFF;
-    --ces-color-default-focus-outer: #CC14CC;
-    --ces-color-default-text: #0D1C26;
-    --ces-color-inverted-text: #FCFCFD;
+#warp-menu-root .ces-external-link::after {
+    all: unset;
+    content: " ";
+    display: inline-block;
+    width: 8px;
+    margin-left: 4px;
+    background-image: url(images/external.svg);
+    background-size: contain;
+    background-position: center 60%;
+    background-repeat: no-repeat;
 }
 
 /*
@@ -294,27 +273,10 @@
     background-color: #002f4d;
 }
 
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.external::after {
-    all: unset;
-    content: " ";
-    display: inline-block;
-    width: 8px;
-    margin-left: 4px;
-    background-image: url(images/external.svg);
-    background-size: contain;
-    background-position: center 60%;
-    background-repeat: no-repeat;
-}
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-logout-link {
-    display: inline-block;
-    width: 100%;
-}
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-logout-link:hover {
-    background-color: #23A3DD;
-}
 .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li h3:not(.warpmenu-category-open) + ul {
     display: none;
 }
+
 .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li h3::before {
     all: unset;
     content: "▸ ";

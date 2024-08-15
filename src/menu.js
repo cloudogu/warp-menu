@@ -40,7 +40,7 @@ function createCategoryListEntry(currentEntry){
     <li>
          <a 
          href="${createLink(currentEntry.Href)}" 
-         class="warp-menu-target-link ${(isExternal) ? "external" : ""} hover:bg-[#23A3DD]" 
+         class="warp-menu-target-link ${(isExternal) ? "ces-external-link" : ""} hover:bg-[#23A3DD] pl-[1.28333em] cursor-pointer" 
          target="${(isExternal) ? "_blank" : "_top"}">
          ${isTranslateable(currentEntry.Title) ? getLocalizedString(currentEntry.Title) : currentEntry.DisplayName}
         </a>
@@ -161,7 +161,7 @@ function createLogout(){
     <li class="warp-menu-logout-list-element border-x-0 border-b-0 border-t border-[#23A3DD] py-[0.66666em] text-[1.1em] border-solid">
         <a 
             href="${createLink('/cas/logout')}" 
-            class="warp-menu-logout-link cursor-pointer pl-[1.28333em] hover:bg-[#23A3DD]">
+            class="w-full inline-block warp-menu-logout-link cursor-pointer pl-[1.28333em] hover:bg-[#23A3DD]">
             ${getLocalizedString("ecosystemLogoutToken")}
         </a> 
     </li>

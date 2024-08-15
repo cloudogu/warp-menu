@@ -750,6 +750,10 @@ video {
   width: 78.36px;
 }
 
+#warp-menu-root .w-full {
+  width: 100%;
+}
+
 #warp-menu-root .w-screen {
   width: 100vw;
 }
@@ -947,4 +951,9 @@ video {
 
 #warp-menu-root .duration-500 {
   transition-duration: 500ms;
+}
+
+#warp-menu-root .hover\:bg-\[\#23A3DD\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(35 163 221 / var(--tw-bg-opacity));
 }
