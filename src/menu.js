@@ -7,13 +7,13 @@ import {createHtml, createLink} from "./utils.js";
 function createCategory(title, onClick, id, entries){
     const element = createHtml(`
     <li class="border-x-0 border-t-0 border-b border-[#23A3DD] py-[0.66666em] text-[1.1em] border-solid">
-        <div>
+        <div class="group">
             <h3 
                 id="${id}" 
                 class="pl-[1.1rem] ${isOpenCollapsible(id) ? "warpmenu-category-open" : ""}">
                 ${title}
             </h3>
-            <ul></ul>
+            <ul class="group-[&:not(:has(.warpmenu-category-open))]:hidden"></ul>
         </div
     </li
     `);

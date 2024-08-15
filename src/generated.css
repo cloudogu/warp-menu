@@ -957,3 +957,7 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(35 163 221 / var(--tw-bg-opacity));
 }
+
+#warp-menu-root .group:not(:has(.warpmenu-category-open)) .group-\[\&\:not\(\:has\(\.warpmenu-category-open\)\)\]\:hidden {
+  display: none;
+}

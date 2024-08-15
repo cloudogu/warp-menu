@@ -273,10 +273,6 @@
     background-color: #002f4d;
 }
 
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li h3:not(.warpmenu-category-open) + ul {
-    display: none;
-}
-
 .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li h3::before {
     all: unset;
     content: "▸ ";
