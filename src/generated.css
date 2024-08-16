@@ -606,15 +606,33 @@ video {
   width: 100%;
 }
 
+@media (min-width: 471px) {
+  #warp-menu-root .container {
+    max-width: 471px;
+  }
+}
+
 @media (min-width: 640px) {
   #warp-menu-root .container {
     max-width: 640px;
   }
 }
 
+@media (min-width: 701px) {
+  #warp-menu-root .container {
+    max-width: 701px;
+  }
+}
+
 @media (min-width: 768px) {
   #warp-menu-root .container {
     max-width: 768px;
+  }
+}
+
+@media (min-width: 897px) {
+  #warp-menu-root .container {
+    max-width: 897px;
   }
 }
 
@@ -988,4 +1006,20 @@ video {
 
 #warp-menu-root .group:not(:has(.warpmenu-category-open)) .group-\[\&\:not\(\:has\(\.warpmenu-category-open\)\)\]\:hidden {
   display: none;
+}
+
+@media (min-width: 897px) {
+  #warp-menu-root .warp-lg\:max-w-\[calc\(100vw-3\.5em\)\] {
+    max-width: calc(100vw - 3.5em);
+  }
+
+  #warp-menu-root .warp-lg\:overflow-x-auto {
+    overflow-x: auto;
+  }
+
+  #warp-menu-root .\[\&\:not\(\.menu-container-hide\)\]\:warp-lg\:shadow-\[9px_0px_30px_-12px_black\]:not(.menu-container-hide) {
+    --tw-shadow: 9px 0px 30px -12px black;
+    --tw-shadow-colored: 9px 0px 30px -12px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
 }

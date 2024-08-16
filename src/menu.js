@@ -59,10 +59,11 @@ function createMenuEntry(id, entries, title, list) {
  * @returns {HTMLElement}
  */
 function createMenuElement(categories){
+    const lgStyles = "warp-lg:overflow-x-auto warp-lg:max-w-[calc(100vw-3.5em)] [&:not(.menu-container-hide)]:warp-lg:shadow-[9px_0px_30px_-12px_black]";
     const element = createHtml(`
     <div 
         aria-hidden="true" id="warp-menu-column-menu" 
-        class="warp-menu-column-menu menu-container-hide overflow-hidden pointer-events-auto transition-[box-shadow_300ms_ease-in-out]"
+        class="warp-menu-column-menu menu-container-hide overflow-hidden pointer-events-auto transition-[box-shadow_300ms_ease-in-out] ${lgStyles}"
     >
         <div id="warp-menu-shift-container" class="warp-menu-shift-container inline-block relative z-[1]">
             <div class="warp-menu-gradient-overlay">
