@@ -36,11 +36,12 @@ function createCategory(title, onClick, id, entries){
  */
 function createCategoryListEntry(currentEntry){
     const isExternal = !!currentEntry.Target && currentEntry.Target === 'external';
+    const cls = "inline-block mt-2 mb-0 pt-1 pb-1 text-left no-underline warp-menu-target-link hover:bg-[#23A3DD] pl-[1.28333em] cursor-pointer"
     return createHtml(`
     <li>
          <a 
          href="${createLink(currentEntry.Href)}" 
-         class="warp-menu-target-link ${(isExternal) ? "ces-external-link" : ""} hover:bg-[#23A3DD] pl-[1.28333em] cursor-pointer" 
+         class="warp-menu-target-link ${(isExternal) ? "ces-external-link" : ""} ${cls}" 
          target="${(isExternal) ? "_blank" : "_top"}">
          ${isTranslateable(currentEntry.Title) ? getLocalizedString(currentEntry.Title) : currentEntry.DisplayName}
         </a>

@@ -283,14 +283,6 @@
     background-color: #002f4d;
 }
 
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-target-link {
-    display: inline-block;
-    margin: 0.5em 0 0;
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
-    text-align: left;
-    text-decoration: none;
-}
 .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-target-link:hover {
     background-color: #23A3DD;
 }
