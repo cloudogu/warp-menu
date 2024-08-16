@@ -919,6 +919,10 @@ video {
   font-size: 0.8em;
 }
 
+#warp-menu-root .text-\[1\.17em\] {
+  font-size: 1.17em;
+}
+
 #warp-menu-root .text-\[1\.1em\] {
   font-size: 1.1em;
 }

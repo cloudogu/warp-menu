@@ -283,63 +283,6 @@
     background-color: #002f4d;
 }
 
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li a.warp-menu-target-link:hover {
-    background-color: #23A3DD;
-}
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li ul {
-    padding: 0;
-}
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li h3 {
-    margin: 0;
-    cursor: pointer;
-    display: block;
-    font-size: 1.17em;
-    font-family: "Droid Sans Bold", sans-serif !important;
-}
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li:first-child {
-    display: block;
-    padding: 0 0 1.33333em;
-    width: 100%;
-}
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li.warp-menu-logout-placeholder {
-    border: 0;
-    padding: 0;
-}
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li.warp-menu-logout-placeholder > div {
-    height: 3.41666em;
-    display: inline-block;
-}
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li.warp-menu-logout-list-element {
-    border-top: 1px solid #23A3DD;
-    border-bottom: 0;
-    display: block;
-    position: absolute;
-    bottom: 1em;
-}
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list a.warp-menu-logout-link {
-    cursor: pointer;
-}
-.warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list a.warp-menu-logout-link::before {
-    all: unset;
-    content: " ";
-    width: 16px;
-    margin-right: 4px;
-    background-image: url(images/logout.svg);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: inline-block;
-}
-.warp-menu-container .warp-menu-gradient-overlay {
-    height: 100%;
-    position: absolute;
-    right: 0;
-    display: inline-block;
-    margin: 0;
-    z-index: -1;
-    background-color: #00426B;
-}
-
 @media screen and (min-width: 897px) {
     .warp-menu-container {
         flex-direction: row;

@@ -10,7 +10,7 @@ function createCategory(title, onClick, id, entries){
         <div class="group">
             <h3 
                 id="${id}" 
-                class="pl-[1.1rem] ${isOpenCollapsible(id) ? "warpmenu-category-open" : ""} warp-menu-category">
+                class="pl-[1.1rem] ${isOpenCollapsible(id) ? "warpmenu-category-open" : ""} warp-menu-category m-0 cursor-pointer block text-[1.17em]">
                 ${title}
             </h3>
             <ul class="group-[&:not(:has(.warpmenu-category-open))]:hidden"></ul>
