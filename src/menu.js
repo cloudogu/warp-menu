@@ -4,9 +4,10 @@ import {getCategoryKey, isOpenCollapsible, toggleCategory} from "./toggle.js";
 import {setCorrectColumnCount} from "./warp.js";
 import {createHtml, createLink} from "./utils.js";
 
+
 function createCategory(title, onClick, id, entries){
     const element = createHtml(`
-    <li class="border-x-0 border-t-0 border-b border-[#23A3DD] py-[0.66666em] text-[1.1em] border-solid">
+    <li class="border-t-0 border-b border-[#23A3DD] py-[0.66666em] text-[1.1em] border-box border-x-2 border-x-brand border-solid border-y-0">
         <div class="group">
             <h3 
                 id="${id}" 
@@ -59,17 +60,18 @@ function createMenuEntry(id, entries, title, list) {
  * @returns {HTMLElement}
  */
 function createMenuElement(categories){
-    const lgStyles = "warp-lg:overflow-x-auto warp-lg:max-w-[calc(100vw-3.5em)] [&:not(.menu-container-hide)]:warp-lg:shadow-[9px_0px_30px_-12px_black]";
+    const containerLgstyles = "warp-lg:overflow-x-auto warp-lg:max-w-[calc(100vw-3.5em)] [&:not(.menu-container-hide)]:warp-lg:shadow-[9px_0px_30px_-12px_black]";
+    const listLgStyles = "warp-lg:py-[1.33333em] warp-lg:inline-block warp-lg:[column-width:245px] warp-lg:[column-fill:auto] warp-lg:h-screen warp-lg:[column-gap:0]";
     const element = createHtml(`
     <div 
         aria-hidden="true" id="warp-menu-column-menu" 
-        class="warp-menu-column-menu menu-container-hide overflow-hidden pointer-events-auto transition-[box-shadow_300ms_ease-in-out] ${lgStyles}"
+        class="warp-menu-column-menu menu-container-hide overflow-hidden pointer-events-auto transition-[box-shadow_300ms_ease-in-out] ${containerLgstyles}"
     >
         <div id="warp-menu-shift-container" class="warp-menu-shift-container inline-block relative z-[1]">
             <div class="warp-menu-gradient-overlay">
             </div>  
-            <ul id="warp-menu-category-list" class="warp-menu-category-list m-0">
-                <li>
+            <ul id="warp-menu-category-list" class="warp-menu-category-list ${listLgStyles} bg-brand-strong">
+                <li class="border-box border-x-2 border-x-brand border-solid border-y-0">
                     <div class="warp-menu-home-button block text-center">
                         <div class="img inline-block w-[78.36px] h-[48px] bg-[url('images/blib-white-160px.png')] bg-[length:100%]"></div>                                                    
                     </div>  

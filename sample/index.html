@@ -1,39 +1,248 @@
 <html>
-  <head>
+<head>
     <title>Warpbtn Sample</title>
     <style type="text/css">
-      html {
-        background-color: #666;
-      }
-      #bg img {
-        position: absolute;
-        top: 0;
-        bottom:0;
-        left: 0;
-        right:0;
-        margin: auto;
-        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-      }
+        html {
+            background-color: #666;
+        }
+
+        #bg img {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+        }
     </style>
-  </head>
-  <body>
-    <div id="bg">
-      <img src="images/background.jpg" alt="">
+</head>
+<body>
+<div id="bg">
+    <img src="images/background.jpg" alt="">
+</div>
+<!--<script>-->
+<!--    const cesWarpMenuMenuJsonUrl = "/sample/warp/menu.json";-->
+<!--    const cesWarpMenuWarpCssUrl = "/src/warp-v2.css";-->
+<!--</script>-->
+<!--<script type="module" src="/src/toggle.js"></script>-->
+<!--<script type="module" src="/src/tooltip.js"></script>-->
+<!--<script type="module" src="/src/translation.js"></script>-->
+<!--<script type="module" src="/src/utils.js"></script>-->
+<!--<script type="module" src="/src/style.js"></script>-->
+<!--<script type="module" src="/src/menu.js"></script>-->
+<!--<script type="module" src="/src/ajax.js"></script>-->
+<!--<script type="module" src="/src/warp.js"></script>-->
+<link rel="stylesheet" href="/src/generated.css" type="text/css">
+<div id="warp-menu-root" class="relative w-screen h-screen pointer-events-none flex flex-row justify-end">
+    <div class="pointer-events-auto flex items-center w-14">
+        <button
+                class="rotate-[-90deg] rounded-t-lg focus-visible:ces-focused whitespace-nowrap px-[14px] h-10
+                    desktop:text-desktop-regular mobile:text-mobile-regular bg-warp-bg hover:bg-warp-bg-hover
+                    focus-visible:bg-warp-bg-hover active:bg-warp-bg-active border-2 border-warp-border
+                    hover:border-warp-border-hover focus-visible:border-warp-border-hover active:border-warp-border-active
+                    text-warp-text outline-0 border-b-0">
+            Menu
+        </button>
     </div>
-    <script>
-        const cesWarpMenuMenuJsonUrl="/sample/warp/menu.json";
-        const cesWarpMenuWarpCssUrl="/src/warp-v2.css";
-    </script>
-    <script type="module" src="/src/toggle.js"></script>
-    <script type="module" src="/src/tooltip.js"></script>
-    <script type="module" src="/src/translation.js"></script>
-    <script type="module" src="/src/utils.js"></script>
-    <script type="module" src="/src/style.js"></script>
-    <script type="module" src="/src/menu.js"></script>
-    <script type="module" src="/src/ajax.js"></script>
-    <script type="module" src="/src/warp.js"></script>
-    <link rel="stylesheet" href="/src/generated.css" type="text/css">
-  </body>
+    <div class="pointer-events-auto flex flex-col bg-warp-bg text-warp-text flex-wrap border-l-1 border-warp-border border-box border-solid">
+        <div class="border-l border-warp-border border-b flex flex-row justify-center items-center w-60 py-default ">
+            <img class="content-[var(--warp-logo)] max-w-32">
+        </div>
+        <details class="border-l border-warp-border border-b w-60  ">
+            <summary
+                    class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
+                           focus-visible:text-warp-text-hover active:text-warp-text-active
+                           focus-visible:bg-warp-bg-hover active:bg-warp-bg-active"
+            >
+                Category a
+            </summary>
+            <ul>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+            </ul>
+        </details>
+        <details class="border-l border-warp-border border-b w-60  ">
+            <summary
+                    class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
+                           focus-visible:text-warp-text-hover active:text-warp-text-active
+                           focus-visible:bg-warp-bg-hover active:bg-warp-bg-active"
+            >
+                Category a
+            </summary>
+            <ul>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+            </ul>
+        </details>
+        <details class="border-l border-warp-border border-b w-60  ">
+            <summary
+                    class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
+                           focus-visible:text-warp-text-hover active:text-warp-text-active
+                           focus-visible:bg-warp-bg-hover active:bg-warp-bg-active"
+            >
+                Category a
+            </summary>
+            <ul>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+            </ul>
+        </details>
+        <details class="border-l border-warp-border border-b w-60  ">
+            <summary
+                    class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
+                           focus-visible:text-warp-text-hover active:text-warp-text-active
+                           focus-visible:bg-warp-bg-hover active:bg-warp-bg-active"
+            >
+                Category a
+            </summary>
+            <ul>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+                <li>
+                    <a href="#" class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">Test</a>
+                </li>
+            </ul>
+        </details>
+        <div class="grow flex flex-col justify-end border-l w-60  ">
+            <div class="border-warp-border p-default border-t px-default">
+                <a class="text-center inline-block text-warp-text hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active cursor-pointer w-full h-full">
+                    EcoSystem Logout
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>

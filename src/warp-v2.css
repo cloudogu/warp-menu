@@ -321,20 +321,6 @@
         box-shadow: 2px 0 15px -5px black;
     }
 
-    .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container {
-        background-image: repeating-linear-gradient(to right, #00426B, #00426B 220px, #00426B 220px, #002f4d 245px);
-        background-image: -ms-repeating-linear-gradient(to right, #00426B, #00426B 220px, #00426B 220px, #002f4d 245px);
-        left: 0;
-        top: 0;
-    }
-    .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list {
-        padding: 1.33333em 0;
-        display: inline-block;
-        column-width: 245px;
-        column-fill: auto;
-        height: 100vh;
-        column-gap: 0;
-    }
     .warp-menu-container .warp-menu-column-menu .warp-menu-shift-container .warp-menu-category-list > li {
         padding-top: 1em;
         width: 245px;
