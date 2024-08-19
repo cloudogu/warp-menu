@@ -28,6 +28,24 @@ var desktopViewColumnWidthInPx = 245;
 export var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
 
+export function isWarpMenuClosed(){
+    const warpMenuContainer = document.querySelector("#warp-menu-container");
+    return !warpMenuContainer.style.right.match("^0?[ ]?(px)?$");
+}
+
+export function toggleWarpMenu() {
+    const warpMenuRoot = document.getElementById("warp-menu-root");
+    const warpMenuWidth = warpMenuRoot.querySelector("#warp-menu").getBoundingClientRect().width;
+    const warpMenuContainer = warpMenuRoot.querySelector("#warp-menu-container");
+    if (isWarpMenuClosed()) {
+        warpMenuContainer.ariaHidden = "false";
+        warpMenuContainer.style.right = `0`;
+    } else {
+        warpMenuContainer.ariaHidden = "true";
+        warpMenuContainer.style.right = `-${warpMenuWidth}px`;
+    }
+}
+
 /**
  *
  * @param category {Section}
@@ -67,7 +85,7 @@ export function createCategory(category) {
  */
 export function initWarpMenu(categories) {
     const warpMenuRoot = createHtml(`
-<div id="warp-menu-root" class="relative overflow-hidden w-screen h-screen">
+<div id="warp-menu-root" class="relative overflow-hidden w-screen h-screen pointer-events-none hidden">
     <div id="warp-menu-container"
          class="fixed right-0 w-screen h-screen pointer-events-none flex flex-row justify-end transition-[right] duration-[600ms] ease-in-out">
         <div class="flex items-center w-14">
@@ -80,7 +98,12 @@ export function initWarpMenu(categories) {
                 ${getLocalizedString("menuToken")}
             </button>
         </div>
-        <div id="warp-menu" class="pointer-events-auto flex flex-col text-warp-text flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)] bg-repeat-x">
+        <div 
+            id="warp-menu" 
+            class="pointer-events-auto flex flex-col text-warp-text flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)] bg-repeat-x"
+            aria-haspopup="listbox"
+            aria-hidden="true"
+        >
             <div class="border-warp-border border-b flex flex-row justify-center items-center w-60 py-default ">
                 <img class="content-[var(--warp-logo)] max-w-32" alt="Cloudogu logo">
             </div>
@@ -100,6 +123,19 @@ export function initWarpMenu(categories) {
 </div>
     `);
 
+    document.body.addEventListener("click", (ev) => {
+        const warpMenuRoot = document.getElementById("warp-menu-root");
+        if (!warpMenuRoot.contains(ev.target) && !isWarpMenuClosed()){
+            toggleWarpMenu();
+        }
+    })
+
+    document.body.addEventListener("keydown", (ev) => {
+        if (ev.key === "Escape" && !isWarpMenuClosed()){
+            toggleWarpMenu();
+        }
+    })
+
     const summaries = Array.from(warpMenuRoot.querySelectorAll("summary"));
     for (const s of summaries) {
         s.parentNode.open = isOpenCollapsible(s.id);
@@ -109,15 +145,7 @@ export function initWarpMenu(categories) {
     }
 
     const warpToggle = warpMenuRoot.querySelector("#warp-toggle");
-    warpToggle.onclick = () => {
-        const warpMenuWidth = warpMenuRoot.querySelector("#warp-menu").getBoundingClientRect().width
-        const warpRoot = warpMenuRoot.querySelector("#warp-menu-container");
-        if (warpRoot.style.right.match("^0?[ ]?(px)?$")) {
-            warpRoot.style.right = `-${warpMenuWidth}px`;
-        } else {
-            warpRoot.style.right = `0`;
-        }
-    };
+    warpToggle.onclick = toggleWarpMenu;
 
     Array.from(warpMenuRoot.querySelectorAll("#warp-menu-root summary")).forEach(d => {
         d.onclick = () => {
@@ -130,6 +158,10 @@ export function initWarpMenu(categories) {
     });
 
     body.appendChild(warpMenuRoot);
+    console.log(warpMenuRoot.querySelector("#warp-menu").getBoundingClientRect().width);
+    // TODO Hide initial
+    toggleWarpMenu();
+
 }
 
 var asyncCounter = 0;
