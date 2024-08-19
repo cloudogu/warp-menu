@@ -38,7 +38,7 @@
 <link rel="stylesheet" href="/src/generated.css" type="text/css">
 <div id="warp-menu-root" class="relative overflow-hidden w-screen h-screen">
     <div id="warp-menu-container"
-         class="fixed right-0 w-screen h-screen pointer-events-none flex flex-row justify-end animate">
+         class="fixed right-0 w-screen h-screen pointer-events-none flex flex-row justify-end transition-[right] duration-[600ms] ease-in-out">
         <div class="flex items-center w-14">
             <button id="warp-toggle"
                     class="pointer-events-auto rotate-[-90deg] rounded-t-lg focus-visible:ces-focused whitespace-nowrap px-[14px] h-10
@@ -61,9 +61,9 @@
                 };
             </script>
         </div>
-        <div id="warp-menu" class="pointer-events-auto flex flex-col text-warp-text flex-wrap border-warp-border border-box border-solid bg-hack w-fit">
+        <div id="warp-menu" class="pointer-events-auto flex flex-col text-warp-text flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)] bg-repeat-x">
             <div class="border-warp-border border-b flex flex-row justify-center items-center w-60 py-default ">
-                <img class="content-[var(--warp-logo)] max-w-32">
+                <img class="content-[var(--warp-logo)] max-w-32" alt="Cloudogu logo">
             </div>
             <details class="border-warp-border border-b w-60">
                 <summary
