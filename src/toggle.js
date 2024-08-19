@@ -3,7 +3,6 @@ import {isLocalStorageSupported} from "./utils.js";
 export var lss = isLocalStorageSupported();
 
 export function toggleCollapsedInStorage(id) {
-    console.log("asdasdasdss");
     if (!lss) return;
 
     if (localStorage.getItem(id) === null || localStorage.getItem(id) === 'true') {

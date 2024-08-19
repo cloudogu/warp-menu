@@ -102,9 +102,7 @@ export function initWarpMenu(categories) {
 
     const summaries = Array.from(warpMenuRoot.querySelectorAll("summary"));
     for (const s of summaries) {
-        console.log(s);
         s.parentNode.open = isOpenCollapsible(s.id);
-        console.log("yolo");
         s.parentNode.onclick = () => {
             toggleCollapsedInStorage(s.id);
         };
