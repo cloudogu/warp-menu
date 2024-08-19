@@ -9,3 +9,7 @@
     background: repeating-linear-gradient(90deg, var(--warp-border) 0px, var(--warp-border) 1px, var(--warp-bg) 1px, var(--warp-bg) 15rem);
     background-repeat: repeat-x;
 }
+
+.animate {
+    transition: right 600ms ease-in-out;
+}
