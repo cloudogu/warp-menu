@@ -2,6 +2,7 @@ import {addStylesheet, hasClass} from "./style.js";
 import {createHtml} from "./utils.js";
 import {ajax} from "./ajax.js";
 import {getLocalizedString, isTranslateable} from "./translation.js";
+import {getCategoryKey, isOpenCollapsible, toggleCollapsedInStorage} from "./toggle.js";
 
 /**
  * @typedef {Object} Entry
@@ -38,6 +39,7 @@ export function createCategory(category) {
                         class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
                            focus-visible:text-warp-text-hover active:text-warp-text-active
                            focus-visible:bg-warp-bg-hover active:bg-warp-bg-active"
+                       id="${getCategoryKey(category)}"
                 >
                     ${isTranslateable(category.Title) ? getLocalizedString(category.Title) : category.Title}
                 </summary>
@@ -85,7 +87,10 @@ export function initWarpMenu(categories) {
             ${categories.map(c => createCategory(c)).join("")}
             <div class="grow flex flex-col justify-end w-60">
                 <div class="border-warp-border p-default border-t px-default">
-                    <a class="text-center inline-block text-warp-text hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active cursor-pointer w-full h-full">
+                    <a 
+                        href="${window?.location?.origin ?? ""}/cas/logout"
+                        class="text-center inline-block text-warp-text hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active cursor-pointer w-full h-full"
+                    >
                         ${getLocalizedString("ecosystemLogoutToken")}
                     </a>
                 </div>
@@ -94,6 +99,16 @@ export function initWarpMenu(categories) {
     </div>
 </div>
     `);
+
+    const summaries = Array.from(warpMenuRoot.querySelectorAll("summary"));
+    for (const s of summaries) {
+        console.log(s);
+        s.parentNode.open = isOpenCollapsible(s.id);
+        console.log("yolo");
+        s.parentNode.onclick = () => {
+            toggleCollapsedInStorage(s.id);
+        };
+    }
 
     const warpToggle = warpMenuRoot.querySelector("#warp-toggle");
     warpToggle.onclick = () => {
@@ -117,30 +132,6 @@ export function initWarpMenu(categories) {
     });
 
     body.appendChild(warpMenuRoot);
-}
-
-export function setCorrectColumnCount() {
-    var list = document.getElementById('warp-menu-category-list');
-    var shiftContainer = document.getElementById('warp-menu-shift-container');
-    var columnCount = 0;
-
-    for (var i = 0; i < list.childNodes.length; i++) {
-        var node = list.childNodes[i];
-        var current = Math.floor(node.offsetLeft / desktopViewColumnWidthInPx) + 1;
-
-        if (hasClass(node, 'warp-menu-logout-list-element'))
-            continue; // Skip logout button because it is positioned outside of list
-
-        if (current > columnCount) columnCount = current;
-    }
-    list.style.columnCount = null;
-    shiftContainer.style.width = null;
-
-    var largeScreen = window.matchMedia('(min-width: 897px)');
-    if (largeScreen.matches) {
-        shiftContainer.style.width = 'calc(' + columnCount + ' * ' + desktopViewColumnWidthInPx + 'px)';
-        list.style.columnCount = columnCount;
-    }
 }
 
 var asyncCounter = 0;

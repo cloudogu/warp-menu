@@ -1,7 +1,6 @@
 import {hasClass} from "./style.js";
 import {getLocalizedString, isTranslateable} from "./translation.js";
-import {getCategoryKey, isOpenCollapsible, toggleCategory} from "./toggle.js";
-import {setCorrectColumnCount} from "./warp.js";
+import {getCategoryKey, isOpenCollapsible} from "./toggle.js";
 import {createHtml, createLink} from "./utils.js";
 
 
@@ -100,9 +99,6 @@ function createMenuElement(categories){
 
 export function createMenu(categories) {
     const menuContainer = createMenuElement(categories);
-
-    window.addEventListener('resize', setCorrectColumnCount);
-    window.addEventListener('resize', setMenuCorrectPosition);
 
     window.addEventListener('orientationchange', function () {
         // Can only be done in next frame. Won't work otherwise
