@@ -47,11 +47,11 @@
             Menu
         </button>
     </div>
-    <div class="pointer-events-auto flex flex-col bg-warp-bg text-warp-text flex-wrap border-l-1 border-warp-border border-box border-solid">
-        <div class="border-l border-warp-border border-b flex flex-row justify-center items-center w-60 py-default ">
+    <div class="pointer-events-auto flex flex-col text-warp-text flex-wrap border-warp-border border-box border-solid bg-hack w-fit">
+        <div class="border-warp-border border-b flex flex-row justify-center items-center w-60 py-default ">
             <img class="content-[var(--warp-logo)] max-w-32">
         </div>
-        <details class="border-l border-warp-border border-b w-60  ">
+        <details class="border-warp-border border-b w-60">
             <summary
                     class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
                            focus-visible:text-warp-text-hover active:text-warp-text-active
@@ -97,7 +97,7 @@
                 </li>
             </ul>
         </details>
-        <details class="border-l border-warp-border border-b w-60  ">
+        <details class="border-warp-border border-b w-60  ">
             <summary
                     class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
                            focus-visible:text-warp-text-hover active:text-warp-text-active
@@ -143,7 +143,7 @@
                 </li>
             </ul>
         </details>
-        <details class="border-l border-warp-border border-b w-60  ">
+        <details class="border-warp-border border-b w-60  ">
             <summary
                     class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
                            focus-visible:text-warp-text-hover active:text-warp-text-active
@@ -189,7 +189,7 @@
                 </li>
             </ul>
         </details>
-        <details class="border-l border-warp-border border-b w-60  ">
+        <details class="border-warp-border border-b w-60  ">
             <summary
                     class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
                            focus-visible:text-warp-text-hover active:text-warp-text-active
@@ -235,7 +235,23 @@
                 </li>
             </ul>
         </details>
-        <div class="grow flex flex-col justify-end border-l w-60  ">
+
+        <script>
+            Array.from(document.querySelectorAll("#warp-menu-root summary")).forEach(d => {
+                d.onclick = () => {
+                    console.log("toggle");
+                    const element = document.querySelector("#warp-menu-root div:last-child");
+                    console.log(element.style.width);
+                    const w = element.getBoundingClientRect().width;
+                    console.log(w);
+                    element.style.width = `${w}px`;
+                    requestAnimationFrame(() => {
+                        element.style.width = "";
+                    });
+                };
+            });
+        </script>
+        <div class="grow flex flex-col justify-end w-60  ">
             <div class="border-warp-border p-default border-t px-default">
                 <a class="text-center inline-block text-warp-text hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active cursor-pointer w-full h-full">
                     EcoSystem Logout

@@ -18,7 +18,7 @@
     "dev": "yarn serve",
     "build": "rm -rf target && vite build",
     "serve": "vite preview --outDir .",
-    "plaintw": "tailwindcss -i node_modules/@cloudogu/ces-theme-tailwind/ces-theme-tailwind-config.css src/warp.css -o ./src/generated.css",
+    "plaintw": "tailwindcss -i src/warp.css -o ./src/generated.css",
     "tw": "yarn plaintw && postcss ./src/generated.css -o ./src/generated.css",
     "watch": "yarn plaintw --watch"
   },
