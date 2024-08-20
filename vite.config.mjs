@@ -46,7 +46,7 @@ export default defineConfig(({command, mode}) => {
             viteStaticCopy({
                 targets: [
                     {
-                        src: 'src/warp-v2.css',
+                        src: 'src/generated.css',
                         dest: '',
                         rename: "warp.css"
                     },

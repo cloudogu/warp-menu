@@ -16,7 +16,8 @@
   },
   "scripts": {
     "dev": "yarn serve",
-    "build": "rm -rf target && vite build",
+    "clean": "rm -rf target",
+    "build": "yarn tw && yarn clean && vite build",
     "serve": "vite preview --outDir .",
     "plaintw": "tailwindcss -i src/warp.css -o ./src/generated.css",
     "tw": "yarn plaintw && postcss ./src/generated.css -o ./src/generated.css",

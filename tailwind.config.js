@@ -4,21 +4,7 @@ const plugin = require('tailwindcss/plugin');
 module.exports = {
     presets: [require('@cloudogu/ces-theme-tailwind/tailwind.presets.cjs')],
     content: [
-        // './src/**/*.js'
-        './sample/index.html'
-    ],
-    plugins: [
-        plugin(function ({addBase, theme}) {
-            const scopedUtilities = {};
-            const classes = Object.keys(theme('colors')).map(color => `.${color}`);
-
-            classes.forEach(cls => {
-                scopedUtilities[`#asd ${cls}`] = {};
-            });
-
-            // Add Tailwind utilities to the scoped selectors
-            addBase(scopedUtilities);
-        }),
+        './src/**/*.js',
     ],
     theme: {
         extend: {

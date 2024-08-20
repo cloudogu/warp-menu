@@ -495,12 +495,6 @@ video {
   --warp-text-active: var(--ces-color-inverted-text);
 }
 
-#asd .button{
-}
-
-#asd .link{
-}
-
 html {
   font-family: Calibri, Gill Sans, Gill Sans MT, Liberation Sans, Carlito, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
 }
@@ -828,6 +822,10 @@ legend{
   pointer-events: auto;
 }
 
+.invisible{
+  visibility: hidden;
+}
+
 .fixed{
   position: fixed;
 }
@@ -844,9 +842,33 @@ legend{
   right: 0px;
 }
 
+.z-\[9997\]{
+  z-index: 9997;
+}
+
+.m-0{
+  margin: 0px;
+}
+
+.m-\[0\.6em_0_0\.7em_0\.75em\]{
+  margin: 0.6em 0 0.7em 0.75em;
+}
+
 .my-default-1\/2{
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
+}
+
+.mb-8{
+  margin-bottom: 2rem;
+}
+
+.mr-0{
+  margin-right: 0px;
+}
+
+.mr-6{
+  margin-right: 1.5rem;
 }
 
 .block{
@@ -857,12 +879,20 @@ legend{
   display: inline-block;
 }
 
+.inline{
+  display: inline;
+}
+
 .flex{
   display: flex;
 }
 
 .h-10{
   height: 2.5rem;
+}
+
+.h-\[2em\]{
+  height: 2em;
 }
 
 .h-full{
@@ -881,8 +911,12 @@ legend{
   width: 15rem;
 }
 
-.w-\[200vw\]{
-  width: 200vw;
+.w-\[20em\]{
+  width: 20em;
+}
+
+.w-\[2em\]{
+  width: 2em;
 }
 
 .w-fit{
@@ -906,6 +940,19 @@ legend{
   flex-grow: 1;
 }
 
+.basis-\[21\.33333em\]{
+  flex-basis: 21.33333em;
+}
+
+.basis-auto{
+  flex-basis: auto;
+}
+
+.rotate-45{
+  --tw-rotate: 45deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .rotate-\[-90deg\]{
   --tw-rotate: -90deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -913,6 +960,24 @@ legend{
 
 .cursor-pointer{
   cursor: pointer;
+}
+
+.select-none{
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.select-auto{
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+          user-select: auto;
+}
+
+.appearance-none{
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 .flex-row{
@@ -947,6 +1012,10 @@ legend{
   white-space: nowrap;
 }
 
+.rounded-\[10px\]{
+  border-radius: 10px;
+}
+
 .rounded-t-lg{
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
@@ -976,9 +1045,9 @@ legend{
   border-color: var(--warp-border);
 }
 
-.bg{
+.bg-\[\#00426B\]{
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  background-color: rgb(0 66 107 / var(--tw-bg-opacity));
 }
 
 .bg-\[var\(--warp-bg\)\]{
@@ -999,8 +1068,16 @@ legend{
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.to{
+  --tw-gradient-to: #fff var(--tw-gradient-to-position);
+}
+
 .bg-repeat-x{
   background-repeat: repeat-x;
+}
+
+.p-8{
+  padding: 2rem;
 }
 
 .p-default{
@@ -1036,12 +1113,46 @@ legend{
   text-align: center;
 }
 
+.text-right{
+  text-align: right;
+}
+
+.align-middle{
+  vertical-align: middle;
+}
+
+.text-\[0\.8em\]{
+  font-size: 0.8em;
+}
+
+.text-\[1\.33333em\]{
+  font-size: 1.33333em;
+}
+
+.text-\[1em\]{
+  font-size: 1em;
+}
+
+.font-normal{
+  font-weight: 400;
+}
+
 .text-warp-text{
   color: var(--warp-text);
 }
 
 .no-underline{
   text-decoration-line: none;
+}
+
+.opacity-0{
+  opacity: 0;
+}
+
+.shadow-\[0_0_15px_-5px_black\]{
+  --tw-shadow: 0 0 15px -5px black;
+  --tw-shadow-colored: 0 0 15px -5px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .outline-none{
@@ -1059,6 +1170,16 @@ legend{
   transition-duration: 150ms;
 }
 
+.transition-all{
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-500{
+  transition-duration: 500ms;
+}
+
 .duration-\[600ms\]{
   transition-duration: 600ms;
 }
@@ -1070,6 +1191,12 @@ legend{
 .content-\[var\(--warp-logo\)\]{
   --tw-content: var(--warp-logo);
   content: var(--tw-content);
+}
+
+@media print {
+  .no-print{
+    display: none !important;
+  }
 }
 
 .focus-visible\:ces-focused:focus-visible {

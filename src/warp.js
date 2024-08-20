@@ -35,13 +35,14 @@ export function isWarpMenuClosed(){
 
 export function toggleWarpMenu() {
     const warpMenuRoot = document.getElementById("warp-menu-root");
-    const warpMenuWidth = warpMenuRoot.querySelector("#warp-menu").getBoundingClientRect().width;
+    const warpMenu = warpMenuRoot.querySelector("#warp-menu");
+    const warpMenuWidth = warpMenu.getBoundingClientRect().width;
     const warpMenuContainer = warpMenuRoot.querySelector("#warp-menu-container");
     if (isWarpMenuClosed()) {
-        warpMenuContainer.ariaHidden = "false";
+        warpMenu.ariaHidden = "false";
         warpMenuContainer.style.right = `0`;
     } else {
-        warpMenuContainer.ariaHidden = "true";
+        warpMenu.ariaHidden = "true";
         warpMenuContainer.style.right = `-${warpMenuWidth}px`;
     }
 }
@@ -85,9 +86,9 @@ export function createCategory(category) {
  */
 export function initWarpMenu(categories) {
     const warpMenuRoot = createHtml(`
-<div id="warp-menu-root" class="relative overflow-hidden w-screen h-screen pointer-events-none hidden">
+<div id="warp-menu-root" class="absolute overflow-hidden w-screen h-screen pointer-events-none no-print">
     <div id="warp-menu-container"
-         class="fixed right-0 w-screen h-screen pointer-events-none flex flex-row justify-end transition-[right] duration-[600ms] ease-in-out">
+         class="fixed right-0 w-screen h-screen pointer-events-none flex flex-row justify-end">
         <div class="flex items-center w-14">
             <button id="warp-toggle"
                     class="pointer-events-auto rotate-[-90deg] rounded-t-lg focus-visible:ces-focused whitespace-nowrap px-[14px] h-10
@@ -157,11 +158,14 @@ export function initWarpMenu(categories) {
         };
     });
 
-    body.appendChild(warpMenuRoot);
-    console.log(warpMenuRoot.querySelector("#warp-menu").getBoundingClientRect().width);
-    // TODO Hide initial
-    toggleWarpMenu();
 
+    body.appendChild(warpMenuRoot);
+    toggleWarpMenu();
+    setTimeout(() => {
+        "transition-[right] duration-[600ms] ease-in-out".split(" ").forEach(e => {
+            warpMenuRoot.querySelector("#warp-menu-container").classList.add(e);
+        });
+    }, 50);
 }
 
 var asyncCounter = 0;
@@ -181,7 +185,7 @@ if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
 
     // load css
     asyncCounter++;
-    addStylesheet(cesWarpMenuWarpCssUrl ?? '/warp/warp.css', function (success) {
+    addStylesheet((typeof cesWarpMenuWarpCssUrl !== "undefined") ? cesWarpMenuWarpCssUrl : '/warp/warp.css', function (success) {
         if (success) {
             loaded();
         }
@@ -189,5 +193,5 @@ if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
 
     // load model
     asyncCounter++;
-    ajax(cesWarpMenuMenuJsonUrl ?? '/warp/menu.json', loaded);
+    ajax((typeof cesWarpMenuMenuJsonUrl !== "undefined") ? cesWarpMenuMenuJsonUrl : '/warp/menu.json', loaded);
 }
