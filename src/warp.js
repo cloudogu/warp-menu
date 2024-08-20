@@ -53,12 +53,13 @@ export function toggleWarpMenu() {
  * @returns {HTMLObjectElement}
  */
 export function createCategory(category) {
+    const categoryId = getCategoryKey(category);
     return `<details class="border-warp-border border-b w-60">
                 <summary
                         class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
                            focus-visible:text-warp-text-hover active:text-warp-text-active
                            focus-visible:bg-warp-bg-hover active:bg-warp-bg-active"
-                       id="${getCategoryKey(category)}"
+                       id="${categoryId}"
                 >
                     ${isTranslateable(category.Title) ? getLocalizedString(category.Title) : category.Title}
                 </summary>
@@ -124,6 +125,8 @@ export function initWarpMenu(categories) {
 </div>
     `);
 
+    body.appendChild(warpMenuRoot);
+
     document.body.addEventListener("click", (ev) => {
         const warpMenuRoot = document.getElementById("warp-menu-root");
         if (!warpMenuRoot.contains(ev.target) && !isWarpMenuClosed()){
@@ -136,14 +139,6 @@ export function initWarpMenu(categories) {
             toggleWarpMenu();
         }
     })
-
-    const summaries = Array.from(warpMenuRoot.querySelectorAll("summary"));
-    for (const s of summaries) {
-        s.parentNode.open = isOpenCollapsible(s.id);
-        s.parentNode.onclick = () => {
-            toggleCollapsedInStorage(s.id);
-        };
-    }
 
     const warpToggle = warpMenuRoot.querySelector("#warp-toggle");
     warpToggle.onclick = toggleWarpMenu;
@@ -158,8 +153,14 @@ export function initWarpMenu(categories) {
         };
     });
 
+    const summaries = Array.from(warpMenuRoot.querySelectorAll("summary"));
+    for (const s of summaries) {
+        s.parentNode.open = isOpenCollapsible(s.id);
+        s.onclick = () => {
+            toggleCollapsedInStorage(s.id);
+        };
+    }
 
-    body.appendChild(warpMenuRoot);
     toggleWarpMenu();
     setTimeout(() => {
         "transition-[right] duration-[600ms] ease-in-out".split(" ").forEach(e => {
