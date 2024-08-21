@@ -1,5 +1,5 @@
 import {addStylesheet, hasClass} from "./style.js";
-import {createHtml} from "./utils.js";
+import {createHtml, svgCaretDown, svgCaretRight, svgExternalLink} from "./utils.js";
 import {ajax} from "./ajax.js";
 import {getLocalizedString, isTranslateable} from "./translation.js";
 import {getCategoryKey, isOpenCollapsible, toggleCollapsedInStorage} from "./toggle.js";
@@ -54,27 +54,35 @@ export function toggleWarpMenu() {
  */
 export function createCategory(category) {
     const categoryId = getCategoryKey(category);
-    return `<details class="border-warp-border border-b w-60">
+    return `<details class="border-warp-border border-b w-60 group">
                 <summary
                         class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
                            focus-visible:text-warp-text-hover active:text-warp-text-active
-                           focus-visible:bg-warp-bg-hover active:bg-warp-bg-active"
+                           focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row items-center group/svg"
                        id="${categoryId}"
                 >
+                    <span class="w-6 h-6 inline-block group-open:hidden mr-1">${svgCaretRight}</span>                    
+                    <span class="w-6 h-6 hidden group-open:inline-block mr-1">${svgCaretDown}</span>                    
                     ${isTranslateable(category.Title) ? getLocalizedString(category.Title) : category.Title}
                 </summary>
                 <ul>
                     <li>
-                    ${category.Entries.map(e => `
+                    ${category.Entries.map(e => {
+        const isExternalLink = !!e.Target && e.Target === 'external';
+        return `
                         <a 
                         href="${e.Href}"
-                        target="${(!!e.Target && e.Target === 'external' ) ? "_blank": "_top"}" 
-                        class="my-default-1/2 py-default-1/2 no-underline block px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                        target="${isExternalLink ? "_blank" : "_top"}" 
+                        class="my-default-1/2 py-default-1/2 no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
                            hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
-                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active">
-                           ${isTranslateable(e.Title) ? getLocalizedString(e.Title) : e.DisplayName}
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row 
+                           items-center box-border border-l border-l-transparent hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
+                           ">
+                                ${isTranslateable(e.Title) ? getLocalizedString(e.Title) : e.DisplayName}
+                                <span class="w-4 h-4 inline-block ml-2">${(isExternalLink) ? svgExternalLink : ""}</span>                           
                        </a>
-                    `).join("")}
+                    `;
+    }).join("")}
                     </li>
                 </ul>
             </details>`;
@@ -86,6 +94,9 @@ export function createCategory(category) {
  * @returns {HTMLObjectElement}
  */
 export function initWarpMenu(categories) {
+    const fallbackLogoValue = getComputedStyle(document.documentElement).getPropertyValue("--warp-logo-internal");
+    const actualLogoValue = getComputedStyle(document.documentElement).getPropertyValue("--warp-logo");
+    const hasChangedLogo = fallbackLogoValue !== actualLogoValue;
     const warpMenuRoot = createHtml(`
 <div id="warp-menu-root" class="absolute overflow-hidden w-screen h-screen pointer-events-none no-print">
     <div id="warp-menu-container"
@@ -106,8 +117,11 @@ export function initWarpMenu(categories) {
             aria-haspopup="listbox"
             aria-hidden="true"
         >
-            <div class="border-warp-border border-b flex flex-row justify-center items-center w-60 py-default ">
-                <img class="content-[var(--warp-logo)] max-w-32" alt="Cloudogu logo">
+            <div class="border-warp-border border-b flex flex-col justify-center items-center w-60 py-default gap-default">
+                <div class="py-default pb-default-2x bg-warp-logo-bg w-48 flex flex-row justify-center items-center rounded">
+                    <img class="content-[var(--warp-logo)] max-w-32" alt="Cloudogu logo">
+                </div>
+                ${(hasChangedLogo) ? `<span>${getLocalizedString("poweredBy")}</span>` : ""}
             </div>
             ${categories.map(c => createCategory(c)).join("")}
             <div class="grow flex flex-col justify-end w-60">
