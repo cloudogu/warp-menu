@@ -101,20 +101,24 @@ export function initWarpMenu(categories) {
     const warpMenuRoot = createHtml(`
 <div id="warp-menu-root" class="absolute overflow-hidden w-screen h-screen pointer-events-none no-print">
     <div id="warp-menu-container"
-         class="fixed right-0 w-screen h-screen pointer-events-none flex flex-row justify-end">
-        <div class="flex items-center w-14">
+         class="fixed warp-lg:right-0 not-warp-lg:left-0 not-warp-lg:top-0 w-screen h-screen pointer-events-none flex 
+                warp-lg:flex-row not-warp-lg:flex-col warp-lg:justify-end not-warp-lg:justify-start">
+        <div class="flex items-center warp-lg:w-14 not-warp-lg:w-screen not-warp-lg:justify-end">
             <button id="warp-toggle"
-                    class="pointer-events-auto rotate-[-90deg] rounded-t-lg focus-visible:ces-focused whitespace-nowrap px-[14px] h-10
+                    class="pointer-events-auto warp-lg:rotate-[-90deg] rounded-t-lg focus-visible:ces-focused whitespace-nowrap px-[14px] h-10
                     desktop:text-desktop-regular mobile:text-mobile-regular bg-warp-bg hover:bg-warp-bg-hover
                     focus-visible:bg-warp-bg-hover active:bg-warp-bg-active border-2 border-warp-border
                     hover:border-warp-border-hover focus-visible:border-warp-border-hover active:border-warp-border-active
-                    text-warp-text outline-0 border-b-0">
+                    text-warp-text outline-0 border-b-0 not-warp-lg:border-r-0 not-warp-lg:rounded-tr-none">
                 ${getLocalizedString("menuToken")}
             </button>
         </div>
-        <div 
+        <div
             id="warp-menu" 
-            class="pointer-events-auto flex flex-col text-warp-text flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)] bg-repeat-x"
+            class="not-warp-lg:w-screen not-warp-lg:h-[calc(100%-2.5rem)] pointer-events-auto flex flex-col text-warp-text 
+                   flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] 
+                   warp-lg:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)] 
+                   warp-lg:bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border"
             aria-haspopup="listbox"
             aria-hidden="true"
         >
@@ -158,20 +162,15 @@ export function initWarpMenu(categories) {
     const warpToggle = warpMenuRoot.querySelector("#warp-toggle");
     warpToggle.onclick = toggleWarpMenu;
 
-    Array.from(warpMenuRoot.querySelectorAll("#warp-menu-root summary")).forEach(d => {
-        d.onclick = () => {
+    const summaries = Array.from(warpMenuRoot.querySelectorAll("summary"));
+    for (const s of summaries) {
+        s.parentNode.open = isOpenCollapsible(s.id);
+        s.onclick = () => {
             const element = warpMenuRoot.querySelector("#warp-menu-container > div:last-child");
             element.style.width = `${element.getBoundingClientRect().width}px`;
             requestAnimationFrame(() => {
                 element.style.width = "";
             });
-        };
-    });
-
-    const summaries = Array.from(warpMenuRoot.querySelectorAll("summary"));
-    for (const s of summaries) {
-        s.parentNode.open = isOpenCollapsible(s.id);
-        s.onclick = () => {
             toggleCollapsedInStorage(s.id);
         };
     }

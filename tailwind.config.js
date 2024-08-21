@@ -11,9 +11,9 @@ module.exports = {
             screens: {
                 'warp-lg': '897px',
                 'not-warp-lg': {'max': '896px'},
-                'warp-md': {'max': '896px', 'min': '701px'},
-                'warp-sm': {'max': '700px', 'min': '471px'},
-                'warp-xs': {'max': '470px'},
+                'warp-md': {'max': '896px', 'min': '720px'},
+                'warp-sm': {'max': '719px', 'min': '480px'},
+                'warp-xs': {'max': '479px'},
             },
             colors: {
                 warp: {
