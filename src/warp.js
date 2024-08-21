@@ -58,7 +58,8 @@ export function createCategory(category) {
                 <summary
                         class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
                            focus-visible:text-warp-text-hover active:text-warp-text-active
-                           focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row items-center group/svg"
+                           focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row items-center group/svg
+                           box-border border-l border-l-transparent active:border-l-warp-border"
                        id="${categoryId}"
                 >
                     <span class="w-6 h-6 inline-block group-open:hidden mr-1">${svgCaretRight}</span>                    
@@ -78,8 +79,8 @@ export function createCategory(category) {
                            hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row 
                            items-center box-border border-l border-l-transparent hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
                            ">
-                                ${isTranslateable(e.Title) ? getLocalizedString(e.Title) : e.DisplayName}
-                                <span class="w-4 h-4 inline-block ml-2">${(isExternalLink) ? svgExternalLink : ""}</span>                           
+                            ${isTranslateable(e.Title) ? getLocalizedString(e.Title) : e.DisplayName}
+                            ${(isExternalLink) ? `<span class="w-[1em] h-[1em] inline-block ml-2">${svgExternalLink}</span>` : ""}
                        </a>
                     `;
     }).join("")}

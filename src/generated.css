@@ -933,6 +933,10 @@ legend{
   height: 1rem;
 }
 
+.h-\[1em\]{
+  height: 1em;
+}
+
 .w-14{
   width: 3.5rem;
 }
@@ -980,6 +984,10 @@ legend{
 
 .w-4{
   width: 1rem;
+}
+
+.w-\[1em\]{
+  width: 1em;
 }
 
 .max-w-32{
@@ -1126,6 +1134,16 @@ legend{
 
 .bg-warp-logo-bg{
   background-color: var(--warp-logo-bg);
+}
+
+.bg-\[red\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 0 0 / var(--tw-bg-opacity));
+}
+
+.bg-\[blue\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 255 / var(--tw-bg-opacity));
 }
 
 .bg-\[repeating-linear-gradient\(90deg\2c var\(--warp-border\)_0px\2c var\(--warp-border\)_1px\2c var\(--warp-bg\)_1px\2c var\(--warp-bg\)_15rem\)\]{
