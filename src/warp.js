@@ -121,8 +121,9 @@ export function initWarpMenu(categories) {
             class="not-warp-lg:w-screen pointer-events-auto warp-lg:flex warp-lg:flex-col text-warp-text 
                    warp-lg:flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] 
                    warp-lg:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)] 
-                   warp-lg:bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0 not-warp-lg:columns-3 not-warp-lg:h-auto 
-                   not-warp-lg:overflow-y-scroll not-warp-lg:min-h-[calc(100%-2.5rem)]"
+                   warp-md:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_33.33%)] 
+                   bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0 not-warp-lg:columns-3 not-warp-lg:h-auto 
+                   not-warp-lg:overflow-y-scroll not-warp-lg:min-h-[calc(100%-2.5rem)] scroll-hide relative"
             aria-hidden="true"
         >
             <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 warp-md:w-full 
@@ -133,8 +134,8 @@ export function initWarpMenu(categories) {
                     ${(hasChangedLogo) ? `<span>${getLocalizedString("poweredBy")}</span>` : ""}
                 </div>
                 ${categories.map(c => createCategory(c)).join("")}
-                <div class="grow flex flex-col justify-end warp-lg:w-60 warp-md:w-full bg-[red] absolute right-0 bottom-0">
-                    <div class="border-warp-border p-default border-t px-default">
+                <div class="grow flex flex-col justify-end warp-lg:w-60">
+                    <div class="border-warp-border p-default warp-lg:border-t not-warp-lg:border-b px-default">
                         <a 
                             href="${window?.location?.origin ?? ""}/cas/logout"
                             class="text-center inline-block text-warp-text hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active cursor-pointer w-full h-full"

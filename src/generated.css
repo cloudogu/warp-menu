@@ -828,6 +828,10 @@ legend{
   visibility: hidden;
 }
 
+.static{
+  position: static;
+}
+
 .fixed{
   position: fixed;
 }
@@ -936,6 +940,10 @@ legend{
 
 .h-screen{
   height: 100vh;
+}
+
+.h-8{
+  height: 2rem;
 }
 
 .w-48{
@@ -1118,6 +1126,11 @@ legend{
   background-color: var(--warp-logo-bg);
 }
 
+.bg-\[yellow\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 0 / var(--tw-bg-opacity));
+}
+
 .from{
   --tw-gradient-from: #fff var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
@@ -1126,6 +1139,10 @@ legend{
 
 .to{
   --tw-gradient-to: #fff var(--tw-gradient-to-position);
+}
+
+.bg-repeat-x{
+  background-repeat: repeat-x;
 }
 
 .fill{
@@ -1257,7 +1274,12 @@ legend{
   content: var(--tw-content);
 }
 
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+
 .scroll-hide {
+  scrollbar-width: none;
 }
 
 @media print {
@@ -1413,6 +1435,10 @@ legend{
     justify-content: flex-end;
   }
 
+  .warp-lg\:border-t{
+    border-top-width: 1px;
+  }
+
   .warp-lg\:bg-\[repeating-linear-gradient\(90deg\2c var\(--warp-border\)_0px\2c var\(--warp-border\)_1px\2c var\(--warp-bg\)_1px\2c var\(--warp-bg\)_15rem\)\]{
     background-image: repeating-linear-gradient(90deg,var(--warp-border) 0px,var(--warp-border) 1px,var(--warp-bg) 1px,var(--warp-bg) 15rem);
   }
@@ -1485,13 +1511,33 @@ legend{
     border-top-width: 1px;
   }
 
+  .not-warp-lg\:border-b{
+    border-bottom-width: 1px;
+  }
+
   .not-warp-lg\:border-t-warp-border{
     border-top-color: var(--warp-border);
   }
 }
 
 @media (min-width: 720px) and (max-width: 896px){
+  .warp-md\:bottom-0{
+    bottom: 0px;
+  }
+
+  .warp-md\:right-0{
+    right: 0px;
+  }
+
   .warp-md\:w-full{
     width: 100%;
+  }
+
+  .warp-md\:w-1\/3{
+    width: 33.333333%;
+  }
+
+  .warp-md\:bg-\[repeating-linear-gradient\(90deg\2c var\(--warp-border\)_0px\2c var\(--warp-border\)_1px\2c var\(--warp-bg\)_1px\2c var\(--warp-bg\)_33\.33\%\)\]{
+    background-image: repeating-linear-gradient(90deg,var(--warp-border) 0px,var(--warp-border) 1px,var(--warp-bg) 1px,var(--warp-bg) 33.33%);
   }
 }
