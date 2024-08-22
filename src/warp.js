@@ -3,6 +3,7 @@ import {createHtml, svgCaretDown, svgCaretRight, svgExternalLink} from "./utils.
 import {ajax} from "./ajax.js";
 import {getLocalizedString, isTranslateable} from "./translation.js";
 import {getCategoryKey, isOpenCollapsible, toggleCollapsedInStorage} from "./toggle.js";
+import {createTooltip} from "./tooltip";
 
 /**
  * @typedef {Object} Entry
@@ -54,7 +55,7 @@ export function toggleWarpMenu() {
  */
 export function createCategory(category) {
     const categoryId = getCategoryKey(category);
-    return `<details class="border-warp-border border-b w-60 group h-fit">
+    return `<details class="border-warp-border border-b warp-lg:w-60 warp-md:w-full group h-fit break-inside-avoid">
                 <summary
                         class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
                            focus-visible:text-warp-text-hover active:text-warp-text-active
@@ -103,11 +104,12 @@ export function initWarpMenu(categories) {
     <div id="warp-menu-container"
          class="fixed warp-lg:right-0 not-warp-lg:left-0 not-warp-lg:top-0 w-screen h-screen pointer-events-none flex 
                 warp-lg:flex-row not-warp-lg:flex-col warp-lg:justify-end not-warp-lg:justify-start">
+        <div class="bg-[red]">${createTooltip()}</div>
         <div class="flex items-center warp-lg:w-14 not-warp-lg:w-screen not-warp-lg:justify-end">
             <button id="warp-toggle"
                     class="pointer-events-auto warp-lg:rotate-[-90deg] rounded-t-lg focus-visible:ces-focused 
                     whitespace-nowrap px-[14px] h-10 desktop:text-desktop-regular mobile:text-mobile-regular 
-                    bg-warp-bg hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active 
+                    bg-warp-bg hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active
                     border-2 border-warp-border hover:border-warp-border-hover focus-visible:border-warp-border-hover 
                     active:border-warp-border-active text-warp-text outline-0 border-b-0 not-warp-lg:border-r-0 
                     not-warp-lg:rounded-tr-none" aria-haspopup="listbox">
@@ -119,10 +121,11 @@ export function initWarpMenu(categories) {
             class="not-warp-lg:w-screen pointer-events-auto warp-lg:flex warp-lg:flex-col text-warp-text 
                    warp-lg:flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] 
                    warp-lg:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)] 
-                   warp-lg:bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:columns-3 not-warp-lg:h-auto not-warp-lg:overflow-y-scroll"
+                   warp-lg:bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0 not-warp-lg:columns-3 not-warp-lg:h-auto 
+                   not-warp-lg:overflow-y-scroll not-warp-lg:min-h-[calc(100%-2.5rem)]"
             aria-hidden="true"
         >
-            <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center w-60 
+            <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 warp-md:w-full 
                         py-default gap-default">
                     <div class="py-default pb-default-2x bg-warp-logo-bg w-48 flex flex-row justify-center items-center rounded">
                         <img class="content-[var(--warp-logo)] max-w-32" alt="Cloudogu logo">
@@ -130,7 +133,7 @@ export function initWarpMenu(categories) {
                     ${(hasChangedLogo) ? `<span>${getLocalizedString("poweredBy")}</span>` : ""}
                 </div>
                 ${categories.map(c => createCategory(c)).join("")}
-                <div class="grow flex flex-col justify-end w-60">
+                <div class="grow flex flex-col justify-end warp-lg:w-60 warp-md:w-full bg-[red] absolute right-0 bottom-0">
                     <div class="border-warp-border p-default border-t px-default">
                         <a 
                             href="${window?.location?.origin ?? ""}/cas/logout"
@@ -144,10 +147,6 @@ export function initWarpMenu(categories) {
     </div>
 </div>
     `);
-
-    const t = `
-                
-    `
 
     body.appendChild(warpMenuRoot);
 

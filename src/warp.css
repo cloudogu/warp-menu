@@ -4,8 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.scroll-hide {
+
+}
+
 @media print {
-    .no-print{
+    .no-print {
         display: none !important;
     }
 }
