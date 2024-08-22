@@ -136,8 +136,9 @@ export function initWarpMenu(categories) {
                     ${(hasChangedLogo) ? `<span>${getLocalizedString("poweredBy")}</span>` : ""}
                 </div>
                 ${categories.map(c => createCategory(c)).join("")}
-                <div class="grow flex flex-col justify-end warp-lg:w-60">
-                    <div class="border-warp-border p-default warp-lg:border-t not-warp-lg:border-b px-default">
+                <div class="h-10"></div> <!-- placeholder for logout button in mobile view. do not remove -->
+                <div class="grow flex flex-col justify-end warp-lg:w-60 not-warp-lg:absolute not-warp-lg:h-10 warp-md:w-1/3 warp-sm:w-1/2 warp-xs:w-full">
+                    <div class="border-warp-border p-default border-t px-default">
                         <a 
                             href="${window?.location?.origin ?? ""}/cas/logout"
                             class="text-center inline-block text-warp-text hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active cursor-pointer w-full h-full"

@@ -1131,6 +1131,11 @@ legend{
   background-color: rgb(255 255 0 / var(--tw-bg-opacity));
 }
 
+.bg-\[green\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 128 0 / var(--tw-bg-opacity));
+}
+
 .from{
   --tw-gradient-from: #fff var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
@@ -1224,6 +1229,16 @@ legend{
 
 .no-underline{
   text-decoration-line: none;
+}
+
+.placeholder::-moz-placeholder{
+  --tw-placeholder-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-placeholder-opacity));
+}
+
+.placeholder::placeholder{
+  --tw-placeholder-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-placeholder-opacity));
 }
 
 .opacity-0{
@@ -1449,12 +1464,24 @@ legend{
 }
 
 @media (max-width: 896px){
+  .not-warp-lg\:absolute{
+    position: absolute;
+  }
+
   .not-warp-lg\:left-0{
     left: 0px;
   }
 
   .not-warp-lg\:top-0{
     top: 0px;
+  }
+
+  .not-warp-lg\:bottom-0{
+    bottom: 0px;
+  }
+
+  .not-warp-lg\:right-0{
+    right: 0px;
   }
 
   .not-warp-lg\:h-auto{
@@ -1464,6 +1491,10 @@ legend{
   .not-warp-lg\:h-fit{
     height: -moz-fit-content;
     height: fit-content;
+  }
+
+  .not-warp-lg\:h-10{
+    height: 2.5rem;
   }
 
   .not-warp-lg\:min-h-\[calc\(100\%-2\.5rem\)\]{
@@ -1548,6 +1579,10 @@ legend{
 }
 
 @media (min-width: 480px) and (max-width: 719px){
+  .warp-sm\:w-1\/2{
+    width: 50%;
+  }
+
   .warp-sm\:columns-2{
     -moz-columns: 2;
          columns: 2;
@@ -1563,6 +1598,10 @@ legend{
 }
 
 @media (max-width: 479px){
+  .warp-xs\:w-full{
+    width: 100%;
+  }
+
   .warp-xs\:columns-1{
     -moz-columns: 1;
          columns: 1;
