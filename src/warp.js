@@ -3,7 +3,7 @@ import {createHtml, svgCaretDown, svgCaretRight, svgExternalLink} from "./utils.
 import {ajax} from "./ajax.js";
 import {getLocalizedString, isTranslateable} from "./translation.js";
 import {getCategoryKey, isOpenCollapsible, toggleCollapsedInStorage} from "./toggle.js";
-import {createTooltip} from "./tooltip";
+import {createTooltip} from "./tooltip.js";
 
 /**
  * @typedef {Object} Entry
