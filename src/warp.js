@@ -121,8 +121,10 @@ export function initWarpMenu(categories) {
             class="not-warp-lg:w-screen pointer-events-auto warp-lg:flex warp-lg:flex-col text-warp-text 
                    warp-lg:flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] 
                    warp-lg:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)] 
-                   warp-md:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_33.33%)] 
-                   bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0 not-warp-lg:columns-3 not-warp-lg:h-auto 
+                   warp-md:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_33.33%)] warp-md:columns-3
+                   warp-sm:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_50%)] warp-sm:columns-2
+                   warp-xs:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_100%)] warp-xs:columns-1
+                   bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0  not-warp-lg:h-auto 
                    not-warp-lg:overflow-y-scroll not-warp-lg:min-h-[calc(100%-2.5rem)] scroll-hide relative"
             aria-hidden="true"
         >
