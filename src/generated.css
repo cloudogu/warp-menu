@@ -889,6 +889,10 @@ legend{
   margin-top: 0.5rem;
 }
 
+.mr-default{
+  margin-right: 0.5rem;
+}
+
 .box-border{
   box-sizing: border-box;
 }
@@ -1132,6 +1136,10 @@ legend{
   border-left-color: transparent;
 }
 
+.border-b-transparent{
+  border-bottom-color: transparent;
+}
+
 .bg-\[\#00426B\]{
   --tw-bg-opacity: 1;
   background-color: rgb(0 66 107 / var(--tw-bg-opacity));
@@ -1365,6 +1373,10 @@ legend{
   border-left-color: var(--warp-border);
 }
 
+.hover\:border-b-warp-border:hover{
+  border-bottom-color: var(--warp-border);
+}
+
 .hover\:bg-warp-bg-hover:hover{
   background-color: var(--warp-bg-hover);
 }
@@ -1385,6 +1397,10 @@ legend{
   border-left-color: var(--warp-border);
 }
 
+.focus-visible\:border-b-warp-border:focus-visible{
+  border-bottom-color: var(--warp-border);
+}
+
 .focus-visible\:bg-warp-bg-hover:focus-visible{
   background-color: var(--warp-bg-hover);
 }
@@ -1403,6 +1419,10 @@ legend{
 
 .active\:border-l-warp-border:active{
   border-left-color: var(--warp-border);
+}
+
+.active\:border-b-warp-border:active{
+  border-bottom-color: var(--warp-border);
 }
 
 .active\:bg-warp-bg-active:active{

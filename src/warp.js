@@ -1,5 +1,5 @@
 import {addStylesheet, hasClass} from "./style.js";
-import {createHtml, svgCaretDown, svgCaretRight, svgExternalLink} from "./utils.js";
+import {createHtml, svgCaretDown, svgCaretRight, svgExternalLink, svgLogout} from "./utils.js";
 import {ajax} from "./ajax.js";
 import {getLocalizedString, isTranslateable} from "./translation.js";
 import {getCategoryKey, isOpenCollapsible, toggleCollapsedInStorage} from "./toggle.js";
@@ -123,11 +123,12 @@ export function createCategory(category) {
                         <a 
                         href="${e.Href}"
                         target="${isExternalLink ? "_blank" : "_top"}" 
-                        class="my-default-1/2 py-default-1/2 no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
-                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
+                        class="py-default no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active break-all
                            hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row flex-wrap
-                           items-center box-border border-l border-l-transparent hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border break-word break-all
-                           ">
+                           items-center box-border border-l border-l-transparent border-b border-b-transparent
+                           hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
+                           hover:border-b-warp-border active:border-b-warp-border focus-visible:border-b-warp-border">
                            ${linkText.split(" ").reduce((a,b) => `${a}<span>${b}&nbsp;</span>`, "")}
                             ${(isExternalLink) ? externalIcon : ""}
                        </a>
@@ -186,11 +187,17 @@ export function initWarpMenu(categories) {
             ${categories.map(c => createCategory(c)).join("")}
             <div class="h-10"></div> <!-- placeholder for logout button in mobile view. do not remove -->
             <div class="grow flex flex-col justify-end warp-lg:w-60 not-warp-lg:absolute not-warp-lg:h-10 warp-md:w-1/3 warp-sm:w-1/2 warp-xs:w-full">
-                <div class="border-warp-border p-default border-t px-default">
+                <div class="border-warp-border border-t">
                     <a 
                         href="${window?.location?.origin ?? ""}/cas/logout"
-                        class="inline-block text-warp-text hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active cursor-pointer w-full h-full"
+                        class="py-default no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active break-all
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row flex-wrap
+                           items-center box-border border-l border-l-transparent border-b border-b-transparent
+                           hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
+                           hover:border-b-warp-border active:border-b-warp-border focus-visible:border-b-warp-border"
                     >
+                        <span class="w-[1em] h-[1em] mr-default">${svgLogout}</span>
                         ${getLocalizedString("ecosystemLogoutToken")}
                     </a>
                 </div>
@@ -201,7 +208,7 @@ export function initWarpMenu(categories) {
     `);
     
     // Add tooltip as first child
-    warpMenuRoot.querySelector("#warp-menu-container").prepend(createTooltip());
+    // warpMenuRoot.querySelector("#warp-menu-container").prepend(createTooltip());
 
     body.appendChild(warpMenuRoot);
 
