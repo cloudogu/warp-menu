@@ -171,30 +171,29 @@ export function initWarpMenu(categories) {
                    warp-sm:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_50%)] warp-sm:columns-2
                    warp-xs:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_100%)] warp-xs:columns-1
                    bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0  not-warp-lg:h-auto 
-                   not-warp-lg:overflow-y-scroll scroll-hide relative
-                   group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none
-                   "
+                   not-warp-lg:overflow-y-scroll scroll-hide relative bg-[red]
+                   group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none"
             aria-hidden="true"
         >
             <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 warp-md:w-full 
-                        py-default gap-default">
+                        py-default gap-default relative">
                     <div class="py-default pb-default-2x bg-warp-logo-bg w-48 flex flex-row justify-center items-center rounded">
                         <img class="content-[var(--warp-logo)] max-w-32" alt="Cloudogu logo">
                     </div>
                     ${(hasChangedLogo) ? `<span>${getLocalizedString("poweredBy")}</span>` : ""}
+            </div>
+            ${categories.map(c => createCategory(c)).join("")}
+            <div class="h-10"></div> <!-- placeholder for logout button in mobile view. do not remove -->
+            <div class="grow flex flex-col justify-end warp-lg:w-60 not-warp-lg:absolute not-warp-lg:h-10 warp-md:w-1/3 warp-sm:w-1/2 warp-xs:w-full">
+                <div class="border-warp-border p-default border-t px-default">
+                    <a 
+                        href="${window?.location?.origin ?? ""}/cas/logout"
+                        class="text-center inline-block text-warp-text hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active cursor-pointer w-full h-full"
+                    >
+                        ${getLocalizedString("ecosystemLogoutToken")}
+                    </a>
                 </div>
-                ${categories.map(c => createCategory(c)).join("")}
-                <div class="h-10"></div> <!-- placeholder for logout button in mobile view. do not remove -->
-                <div class="grow flex flex-col justify-end warp-lg:w-60 not-warp-lg:absolute not-warp-lg:h-10 warp-md:w-1/3 warp-sm:w-1/2 warp-xs:w-full">
-                    <div class="border-warp-border p-default border-t px-default">
-                        <a 
-                            href="${window?.location?.origin ?? ""}/cas/logout"
-                            class="text-center inline-block text-warp-text hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active cursor-pointer w-full h-full"
-                        >
-                            ${getLocalizedString("ecosystemLogoutToken")}
-                        </a>
-                    </div>
-                </div>
+            </div>
         </div>
     </div>
 </div>
