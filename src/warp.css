@@ -4,8 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.scroll-hide {
+.scroll-hide::-webkit-scrollbar {
+    display: none;
+}
 
+.scroll-hide {
+    scrollbar-width: none;
 }
 
 @media print {

@@ -29,24 +29,66 @@ var desktopViewColumnWidthInPx = 245;
 export var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
 
-export function isWarpMenuClosed(){
-    const warpMenuContainer = document.querySelector("#warp-menu-container");
-    return !warpMenuContainer.style.right.match("^0?[ ]?(px)?$");
+export function isWarpMenuOpen() {
+    const warpMenuRoot = document.getElementById("warp-menu-root");
+    return warpMenuRoot.classList.contains("open");
 }
 
-export function toggleWarpMenu() {
+export function toggleWarpMenu(hideAnimation) {
+    const warpMenuRoot = document.getElementById("warp-menu-root");
+    if (isWarpMenuOpen()){
+        warpMenuRoot.classList.remove("open");
+    } else {
+        warpMenuRoot.classList.add("open");
+    }
+
+    setWarpMenuPosition(hideAnimation);
+}
+
+export function isDesktopMode() {
+    return (window.innerWidth ?? 0) >= 897;
+}
+
+export function setWarpMenuPosition(hideAnimation) {
     const warpMenuRoot = document.getElementById("warp-menu-root");
     const warpMenu = warpMenuRoot.querySelector("#warp-menu");
     const warpMenuWidth = warpMenu.getBoundingClientRect().width;
+    const warpMenuHeight = warpMenu.getBoundingClientRect().height;
     const warpMenuContainer = warpMenuRoot.querySelector("#warp-menu-container");
-    if (isWarpMenuClosed()) {
-        warpMenu.ariaHidden = "false";
-        warpMenuContainer.style.right = `0`;
-    } else {
+
+    console.log(hideAnimation);
+
+    if (!!hideAnimation){
+        warpMenuContainer.remove();
+    }
+
+    if (isWarpMenuOpen()){
         warpMenu.ariaHidden = "true";
-        warpMenuContainer.style.right = `-${warpMenuWidth}px`;
+
+        if (isDesktopMode()){
+            warpMenuContainer.style.top = ``;
+            warpMenuContainer.style.right = `-${warpMenuWidth}px`;
+        } else {
+            warpMenuContainer.style.top = `${warpMenuHeight}px`;
+            warpMenuContainer.style.right = ``;
+        }
+    } else {
+        warpMenu.ariaHidden = "false";
+
+        if (isDesktopMode()){
+            warpMenuContainer.style.right = `0`;
+            warpMenuContainer.style.top = ``;
+        } else {
+            warpMenuContainer.style.right = ``;
+            warpMenuContainer.style.top = `0`;
+        }
+    }
+
+    if (!!hideAnimation){
+        warpMenuRoot.appendChild(warpMenuContainer);
     }
 }
+
 
 /**
  *
@@ -103,7 +145,7 @@ export function initWarpMenu(categories) {
 <div id="warp-menu-root" class="absolute overflow-hidden w-screen h-screen pointer-events-none no-print">
     <div id="warp-menu-container"
          class="fixed warp-lg:right-0 not-warp-lg:left-0 not-warp-lg:top-0 w-screen h-screen pointer-events-none flex 
-                warp-lg:flex-row not-warp-lg:flex-col warp-lg:justify-end not-warp-lg:justify-start">
+                warp-lg:flex-row not-warp-lg:flex-col warp-lg:justify-end not-warp-lg:justify-start transition-[top,right] duration-[600ms] ease-in-out">
         <div class="bg-[red]">${createTooltip()}</div>
         <div class="flex items-center warp-lg:w-14 not-warp-lg:w-screen not-warp-lg:justify-end">
             <button id="warp-toggle"
@@ -121,8 +163,11 @@ export function initWarpMenu(categories) {
             class="not-warp-lg:w-screen pointer-events-auto warp-lg:flex warp-lg:flex-col text-warp-text 
                    warp-lg:flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] 
                    warp-lg:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)] 
-                   warp-lg:bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0 not-warp-lg:columns-3 not-warp-lg:h-auto 
-                   not-warp-lg:overflow-y-scroll not-warp-lg:min-h-[calc(100%-2.5rem)]"
+                   warp-md:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_33.33%)] warp-md:columns-3
+                   warp-sm:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_50%)] warp-sm:columns-2
+                   warp-xs:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_100%)] warp-xs:columns-1
+                   bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0  not-warp-lg:h-auto 
+                   not-warp-lg:overflow-y-scroll not-warp-lg:min-h-[calc(100%-2.5rem)] scroll-hide relative"
             aria-hidden="true"
         >
             <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 warp-md:w-full 
@@ -133,7 +178,8 @@ export function initWarpMenu(categories) {
                     ${(hasChangedLogo) ? `<span>${getLocalizedString("poweredBy")}</span>` : ""}
                 </div>
                 ${categories.map(c => createCategory(c)).join("")}
-                <div class="grow flex flex-col justify-end warp-lg:w-60 warp-md:w-full bg-[red] absolute right-0 bottom-0">
+                <div class="h-10"></div> <!-- placeholder for logout button in mobile view. do not remove -->
+                <div class="grow flex flex-col justify-end warp-lg:w-60 not-warp-lg:absolute not-warp-lg:h-10 warp-md:w-1/3 warp-sm:w-1/2 warp-xs:w-full">
                     <div class="border-warp-border p-default border-t px-default">
                         <a 
                             href="${window?.location?.origin ?? ""}/cas/logout"
@@ -152,19 +198,19 @@ export function initWarpMenu(categories) {
 
     document.body.addEventListener("click", (ev) => {
         const warpMenuRoot = document.getElementById("warp-menu-root");
-        if (!warpMenuRoot.contains(ev.target) && !isWarpMenuClosed()){
-            toggleWarpMenu();
+        if (!warpMenuRoot.contains(ev.target) && !isWarpMenuOpen()) {
+            toggleWarpMenu(false);
         }
     })
 
     document.body.addEventListener("keydown", (ev) => {
-        if (ev.key === "Escape" && !isWarpMenuClosed()){
-            toggleWarpMenu();
+        if (ev.key === "Escape" && !isWarpMenuOpen()) {
+            toggleWarpMenu(false);
         }
     })
 
     const warpToggle = warpMenuRoot.querySelector("#warp-toggle");
-    warpToggle.onclick = toggleWarpMenu;
+    warpToggle.onclick = () => {toggleWarpMenu(false)};
 
     const summaries = Array.from(warpMenuRoot.querySelectorAll("summary"));
     for (const s of summaries) {
@@ -179,12 +225,11 @@ export function initWarpMenu(categories) {
         };
     }
 
-    toggleWarpMenu();
-    setTimeout(() => {
-        "transition-[right] duration-[600ms] ease-in-out".split(" ").forEach(e => {
-            warpMenuRoot.querySelector("#warp-menu-container").classList.add(e);
-        });
-    }, 50);
+    toggleWarpMenu(true);
+
+    window.addEventListener("resize", () => {
+        setWarpMenuPosition(true);
+    })
 }
 
 var asyncCounter = 0;
