@@ -4,12 +4,12 @@ import {createHtml} from "./utils.js";
 
 
 const tooltipColumnHtmlString = `
-<div id="warp-menu-column-tooltip" class="flex warp-lg:flex-row not-warp-lg:flex-col warp-lg:items-center not-warp-lg:items-end justify-center h-screen">
+<div id="warp-menu-column-tooltip" class="flex warp-lg:flex-row not-warp-lg:flex-col warp-lg:items-center not-warp-lg:items-end warp-lg:justify-center not-warp-lg:justify-end not-warp-lg:mb-4 h-screen">
     <div
         class="relative flex items-center p-4 bg-warp-bg text-warp-text warp-lg:rounded-lg not-warp-lg:rounded-t-lg not-warp-lg:rounded-bl-lg w-80 h-40 z-[9997] gap-2"
     >
         <!-- Tooltip content -->
-        <div>
+        <div class="pointer-events-auto">
           <p>${getLocalizedString("onboardingTextToken")}</p>
           <!-- Checkbox and text -->
           <div class="flex items-center mt-2">
@@ -47,10 +47,15 @@ export function createTooltip() {
     hideHintCheckbox.onclick = hideTooltip;
 
 
+    if (isTooltipDisabled()) {
+        tooltipElement.style.display = 'none';
+    }
+
+
     return tooltipElement;
 }
 
-export function isTooltipDisabled() {
+function isTooltipDisabled() {
     if (!lss) return false;
 
     var tooltipConfig = localStorage.getItem('warpMenuHideTooltip');
