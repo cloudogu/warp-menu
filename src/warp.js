@@ -149,7 +149,7 @@ export function initWarpMenu(categories) {
 <div id="warp-menu-root" class="absolute overflow-hidden w-screen h-screen pointer-events-none no-print group/root">
     <div id="warp-menu-container"
          class="fixed warp-lg:right-0 not-warp-lg:left-0 not-warp-lg:top-0 w-screen h-screen pointer-events-none flex 
-                warp-lg:flex-row not-warp-lg:flex-col warp-lg:justify-end not-warp-lg:justify-start transition-[top,right] duration-[600ms] ease-in-out">
+                warp-lg:flex-row not-warp-lg:flex-col justify-end transition-[top,right] duration-[600ms] ease-in-out">
         <div class="bg-[red]">${createTooltip()}</div>
         <div class="flex items-center warp-lg:w-14 not-warp-lg:w-screen not-warp-lg:justify-end">
             <button id="warp-toggle"
@@ -171,7 +171,7 @@ export function initWarpMenu(categories) {
                    warp-sm:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_50%)] warp-sm:columns-2
                    warp-xs:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_100%)] warp-xs:columns-1
                    bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0  not-warp-lg:h-auto 
-                   not-warp-lg:overflow-y-scroll not-warp-lg:min-h-[calc(100%-2.5rem)] scroll-hide relative
+                   not-warp-lg:overflow-y-scroll scroll-hide relative
                    group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none
                    "
             aria-hidden="true"
