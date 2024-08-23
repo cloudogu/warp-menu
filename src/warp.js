@@ -186,7 +186,7 @@ export function initWarpMenu(categories) {
             </div>
             ${categories.map(c => createCategory(c)).join("")}
             <div class="h-10"></div> <!-- placeholder for logout button in mobile view. do not remove -->
-            <div class="grow flex flex-col justify-end warp-lg:w-60 not-warp-lg:absolute not-warp-lg:h-10 warp-md:w-1/3 warp-sm:w-1/2 warp-xs:w-full">
+            <div class="grow flex flex-col justify-end warp-lg:w-60 not-warp-lg:absolute not-warp-lg:h-10 warp-md:w-1/3 warp-sm:w-1/2 warp-xs:w-full not-warp-lg:bottom-0">
                 <div class="border-warp-border border-t">
                     <a 
                         href="${window?.location?.origin ?? ""}/cas/logout"

@@ -1563,6 +1563,10 @@ legend{
     top: 0px;
   }
 
+  .not-warp-lg\:bottom-0{
+    bottom: 0px;
+  }
+
   .not-warp-lg\:-mt-5{
     margin-top: -1.25rem;
   }
