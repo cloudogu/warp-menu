@@ -38,8 +38,14 @@ export function toggleWarpMenu(hideAnimation) {
     const warpMenuRoot = document.getElementById("warp-menu-root");
     if (isWarpMenuOpen()){
         warpMenuRoot.classList.remove("open");
+        Array.from(warpMenuRoot.querySelectorAll("summary, a")).forEach(e => {
+            e.tabIndex = "-1";
+        });
     } else {
         warpMenuRoot.classList.add("open");
+        Array.from(warpMenuRoot.querySelectorAll("summary, a")).forEach(e => {
+            e.removeAttribute("tabindex");
+        });
     }
 
     setWarpMenuPosition(hideAnimation);
@@ -56,23 +62,11 @@ export function setWarpMenuPosition(hideAnimation) {
     const warpMenuHeight = warpMenu.getBoundingClientRect().height;
     const warpMenuContainer = warpMenuRoot.querySelector("#warp-menu-container");
 
-    console.log(hideAnimation);
-
     if (!!hideAnimation){
         warpMenuContainer.remove();
     }
 
     if (isWarpMenuOpen()){
-        warpMenu.ariaHidden = "true";
-
-        if (isDesktopMode()){
-            warpMenuContainer.style.top = ``;
-            warpMenuContainer.style.right = `-${warpMenuWidth}px`;
-        } else {
-            warpMenuContainer.style.top = `${warpMenuHeight}px`;
-            warpMenuContainer.style.right = ``;
-        }
-    } else {
         warpMenu.ariaHidden = "false";
 
         if (isDesktopMode()){
@@ -81,6 +75,16 @@ export function setWarpMenuPosition(hideAnimation) {
         } else {
             warpMenuContainer.style.right = ``;
             warpMenuContainer.style.top = `0`;
+        }
+    } else {
+        warpMenu.ariaHidden = "true";
+
+        if (isDesktopMode()){
+            warpMenuContainer.style.top = ``;
+            warpMenuContainer.style.right = `-${warpMenuWidth}px`;
+        } else {
+            warpMenuContainer.style.top = `${warpMenuHeight}px`;
+            warpMenuContainer.style.right = ``;
         }
     }
 
@@ -142,7 +146,7 @@ export function initWarpMenu(categories) {
     const actualLogoValue = getComputedStyle(document.documentElement).getPropertyValue("--warp-logo");
     const hasChangedLogo = fallbackLogoValue !== actualLogoValue;
     const warpMenuRoot = createHtml(`
-<div id="warp-menu-root" class="absolute overflow-hidden w-screen h-screen pointer-events-none no-print">
+<div id="warp-menu-root" class="absolute overflow-hidden w-screen h-screen pointer-events-none no-print group/root">
     <div id="warp-menu-container"
          class="fixed warp-lg:right-0 not-warp-lg:left-0 not-warp-lg:top-0 w-screen h-screen pointer-events-none flex 
                 warp-lg:flex-row not-warp-lg:flex-col warp-lg:justify-end not-warp-lg:justify-start transition-[top,right] duration-[600ms] ease-in-out">
@@ -167,7 +171,9 @@ export function initWarpMenu(categories) {
                    warp-sm:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_50%)] warp-sm:columns-2
                    warp-xs:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_100%)] warp-xs:columns-1
                    bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0  not-warp-lg:h-auto 
-                   not-warp-lg:overflow-y-scroll not-warp-lg:min-h-[calc(100%-2.5rem)] scroll-hide relative"
+                   not-warp-lg:overflow-y-scroll not-warp-lg:min-h-[calc(100%-2.5rem)] scroll-hide relative
+                   group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none
+                   "
             aria-hidden="true"
         >
             <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 warp-md:w-full 
@@ -198,13 +204,13 @@ export function initWarpMenu(categories) {
 
     document.body.addEventListener("click", (ev) => {
         const warpMenuRoot = document.getElementById("warp-menu-root");
-        if (!warpMenuRoot.contains(ev.target) && !isWarpMenuOpen()) {
+        if (!warpMenuRoot.contains(ev.target) && isWarpMenuOpen()) {
             toggleWarpMenu(false);
         }
     })
 
     document.body.addEventListener("keydown", (ev) => {
-        if (ev.key === "Escape" && !isWarpMenuOpen()) {
+        if (ev.key === "Escape" && isWarpMenuOpen()) {
             toggleWarpMenu(false);
         }
     })
@@ -225,7 +231,7 @@ export function initWarpMenu(categories) {
         };
     }
 
-    toggleWarpMenu(true);
+    setWarpMenuPosition(true);
 
     window.addEventListener("resize", () => {
         setWarpMenuPosition(true);

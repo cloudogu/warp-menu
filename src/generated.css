@@ -1388,6 +1388,16 @@ legend{
   fill: var(--warp-text-active);
 }
 
+.group\/root:not(.open) .group-\[\&\:not\(\.open\)\]\/root\:pointer-events-none{
+  pointer-events: none;
+}
+
+.group\/root:not(.open) .group-\[\&\:not\(\.open\)\]\/root\:select-none{
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
 @media (min-width: 768px){
   .desktop\:text-desktop-regular{
     font-size: 16px;
