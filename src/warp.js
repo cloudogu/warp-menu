@@ -117,17 +117,19 @@ export function createCategory(category) {
                     <li>
                     ${category.Entries.map(e => {
         const isExternalLink = !!e.Target && e.Target === 'external';
+        const linkText = isTranslateable(e.Title) ? getLocalizedString(e.Title) : e.DisplayName;
+        const externalIcon = `<span class="w-[1em] h-[1em] inline-block">${svgExternalLink}</span>`;
         return `
                         <a 
                         href="${e.Href}"
                         target="${isExternalLink ? "_blank" : "_top"}" 
                         class="my-default-1/2 py-default-1/2 no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
                            hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
-                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row 
-                           items-center box-border border-l border-l-transparent hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row flex-wrap
+                           items-center box-border border-l border-l-transparent hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border break-word break-all
                            ">
-                            ${isTranslateable(e.Title) ? getLocalizedString(e.Title) : e.DisplayName}
-                            ${(isExternalLink) ? `<span class="w-[1em] h-[1em] inline-block ml-2">${svgExternalLink}</span>` : ""}
+                           ${linkText.split(" ").reduce((a,b) => `${a}<span>${b}&nbsp;</span>`, "")}
+                            ${(isExternalLink) ? externalIcon : ""}
                        </a>
                     `;
     }).join("")}
@@ -171,29 +173,28 @@ export function initWarpMenu(categories) {
                    warp-xs:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_100%)] warp-xs:columns-1
                    bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0  not-warp-lg:h-auto 
                    not-warp-lg:overflow-y-scroll scroll-hide relative
-                   group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none
-                   "
+                   group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none"
             aria-hidden="true"
         >
             <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 warp-md:w-full 
-                        py-default gap-default">
+                        py-default gap-default relative">
                     <div class="py-default pb-default-2x bg-warp-logo-bg w-48 flex flex-row justify-center items-center rounded">
                         <img class="content-[var(--warp-logo)] max-w-32" alt="Cloudogu logo">
                     </div>
                     ${(hasChangedLogo) ? `<span>${getLocalizedString("poweredBy")}</span>` : ""}
+            </div>
+            ${categories.map(c => createCategory(c)).join("")}
+            <div class="h-10"></div> <!-- placeholder for logout button in mobile view. do not remove -->
+            <div class="grow flex flex-col justify-end warp-lg:w-60 not-warp-lg:absolute not-warp-lg:h-10 warp-md:w-1/3 warp-sm:w-1/2 warp-xs:w-full">
+                <div class="border-warp-border p-default border-t px-default">
+                    <a 
+                        href="${window?.location?.origin ?? ""}/cas/logout"
+                        class="inline-block text-warp-text hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active cursor-pointer w-full h-full"
+                    >
+                        ${getLocalizedString("ecosystemLogoutToken")}
+                    </a>
                 </div>
-                ${categories.map(c => createCategory(c)).join("")}
-                <div class="h-10"></div> <!-- placeholder for logout button in mobile view. do not remove -->
-                <div class="grow flex flex-col justify-end warp-lg:w-60 not-warp-lg:absolute not-warp-lg:h-10 warp-md:w-1/3 warp-sm:w-1/2 warp-xs:w-full">
-                    <div class="border-warp-border p-default border-t px-default">
-                        <a 
-                            href="${window?.location?.origin ?? ""}/cas/logout"
-                            class="text-center inline-block text-warp-text hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active cursor-pointer w-full h-full"
-                        >
-                            ${getLocalizedString("ecosystemLogoutToken")}
-                        </a>
-                    </div>
-                </div>
+            </div>
         </div>
     </div>
 </div>

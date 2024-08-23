@@ -881,6 +881,10 @@ legend{
   margin-right: 1.5rem;
 }
 
+.ml-default{
+  margin-left: 0.5rem;
+}
+
 .box-border{
   box-sizing: border-box;
 }
@@ -1027,6 +1031,10 @@ legend{
   flex-direction: column;
 }
 
+.flex-wrap{
+  flex-wrap: wrap;
+}
+
 .items-center{
   align-items: center;
 }
@@ -1049,6 +1057,10 @@ legend{
 
 .whitespace-nowrap{
   white-space: nowrap;
+}
+
+.break-all{
+  word-break: break-all;
 }
 
 .rounded{
@@ -1116,6 +1128,10 @@ legend{
 
 .bg-warp-logo-bg{
   background-color: var(--warp-logo-bg);
+}
+
+.bg-\[red\!important\]{
+  background-color: red !important;
 }
 
 .from{
