@@ -29,24 +29,66 @@ var desktopViewColumnWidthInPx = 245;
 export var head = document.getElementsByTagName('head')[0];
 var body = document.getElementsByTagName('body')[0];
 
-export function isWarpMenuClosed(){
-    const warpMenuContainer = document.querySelector("#warp-menu-container");
-    return !warpMenuContainer.style.right.match("^0?[ ]?(px)?$");
+export function isWarpMenuOpen() {
+    const warpMenuRoot = document.getElementById("warp-menu-root");
+    return warpMenuRoot.classList.contains("open");
 }
 
-export function toggleWarpMenu() {
+export function toggleWarpMenu(hideAnimation) {
+    const warpMenuRoot = document.getElementById("warp-menu-root");
+    if (isWarpMenuOpen()){
+        warpMenuRoot.classList.remove("open");
+    } else {
+        warpMenuRoot.classList.add("open");
+    }
+
+    setWarpMenuPosition(hideAnimation);
+}
+
+export function isDesktopMode() {
+    return (window.innerWidth ?? 0) >= 897;
+}
+
+export function setWarpMenuPosition(hideAnimation) {
     const warpMenuRoot = document.getElementById("warp-menu-root");
     const warpMenu = warpMenuRoot.querySelector("#warp-menu");
     const warpMenuWidth = warpMenu.getBoundingClientRect().width;
+    const warpMenuHeight = warpMenu.getBoundingClientRect().height;
     const warpMenuContainer = warpMenuRoot.querySelector("#warp-menu-container");
-    if (isWarpMenuClosed()) {
-        warpMenu.ariaHidden = "false";
-        warpMenuContainer.style.right = `0`;
-    } else {
+
+    console.log(hideAnimation);
+
+    if (!!hideAnimation){
+        warpMenuContainer.remove();
+    }
+
+    if (isWarpMenuOpen()){
         warpMenu.ariaHidden = "true";
-        warpMenuContainer.style.right = `-${warpMenuWidth}px`;
+
+        if (isDesktopMode()){
+            warpMenuContainer.style.top = ``;
+            warpMenuContainer.style.right = `-${warpMenuWidth}px`;
+        } else {
+            warpMenuContainer.style.top = `${warpMenuHeight}px`;
+            warpMenuContainer.style.right = ``;
+        }
+    } else {
+        warpMenu.ariaHidden = "false";
+
+        if (isDesktopMode()){
+            warpMenuContainer.style.right = `0`;
+            warpMenuContainer.style.top = ``;
+        } else {
+            warpMenuContainer.style.right = ``;
+            warpMenuContainer.style.top = `0`;
+        }
+    }
+
+    if (!!hideAnimation){
+        warpMenuRoot.appendChild(warpMenuContainer);
     }
 }
+
 
 /**
  *
@@ -103,7 +145,7 @@ export function initWarpMenu(categories) {
 <div id="warp-menu-root" class="absolute overflow-hidden w-screen h-screen pointer-events-none no-print">
     <div id="warp-menu-container"
          class="fixed warp-lg:right-0 not-warp-lg:left-0 not-warp-lg:top-0 w-screen h-screen pointer-events-none flex 
-                warp-lg:flex-row not-warp-lg:flex-col warp-lg:justify-end not-warp-lg:justify-start">
+                warp-lg:flex-row not-warp-lg:flex-col warp-lg:justify-end not-warp-lg:justify-start transition-[top,right] duration-[600ms] ease-in-out">
         <div class="bg-[red]">${createTooltip()}</div>
         <div class="flex items-center warp-lg:w-14 not-warp-lg:w-screen not-warp-lg:justify-end">
             <button id="warp-toggle"
@@ -156,19 +198,19 @@ export function initWarpMenu(categories) {
 
     document.body.addEventListener("click", (ev) => {
         const warpMenuRoot = document.getElementById("warp-menu-root");
-        if (!warpMenuRoot.contains(ev.target) && !isWarpMenuClosed()){
-            toggleWarpMenu();
+        if (!warpMenuRoot.contains(ev.target) && !isWarpMenuOpen()) {
+            toggleWarpMenu(false);
         }
     })
 
     document.body.addEventListener("keydown", (ev) => {
-        if (ev.key === "Escape" && !isWarpMenuClosed()){
-            toggleWarpMenu();
+        if (ev.key === "Escape" && !isWarpMenuOpen()) {
+            toggleWarpMenu(false);
         }
     })
 
     const warpToggle = warpMenuRoot.querySelector("#warp-toggle");
-    warpToggle.onclick = toggleWarpMenu;
+    warpToggle.onclick = () => {toggleWarpMenu(false)};
 
     const summaries = Array.from(warpMenuRoot.querySelectorAll("summary"));
     for (const s of summaries) {
@@ -183,12 +225,11 @@ export function initWarpMenu(categories) {
         };
     }
 
-    toggleWarpMenu();
-    setTimeout(() => {
-        "transition-[right] duration-[600ms] ease-in-out".split(" ").forEach(e => {
-            warpMenuRoot.querySelector("#warp-menu-container").classList.add(e);
-        });
-    }, 50);
+    toggleWarpMenu(true);
+
+    window.addEventListener("resize", () => {
+        setWarpMenuPosition(true);
+    })
 }
 
 var asyncCounter = 0;
