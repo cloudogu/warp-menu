@@ -146,7 +146,6 @@ export function initWarpMenu(categories) {
     <div id="warp-menu-container"
          class="fixed warp-lg:right-0 not-warp-lg:left-0 not-warp-lg:top-0 w-screen h-screen pointer-events-none flex 
                 warp-lg:flex-row not-warp-lg:flex-col warp-lg:justify-end not-warp-lg:justify-start transition-[top,right] duration-[600ms] ease-in-out">
-        <div class="bg-[red]">${createTooltip()}</div>
         <div class="flex items-center warp-lg:w-14 not-warp-lg:w-screen not-warp-lg:justify-end">
             <button id="warp-toggle"
                     class="pointer-events-auto warp-lg:rotate-[-90deg] rounded-t-lg focus-visible:ces-focused 
@@ -193,6 +192,9 @@ export function initWarpMenu(categories) {
     </div>
 </div>
     `);
+    
+    // Add tooltip as first child
+    warpMenuRoot.querySelector("#warp-menu-container").prepend(createTooltip());
 
     body.appendChild(warpMenuRoot);
 
