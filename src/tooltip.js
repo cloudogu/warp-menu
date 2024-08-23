@@ -3,6 +3,34 @@ import {lss} from "./toggle.js";
 import {createHtml} from "./utils.js";
 
 
+const tooltipColumnHtml = `
+<div class="flex warp-lg:flex-row not-warp-lg:flex-col warp-lg:items-center not-warp-lg:items-end justify-center h-screen">
+    <div
+        class="relative flex items-center p-4 bg-warp-bg text-warp-text warp-lg:rounded-lg not-warp-lg:rounded-t-lg not-warp-lg:rounded-bl-lg w-[320px] h-[152px] z-[9997] gap-2"
+    >
+        <!-- Tooltip content -->
+        <div>
+          <p>
+            Klicken Sie auf „Menü“ um Ihre Tools zu sehen. Das Menü ist an
+            dieser Stelle aus allen Tools zugänglich. Hallo dies ist ein weiterer Test.
+          </p>
+          <!-- Checkbox and text -->
+          <div class="flex items-center mt-2">
+            <input
+              type="checkbox"
+              id="hide-hint"
+              class="h-4 w-4 text-warp-text"
+            />
+            <label for="hide-hint" class="ml-2">Hinweis verbergen</label>
+          </div>
+        </div>
+    </div>
+    <!-- Arrow -->
+    <div class="bg-warp-bg w-10 h-10 rotate-45 warp-lg:-ml-5 warp-lg:mt-0 not-warp-lg:-mt-5"></div>
+</div>
+`;
+
+
 /**
  *
  * @returns {string}
@@ -83,10 +111,7 @@ export function createTooltip() {
     //
     // tooltipLabelHintCheckbox.onclick = hideTooltip;
     // return tooltipColumn;
-    return `
-        <div>
-        </div>
-    `;
+    return tooltipColumnHtml;
 }
 
 export function isTooltipDisabled() {
