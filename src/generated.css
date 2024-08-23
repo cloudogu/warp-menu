@@ -885,6 +885,10 @@ legend{
   margin-left: 0.5rem;
 }
 
+.mt-2{
+  margin-top: 0.5rem;
+}
+
 .box-border{
   box-sizing: border-box;
 }
@@ -938,6 +942,14 @@ legend{
   height: 100vh;
 }
 
+.h-40{
+  height: 10rem;
+}
+
+.h-8{
+  height: 2rem;
+}
+
 .w-48{
   width: 12rem;
 }
@@ -969,6 +981,14 @@ legend{
 
 .w-screen{
   width: 100vw;
+}
+
+.w-8{
+  width: 2rem;
+}
+
+.w-80{
+  width: 20rem;
 }
 
 .max-w-32{
@@ -1048,6 +1068,10 @@ legend{
 }
 
 .gap-default{
+  gap: 0.5rem;
+}
+
+.gap-2{
   gap: 0.5rem;
 }
 
@@ -1164,6 +1188,10 @@ legend{
   padding: 0.5rem;
 }
 
+.p-4{
+  padding: 1rem;
+}
+
 .px-\[14px\]{
   padding-left: 14px;
   padding-right: 14px;
@@ -1223,6 +1251,11 @@ legend{
 
 .text-warp-text{
   color: var(--warp-text);
+}
+
+.text{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .no-underline{
@@ -1443,6 +1476,14 @@ legend{
     right: 0px;
   }
 
+  .warp-lg\:-ml-5{
+    margin-left: -1.25rem;
+  }
+
+  .warp-lg\:mt-0{
+    margin-top: 0px;
+  }
+
   .warp-lg\:flex{
     display: flex;
   }
@@ -1472,8 +1513,16 @@ legend{
     flex-wrap: wrap;
   }
 
+  .warp-lg\:items-center{
+    align-items: center;
+  }
+
   .warp-lg\:justify-end{
     justify-content: flex-end;
+  }
+
+  .warp-lg\:rounded-lg{
+    border-radius: 0.5rem;
   }
 
   .warp-lg\:bg-\[repeating-linear-gradient\(90deg\2c var\(--warp-border\)_0px\2c var\(--warp-border\)_1px\2c var\(--warp-bg\)_1px\2c var\(--warp-bg\)_15rem\)\]{
@@ -1492,6 +1541,10 @@ legend{
 
   .not-warp-lg\:top-0{
     top: 0px;
+  }
+
+  .not-warp-lg\:-mt-5{
+    margin-top: -1.25rem;
   }
 
   .not-warp-lg\:h-10{
@@ -1519,6 +1572,10 @@ legend{
     flex-direction: column;
   }
 
+  .not-warp-lg\:items-end{
+    align-items: flex-end;
+  }
+
   .not-warp-lg\:justify-start{
     justify-content: flex-start;
   }
@@ -1535,8 +1592,17 @@ legend{
     overflow-y: scroll;
   }
 
+  .not-warp-lg\:rounded-t-lg{
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+
   .not-warp-lg\:rounded-tr-none{
     border-top-right-radius: 0px;
+  }
+
+  .not-warp-lg\:rounded-bl-lg{
+    border-bottom-left-radius: 0.5rem;
   }
 
   .not-warp-lg\:border-r-0{
