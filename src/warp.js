@@ -117,17 +117,19 @@ export function createCategory(category) {
                     <li>
                     ${category.Entries.map(e => {
         const isExternalLink = !!e.Target && e.Target === 'external';
+        const linkText = isTranslateable(e.Title) ? getLocalizedString(e.Title) : e.DisplayName;
+        const externalIcon = `<span class="w-[1em] h-[1em] inline-block">${svgExternalLink}</span>`;
         return `
                         <a 
                         href="${e.Href}"
                         target="${isExternalLink ? "_blank" : "_top"}" 
                         class="my-default-1/2 py-default-1/2 no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
                            hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
-                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row 
-                           items-center box-border border-l border-l-transparent hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row flex-wrap
+                           items-center box-border border-l border-l-transparent hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border break-word break-all
                            ">
-                            ${isTranslateable(e.Title) ? getLocalizedString(e.Title) : e.DisplayName}
-                            ${(isExternalLink) ? `<span class="w-[1em] h-[1em] inline-block ml-2">${svgExternalLink}</span>` : ""}
+                           ${linkText.split(" ").reduce((a,b) => `${a}<span>${b}&nbsp;</span>`, "")}
+                            ${(isExternalLink) ? externalIcon : ""}
                        </a>
                     `;
     }).join("")}
@@ -171,7 +173,7 @@ export function initWarpMenu(categories) {
                    warp-sm:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_50%)] warp-sm:columns-2
                    warp-xs:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_100%)] warp-xs:columns-1
                    bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0  not-warp-lg:h-auto 
-                   not-warp-lg:overflow-y-scroll scroll-hide relative bg-[red]
+                   not-warp-lg:overflow-y-scroll scroll-hide relative
                    group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none"
             aria-hidden="true"
         >
@@ -188,7 +190,7 @@ export function initWarpMenu(categories) {
                 <div class="border-warp-border p-default border-t px-default">
                     <a 
                         href="${window?.location?.origin ?? ""}/cas/logout"
-                        class="text-center inline-block text-warp-text hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active cursor-pointer w-full h-full"
+                        class="inline-block text-warp-text hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active cursor-pointer w-full h-full"
                     >
                         ${getLocalizedString("ecosystemLogoutToken")}
                     </a>
