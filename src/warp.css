@@ -15,6 +15,12 @@
     }
 }
 
+@media screen and (max-width:896px){
+    .column-style {
+        column-rule: 1px solid var(--warp-border);
+    }
+}
+
 @media print {
     .no-print {
         display: none !important;
