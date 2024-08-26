@@ -35,14 +35,17 @@ export function isWarpMenuOpen() {
 }
 
 export function toggleWarpMenu(hideAnimation) {
+    const toggleButton = document.getElementById("warp-toggle");
     const warpMenuRoot = document.getElementById("warp-menu-root");
     if (isWarpMenuOpen()) {
         warpMenuRoot.classList.remove("open");
+        toggleButton.ariaExpanded = "false";
         Array.from(warpMenuRoot.querySelectorAll("summary, a")).forEach(e => {
             e.tabIndex = "-1";
         });
     } else {
         warpMenuRoot.classList.add("open");
+        toggleButton.ariaExpanded = "true";
         Array.from(warpMenuRoot.querySelectorAll("summary, a")).forEach(e => {
             e.removeAttribute("tabindex");
         });
@@ -128,7 +131,8 @@ export function createCategory(category) {
         const externalIcon = `<span class="w-[1em] h-[1em] inline-block">${svgExternalLink}</span>`;
         return `
                     <li>
-                        <a 
+                        <a
+                        role="menuitem"
                         href="${e.Href}"
                         target="${isExternalLink ? "_blank" : "_top"}" 
                         class="py-default no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
@@ -168,7 +172,7 @@ export function initWarpMenu(categories) {
                     bg-warp-bg hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active
                     border-2 border-warp-border hover:border-warp-border-hover focus-visible:border-warp-border-hover 
                     active:border-warp-border-active text-warp-text outline-0 border-b-0 not-warp-lg:border-r-0 
-                    not-warp-lg:rounded-tr-none" aria-haspopup="listbox">
+                    not-warp-lg:rounded-tr-none" aria-haspopup="menu" aria-controls="warp-menu">
                 ${getLocalizedString("menuToken")}
             </button>
         </div>
@@ -184,6 +188,8 @@ export function initWarpMenu(categories) {
                        scroll-hide relative overflow-auto
                        group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none"
                 aria-hidden="true"
+                aria-expanded="false"
+                role="menu"
             >
                 <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 not-warp-lg:w-full 
                             py-default gap-default relative">
