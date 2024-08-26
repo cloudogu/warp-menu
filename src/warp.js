@@ -66,7 +66,6 @@ export function setWarpMenuPosition(hideAnimation) {
     const warpMenuContainer = warpMenuRoot.querySelector("#warp-menu-container");
     const toggleButtonWidth = Number(getComputedStyle(warpMenuRoot.querySelector("div:has(>#warp-toggle)")).width.replace("px", ""));
     const tooltipColumnWidth = Number(getComputedStyle(warpMenuRoot.querySelector("#warp-menu-column-tooltip")).width.replace("px", "").replace("auto", "0"));
-    console.log(getComputedStyle(warpMenuRoot.querySelector("#warp-menu-column-tooltip")).width);
     const offset = Math.min(document.documentElement.clientWidth - toggleButtonWidth - tooltipColumnWidth, warpMenuWidth);
 
     if (!!hideAnimation) {
