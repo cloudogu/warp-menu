@@ -63,7 +63,9 @@ export function setWarpMenuPosition(hideAnimation) {
     const warpMenuHeight = warpMenu.getBoundingClientRect().height;
     const warpMenuContainer = warpMenuRoot.querySelector("#warp-menu-container");
     const toggleButtonWidth = Number(getComputedStyle(warpMenuRoot.querySelector("div:has(>#warp-toggle)")).width.replace("px", ""));
-    const offset = Math.min(document.documentElement.clientWidth-toggleButtonWidth, warpMenuWidth);
+    const tooltipColumnWidth = Number(getComputedStyle(warpMenuRoot.querySelector("#warp-menu-column-tooltip")).width.replace("px", "").replace("auto", "0"));
+    console.log(getComputedStyle(warpMenuRoot.querySelector("#warp-menu-column-tooltip")).width);
+    const offset = Math.min(document.documentElement.clientWidth-toggleButtonWidth-tooltipColumnWidth, warpMenuWidth);
 
     if (!!hideAnimation){
         warpMenuContainer.remove();
@@ -158,7 +160,7 @@ export function initWarpMenu(categories) {
     <div id="warp-menu-container"
          class="fixed warp-lg:right-0 not-warp-lg:left-0 not-warp-lg:top-0 w-full h-full pointer-events-none flex 
                 warp-lg:flex-row not-warp-lg:flex-col justify-end transition-[top,right] duration-[600ms] ease-in-out">
-        <div class="flex items-center warp-lg:w-14 not-warp-lg:w-screen not-warp-lg:justify-end">
+        <div class="flex items-center warp-lg:w-14 not-warp-lg:justify-end warp-lg:h-full not-warp-lg:w-full">
             <button id="warp-toggle"
                     class="pointer-events-auto warp-lg:rotate-[-90deg] rounded-t-lg focus-visible:ces-focused 
                     whitespace-nowrap px-[14px] h-10 desktop:text-desktop-regular mobile:text-mobile-regular 
@@ -212,7 +214,7 @@ export function initWarpMenu(categories) {
     `);
     
     // Add tooltip as first child
-    // warpMenuRoot.querySelector("#warp-menu-container").prepend(createTooltip());
+    warpMenuRoot.querySelector("#warp-menu-container").prepend(createTooltip());
 
     body.appendChild(warpMenuRoot);
 
