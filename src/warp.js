@@ -101,7 +101,7 @@ export function setWarpMenuPosition(hideAnimation) {
  */
 export function createCategory(category) {
     const categoryId = getCategoryKey(category);
-    return `<details class="border-warp-border border-b warp-lg:w-60 warp-md:w-full group h-fit break-inside-avoid">
+    return `<details class="border-warp-border border-b warp-lg:w-60 not-warp-lg:w-full group h-fit break-inside-avoid">
                 <summary
                         class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
                            focus-visible:text-warp-text-hover active:text-warp-text-active
@@ -177,7 +177,7 @@ export function initWarpMenu(categories) {
                    group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none"
             aria-hidden="true"
         >
-            <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 warp-md:w-full 
+            <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 not-warp-lg:w-full 
                         py-default gap-default relative">
                     <div class="py-default pb-default-2x bg-warp-logo-bg w-48 flex flex-row justify-center items-center rounded">
                         <img class="content-[var(--warp-logo)] max-w-32" alt="Cloudogu logo">
@@ -185,9 +185,8 @@ export function initWarpMenu(categories) {
                     ${(hasChangedLogo) ? `<span>${getLocalizedString("poweredBy")}</span>` : ""}
             </div>
             ${categories.map(c => createCategory(c)).join("")}
-            <div class="h-10"></div> <!-- placeholder for logout button in mobile view. do not remove -->
-            <div class="grow flex flex-col justify-end warp-lg:w-60 not-warp-lg:absolute not-warp-lg:h-10 warp-md:w-1/3 warp-sm:w-1/2 warp-xs:w-full not-warp-lg:bottom-0">
-                <div class="border-warp-border border-t">
+            <div class="grow warp-lg:flex flex-col justify-end warp-lg:w-60 not-warp-lg:w-full warp-xs:w-full">
+                <div class="border-warp-border warp-lg:border-t not-warp-lg:border-b">
                     <a 
                         href="${window?.location?.origin ?? ""}/cas/logout"
                         class="py-default no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
