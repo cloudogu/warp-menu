@@ -24,7 +24,7 @@ export function getTranslations(language) {
             "platform": "cloudogu platform",
             "aboutCloudoguToken": "&Uuml;ber Cloudogu",
             "menuToken": "Men&uuml;",
-            "ecosystemLogoutToken": "EcoSystem Logout",
+            "ecosystemLogoutToken": "EcoSystem&nbsp;<span lang=\"en\">Logout</span>",
             "onboardingTextToken": "Klicken Sie auf „Men&uuml;“, um ihre Tools zu sehen. Das Men&uuml; verbindet ihre Toolchain und ist von jedem Tool aus zug&auml;nglich.",
             "onboardingHintToken": "Hinweis nicht mehr anzeigen",
             "Development Apps": "Anwendungen",

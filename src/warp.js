@@ -36,7 +36,7 @@ export function isWarpMenuOpen() {
 
 export function toggleWarpMenu(hideAnimation) {
     const warpMenuRoot = document.getElementById("warp-menu-root");
-    if (isWarpMenuOpen()){
+    if (isWarpMenuOpen()) {
         warpMenuRoot.classList.remove("open");
         Array.from(warpMenuRoot.querySelectorAll("summary, a")).forEach(e => {
             e.tabIndex = "-1";
@@ -48,7 +48,9 @@ export function toggleWarpMenu(hideAnimation) {
         });
     }
 
-    setWarpMenuPosition(hideAnimation);
+    requestAnimationFrame(() => {
+        setWarpMenuPosition(hideAnimation);
+    });
 }
 
 export function isDesktopMode() {
@@ -65,18 +67,18 @@ export function setWarpMenuPosition(hideAnimation) {
     const toggleButtonWidth = Number(getComputedStyle(warpMenuRoot.querySelector("div:has(>#warp-toggle)")).width.replace("px", ""));
     const tooltipColumnWidth = Number(getComputedStyle(warpMenuRoot.querySelector("#warp-menu-column-tooltip")).width.replace("px", "").replace("auto", "0"));
     console.log(getComputedStyle(warpMenuRoot.querySelector("#warp-menu-column-tooltip")).width);
-    const offset = Math.min(document.documentElement.clientWidth-toggleButtonWidth-tooltipColumnWidth, warpMenuWidth);
+    const offset = Math.min(document.documentElement.clientWidth - toggleButtonWidth - tooltipColumnWidth, warpMenuWidth);
 
-    if (!!hideAnimation){
+    if (!!hideAnimation) {
         warpMenuContainer.remove();
     }
 
     warpMenu.style.width = `${warpMenuWidth}px`;
 
-    if (isWarpMenuOpen()){
+    if (isWarpMenuOpen()) {
         warpMenu.ariaHidden = "false";
 
-        if (isDesktopMode()){
+        if (isDesktopMode()) {
             warpMenuContainer.style.right = `0`;
             warpMenuContainer.style.top = ``;
         } else {
@@ -86,7 +88,7 @@ export function setWarpMenuPosition(hideAnimation) {
     } else {
         warpMenu.ariaHidden = "true";
 
-        if (isDesktopMode()){
+        if (isDesktopMode()) {
             warpMenuContainer.style.top = ``;
             warpMenuContainer.style.right = `-${offset}px`;
         } else {
@@ -95,7 +97,7 @@ export function setWarpMenuPosition(hideAnimation) {
         }
     }
 
-    if (!!hideAnimation){
+    if (!!hideAnimation) {
         warpMenuRoot.appendChild(warpMenuContainer);
     }
 }
@@ -136,7 +138,7 @@ export function createCategory(category) {
                            items-center box-border border-l border-l-transparent border-b border-b-transparent
                            hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
                            hover:border-b-warp-border active:border-b-warp-border focus-visible:border-b-warp-border">
-                           ${linkText.split(" ").reduce((a,b) => `${a}<span>${b}&nbsp;</span>`, "")}
+                           ${linkText.split(" ").reduce((a, b) => `${a}<span>${b}&nbsp;</span>`, "")}
                             ${(isExternalLink) ? externalIcon : ""}
                        </a>
                     </li>
@@ -187,7 +189,7 @@ export function initWarpMenu(categories) {
                 <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 not-warp-lg:w-full 
                             py-default gap-default relative">
                         <div class="py-default pb-default-2x bg-warp-logo-bg w-48 flex flex-row justify-center items-center rounded">
-                            <img class="content-[var(--warp-logo)] max-w-32" alt="Cloudogu logo">
+                            <img class="content-[var(--warp-logo)] max-w-32" alt="">
                         </div>
                         ${(hasChangedLogo) ? `<span>${getLocalizedString("poweredBy")}</span>` : ""}
                 </div>
@@ -212,7 +214,7 @@ export function initWarpMenu(categories) {
     </div>
 </div>
     `);
-    
+
     // Add tooltip as first child
     warpMenuRoot.querySelector("#warp-menu-container").prepend(createTooltip());
 
@@ -232,7 +234,9 @@ export function initWarpMenu(categories) {
     })
 
     const warpToggle = warpMenuRoot.querySelector("#warp-toggle");
-    warpToggle.onclick = () => {toggleWarpMenu(false)};
+    warpToggle.onclick = () => {
+        toggleWarpMenu(false)
+    };
 
     const summaries = Array.from(warpMenuRoot.querySelectorAll("summary"));
     for (const s of summaries) {
