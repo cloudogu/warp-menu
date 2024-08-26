@@ -149,7 +149,7 @@ export function initWarpMenu(categories) {
     const actualLogoValue = getComputedStyle(document.documentElement).getPropertyValue("--warp-logo");
     const hasChangedLogo = fallbackLogoValue !== actualLogoValue;
     const warpMenuRoot = createHtml(`
-<div id="warp-menu-root" class="absolute overflow-hidden w-screen h-screen pointer-events-none no-print group/root">
+<div id="warp-menu-root" class="z-[9997] absolute overflow-hidden w-screen h-screen pointer-events-none no-print group/root">
     <div id="warp-menu-container"
          class="fixed warp-lg:right-0 not-warp-lg:left-0 not-warp-lg:top-0 w-screen h-screen pointer-events-none flex 
                 warp-lg:flex-row not-warp-lg:flex-col justify-end transition-[top,right] duration-[600ms] ease-in-out">
