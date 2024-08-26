@@ -187,7 +187,7 @@ export function initWarpMenu(categories) {
                        warp-sm:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_50%)] warp-sm:columns-2
                        warp-xs:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_100%)] warp-xs:columns-1
                        bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0  not-warp-lg:h-auto bg-local warp-lg:h-full
-                       scroll-hide relative warp-lg:overflow-auto not-warp-lg:overflow-y-auto
+                       scroll-hide relative warp-lg:overflow-auto not-warp-lg:overflow-y-scroll
                        group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none"
                 aria-hidden="true"
                 aria-expanded="false"
