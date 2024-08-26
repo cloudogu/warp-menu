@@ -860,6 +860,10 @@ legend{
   margin-top: 0.5rem;
 }
 
+.mb-0{
+  margin-bottom: 0px;
+}
+
 .box-border{
   box-sizing: border-box;
 }
@@ -1132,6 +1136,16 @@ legend{
 
 .pb-default-2x{
   padding-bottom: 1rem;
+}
+
+.text-xl{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text{

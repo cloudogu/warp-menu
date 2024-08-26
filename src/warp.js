@@ -118,15 +118,15 @@ export function createCategory(category) {
                 >
                     <span class="w-6 h-6 inline-block group-open:hidden mr-1">${svgCaretRight}</span>                    
                     <span class="w-6 h-6 hidden group-open:inline-block mr-1">${svgCaretDown}</span>                    
-                    ${isTranslateable(category.Title) ? getLocalizedString(category.Title) : category.Title}
+                    <h2 class="text-xl mb-0">${isTranslateable(category.Title) ? getLocalizedString(category.Title) : category.Title}</h2>
                 </summary>
                 <ul>
-                    <li>
                     ${category.Entries.map(e => {
         const isExternalLink = !!e.Target && e.Target === 'external';
         const linkText = isTranslateable(e.Title) ? getLocalizedString(e.Title) : e.DisplayName;
         const externalIcon = `<span class="w-[1em] h-[1em] inline-block">${svgExternalLink}</span>`;
         return `
+                    <li>
                         <a 
                         href="${e.Href}"
                         target="${isExternalLink ? "_blank" : "_top"}" 
@@ -139,9 +139,9 @@ export function createCategory(category) {
                            ${linkText.split(" ").reduce((a,b) => `${a}<span>${b}&nbsp;</span>`, "")}
                             ${(isExternalLink) ? externalIcon : ""}
                        </a>
+                    </li>
                     `;
     }).join("")}
-                    </li>
                 </ul>
             </details>`;
 }
@@ -171,7 +171,7 @@ export function initWarpMenu(categories) {
                 ${getLocalizedString("menuToken")}
             </button>
         </div>
-        <div
+        <nav
                 id="warp-menu" 
                 class="not-warp-lg:w-screen pointer-events-auto warp-lg:flex warp-lg:flex-col text-warp-text 
                        warp-lg:flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] 
@@ -208,7 +208,7 @@ export function initWarpMenu(categories) {
                         </a>
                     </div>
                 </div>
-        </div>
+        </nav>
     </div>
 </div>
     `);
@@ -238,12 +238,15 @@ export function initWarpMenu(categories) {
     for (const s of summaries) {
         s.parentNode.open = isOpenCollapsible(s.id);
         s.onclick = () => {
-            const element = warpMenuRoot.querySelector("#warp-menu-container > div:last-child");
+            const element = warpMenuRoot.querySelector("#warp-menu");
             element.style.width = `${element.getBoundingClientRect().width}px`;
             requestAnimationFrame(() => {
                 element.style.width = "";
             });
             toggleCollapsedInStorage(s.id);
+            requestAnimationFrame(() => {
+                setWarpMenuPosition(true);
+            });
         };
     }
 
