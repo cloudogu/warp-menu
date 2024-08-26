@@ -56,15 +56,21 @@ export function isDesktopMode() {
 }
 
 export function setWarpMenuPosition(hideAnimation) {
+    console.log("rr");
     const warpMenuRoot = document.getElementById("warp-menu-root");
     const warpMenu = warpMenuRoot.querySelector("#warp-menu");
-    const warpMenuWidth = warpMenu.getBoundingClientRect().width;
+    warpMenu.style.width = ``;
+    const warpMenuWidth = warpMenu.scrollWidth;
     const warpMenuHeight = warpMenu.getBoundingClientRect().height;
     const warpMenuContainer = warpMenuRoot.querySelector("#warp-menu-container");
+
+    console.log(warpMenuWidth);
 
     if (!!hideAnimation){
         warpMenuContainer.remove();
     }
+
+    warpMenu.style.width = `${warpMenuWidth}px`;
 
     if (isWarpMenuOpen()){
         warpMenu.ariaHidden = "false";
@@ -165,42 +171,42 @@ export function initWarpMenu(categories) {
             </button>
         </div>
         <div
-            id="warp-menu" 
-            class="not-warp-lg:w-screen pointer-events-auto warp-lg:flex warp-lg:flex-col text-warp-text 
-                   warp-lg:flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] 
-                   warp-lg:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)] 
-                   warp-md:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_33.33%)] warp-md:columns-3
-                   warp-sm:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_50%)] warp-sm:columns-2
-                   warp-xs:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_100%)] warp-xs:columns-1
-                   bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0  not-warp-lg:h-auto 
-                   not-warp-lg:overflow-y-scroll scroll-hide relative
-                   group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none"
-            aria-hidden="true"
-        >
-            <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 not-warp-lg:w-full 
-                        py-default gap-default relative">
-                    <div class="py-default pb-default-2x bg-warp-logo-bg w-48 flex flex-row justify-center items-center rounded">
-                        <img class="content-[var(--warp-logo)] max-w-32" alt="Cloudogu logo">
-                    </div>
-                    ${(hasChangedLogo) ? `<span>${getLocalizedString("poweredBy")}</span>` : ""}
-            </div>
-            ${categories.map(c => createCategory(c)).join("")}
-            <div class="grow warp-lg:flex flex-col justify-end warp-lg:w-60 not-warp-lg:w-full warp-xs:w-full">
-                <div class="border-warp-border warp-lg:border-t not-warp-lg:border-b">
-                    <a 
-                        href="${window?.location?.origin ?? ""}/cas/logout"
-                        class="py-default no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
-                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active break-all
-                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row flex-wrap
-                           items-center box-border border-l border-l-transparent border-b border-b-transparent
-                           hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
-                           hover:border-b-warp-border active:border-b-warp-border focus-visible:border-b-warp-border"
-                    >
-                        <span class="w-[1em] h-[1em] mr-default">${svgLogout}</span>
-                        ${getLocalizedString("ecosystemLogoutToken")}
-                    </a>
+                id="warp-menu" 
+                class="not-warp-lg:w-screen pointer-events-auto warp-lg:flex warp-lg:flex-col text-warp-text 
+                       warp-lg:flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] 
+                       warp-lg:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)] 
+                       warp-md:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_33.33%)] warp-md:columns-3
+                       warp-sm:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_50%)] warp-sm:columns-2
+                       warp-xs:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_100%)] warp-xs:columns-1
+                       bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0  not-warp-lg:h-auto 
+                       not-warp-lg:overflow-y-scroll scroll-hide relative
+                       group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none"
+                aria-hidden="true"
+            >
+                <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 not-warp-lg:w-full 
+                            py-default gap-default relative">
+                        <div class="py-default pb-default-2x bg-warp-logo-bg w-48 flex flex-row justify-center items-center rounded">
+                            <img class="content-[var(--warp-logo)] max-w-32" alt="Cloudogu logo">
+                        </div>
+                        ${(hasChangedLogo) ? `<span>${getLocalizedString("poweredBy")}</span>` : ""}
                 </div>
-            </div>
+                ${categories.map(c => createCategory(c)).join("")}
+                <div class="grow warp-lg:flex flex-col justify-end warp-lg:w-60 not-warp-lg:w-full warp-xs:w-full">
+                    <div class="border-warp-border warp-lg:border-t not-warp-lg:border-b">
+                        <a 
+                            href="${window?.location?.origin ?? ""}/cas/logout"
+                            class="py-default no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                               hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active break-all
+                               hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row flex-wrap
+                               items-center box-border border-l border-l-transparent border-b border-b-transparent
+                               hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
+                               hover:border-b-warp-border active:border-b-warp-border focus-visible:border-b-warp-border"
+                        >
+                            <span class="w-[1em] h-[1em] mr-default">${svgLogout}</span>
+                            ${getLocalizedString("ecosystemLogoutToken")}
+                        </a>
+                    </div>
+                </div>
         </div>
     </div>
 </div>
