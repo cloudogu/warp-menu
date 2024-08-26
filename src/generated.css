@@ -1398,6 +1398,10 @@ legend{
     justify-content: center;
   }
 
+  .warp-lg\:overflow-auto{
+    overflow: auto;
+  }
+
   .warp-lg\:rounded-lg{
     border-radius: 0.5rem;
   }
@@ -1459,6 +1463,10 @@ legend{
 
   .not-warp-lg\:gap-0{
     gap: 0px;
+  }
+
+  .not-warp-lg\:overflow-y-auto{
+    overflow-y: auto;
   }
 
   .not-warp-lg\:overflow-y-scroll{
