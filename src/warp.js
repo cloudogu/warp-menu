@@ -183,7 +183,10 @@ export function initWarpMenu(categories) {
         <nav
                 id="warp-menu" 
                 class="pointer-events-auto group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none 
-                       relative overflow-auto scroll-hide"
+                       relative overflow-auto scroll-hide
+                       warp-lg:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)] bg-[var(--warp-bg)]
+                       bg-repeat-x bg-local
+                       "
                 aria-hidden="true"
                 aria-expanded="false"
                 role="menu"
@@ -191,10 +194,8 @@ export function initWarpMenu(categories) {
                 <div class="warp-lg:flex warp-lg:flex-col text-warp-text
                             not-warp-lg:w-screen column-style
                             h-auto warp-md:columns-3 warp-sm:columns-2 warp-xs:columns-1
-                            warp-lg:flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] 
-                            not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0 bg-local warp-lg:h-full
-                            warp-lg:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)]
-                            bg-repeat-x scroll-hide"
+                            warp-lg:flex-wrap border-warp-border border-box border-solid w-fit
+                            not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0 warp-lg:h-full scroll-hide"
                 >
                     <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 not-warp-lg:w-full 
                                 py-default gap-default relative">
