@@ -65,10 +65,7 @@ export function setWarpMenuPosition(hideAnimation) {
     const warpMenu = warpMenuRoot.querySelector("#warp-menu");
     warpMenu.style.width = ``;
     warpMenu.firstElementChild.style.width = ``;
-    const warpMenuWidth = Math.max(
-        Math.max(warpMenu.scrollWidth, warpMenu.scrollWidth),
-        Math.max(warpMenu.offsetWidth, warpMenu.offsetWidth)
-    );
+    const warpMenuWidth = warpMenu.scrollWidth;
     const warpMenuHeight = warpMenu.getBoundingClientRect().height;
     const warpMenuContainer = warpMenuRoot.querySelector("#warp-menu-container");
     const toggleButtonWidth = Number(getComputedStyle(warpMenuRoot.querySelector("div:has(>#warp-toggle)")).width.replace("px", ""));
