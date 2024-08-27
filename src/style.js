@@ -12,21 +12,6 @@ export function hasClass(elem, c) {
   return classReg(c).test(elem.className);
 }
 
-export function addClass( elem, c ) {
-  if ( !hasClass(elem, c) ) {
-    elem.className = elem.className + ' ' + c;
-  }
-}
-
-export function removeClass(elem, c) {
-  elem.className = elem.className.replace(classReg( c ), ' ');
-}
-
-export function toggleClass(elem, c) {
-  var fn = hasClass(elem, c) ? removeClass : addClass;
-  fn(elem, c);
-}
-
 export function addStylesheet(href, callback, scope){
   // http://thudjs.tumblr.com/post/637855087/stylesheet-onload-or-lack-thereof
   var link = document.createElement('link');

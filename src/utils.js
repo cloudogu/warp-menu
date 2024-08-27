@@ -10,23 +10,6 @@ export function isLocalStorageSupported() {
     }
 }
 
-// According to https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
-// This trick is used to get the correct height on mobile devices.
-export function setCorrectVh() {
-    var correctVh = (window.innerHeight * 0.01) + 'px';
-    // This is used to calculate correct inner height of the display
-    document.getElementById('warp-menu-container').style.setProperty('--vh', correctVh);
-}
-
-export function createLink(href) {
-    var baseUrl = '';
-    if (href.indexOf('http') === 0) {
-        return href;
-    } else {
-        return baseUrl + href;
-    }
-}
-
 export function createHtml(htmlString) {
     const element = document.createElement("div");
     element.innerHTML = htmlString;
