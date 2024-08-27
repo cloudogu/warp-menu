@@ -913,6 +913,10 @@ legend{
   height: 100vh;
 }
 
+.h-auto{
+  height: auto;
+}
+
 .w-48{
   width: 12rem;
 }
@@ -963,11 +967,6 @@ legend{
   resize: both;
 }
 
-.break-inside-avoid{
-  -moz-column-break-inside: avoid;
-       break-inside: avoid;
-}
-
 .flex-row{
   flex-direction: row;
 }
@@ -998,6 +997,10 @@ legend{
 
 .gap-default{
   gap: 0.5rem;
+}
+
+.overflow-auto{
+  overflow: auto;
 }
 
 .overflow-hidden{

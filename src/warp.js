@@ -64,6 +64,7 @@ export function setWarpMenuPosition(hideAnimation) {
     const warpMenuRoot = document.getElementById("warp-menu-root");
     const warpMenu = warpMenuRoot.querySelector("#warp-menu");
     warpMenu.style.width = ``;
+    warpMenu.firstElementChild.style.width = ``;
     const warpMenuWidth = warpMenu.scrollWidth;
     const warpMenuHeight = warpMenu.getBoundingClientRect().height;
     const warpMenuContainer = warpMenuRoot.querySelector("#warp-menu-container");
@@ -77,6 +78,7 @@ export function setWarpMenuPosition(hideAnimation) {
 
     if (isDesktopMode()) {
         warpMenu.style.width = `${warpMenuWidth}px`;
+        warpMenu.firstElementChild.style.width = `${warpMenuWidth}px`;
     }
 
     if (isWarpMenuOpen()) {
@@ -180,39 +182,43 @@ export function initWarpMenu(categories) {
         </div>
         <nav
                 id="warp-menu" 
-                class="not-warp-lg:w-screen pointer-events-auto warp-lg:flex warp-lg:flex-col text-warp-text 
-                       warp-lg:flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] 
-                       warp-lg:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)] 
-                       warp-md:columns-3 warp-sm:columns-2 warp-xs:columns-1
-                       bg-repeat-x not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0 bg-local warp-lg:h-full
-                       scroll-hide relative warp-lg:overflow-auto not-warp-lg:overflow-y-scroll column-style
-                       group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none"
+                class="pointer-events-auto group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none 
+                       relative overflow-auto scroll-hide"
                 aria-hidden="true"
                 aria-expanded="false"
                 role="menu"
             >
-                <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 not-warp-lg:w-full 
-                            py-default gap-default relative">
-                        <div class="py-default pb-default-2x bg-warp-logo-bg w-48 flex flex-row justify-center items-center rounded">
-                            <img class="content-[var(--warp-logo)] max-w-32" alt="">
+                <div class="warp-lg:flex warp-lg:flex-col text-warp-text
+                            not-warp-lg:w-screen column-style
+                            h-auto warp-md:columns-3 warp-sm:columns-2 warp-xs:columns-1
+                            warp-lg:flex-wrap border-warp-border border-box border-solid w-fit bg-[var(--warp-bg)] 
+                            not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0 bg-local warp-lg:h-full
+                            warp-lg:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)]
+                            bg-repeat-x scroll-hide"
+                >
+                    <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 not-warp-lg:w-full 
+                                py-default gap-default relative">
+                            <div class="py-default pb-default-2x bg-warp-logo-bg w-48 flex flex-row justify-center items-center rounded">
+                                <img class="content-[var(--warp-logo)] max-w-32" alt="">
+                            </div>
+                            ${(hasChangedLogo) ? `<span>${getLocalizedString("poweredBy")}</span>` : ""}
+                    </div>
+                    ${categories.map(c => createCategory(c)).join("")}
+                    <div class="grow warp-lg:flex flex-col justify-end warp-lg:w-60 not-warp-lg:w-full warp-xs:w-full">
+                        <div class="border-warp-border warp-lg:border-t not-warp-lg:border-b">
+                            <a 
+                                href="${window?.location?.origin ?? ""}/cas/logout"
+                                class="py-default no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                                   hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active break-all
+                                   hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row flex-wrap
+                                   items-center box-border border-l border-l-transparent border-b border-b-transparent
+                                   hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
+                                   hover:border-b-warp-border active:border-b-warp-border focus-visible:border-b-warp-border"
+                            >
+                                <span class="w-[1em] h-[1em] mr-default">${svgLogout}</span>
+                                ${getLocalizedString("ecosystemLogoutToken")}
+                            </a>
                         </div>
-                        ${(hasChangedLogo) ? `<span>${getLocalizedString("poweredBy")}</span>` : ""}
-                </div>
-                ${categories.map(c => createCategory(c)).join("")}
-                <div class="grow warp-lg:flex flex-col justify-end warp-lg:w-60 not-warp-lg:w-full warp-xs:w-full">
-                    <div class="border-warp-border warp-lg:border-t not-warp-lg:border-b">
-                        <a 
-                            href="${window?.location?.origin ?? ""}/cas/logout"
-                            class="py-default no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
-                               hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active break-all
-                               hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row flex-wrap
-                               items-center box-border border-l border-l-transparent border-b border-b-transparent
-                               hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
-                               hover:border-b-warp-border active:border-b-warp-border focus-visible:border-b-warp-border"
-                        >
-                            <span class="w-[1em] h-[1em] mr-default">${svgLogout}</span>
-                            ${getLocalizedString("ecosystemLogoutToken")}
-                        </a>
                     </div>
                 </div>
         </nav>
