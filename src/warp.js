@@ -21,13 +21,14 @@ import {createTooltip} from "./tooltip.js";
  */
 
 /**
- * @type {Section[]}
+ * @type {HTMLHeadElement}
  */
+export const head = document.getElementsByTagName('head')[0];
 
-var desktopViewColumnWidthInPx = 245;
-
-export var head = document.getElementsByTagName('head')[0];
-var body = document.getElementsByTagName('body')[0];
+/**
+ * @type {HTMLBodyElement}
+ */
+const body = document.getElementsByTagName('body')[0];
 
 export function isWarpMenuOpen() {
     const warpMenuRoot = document.getElementById("warp-menu-root");
@@ -37,13 +38,16 @@ export function isWarpMenuOpen() {
 export function toggleWarpMenu(hideAnimation) {
     const toggleButton = document.getElementById("warp-toggle");
     const warpMenuRoot = document.getElementById("warp-menu-root");
+    console.log("start toggle");
     if (isWarpMenuOpen()) {
+        console.log("remove open");
         warpMenuRoot.classList.remove("open");
         toggleButton.ariaExpanded = "false";
         Array.from(warpMenuRoot.querySelectorAll("summary, a")).forEach(e => {
             e.tabIndex = "-1";
         });
     } else {
+        console.log("add open");
         warpMenuRoot.classList.add("open");
         toggleButton.ariaExpanded = "true";
         Array.from(warpMenuRoot.querySelectorAll("summary, a")).forEach(e => {
@@ -81,6 +85,7 @@ export function setWarpMenuPosition(hideAnimation) {
         warpMenu.firstElementChild.style.width = `${warpMenuWidth}px`;
     }
 
+
     if (isWarpMenuOpen()) {
         warpMenu.ariaHidden = "false";
 
@@ -102,6 +107,7 @@ export function setWarpMenuPosition(hideAnimation) {
             warpMenuContainer.style.right = ``;
         }
     }
+
 
     if (!!hideAnimation) {
         warpMenuRoot.appendChild(warpMenuContainer);
@@ -165,7 +171,7 @@ export function initWarpMenu(categories) {
     const actualLogoValue = getComputedStyle(document.documentElement).getPropertyValue("--warp-logo");
     const hasChangedLogo = fallbackLogoValue !== actualLogoValue;
     const warpMenuRoot = createHtml(`
-<div id="warp-menu-root" class="z-[9997] absolute overflow-hidden w-full h-full pointer-events-none no-print group/root">
+<div id="warp-menu-root" class="z-[9997] absolute overflow-hidden w-full h-full pointer-events-none no-print group/root top-0 left-0">
     <div id="warp-menu-container"
          class="fixed warp-lg:right-0 not-warp-lg:left-0 not-warp-lg:top-0 w-full h-full pointer-events-none flex 
                 warp-lg:flex-row not-warp-lg:flex-col justify-end transition-[top,right] duration-[600ms] ease-in-out">
@@ -234,7 +240,7 @@ export function initWarpMenu(categories) {
 
     document.body.addEventListener("click", (ev) => {
         const warpMenuRoot = document.getElementById("warp-menu-root");
-        if (!warpMenuRoot.contains(ev.target) && isWarpMenuOpen()) {
+        if (!warpMenuRoot.contains(ev.target) && isWarpMenuOpen() && ev.target.id !== "warp-menu-shadow-host") {
             toggleWarpMenu(false);
         }
     })
@@ -247,7 +253,7 @@ export function initWarpMenu(categories) {
 
     const warpToggle = warpMenuRoot.querySelector("#warp-toggle");
     warpToggle.onclick = () => {
-        toggleWarpMenu(false)
+        toggleWarpMenu(false);
     };
 
     const summaries = Array.from(warpMenuRoot.querySelectorAll("summary"));
@@ -274,30 +280,7 @@ export function initWarpMenu(categories) {
     })
 }
 
-var asyncCounter = 0;
-var model;
-
-export function loaded(menu) {
-    if (menu) {
-        model = menu;
-    }
-    --asyncCounter;
-    if (asyncCounter === 0) {
-        initWarpMenu(model);
-    }
-}
-
 if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
-
-    // load css
-    asyncCounter++;
-    addStylesheet((typeof cesWarpMenuWarpCssUrl !== "undefined") ? cesWarpMenuWarpCssUrl : '/warp/warp.css', function (success) {
-        if (success) {
-            loaded();
-        }
-    });
-
-    // load model
-    asyncCounter++;
-    ajax((typeof cesWarpMenuMenuJsonUrl !== "undefined") ? cesWarpMenuMenuJsonUrl : '/warp/menu.json', loaded);
+    addStylesheet((typeof cesWarpMenuWarpCssUrl !== "undefined") ? cesWarpMenuWarpCssUrl : '/warp/warp.css');
+    ajax((typeof cesWarpMenuMenuJsonUrl !== "undefined") ? cesWarpMenuMenuJsonUrl : '/warp/menu.json', initWarpMenu);
 }

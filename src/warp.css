@@ -1,10 +1,16 @@
 @import "@cloudogu/ces-theme-tailwind/ces-theme-tailwind-config.css";
 
+/* It is important to have this reset css before tailwind imports */
+#warp-menu-root {
+    all: initial;
+    font-size: 16px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@media screen and (max-width:896px) {
+@media screen and (max-width: 896px) {
 
     #warp-menu-root.scroll-hide::-webkit-scrollbar, #warp-menu-root .scroll-hide::-webkit-scrollbar {
         display: none;
@@ -15,7 +21,7 @@
     }
 }
 
-@media screen and (max-width:896px){
+@media screen and (max-width: 896px) {
     #warp-menu-root.column-style, #warp-menu-root .column-style {
         column-rule: 1px solid var(--warp-border);
     }
@@ -28,5 +34,5 @@
 }
 
 #warp-menu-root details summary::-webkit-details-marker {
-    display:none;
+    display: none;
 }
