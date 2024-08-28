@@ -1,5 +1,4 @@
 import {getLocalizedString} from "./translation.js";
-import {lss} from "./toggle.js";
 import {createHtml} from "./utils.js";
 
 
@@ -44,7 +43,7 @@ export function createTooltip() {
 
     function hideTooltip() {
         tooltipElement.classList.add("invisible", "opacity-0");
-        if (lss) localStorage.setItem('warpMenuHideTooltip', 'hide');
+        localStorage.setItem('warpMenuHideTooltip', 'hide');
         setTimeout(function () {
             tooltipElement.style.display = 'none';
         }, 3000);
@@ -62,8 +61,6 @@ export function createTooltip() {
 }
 
 function isTooltipDisabled() {
-    if (!lss) return false;
-
-    var tooltipConfig = localStorage.getItem('warpMenuHideTooltip');
+    const tooltipConfig = localStorage.getItem('warpMenuHideTooltip');
     return tooltipConfig === 'hide';
 }

@@ -1,10 +1,6 @@
-import {isLocalStorageSupported} from "./utils.js";
 
-export var lss = isLocalStorageSupported();
 
 export function toggleCollapsedInStorage(id) {
-    if (!lss) return;
-
     if (localStorage.getItem(id) === null || localStorage.getItem(id) === 'true') {
         localStorage.setItem(id, 'false');
     } else {
@@ -13,8 +9,6 @@ export function toggleCollapsedInStorage(id) {
 }
 
 export function isOpenCollapsible(id) {
-    if (!lss) return true;
-
     return localStorage.getItem(id) === 'true' || localStorage.getItem(id) === null;
 }
 

@@ -1,5 +1,4 @@
-import {addStylesheet, hasClass} from "./style.js";
-import {createHtml, svgCaretDown, svgCaretRight, svgExternalLink, svgLogout} from "./utils.js";
+import {hasClass, createHtml, svgCaretDown, svgCaretRight, svgExternalLink, svgLogout} from "./utils.js";
 import {ajax} from "./ajax.js";
 import {getLocalizedString, isTranslateable} from "./translation.js";
 import {getCategoryKey, isOpenCollapsible, toggleCollapsedInStorage} from "./toggle.js";
@@ -171,9 +170,6 @@ export function createCategory(category) {
  * @returns {HTMLObjectElement}
  */
 export function initWarpMenu(categories) {
-    const fallbackLogoValue = getComputedStyle(document.documentElement).getPropertyValue("--warp-logo-internal");
-    const actualLogoValue = getComputedStyle(document.documentElement).getPropertyValue("--warp-logo");
-    const hasChangedLogo = fallbackLogoValue !== actualLogoValue;
     const warpMenuRoot = createHtml(`
 <div style="opacity: 0;" id="warp-menu-root" class="z-[9997] absolute overflow-hidden w-full h-full pointer-events-none no-print group/root top-0 left-0">
     <div id="warp-menu-container"
@@ -212,7 +208,7 @@ export function initWarpMenu(categories) {
                             <div class="py-default pb-default-2x bg-warp-logo-bg w-48 flex flex-row justify-center items-center rounded">
                                 <img class="content-[var(--warp-logo)] max-w-32" alt="">
                             </div>
-                            ${(hasChangedLogo) ? `<span>${getLocalizedString("poweredBy")}</span>` : ""}
+                            <span id="powered-by" class="hidden">${getLocalizedString("poweredBy")}</span>
                     </div>
                     ${categories.map(c => createCategory(c)).join("")}
                     <div class="grow warp-lg:flex flex-col justify-end warp-lg:w-60 not-warp-lg:w-full warp-xs:w-full">
@@ -285,6 +281,13 @@ export function initWarpMenu(categories) {
     const styleLink = document.createElement("link");
     styleLink.onload = () => {
         requestAnimationFrame(() => {
+            const fallbackLogoValue = getComputedStyle(shadowRootDocument.firstElementChild).getPropertyValue("--warp-logo-internal");
+            const actualLogoValue = getComputedStyle(shadowRootDocument.firstElementChild).getPropertyValue("--warp-logo");
+            const hasChangedLogo = fallbackLogoValue !== actualLogoValue;
+            if(hasChangedLogo) {
+                shadowRoot.firstElementChild.querySelector("#powered-by")?.classList.remove("hidden");
+            }
+
             setWarpMenuPosition(true);
         });
     }

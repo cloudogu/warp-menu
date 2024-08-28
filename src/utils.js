@@ -1,13 +1,9 @@
-// http://stackoverflow.com/questions/11214404/how-to-detect-if-browser-supports-html5-local-storage
-export function isLocalStorageSupported() {
-    var mod = '__warp';
-    try {
-        localStorage.setItem(mod, mod);
-        localStorage.removeItem(mod);
-        return true;
-    } catch (e) {
-        return false;
-    }
+export function classReg(className) {
+    return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+}
+
+export function hasClass(elem, c) {
+    return classReg(c).test(elem.className);
 }
 
 export function createHtml(htmlString) {
