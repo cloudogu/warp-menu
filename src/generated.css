@@ -2062,22 +2062,22 @@ legend{
 }
 
 @media screen and (max-width:896px) {
-  #warp-menu-root .scroll-hide::-webkit-scrollbar {
+  #warp-menu-root.scroll-hide::-webkit-scrollbar, #warp-menu-root .scroll-hide::-webkit-scrollbar {
     display: none;
   }
 
-  #warp-menu-root .scroll-hide {
+  #warp-menu-root.scroll-hide, #warp-menu-root .scroll-hide {
     scrollbar-width: none;
   }
 
-  #warp-menu-root .column-style {
+  #warp-menu-root.column-style, #warp-menu-root .column-style {
     -moz-column-rule: 1px solid var(--warp-border);
          column-rule: 1px solid var(--warp-border);
   }
 }
 
 @media print {
-  #warp-menu-root .no-print {
+  #warp-menu-root.no-print, #warp-menu-root .no-print {
     display: none !important;
   }
 }
