@@ -6,23 +6,27 @@
 
 @media screen and (max-width:896px) {
 
-    .scroll-hide::-webkit-scrollbar {
+    #warp-menu-root.scroll-hide::-webkit-scrollbar, #warp-menu-root .scroll-hide::-webkit-scrollbar {
         display: none;
     }
 
-    .scroll-hide {
+    #warp-menu-root.scroll-hide, #warp-menu-root .scroll-hide {
         scrollbar-width: none;
     }
 }
 
 @media screen and (max-width:896px){
-    .column-style {
+    #warp-menu-root.column-style, #warp-menu-root .column-style {
         column-rule: 1px solid var(--warp-border);
     }
 }
 
 @media print {
-    .no-print {
+    #warp-menu-root.no-print, #warp-menu-root .no-print {
         display: none !important;
     }
+}
+
+#warp-menu-root details summary::-webkit-details-marker {
+    display:none;
 }
