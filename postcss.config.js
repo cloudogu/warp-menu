@@ -4,9 +4,9 @@ module.exports = {
         require('autoprefixer'),
         require('postcss-prefix-selector')({
             transform: (prefix, selector, prefixedSelector) => {
-                const rootMatcher = ["html", "body", ":root", ":host"];
+                const rootMatcher = ["html", "body", ":root"];
                 if (rootMatcher.includes(selector)){
-                    return "#warp-menu-root";
+                    return ":host";
                 }
                 // Ensure the prefix is only applied to class selectors
                 return selector.startsWith('.') ? `#warp-menu-root${selector}, #warp-menu-root ${selector}` : `#warp-menu-root ${selector}`;

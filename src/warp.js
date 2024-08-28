@@ -30,14 +30,16 @@ export const head = document.getElementsByTagName('head')[0];
  */
 const body = document.getElementsByTagName('body')[0];
 
+let shadowRootDocument = document.documentElement;
+
 export function isWarpMenuOpen() {
-    const warpMenuRoot = document.getElementById("warp-menu-root");
+    const warpMenuRoot = shadowRootDocument.getElementById("warp-menu-root");
     return warpMenuRoot.classList.contains("open");
 }
 
 export function toggleWarpMenu(hideAnimation) {
-    const toggleButton = document.getElementById("warp-toggle");
-    const warpMenuRoot = document.getElementById("warp-menu-root");
+    const toggleButton = shadowRootDocument.getElementById("warp-toggle");
+    const warpMenuRoot = shadowRootDocument.getElementById("warp-menu-root");
     console.log("start toggle");
     if (isWarpMenuOpen()) {
         console.log("remove open");
@@ -65,7 +67,7 @@ export function isDesktopMode() {
 }
 
 export function setWarpMenuPosition(hideAnimation) {
-    const warpMenuRoot = document.getElementById("warp-menu-root");
+    const warpMenuRoot = shadowRootDocument.getElementById("warp-menu-root");
     const warpMenu = warpMenuRoot.querySelector("#warp-menu");
     warpMenu.style.width = ``;
     warpMenu.firstElementChild.style.width = ``;
@@ -112,6 +114,8 @@ export function setWarpMenuPosition(hideAnimation) {
     if (!!hideAnimation) {
         warpMenuRoot.appendChild(warpMenuContainer);
     }
+
+    warpMenuRoot.style.opacity = 1;
 }
 
 
@@ -171,7 +175,7 @@ export function initWarpMenu(categories) {
     const actualLogoValue = getComputedStyle(document.documentElement).getPropertyValue("--warp-logo");
     const hasChangedLogo = fallbackLogoValue !== actualLogoValue;
     const warpMenuRoot = createHtml(`
-<div id="warp-menu-root" class="z-[9997] absolute overflow-hidden w-full h-full pointer-events-none no-print group/root top-0 left-0">
+<div style="opacity: 0;" id="warp-menu-root" class="z-[9997] absolute overflow-hidden w-full h-full pointer-events-none no-print group/root top-0 left-0">
     <div id="warp-menu-container"
          class="fixed warp-lg:right-0 not-warp-lg:left-0 not-warp-lg:top-0 w-full h-full pointer-events-none flex 
                 warp-lg:flex-row not-warp-lg:flex-col justify-end transition-[top,right] duration-[600ms] ease-in-out">
@@ -236,10 +240,15 @@ export function initWarpMenu(categories) {
     // Add tooltip as first child
     warpMenuRoot.querySelector("#warp-menu-container").prepend(createTooltip());
 
-    body.appendChild(warpMenuRoot);
+    const shadowHost = createHtml(`<div id="warp-menu-shadow-host" style="pointer-events: none;"></div>`);
+    const shadowRoot = shadowHost.attachShadow({mode: "open"});
+    shadowRoot.appendChild(warpMenuRoot);
+    body.appendChild(shadowHost);
+
+    shadowRootDocument = shadowRoot;
 
     document.body.addEventListener("click", (ev) => {
-        const warpMenuRoot = document.getElementById("warp-menu-root");
+        const warpMenuRoot = shadowRootDocument.getElementById("warp-menu-root");
         if (!warpMenuRoot.contains(ev.target) && isWarpMenuOpen() && ev.target.id !== "warp-menu-shadow-host") {
             toggleWarpMenu(false);
         }
@@ -273,7 +282,16 @@ export function initWarpMenu(categories) {
         };
     }
 
-    setWarpMenuPosition(true);
+    const styleLink = document.createElement("link");
+    styleLink.onload = () => {
+        requestAnimationFrame(() => {
+            setWarpMenuPosition(true);
+        });
+    }
+    styleLink.rel = "stylesheet";
+    styleLink.type = "text/css";
+    styleLink.href = (typeof cesWarpMenuWarpCssUrl !== "undefined") ? cesWarpMenuWarpCssUrl : '/warp/warp.css';
+    shadowRoot.appendChild(styleLink);
 
     window.addEventListener("resize", () => {
         setWarpMenuPosition(true);
@@ -281,6 +299,6 @@ export function initWarpMenu(categories) {
 }
 
 if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
-    addStylesheet((typeof cesWarpMenuWarpCssUrl !== "undefined") ? cesWarpMenuWarpCssUrl : '/warp/warp.css');
+    // addStylesheet((typeof cesWarpMenuWarpCssUrl !== "undefined") ? cesWarpMenuWarpCssUrl : '/warp/warp.css');
     ajax((typeof cesWarpMenuMenuJsonUrl !== "undefined") ? cesWarpMenuMenuJsonUrl : '/warp/menu.json', initWarpMenu);
 }
