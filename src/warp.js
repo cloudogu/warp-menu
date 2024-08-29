@@ -1,5 +1,4 @@
-import {hasClass, createHtml, svgCaretDown, svgCaretRight, svgExternalLink, svgLogout} from "./utils.js";
-import {ajax} from "./ajax.js";
+import {hasClass, createHtml, svgCaretDown, svgCaretRight, svgExternalLink, svgLogout, fetchWarpJson} from "./utils.js";
 import {getLocalizedString, isTranslateable} from "./translation.js";
 import {getCategoryKey, isOpenCollapsible, toggleCollapsedInStorage} from "./toggle.js";
 import {createTooltip} from "./tooltip.js";
@@ -303,5 +302,5 @@ export function initWarpMenu(categories) {
 
 if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
     // addStylesheet((typeof cesWarpMenuWarpCssUrl !== "undefined") ? cesWarpMenuWarpCssUrl : '/warp/warp.css');
-    ajax((typeof cesWarpMenuMenuJsonUrl !== "undefined") ? cesWarpMenuMenuJsonUrl : '/warp/menu.json', initWarpMenu);
+    fetchWarpJson((typeof cesWarpMenuMenuJsonUrl !== "undefined") ? cesWarpMenuMenuJsonUrl : '/warp/menu.json', initWarpMenu);
 }

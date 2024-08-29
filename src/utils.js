@@ -12,6 +12,13 @@ export function createHtml(htmlString) {
     return element.firstElementChild;
 }
 
+export function fetchWarpJson(url, successCallback) {
+    fetch(url, {method: 'GET'})
+        .then(res => res.json())
+        .then(json => successCallback(json))
+        .catch(error => console.error('A problem occurred while fetching warp menu data:', error));
+}
+
 const svgTextModifierClasses = "fill-warp-text group-hover/svg:fill-warp-text-hover group-focus-visible/svg:fill-warp-text-hover group-active/svg:fill-warp-text-active hover:fill-warp-text-hover focus-visible:fill-warp-text-hover active:fill-warp-text-active";
 export const svgCaretRight = `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path class="${svgTextModifierClasses}" d="M181.66,122.34l-80-80A8,8,0,0,0,88,48V208a8,8,0,0,0,13.66,5.66l80-80A8,8,0,0,0,181.66,122.34Z"/></svg>`; // https://phosphoricons.com/?q=%22caret%22&weight=%22fill%22
 export const svgCaretDown = `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path class="${svgTextModifierClasses}" d="M215.39,92.94A8,8,0,0,0,208,88H48a8,8,0,0,0-5.66,13.66l80,80a8,8,0,0,0,11.32,0l80-80A8,8,0,0,0,215.39,92.94Z"/></svg>`; // https://phosphoricons.com/?q=%22caret%22&weight=%22fill%22
