@@ -178,11 +178,11 @@ export function initWarpMenu(categories) {
         <div class="flex items-center warp-lg:w-14 not-warp-lg:justify-end warp-lg:h-full not-warp-lg:w-full">
             <button id="warp-toggle"
                     class="pointer-events-auto warp-lg:rotate-[-90deg] rounded-t-lg focus-visible:ces-focused 
-                    whitespace-nowrap px-[14px] h-10 desktop:text-desktop-regular mobile:text-mobile-regular 
+                    whitespace-nowrap px-[14px] h-11
                     bg-warp-bg hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active
                     border-2 border-warp-border hover:border-warp-border-hover focus-visible:border-warp-border-hover 
                     active:border-warp-border-active text-warp-text outline-0 border-b-0 not-warp-lg:border-r-0 
-                    not-warp-lg:rounded-tr-none" aria-haspopup="menu" aria-controls="warp-menu">
+                    not-warp-lg:rounded-tr-none text-[1.125rem] font-[600] tracking-[1px]" aria-haspopup="menu" aria-controls="warp-menu">
                 ${getLocalizedString("menuToken")}
             </button>
         </div>

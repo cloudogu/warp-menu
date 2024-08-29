@@ -863,8 +863,8 @@ legend{
   display: none;
 }
 
-.h-10{
-  height: 40px;
+.h-11{
+  height: 44px;
 }
 
 .h-40{
@@ -1100,9 +1100,21 @@ legend{
   padding-bottom: 16px;
 }
 
+.text-\[1\.125rem\]{
+  font-size: 18px;
+}
+
 .text-xl{
   font-size: 20px;
   line-height: 28px;
+}
+
+.font-\[600\]{
+  font-weight: 600;
+}
+
+.tracking-\[1px\]{
+  letter-spacing: 1px;
 }
 
 .text{
@@ -1283,11 +1295,6 @@ legend{
 }
 
 @media (min-width: 768px){
-  .desktop\:text-desktop-regular{
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
   .desktop\:text-desktop-xl{
     font-size: 19px;
     line-height: 1.6842;
@@ -1295,11 +1302,6 @@ legend{
 }
 
 @media (max-width: 767px){
-  .mobile\:text-mobile-regular{
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
   .mobile\:text-mobile-xl{
     font-size: 18px;
     line-height: 1.33333;
