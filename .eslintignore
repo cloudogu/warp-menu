@@ -1,0 +1,6 @@
+*.spec.tsx
+*.spec.ts
+*.spec.js
+*.spec.jsx
+*.json
+*.css

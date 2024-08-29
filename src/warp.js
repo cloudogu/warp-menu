@@ -1,456 +1,302 @@
-var baseUrl = '';
-var desktopViewColumnWidthInPx = 245;
+import {hasClass, createHtml, svgCaretDown, svgCaretRight, svgExternalLink, svgLogout, fetchWarpJson} from "./utils.js";
+import {getLocalizedString, isTranslateable} from "./translation.js";
+import {getCategoryKey, isOpenCollapsible, toggleCollapsedInStorage} from "./toggle.js";
+import {createTooltip} from "./tooltip.js";
 
-var head = document.getElementsByTagName('head')[0];
-var body = document.getElementsByTagName('body')[0];
+/**
+ * @typedef {Object} Entry
+ * @property {string} DisplayName - The display name of the entry.
+ * @property {string} Href - The href/link for the entry.
+ * @property {string} Title - The title or description of the entry.
+ * @property {string} [Target] - The target attribute, typically used for external links. Optional.
+ */
 
-var lss = isLocalStorageSupported();
+/**
+ * @typedef {Object} Section
+ * @property {string} Title - The title of the section.
+ * @property {number} [Order] - The order of the section, if applicable. Optional.
+ * @property {Entry[]} Entries - An array of entries within the section.
+ */
 
-function toggleCollapsedInStorage(id) {
-    if (!lss) return;
+/**
+ * @type {HTMLHeadElement}
+ */
+export const head = document.getElementsByTagName('head')[0];
 
-    if (localStorage.getItem(id) === null || localStorage.getItem(id) === 'true') {
-        localStorage.setItem(id, 'false');
+/**
+ * @type {HTMLBodyElement}
+ */
+const body = document.getElementsByTagName('body')[0];
+
+let shadowRootDocument = document.documentElement;
+
+export function isWarpMenuOpen() {
+    const warpMenuRoot = shadowRootDocument.getElementById("warp-menu-root");
+    return warpMenuRoot.classList.contains("open");
+}
+
+export function toggleWarpMenu(hideAnimation) {
+    const toggleButton = shadowRootDocument.getElementById("warp-toggle");
+    const warpMenuRoot = shadowRootDocument.getElementById("warp-menu-root");
+    if (isWarpMenuOpen()) {
+        warpMenuRoot.classList.remove("open");
+        toggleButton.ariaExpanded = "false";
+        Array.from(warpMenuRoot.querySelectorAll("summary, a")).forEach(e => {
+            e.tabIndex = "-1";
+        });
     } else {
-        localStorage.setItem(id, 'true');
-    }
-}
-
-function isOpenCollapsible(id) {
-    if (!lss) return true;
-
-    return localStorage.getItem(id) === 'true' || localStorage.getItem(id) === null;
-}
-
-// create link
-function createLink(href) {
-    if (href.indexOf('http') === 0) {
-        return href;
-    } else {
-        return baseUrl + href;
-    }
-}
-
-// http://stackoverflow.com/questions/11214404/how-to-detect-if-browser-supports-html5-local-storage
-function isLocalStorageSupported() {
-    var mod = '__warp';
-    try {
-        localStorage.setItem(mod, mod);
-        localStorage.removeItem(mod);
-        return true;
-    } catch (e) {
-        return false;
-    }
-}
-
-function getLanguage() {
-    var language = navigator.languages ?
-        navigator.languages[0] :
-        (navigator.language || navigator.userLanguage || navigator.browserLanguage);
-
-    return language.split("-")[0];
-}
-
-function getLocalizedString(key) {
-    var language = getLanguage();
-    var translations = getTranslations(language);
-    return translations[key];
-}
-
-function isTranslateable(key) {
-    var language = getLanguage();
-    var translations = getTranslations(language);
-    return translations.hasOwnProperty(key);
-}
-
-function getCategoryKey(category) {
-    return "warpc." + category.Title.toLowerCase().replace(/\s+/g, "_");
-}
-
-function getTranslations(language) {
-    if (language === "de") {
-        return {
-            "platform": "cloudogu platform",
-            "aboutCloudoguToken": "&Uuml;ber Cloudogu",
-            "menuToken": "Men&uuml;",
-            "ecosystemLogoutToken": "EcoSystem Logout",
-            "onboardingTextToken": "Klicken Sie auf „Men&uuml;“, um ihre Tools zu sehen. Das Men&uuml; verbindet ihre Toolchain und ist von jedem Tool aus zug&auml;nglich.",
-            "onboardingHintToken": "Hinweis nicht mehr anzeigen",
-            "Development Apps": "Anwendungen",
-            "Administration Apps": "Administration",
-            "Documentation": "Dokumentation",
-            "docsCloudoguComUrl": "Cloudogu EcoSystem Docs"
-        };
-    } else {
-        return {
-            "platform": "cloudogu platform",
-            "aboutCloudoguToken": "About Cloudogu",
-            "menuToken": "Menu",
-            "ecosystemLogoutToken": "EcoSystem Logout",
-            "onboardingTextToken": "Click “Menu” to view all tools. That menu connects your toolchain and is available from any tool.",
-            "onboardingHintToken": "Do not show this hint again",
-            "Development Apps": "Applications",
-            "Administration Apps": "Administration Apps",
-            "Documentation": "Documentation",
-            "docsCloudoguComUrl": "Cloudogu EcoSystem Docs"
-        };
-    }
-}
-
-function toggleCategory(e) {
-    var target = e.target;
-    toggleClass(target, 'warpmenu-category-open');
-    toggleCollapsedInStorage(target.id);
-    setCorrectColumnCount();
-}
-
-function createMenuEntry(id, entries, title, list) {
-    var category = document.createElement('li');
-    var categoryInsideContainer = document.createElement('div');
-
-    var categoryHeader = document.createElement('h3');
-    categoryHeader.innerHTML = title;
-    categoryHeader.onclick = toggleCategory;
-    categoryHeader.id = id;
-    if (isOpenCollapsible(categoryHeader.id)) {
-        addClass(categoryHeader, 'warpmenu-category-open');
+        warpMenuRoot.classList.add("open");
+        toggleButton.ariaExpanded = "true";
+        Array.from(warpMenuRoot.querySelectorAll("summary, a")).forEach(e => {
+            e.removeAttribute("tabindex");
+        });
     }
 
-    var categoryLinkList = document.createElement('ul');
+    requestAnimationFrame(() => {
+        setWarpMenuPosition(hideAnimation);
+    });
+}
 
-    for (var i = 0; i < entries.length; i++) {
-        var currentEntry = entries[i];
-        var categoryListItem = document.createElement('li');
-        var categoryListItemLink = document.createElement('a');
-        addClass(categoryListItemLink, 'warp-menu-target-link');
+export function isDesktopMode() {
+    return (window.innerWidth ?? 0) >= 897;
+}
 
-        if (currentEntry.Target && currentEntry.Target === 'external') {
-            categoryListItemLink.target = '_blank';
-            addClass(categoryListItemLink, 'external');
+export function setWarpMenuPosition(hideAnimation) {
+    const warpMenuRoot = shadowRootDocument.getElementById("warp-menu-root");
+    const warpMenu = warpMenuRoot.querySelector("#warp-menu");
+    warpMenu.style.width = ``;
+    warpMenu.firstElementChild.style.width = ``;
+    const warpMenuWidth = warpMenu.scrollWidth;
+    const warpMenuHeight = warpMenu.getBoundingClientRect().height;
+    const warpMenuContainer = warpMenuRoot.querySelector("#warp-menu-container");
+    const toggleButtonWidth = Number(getComputedStyle(warpMenuRoot.querySelector("div:has(>#warp-toggle)")).width.replace("px", ""));
+    const tooltipColumnWidth = Number(getComputedStyle(warpMenuRoot.querySelector("#warp-menu-column-tooltip")).width.replace("px", "").replace("auto", "0"));
+    const offset = Math.min(document.documentElement.clientWidth - toggleButtonWidth - tooltipColumnWidth, warpMenuWidth);
+
+    if (!!hideAnimation) {
+        warpMenuContainer.remove();
+    }
+
+    if (isDesktopMode()) {
+        warpMenu.style.width = `${warpMenuWidth}px`;
+        warpMenu.firstElementChild.style.width = `${warpMenuWidth}px`;
+    }
+
+
+    if (isWarpMenuOpen()) {
+        warpMenu.ariaHidden = "false";
+
+        if (isDesktopMode()) {
+            warpMenuContainer.style.right = `0`;
+            warpMenuContainer.style.top = ``;
         } else {
-            categoryListItemLink.target = '_top';
+            warpMenuContainer.style.right = ``;
+            warpMenuContainer.style.top = `0`;
         }
-        categoryListItemLink.href = createLink(currentEntry.Href);
+    } else {
+        warpMenu.ariaHidden = "true";
 
-        // translate support entries which come without a display name
-        categoryListItemLink.innerHTML = currentEntry.DisplayName;
-        if (isTranslateable(currentEntry.Title)) {
-            categoryListItemLink.innerHTML = getLocalizedString(currentEntry.Title)
+        if (isDesktopMode()) {
+            warpMenuContainer.style.top = ``;
+            warpMenuContainer.style.right = `-${offset}px`;
+        } else {
+            warpMenuContainer.style.top = `${warpMenuHeight}px`;
+            warpMenuContainer.style.right = ``;
         }
-
-        categoryListItem.appendChild(categoryListItemLink);
-        categoryLinkList.appendChild(categoryListItem);
     }
 
-    categoryInsideContainer.appendChild(categoryHeader);
-    categoryInsideContainer.appendChild(categoryLinkList);
-    category.appendChild(categoryInsideContainer);
-    list.appendChild(category);
+
+    if (!!hideAnimation) {
+        warpMenuRoot.appendChild(warpMenuContainer);
+    }
+
+    warpMenuRoot.style.opacity = 1;
 }
 
-function createToggleButton() {
-    var toggleColumn = document.createElement('div');
-    addClass(toggleColumn, 'warp-menu-column-toggle');
 
-    var toggle = document.createElement('button');
-    addClass(toggle, 'warpbtn');
-    toggle.setAttribute('aria-haspopup', 'listbox');
-    toggle.id = 'warp-menu-warpbtn';
-    toggle.innerHTML = getLocalizedString("menuToken");
-    toggleColumn.appendChild(toggle);
+/**
+ *
+ * @param category {Section}
+ * @returns {string}
+ */
+export function createCategory(category) {
+    const categoryId = getCategoryKey(category);
+    return `<details class="border-warp-border border-b warp-lg:w-60 not-warp-lg:w-full group h-fit">
+                <summary
+                        class="px-default-2x py-default desktop:text-desktop-xl mobile:text-mobile-xl cursor-pointer focus-visible:ces-focused outline-none
+                           focus-visible:text-warp-text-hover active:text-warp-text-active
+                           focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row items-center group/svg
+                           box-border border-l border-l-transparent active:border-l-warp-border"
+                       id="${categoryId}"
+                >
+                    <span class="w-6 h-6 inline-block group-open:hidden mr-1">${svgCaretRight}</span>                    
+                    <span class="w-6 h-6 hidden group-open:inline-block mr-1">${svgCaretDown}</span>                    
+                    <h2 class="text-xl mb-0">${isTranslateable(category.Title) ? getLocalizedString(category.Title) : category.Title}</h2>
+                </summary>
+                <ul>
+                    ${category.Entries.map(e => {
+        const isExternalLink = !!e.Target && e.Target === 'external';
+        const linkText = isTranslateable(e.Title) ? getLocalizedString(e.Title) : e.DisplayName;
+        const externalIcon = `<span class="w-[1em] h-[1em] inline-block">${svgExternalLink}</span>`;
+        return `
+                    <li>
+                        <a
+                        role="menuitem"
+                        href="${e.Href}"
+                        target="${isExternalLink ? "_blank" : "_top"}" 
+                        class="py-default no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active break-all
+                           hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row flex-wrap
+                           items-center box-border border-l border-l-transparent border-b border-b-transparent
+                           hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
+                           hover:border-b-warp-border active:border-b-warp-border focus-visible:border-b-warp-border">
+                           ${linkText.split(" ").reduce((a, b) => `${a}<span>${b}&nbsp;</span>`, "")}
+                            ${(isExternalLink) ? externalIcon : ""}
+                       </a>
+                    </li>
+                    `;
+    }).join("")}
+                </ul>
+            </details>`;
+}
 
-    return {
-        "toggleColumn": toggleColumn,
-        "toggle": toggle
+/**
+ *
+ * @param categories {Section[]}
+ * @returns {HTMLObjectElement}
+ */
+export function initWarpMenu(categories) {
+    const warpMenuRoot = createHtml(`
+<div style="opacity: 0;" id="warp-menu-root" class="z-[9997] absolute overflow-hidden w-full h-full pointer-events-none no-print group/root top-0 left-0">
+    <div id="warp-menu-container"
+         class="fixed warp-lg:right-0 not-warp-lg:left-0 not-warp-lg:top-0 w-full h-full pointer-events-none flex 
+                warp-lg:flex-row not-warp-lg:flex-col justify-end transition-[top,right] duration-[600ms] ease-in-out">
+        <div class="flex items-center warp-lg:w-[62px] not-warp-lg:justify-end warp-lg:h-full not-warp-lg:w-full">
+            <button id="warp-toggle"
+                    class="pointer-events-auto warp-lg:rotate-[-90deg] rounded-t-lg focus-visible:ces-focused 
+                    whitespace-nowrap px-[14px] h-11
+                    bg-warp-bg hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active
+                    border-2 border-warp-border hover:border-warp-border-hover focus-visible:border-warp-border-hover 
+                    active:border-warp-border-active text-warp-text outline-0 border-b-0 not-warp-lg:border-r-0 
+                    not-warp-lg:rounded-tr-none text-[1.125rem] font-[600] tracking-[1px]" aria-haspopup="menu" aria-controls="warp-menu">
+                ${getLocalizedString("menuToken")}
+            </button>
+        </div>
+        <nav
+                id="warp-menu" 
+                class="pointer-events-auto group-[&:not(.open)]/root:select-none group-[&:not(.open)]/root:pointer-events-none 
+                       relative overflow-auto scroll-hide
+                       warp-lg:bg-[repeating-linear-gradient(90deg,var(--warp-border)_0px,var(--warp-border)_1px,var(--warp-bg)_1px,var(--warp-bg)_15rem)] bg-[var(--warp-bg)]
+                       bg-repeat-x bg-local
+                       "
+                aria-hidden="true"
+                aria-expanded="false"
+                role="menu"
+            >
+                <div class="warp-lg:flex warp-lg:flex-col text-warp-text
+                            not-warp-lg:w-screen column-style
+                            h-auto warp-md:columns-3 warp-sm:columns-2 warp-xs:columns-1
+                            warp-lg:flex-wrap border-warp-border border-box border-solid w-fit
+                            not-warp-lg:border-t not-warp-lg:border-t-warp-border not-warp-lg:gap-0 warp-lg:h-full scroll-hide"
+                >
+                    <div class="not-warp-lg:h-fit border-warp-border border-b flex flex-col justify-center items-center warp-lg:w-60 not-warp-lg:w-full 
+                                py-default gap-default relative">
+                            <div class="py-default pb-default-2x bg-warp-logo-bg w-48 flex flex-row justify-center items-center rounded">
+                                <img class="content-[var(--warp-logo)] max-w-32" alt="">
+                            </div>
+                            <span id="powered-by" class="hidden">${getLocalizedString("poweredBy")}</span>
+                    </div>
+                    ${categories.map(c => createCategory(c)).join("")}
+                    <div class="grow warp-lg:flex flex-col justify-end warp-lg:w-60 not-warp-lg:w-full warp-xs:w-full">
+                        <div class="border-warp-border warp-lg:border-t not-warp-lg:border-b">
+                            <a 
+                                href="${window?.location?.origin ?? ""}/cas/logout"
+                                class="py-default no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
+                                   hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active break-all
+                                   hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row flex-wrap
+                                   items-center box-border border-l border-l-transparent border-b border-b-transparent
+                                   hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
+                                   hover:border-b-warp-border active:border-b-warp-border focus-visible:border-b-warp-border"
+                            >
+                                <span class="w-[1em] h-[1em] mr-default">${svgLogout}</span>
+                                ${getLocalizedString("ecosystemLogoutToken")}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+        </nav>
+    </div>
+</div>
+    `);
+
+    // Add tooltip as first child
+    warpMenuRoot.querySelector("#warp-menu-container").prepend(createTooltip());
+
+    const shadowHost = createHtml(`<div id="warp-menu-shadow-host" style="pointer-events: none;"></div>`);
+    const shadowRoot = shadowHost.attachShadow({mode: "open"});
+    shadowRoot.appendChild(warpMenuRoot);
+    body.appendChild(shadowHost);
+
+    shadowRootDocument = shadowRoot;
+
+    document.body.addEventListener("click", (ev) => {
+        const warpMenuRoot = shadowRootDocument.getElementById("warp-menu-root");
+        if (!warpMenuRoot.contains(ev.target) && isWarpMenuOpen() && ev.target.id !== "warp-menu-shadow-host") {
+            toggleWarpMenu(false);
+        }
+    })
+
+    document.body.addEventListener("keydown", (ev) => {
+        if (ev.key === "Escape" && isWarpMenuOpen()) {
+            toggleWarpMenu(false);
+        }
+    })
+
+    const warpToggle = warpMenuRoot.querySelector("#warp-toggle");
+    warpToggle.onclick = () => {
+        toggleWarpMenu(false);
     };
-}
 
-function createTooltip() {
-    var tooltipColumn = document.createElement('div');
-    addClass(tooltipColumn, 'warp-menu-column-tooltip');
-
-    var tooltipLabel = document.createElement('label');
-    addClass(tooltipLabel, 'warp-onboarding');
-    tooltipColumn.appendChild(tooltipLabel);
-
-    var text = document.createElement('p');
-    addClass(text, 'warp-onboarding-msg');
-    text.innerHTML = getLocalizedString("onboardingTextToken");
-    tooltipLabel.appendChild(text);
-    var hint = document.createElement('p');
-    addClass(hint, 'warp-onboarding-hint');
-    var checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    var hintText = document.createElement('span');
-    hintText.innerHTML = getLocalizedString("onboardingHintToken");
-
-    hint.appendChild(hintText);
-    hint.appendChild(checkbox);
-    tooltipLabel.appendChild(hint);
-
-    var tooltipLabelArrow = document.createElement('div');
-    tooltipLabelArrow.innerText = ' ';
-    addClass(tooltipLabelArrow, 'warp-onboarding-after-arrow');
-    tooltipLabel.appendChild(tooltipLabelArrow);
-
-    function hideTooltip() {
-        addClass(tooltipColumn, 'warp-onboarding-container-hide');
-        if (lss) localStorage.setItem('warpMenuHideTooltip', 'hide');
-        setTimeout(function () {
-            tooltipColumn.style.display = 'none';
-        }, 3000);
+    const summaries = Array.from(warpMenuRoot.querySelectorAll("summary"));
+    for (const s of summaries) {
+        s.parentNode.open = isOpenCollapsible(s.id);
+        s.onclick = () => {
+            const element = warpMenuRoot.querySelector("#warp-menu");
+            element.style.width = `${element.getBoundingClientRect().width}px`;
+            requestAnimationFrame(() => {
+                element.style.width = "";
+            });
+            toggleCollapsedInStorage(s.id);
+            requestAnimationFrame(() => {
+                setWarpMenuPosition(true);
+                s.focus();
+            });
+        };
     }
 
-    checkbox.onclick = hideTooltip;
-    return tooltipColumn;
-}
-
-function isTooltipDisabled() {
-    if (!lss) return false;
-
-    var tooltipConfig = localStorage.getItem('warpMenuHideTooltip');
-    return tooltipConfig === 'hide';
-}
-
-function addLogoutMenuEntry(list) {
-    var placeholder = document.createElement('li');
-    addClass(placeholder, 'warp-menu-logout-placeholder');
-    var placeholderChild = document.createElement('div');
-    placeholderChild.innerHTML = '&nbsp;';
-    placeholder.appendChild(placeholderChild);
-
-    var logout = document.createElement('li');
-    addClass(logout, 'warp-menu-logout-list-element');
-    var logoutHref = document.createElement('a');
-    addClass(logoutHref, 'warp-menu-logout-link');
-    logoutHref.innerHTML = getLocalizedString("ecosystemLogoutToken");
-    logoutHref.href = createLink('/cas/logout');
-    logout.appendChild(logoutHref);
-    list.appendChild(placeholder);
-    list.appendChild(logout);
-}
-
-function createHomeWithImage() {
-    var homeListElement = document.createElement('li');
-    var homeContainer = document.createElement('div');
-    addClass(homeContainer, 'warp-menu-home-button');
-    var homeImage = document.createElement('div');
-    addClass(homeImage, 'img');
-    homeContainer.appendChild(homeImage);
-    homeListElement.appendChild(homeContainer);
-    return homeListElement;
-}
-
-function createMenu(categories) {
-    const menuContainer = document.createElement('div');
-    menuContainer.id = 'warp-menu-column-menu';
-    addClass(menuContainer, 'warp-menu-column-menu');
-    addClass(menuContainer, 'menu-container-hide');
-
-    const shiftContainer = document.createElement('div');
-    shiftContainer.id = 'warp-menu-shift-container';
-    addClass(shiftContainer, 'warp-menu-shift-container');
-    menuContainer.appendChild(shiftContainer);
-
-    const overlay = document.createElement('div');
-    addClass(overlay, 'warp-menu-gradient-overlay');
-    shiftContainer.appendChild(overlay);
-
-    const list = document.createElement('ul');
-    addClass(list, 'warp-menu-category-list');
-    list.id = 'warp-menu-category-list';
-    shiftContainer.appendChild(list);
-
-    const homeElement = createHomeWithImage();
-    list.appendChild(homeElement);
-
-    for (let c = 0; c < categories.length; c++) {
-        let currentCategory = categories[c];
-
-        let title = currentCategory.Title;
-        if (isTranslateable(title)) {
-            title = getLocalizedString(title);
-        }
-        let id = getCategoryKey(currentCategory);
-        createMenuEntry(id, currentCategory.Entries, title, list);
-    }
-
-    addLogoutMenuEntry(list);
-
-    window.addEventListener('resize', setCorrectColumnCount);
-    window.addEventListener('resize', setMenuCorrectPosition);
-
-    window.addEventListener('orientationchange', function () {
-        // Can only be done in next frame. Won't work otherwise
-        window.requestAnimationFrame(function () {
-            setMenuCorrectPosition();
-        });
-    });
-
-    // Timeout is needed here. Won't work otherwise
-    window.addEventListener('resize', function () {
-        // Can only be done in next frame. Won't work otherwise
-        window.requestAnimationFrame(function () {
-            setMenuCorrectPosition();
-        });
-    });
-
-    return menuContainer;
-}
-
-function setMenuCorrectPosition() {
-    var container = document.getElementById('warp-menu-container');
-    var menu = document.getElementById('warp-menu-column-menu');
-    var largeScreen = window.matchMedia("(min-width: 897px)");
-
-    // Move the warp menu into screen (So it is visible)
-    container.style.right = 0;
-
-    // In any case we need to set top and bottom to null. Menu won't be hidden otherwise in mobile mode.
-    container.style.bottom = null;
-    container.style.top = null;
-
-    if (largeScreen.matches) {
-        container.style.top = 0;
-    } else {
-        container.style.bottom = 0;
-    }
-
-    // When it should be hidden, move it to outside the screen.
-    if (largeScreen.matches && hasClass(menu, 'menu-container-hide')) {
-        if (hasClass(menu, 'menu-container-hide')) {
-            container.style.right = -menu.clientWidth + "px";
-        }
-    } else if (hasClass(menu, 'menu-container-hide')) {
-        if (hasClass(menu, 'menu-container-hide')) {
-            container.style.bottom = -menu.clientHeight + "px";
-        }
-    }
-}
-
-function initWarpMenu(categories) {
-    var warpMenuContainer = document.createElement('div');
-    addClass(warpMenuContainer, 'warp-menu-container');
-    addClass(warpMenuContainer, 'print-hidden');
-    addClass(warpMenuContainer, 'notransition');
-    warpMenuContainer.id = 'warp-menu-container';
-
-    var tooltipColumn = createTooltip();
-    var toggleResult = createToggleButton();
-    var menuContainer = createMenu(categories);
-
-    function toggleNav() {
-        var warpButton = document.getElementById("warp-menu-warpbtn");
-        if (hasClass(warpMenuContainer, 'collapsing')) {
-            return;
-        }
-        removeClass(warpMenuContainer, 'notransition');
-
-        addClass(warpMenuContainer, 'collapsing');
-        toggleClass(menuContainer, 'menu-container-hide');
-        setTimeout(function () {
-            removeClass(warpMenuContainer, 'collapsing');
-        }, 300);
-
-        if (!hasClass(warpMenuContainer, 'menu-container-hide')) {
-            setCorrectColumnCount();
-        }
-
-        setMenuCorrectPosition();
-        setTimeout(function () {
-            addClass(warpMenuContainer, 'notransition')
-        }, 600);
-        if (warpButton.hasAttribute('aria-expanded')) {
-            warpButton.removeAttribute('aria-expanded');
-        } else {
-            warpButton.setAttribute('aria-expanded', 'true');
-        }
-    }
-
-    toggleResult.toggle.onclick = toggleNav;
-
-    if (!isTooltipDisabled()) {
-        warpMenuContainer.appendChild(tooltipColumn);
-    }
-    warpMenuContainer.appendChild(toggleResult.toggleColumn);
-    warpMenuContainer.appendChild(menuContainer);
-
-    // hide menu
-    document.onclick = function (e) {
-        if (e && e.target) {
-            const menuIsVisible = !hasClass(menuContainer, 'menu-container-hide');
-            const targetParent = e.target.closest('#warp-menu-container');
-            const isClickOnMenu = targetParent !== undefined && targetParent !== null;
-            if (menuIsVisible && !isClickOnMenu) {
-                toggleNav();
+    const styleLink = document.createElement("link");
+    styleLink.onload = () => {
+        requestAnimationFrame(() => {
+            const fallbackLogoValue = getComputedStyle(shadowRootDocument.firstElementChild).getPropertyValue("--warp-logo-internal");
+            const actualLogoValue = getComputedStyle(shadowRootDocument.firstElementChild).getPropertyValue("--warp-logo");
+            const hasChangedLogo = fallbackLogoValue !== actualLogoValue;
+            if(hasChangedLogo) {
+                shadowRoot.firstElementChild.querySelector("#powered-by")?.classList.remove("hidden");
             }
-        }
-    };
 
-    body.appendChild(warpMenuContainer);
-
-    setCorrectVh();
-    window.addEventListener('resize', setCorrectVh);
-    setCorrectColumnCount();
-    setMenuCorrectPosition();
-}
-
-function setCorrectColumnCount() {
-    var list = document.getElementById('warp-menu-category-list');
-    var shiftContainer = document.getElementById('warp-menu-shift-container');
-    var columnCount = 0;
-
-    for (var i = 0; i < list.childNodes.length; i++) {
-        var node = list.childNodes[i];
-        var current = Math.floor(node.offsetLeft / desktopViewColumnWidthInPx) + 1;
-
-        if (hasClass(node, 'warp-menu-logout-list-element'))
-            continue; // Skip logout button because it is positioned outside of list
-
-        if (current > columnCount) columnCount = current;
+            setWarpMenuPosition(true);
+        });
     }
-    list.style.columnCount = null;
-    shiftContainer.style.width = null;
+    styleLink.rel = "stylesheet";
+    styleLink.type = "text/css";
+    styleLink.href = (typeof cesWarpMenuWarpCssUrl !== "undefined") ? cesWarpMenuWarpCssUrl : '/warp/warp.css';
+    shadowRoot.appendChild(styleLink);
 
-    var largeScreen = window.matchMedia('(min-width: 897px)');
-    if (largeScreen.matches) {
-        shiftContainer.style.width = 'calc(' + columnCount + ' * ' + desktopViewColumnWidthInPx + 'px)';
-        list.style.columnCount = columnCount;
-    }
-}
-
-var asyncCounter = 0;
-var model;
-
-function loaded(menu) {
-    if (menu) {
-        model = menu;
-    }
-    --asyncCounter;
-    if (asyncCounter === 0) {
-        initWarpMenu(model);
-    }
+    window.addEventListener("resize", () => {
+        setWarpMenuPosition(true);
+    })
 }
 
 if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
-
-    // load css
-    asyncCounter++;
-    addStylesheet('/warp/warp.css', function (success) {
-        if (success) {
-            loaded();
-        }
-    });
-
-    // load model
-    asyncCounter++;
-    ajax('/warp/menu.json', loaded);
-}
-
-// According to https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
-// This trick is used to get the correct height on mobile devices.
-function setCorrectVh() {
-    var correctVh = (window.innerHeight * 0.01) + 'px';
-    // This is used to calculate correct inner height of the display
-    document.getElementById('warp-menu-container').style.setProperty('--vh', correctVh);
+    fetchWarpJson((typeof cesWarpMenuMenuJsonUrl !== "undefined") ? cesWarpMenuMenuJsonUrl : '/warp/menu.json', initWarpMenu);
 }

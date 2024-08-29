@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2.0.0](https://github.com/cloudogu/warp-menu/releases/tag/v2.0.0)
+### Changed
+- Adjust warp menu to new theme which enables white labeling (#49)
+    - Refactor code to use newer js version
+    - Use vite as build tool
+    - Use Tailwind for CSS
+
+### Removed
+- gulp as build tool (#49)
+- Support for SCSS   (#49)
+
 ## [v1.7.3](https://github.com/cloudogu/warp-menu/releases/tag/v1.7.3)
 ### Changed
 - Replaced all references to myCloudogu with references to the cloudogu platform (#45)
