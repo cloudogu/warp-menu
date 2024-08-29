@@ -38,16 +38,13 @@ export function isWarpMenuOpen() {
 export function toggleWarpMenu(hideAnimation) {
     const toggleButton = shadowRootDocument.getElementById("warp-toggle");
     const warpMenuRoot = shadowRootDocument.getElementById("warp-menu-root");
-    console.log("start toggle");
     if (isWarpMenuOpen()) {
-        console.log("remove open");
         warpMenuRoot.classList.remove("open");
         toggleButton.ariaExpanded = "false";
         Array.from(warpMenuRoot.querySelectorAll("summary, a")).forEach(e => {
             e.tabIndex = "-1";
         });
     } else {
-        console.log("add open");
         warpMenuRoot.classList.add("open");
         toggleButton.ariaExpanded = "true";
         Array.from(warpMenuRoot.querySelectorAll("summary, a")).forEach(e => {
