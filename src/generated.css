@@ -1329,12 +1329,12 @@ legend{
     height: 100%;
   }
 
-  .warp-lg\:w-14{
-    width: 56px;
-  }
-
   .warp-lg\:w-60{
     width: 240px;
+  }
+
+  .warp-lg\:w-\[60px\]{
+    width: 60px;
   }
 
   .warp-lg\:rotate-\[-90deg\]{

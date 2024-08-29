@@ -175,7 +175,7 @@ export function initWarpMenu(categories) {
     <div id="warp-menu-container"
          class="fixed warp-lg:right-0 not-warp-lg:left-0 not-warp-lg:top-0 w-full h-full pointer-events-none flex 
                 warp-lg:flex-row not-warp-lg:flex-col justify-end transition-[top,right] duration-[600ms] ease-in-out">
-        <div class="flex items-center warp-lg:w-[60px] not-warp-lg:justify-end warp-lg:h-full not-warp-lg:w-full">
+        <div class="flex items-center warp-lg:w-[62px] not-warp-lg:justify-end warp-lg:h-full not-warp-lg:w-full">
             <button id="warp-toggle"
                     class="pointer-events-auto warp-lg:rotate-[-90deg] rounded-t-lg focus-visible:ces-focused 
                     whitespace-nowrap px-[14px] h-11
