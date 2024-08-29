@@ -1,0 +1,38 @@
+@import "@cloudogu/ces-theme-tailwind/ces-theme-tailwind-config.css";
+
+/* It is important to have this reset css before tailwind imports */
+:host {
+    all: initial;
+    font-size: 16px;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media screen and (max-width: 896px) {
+
+    #warp-menu-root.scroll-hide::-webkit-scrollbar, #warp-menu-root .scroll-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    #warp-menu-root.scroll-hide, #warp-menu-root .scroll-hide {
+        scrollbar-width: none;
+    }
+}
+
+@media screen and (max-width: 896px) {
+    #warp-menu-root.column-style, #warp-menu-root .column-style {
+        column-rule: 1px solid var(--warp-border);
+    }
+}
+
+@media print {
+    #warp-menu-root.no-print, #warp-menu-root .no-print {
+        display: none !important;
+    }
+}
+
+#warp-menu-root details summary::-webkit-details-marker {
+    display: none;
+}
