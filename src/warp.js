@@ -301,6 +301,5 @@ export function initWarpMenu(categories) {
 }
 
 if (!hasClass(body, 'warpmenu-push') && (self === top || window.pmaversion)) {
-    // addStylesheet((typeof cesWarpMenuWarpCssUrl !== "undefined") ? cesWarpMenuWarpCssUrl : '/warp/warp.css');
     fetchWarpJson((typeof cesWarpMenuMenuJsonUrl !== "undefined") ? cesWarpMenuMenuJsonUrl : '/warp/menu.json', initWarpMenu);
 }
