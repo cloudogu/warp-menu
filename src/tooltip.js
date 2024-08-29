@@ -21,9 +21,9 @@ const tooltipColumnHtmlString = `
               id="hide-hint"
               class="h-6 w-6 text-warp-text 
                 focus-visible:ces-focused hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active hover:border-warp-border-hover focus-visible:border-warp-border-hover
-                active:border-warp-border-active outline-0"
+                active:border-warp-border-active outline-0 cursor-pointer"
             />
-            <label for="hide-hint" class="ml-2">${getLocalizedString("onboardingHintToken")}</label>
+            <label for="hide-hint" class="ml-2 cursor-pointer">${getLocalizedString("onboardingHintToken")}</label>
           </div>
         </div>
     </div>
