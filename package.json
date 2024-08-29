@@ -8,7 +8,6 @@
   },
   "devDependencies": {
     "postcss-cli": "^11.0.0",
-    "postcss-prefix-selector": "^1.16.1",
     "postcss-rem-to-pixel": "^4.1.2",
     "postcss-safe-important": "^2.0.1",
     "prettier": "^3.3.3",
