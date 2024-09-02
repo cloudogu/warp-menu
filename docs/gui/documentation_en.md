@@ -7,7 +7,7 @@ You can open the Warp Menu in any dogu by clicking the "Menu" button on the righ
 If you are entering the EcoSystem for the first time, you will see a tooltip on the right side of the screen that points to the Warp Menu.
 By clicking on it, you can hide it permanently.
 
-![Warp Menu Placement](figures/warp-menu/WarpMenuFirstView.png)
+![Warp Menu Placement](figures/warp-menu/WarpMenuFirstView_en.png)
 
 If you click on the "Menu" button, you will see the Warp menu with all installed Dogus and other configured
 links are displayed. Clicking on the respective link will redirect you to the corresponding application.
@@ -38,13 +38,13 @@ Depending on the width of your screen, it will be displayed either in two, three
 
 Mobile view on very small devices, e.g. a smartphone.
 
-![Warp Menu two columns: mobile](figures/warp-menu/WarpMenuTwoColumns.png)
+![Warp Menu two columns: mobile](figures/warp-menu/WarpMenuMobile_en.png)
 
 
-Mobile view on small devices, e.g. smartphone in landscape mode or tablet.
+Mobile view on small devices, e.g. smartphone in landscape mode.
 
-![Warp menu three columns: mobile](figures/warp-menu/WarpMenuThreeColumns.png)
+![Warp menu three columns: mobile](figures/warp-menu/WarpMenuTwoColumns_en.png)
 
-Mobile view on large mobile devices, e.g. cell phone in landscape mode or tablet.
+Mobile view on large mobile devices, e.g. tablet in landscape mode.
 
-![Warp menu four columns: mobile](figures/warp-menu/WarpMenuFourColumns.png)
+![Warp menu four columns: mobile](figures/warp-menu/WarpMenuThreeColumns_en.png)
