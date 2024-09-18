@@ -7,7 +7,7 @@ Das Warp Menü können Sie in jedem Dogu über die Schaltfläche "Menü" am rech
 Sollten Sie zum ersten Mal das EcoSystem aufrufen, sehen Sie am rechten Bildschirmrand einen Tooltip, welcher auf das Warp Menü hinweist.
 Durch einen Klick darauf kann dieser dauerhaft ausgeblendet werden.
 
-![Warp Menü Platzierung](figures/warp-menu/WarpMenuFirstView.png)
+![Warp Menü Platzierung](figures/warp-menu/WarpMenuFirstView_de.png)
 
 Wenn sie auf die Schaltfläche "Menü" klicken, wird Ihnen das Warp Menü mit allen installierten Dogus und weiteren konfigurierten
 Links angezeigt. Ein Klick auf den jeweiligen Link leitet Sie auf die entsprechende Anwendung weiter.
@@ -38,13 +38,13 @@ Abhängig von der Breite Ihres Bildschirmes, wird es entweder in zwei, drei und 
 
 Mobile Ansicht auf sehr kleinen Geräten, z.B einem Smartphone.
 
-![Warp Menü zwei Spalten: mobil](figures/warp-menu/WarpMenuTwoColumns.png)
+![Warp Menü zwei Spalten: mobil](figures/warp-menu/WarpMenuMobile_de.png)
 
 
-Mobile Ansicht auf kleinen Geräten, z.B Smartphone im Querformat oder Tablet.
+Mobile Ansicht auf kleinen Geräten, z.B Smartphone im Querformat.
 
-![Warp Menü drei Spalten: mobil](figures/warp-menu/WarpMenuThreeColumns.png)
+![Warp Menü drei Spalten: mobil](figures/warp-menu/WarpMenuTwoColumns_de.png)
 
-Mobile Ansicht auf großen mobilen Geräten, z.B Handy im Querformat oder Tablet.
+Mobile Ansicht auf großen mobilen Geräten, z.B Tablet im Querformat.
 
-![Warp Menü vier Spalten: mobil](figures/warp-menu/WarpMenuFourColumns.png)
+![Warp Menü vier Spalten: mobil](figures/warp-menu/WarpMenuThreeColumns_de.png)
