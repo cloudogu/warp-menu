@@ -4,6 +4,9 @@ Im Folgenden finden Sie die Release Notes für das Warp-Menü.
 
 Technische Details zu einem Release finden Sie im zugehörigen [Changelog](https://docs.cloudogu.com/de/docs/system-components/warp-menu/CHANGELOG/).
 
+## Release 2.0.1
+- Die Cloudogu-eigenen Quellen werden von der MIT-Lizenz auf die AGPL-3.0-only relizensiert.
+
 ## Release 2.0.0
 
 * Das Warp-Menü wurde hinsichtlich der Barrierefreiheit verbessert.
