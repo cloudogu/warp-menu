@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2.0.2](https://github.com/cloudogu/warp-menu/releases/tag/v2.0.2)
+### Changed
+- Use the same font-stack for warp-menu as in the "CES-Tailwind"-theme (#54)
+
 ## [v2.0.1](https://github.com/cloudogu/warp-menu/releases/tag/v2.0.1)
 ### Changed
 - Relicense to AGPL-3.0-only
