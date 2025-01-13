@@ -4,6 +4,9 @@ Below you will find the release notes for the Warp Menu.
 
 Technical details on a release can be found in the corresponding [Changelog](https://docs.cloudogu.com/en/docs/system-components/warp-menu/CHANGELOG/).
 
+## Release 2.0.2
+- Only technical changes were made. For more information, see the changelog.
+
 ## Release 2.0.1
 - Relicense own code to AGPL-3-only
 
