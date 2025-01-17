@@ -141,17 +141,15 @@ export function createCategory(category) {
         return `
                     <li>
                         <a
-                        role="menuitem"
                         href="${e.Href}"
                         target="${isExternalLink ? "_blank" : "_top"}" 
                         class="py-default no-underline px-default-2x text-warp-text cursor-pointer focus-visible:ces-focused outline-none
-                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active break-all
+                           hover:text-warp-text-hover focus-visible:text-warp-text-hover active:text-warp-text-active
                            hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active flex flex-row flex-wrap
                            items-center box-border border-l border-l-transparent border-b border-b-transparent
                            hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
                            hover:border-b-warp-border active:border-b-warp-border focus-visible:border-b-warp-border">
-                           ${linkText.split(" ").reduce((a, b) => `${a}<span>${b}&nbsp;</span>`, "")}
-                            ${(isExternalLink) ? externalIcon : ""}
+                           ${linkText} ${(isExternalLink) ? externalIcon : ""}
                        </a>
                     </li>
                     `;
