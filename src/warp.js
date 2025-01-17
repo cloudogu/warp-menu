@@ -137,7 +137,8 @@ export function createCategory(category) {
                     ${category.Entries.map(e => {
         const isExternalLink = !!e.Target && e.Target === 'external';
         const linkText = isTranslateable(e.Title) ? getLocalizedString(e.Title) : e.DisplayName;
-        const externalIcon = `<span class="w-[1em] h-[1em] inline-block">${svgExternalLink}</span>`;
+        const externalIcon = `&nbsp;<span class="w-[1em] h-[1em] inline-block align-text-top">${svgExternalLink}</span>`;
+        const textParts = linkText.split(" ")
         return `
                     <li>
                         <a
@@ -149,7 +150,8 @@ export function createCategory(category) {
                            items-center box-border border-l border-l-transparent border-b border-b-transparent
                            hover:border-l-warp-border active:border-l-warp-border focus-visible:border-l-warp-border
                            hover:border-b-warp-border active:border-b-warp-border focus-visible:border-b-warp-border">
-                           ${linkText} ${(isExternalLink) ? externalIcon : ""}
+                           ${textParts.slice(0,-1).reduce((a, b) => `${a}<span>${b}&nbsp;</span>`, "")}
+                           <span>${textParts.slice(-1)}${(isExternalLink) ? externalIcon : ""}</span>
                        </a>
                     </li>
                     `;
