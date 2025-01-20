@@ -4,6 +4,9 @@ Im Folgenden finden Sie die Release Notes für das Warp-Menü.
 
 Technische Details zu einem Release finden Sie im zugehörigen [Changelog](https://docs.cloudogu.com/de/docs/system-components/warp-menu/CHANGELOG/).
 
+## Release 2.0.3
+- Es wurden nur technische Änderungen vorgenommen. Nähe Informationen finden Sie im Changelog.
+
 ## Release 2.0.2
 - Es wurden nur technische Änderungen vorgenommen. Nähe Informationen finden Sie im Changelog.
 
