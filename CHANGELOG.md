@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2.0.3](https://github.com/cloudogu/warp-menu/releases/tag/v2.0.3)
+### Fixed
+- Adapt aria rules for better screenreader support in submenus (#56)
+
 ## [v2.0.2](https://github.com/cloudogu/warp-menu/releases/tag/v2.0.2)
 ### Changed
 - Use the same font-stack for warp-menu as in the "CES-Tailwind"-theme (#54)

@@ -1100,6 +1100,10 @@ legend{
   padding-bottom: 16px;
 }
 
+.align-text-top{
+  vertical-align: text-top;
+}
+
 .text-\[1\.125rem\]{
   font-size: 18px;
 }
