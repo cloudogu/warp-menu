@@ -1,4 +1,4 @@
-import {getLocalizedString} from "./translation.js";
+import {localize} from "./translation.js";
 import {createHtml} from "./utils.js";
 
 
@@ -13,7 +13,7 @@ const tooltipColumnHtmlString = `
                 bg-warp-bg text-warp-text">
         <!-- Tooltip content -->
         <div class="pointer-events-auto">
-          <p>${getLocalizedString("onboardingTextToken")}</p>
+          <p>${localize("onboardingTextToken")}</p>
           <!-- Checkbox and text -->
           <div class="flex items-center mt-2">
             <input
@@ -23,7 +23,7 @@ const tooltipColumnHtmlString = `
                 focus-visible:ces-focused hover:bg-warp-bg-hover focus-visible:bg-warp-bg-hover active:bg-warp-bg-active hover:border-warp-border-hover focus-visible:border-warp-border-hover
                 active:border-warp-border-active outline-0 cursor-pointer"
             />
-            <label for="hide-hint" class="ml-2 cursor-pointer">${getLocalizedString("onboardingHintToken")}</label>
+            <label for="hide-hint" class="ml-2 cursor-pointer">${localize("onboardingHintToken")}</label>
           </div>
         </div>
     </div>

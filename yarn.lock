@@ -1585,11 +1585,6 @@ postcss-nested@^6.0.1:
   dependencies:
     postcss-selector-parser "^6.1.1"
 
-postcss-prefix-selector@^1.16.1:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/postcss-prefix-selector/-/postcss-prefix-selector-1.16.1.tgz#87a77523838b79c0e8aec29f173234b2987cdc04"
-  integrity sha512-Umxu+FvKMwlY6TyDzGFoSUnzW+NOfMBLyC1tAkIjgX+Z/qGspJeRjVC903D7mx7TuBpJlwti2ibXtWuA7fKMeQ==
-
 postcss-rem-to-pixel@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/postcss-rem-to-pixel/-/postcss-rem-to-pixel-4.1.2.tgz#2be16281d68b6ca413e798179b6c08d7dbae42c7"

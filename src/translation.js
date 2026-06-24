@@ -6,16 +6,26 @@ export function getLanguage() {
     return language.split("-")[0];
 }
 
-export function getLocalizedString(key) {
-    var language = getLanguage();
-    var translations = getTranslations(language);
-    return translations[key];
+export function localize(translationKey, fallback) {
+    return localizeWithMap(undefined, translationKey, fallback);
 }
 
-export function isTranslateable(key) {
+export function localizeWithMap(localizationMap, translationKey, fallback) {
     var language = getLanguage();
     var translations = getTranslations(language);
-    return translations.hasOwnProperty(key);
+
+    var result;
+
+    // first check if the localization map
+    if (localizationMap) {
+        result = localizationMap[language] ?? localizationMap["en"];
+
+        if (result) {
+            return result;
+        }
+    }
+
+    return translations[translationKey] ?? (fallback ?? translationKey);
 }
 
 export function getTranslations(language) {
