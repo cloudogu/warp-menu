@@ -6,8 +6,8 @@ export function getLanguage() {
     return language.split("-")[0];
 }
 
-export function localize(translationKey, fallback) {
-    return localizeWithMap(undefined, translationKey, fallback);
+export function localize(translationKey) {
+    return localizeWithMap(undefined, translationKey);
 }
 
 export function localizeWithMap(localizationMap, translationKey, fallback) {
