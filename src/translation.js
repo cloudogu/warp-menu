@@ -14,11 +14,9 @@ export function localizeWithMap(localizationMap, translationKey, fallback) {
     var language = getLanguage();
     var translations = getTranslations(language);
 
-    var result;
-
     // first check if the localization map
     if (localizationMap) {
-        result = localizationMap[language] ?? localizationMap["en"];
+        const result = localizationMap[language] ?? localizationMap["en"];
 
         if (result) {
             return result;
