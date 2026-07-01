@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2.1.0](https://github.com/cloudogu/warp-menu/releases/tag/v2.1.0)
+### Added
+- Display menu category and entry names in the browser language using the `Localization` map from `menu.json` (#58)
+
 ## [v2.0.3](https://github.com/cloudogu/warp-menu/releases/tag/v2.0.3)
 ### Fixed
 - Adapt aria rules for better screenreader support in submenus (#56)

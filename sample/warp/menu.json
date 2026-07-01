@@ -1,11 +1,19 @@
 [
   {
     "Title": "Administration Apps",
+    "Localization": {
+      "de": "Administration",
+      "en": "Administration"
+    },
     "Entries": [
       {
         "DisplayName": "UniverseADM",
         "Href": "/universeadm",
-        "Title": "User and Group Management."
+        "Title": "User and Group Management.",
+        "Localization": {
+          "de": "Benutzerverwaltung",
+          "en": "User Management"
+        }
       }
     ]
   },
@@ -71,11 +79,19 @@
   },
   {
     "Title": "Documentation",
+    "Localization": {
+      "de": "Dokumentation",
+      "en": "Documentation"
+    },
     "Entries": [
       {
         "DisplayName": "Javadoc",
         "Href": "/javadocs",
-        "Title": "Javadoc for Java 8"
+        "Title": "Javadoc for Java 8",
+        "Localization": {
+          "de": "Javadoc für Java 8",
+          "en": "Javadoc for Java 8"
+        }
       }
     ]
   },

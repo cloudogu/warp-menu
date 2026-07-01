@@ -1,5 +1,5 @@
 import {hasClass, createHtml, svgCaretDown, svgCaretRight, svgExternalLink, svgLogout, fetchWarpJson} from "./utils.js";
-import {getLocalizedString, isTranslateable} from "./translation.js";
+import {localize, localizeWithMap} from "./translation.js";
 import {getCategoryKey, isOpenCollapsible, toggleCollapsedInStorage} from "./toggle.js";
 import {createTooltip} from "./tooltip.js";
 
@@ -131,12 +131,12 @@ export function createCategory(category) {
                 >
                     <span class="w-6 h-6 inline-block group-open:hidden mr-1">${svgCaretRight}</span>                    
                     <span class="w-6 h-6 hidden group-open:inline-block mr-1">${svgCaretDown}</span>                    
-                    <h2 class="text-xl mb-0">${isTranslateable(category.Title) ? getLocalizedString(category.Title) : category.Title}</h2>
+                    <h2 class="text-xl mb-0">${localizeWithMap(category.Localization, category.Title)}</h2>
                 </summary>
                 <ul>
                     ${category.Entries.map(e => {
         const isExternalLink = !!e.Target && e.Target === 'external';
-        const linkText = isTranslateable(e.Title) ? getLocalizedString(e.Title) : e.DisplayName;
+        const linkText = localizeWithMap(e.Localization, e.Title, e.DisplayName);
         const externalIcon = `&nbsp;<span class="w-[1em] h-[1em] inline-block align-text-top">${svgExternalLink}</span>`;
         const textParts = linkText.split(" ")
         return `
@@ -179,7 +179,7 @@ export function initWarpMenu(categories) {
                     border-2 border-warp-border hover:border-warp-border-hover focus-visible:border-warp-border-hover 
                     active:border-warp-border-active text-warp-text outline-0 border-b-0 not-warp-lg:border-r-0 
                     not-warp-lg:rounded-tr-none text-[1.125rem] font-[600] tracking-[1px]" aria-haspopup="menu" aria-controls="warp-menu">
-                ${getLocalizedString("menuToken")}
+                ${localize("menuToken")}
             </button>
         </div>
         <nav
@@ -204,7 +204,7 @@ export function initWarpMenu(categories) {
                             <div class="py-default pb-default-2x bg-warp-logo-bg w-48 flex flex-row justify-center items-center rounded">
                                 <img class="content-[var(--warp-logo)] max-w-32" alt="">
                             </div>
-                            <span id="powered-by" class="hidden">${getLocalizedString("poweredBy")}</span>
+                            <span id="powered-by" class="hidden">${localize("poweredBy")}</span>
                     </div>
                     ${categories.map(c => createCategory(c)).join("")}
                     <div class="grow warp-lg:flex flex-col justify-end warp-lg:w-60 not-warp-lg:w-full warp-xs:w-full">
@@ -219,7 +219,7 @@ export function initWarpMenu(categories) {
                                    hover:border-b-warp-border active:border-b-warp-border focus-visible:border-b-warp-border"
                             >
                                 <span class="w-[1em] h-[1em] mr-default">${svgLogout}</span>
-                                ${getLocalizedString("ecosystemLogoutToken")}
+                                ${localize("ecosystemLogoutToken")}
                             </a>
                         </div>
                     </div>
